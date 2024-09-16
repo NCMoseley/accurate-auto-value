@@ -1,9 +1,8 @@
 "use client";
 
 import { useContext } from "react";
-// import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { getI18nPath, Link } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { useSession } from "next-auth/react";
 
 import { docsConfig } from "@/config/docs";
@@ -52,10 +51,7 @@ export function NavBar({ params, scroll = false }: NavBarProps) {
         large={documentation}
       >
         <div className="flex gap-6 md:gap-10">
-          <Link
-            href={getI18nPath("/")}
-            className="flex items-center space-x-1.5"
-          >
+          <Link href={"/"} className="flex items-center space-x-1.5">
             <Icons.logo />
             <span className="font-urban text-xl font-bold">
               {siteConfig.name}
@@ -111,11 +107,7 @@ export function NavBar({ params, scroll = false }: NavBarProps) {
 
           {session ? (
             <Link
-              href={
-                session.user.role === "ADMIN"
-                  ? getI18nPath("/admin")
-                  : getI18nPath("/dashboard")
-              }
+              href={session.user.role === "ADMIN" ? "/admin" : "/dashboard"}
               className="hidden md:block"
             >
               <Button
