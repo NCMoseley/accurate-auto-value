@@ -1,20 +1,20 @@
-import { allGuides } from "contentlayer/generated";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { allGuides } from "contentlayer/generated";
 
+import { getTableOfContents } from "@/lib/toc";
 import { Mdx } from "@/components/content/mdx-components";
 import { DocsPageHeader } from "@/components/docs/page-header";
 import { Icons } from "@/components/shared/icons";
 import { DashboardTableOfContents } from "@/components/shared/toc";
-import { getTableOfContents } from "@/lib/toc";
 
 import "@/styles/mdx.css";
 
 import { Metadata } from "next";
 
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import { buttonVariants } from "@/components/ui/button";
 import { cn, constructMetadata } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 export async function generateStaticParams() {
   return allGuides.map((guide) => ({
@@ -35,7 +35,7 @@ export async function generateMetadata({
   const { title, description } = guide;
 
   return constructMetadata({
-    title: `${title} – SaaS Starter`,
+    title: `${title} – Accurate Auto Value`,
     description: description,
   });
 }
