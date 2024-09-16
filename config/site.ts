@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
   ogImage: ``,
   links: {
     twitter: "https://twitter.com/miickasmt",
-    github: "https://github.com/mickasmt/next-saas-stripe-starter",
+    github: "https://github.com/ncmoseley/accurate-auto-value",
   },
   mailSupport: "ncmoseley+support@gmail.com",
 };
