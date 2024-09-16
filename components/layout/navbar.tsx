@@ -1,8 +1,9 @@
 "use client";
 
 import { useContext } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import { getI18nPath, Link } from "@/i18n/routing";
 import { useSession } from "next-auth/react";
 
 import { docsConfig } from "@/config/docs";
@@ -17,12 +18,15 @@ import { ModalContext } from "@/components/modals/providers";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
+import LocaleSwitcher from "./locale-switcher";
+
 interface NavBarProps {
   scroll?: boolean;
   large?: boolean;
+  params: { locale: string };
 }
 
-export function NavBar({ scroll = false }: NavBarProps) {
+export function NavBar({ params, scroll = false }: NavBarProps) {
   const scrolled = useScroll(50);
   const { data: session, status } = useSession();
   const { setShowSignInModal } = useContext(ModalContext);
@@ -48,7 +52,10 @@ export function NavBar({ scroll = false }: NavBarProps) {
         large={documentation}
       >
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-1.5">
+          <Link
+            href={getI18nPath("/")}
+            className="flex items-center space-x-1.5"
+          >
             <Icons.logo />
             <span className="font-urban text-xl font-bold">
               {siteConfig.name}
@@ -100,9 +107,15 @@ export function NavBar({ scroll = false }: NavBarProps) {
             </div>
           ) : null}
 
+          {/* <LocaleSwitcher /> */}
+
           {session ? (
             <Link
-              href={session.user.role === "ADMIN" ? "/admin" : "/dashboard"}
+              href={
+                session.user.role === "ADMIN"
+                  ? getI18nPath("/admin")
+                  : getI18nPath("/dashboard")
+              }
               className="hidden md:block"
             >
               <Button
