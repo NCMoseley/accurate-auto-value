@@ -1,5 +1,5 @@
-<a href="https://next-saas-stripe-starter.vercel.app">
-  <img alt="Accurate Auto Value" src="public/_static/og.jpg">
+<a href="https://accurate-auto-value.vercel.app">
+  <!-- <img alt="Accurate Auto Value" src="public/_static/og.jpg"> -->
   <h1 align="center">Accurate Auto Value</h1>
 </a>
 
@@ -19,8 +19,6 @@ All seamlessly integrated with the Accurate Auto Value to accelerate your develo
 ## Installation
 
 deploy with Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmickasmt%2Fnext-saas-stripe-starter)
 
 ### Steps
 
