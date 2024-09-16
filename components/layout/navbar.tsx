@@ -22,10 +22,9 @@ import LocaleSwitcher from "./locale-switcher";
 interface NavBarProps {
   scroll?: boolean;
   large?: boolean;
-  params: { locale: string };
 }
 
-export function NavBar({ params, scroll = false }: NavBarProps) {
+export function NavBar({ scroll = false }: NavBarProps) {
   const scrolled = useScroll(50);
   const { data: session, status } = useSession();
   const { setShowSignInModal } = useContext(ModalContext);
