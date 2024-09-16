@@ -12,7 +12,11 @@ export const sidebarLinks: SidebarNavItem[] = [
         title: "Admin Panel",
         authorizeOnly: UserRole.ADMIN,
       },
-      { href: "/dashboard", icon: "dashboard", title: "Dashboard" },
+      {
+        href: "/dashboard",
+        icon: "dashboard",
+        title: "Dashboard",
+      },
       {
         href: "/dashboard/billing",
         icon: "billing",

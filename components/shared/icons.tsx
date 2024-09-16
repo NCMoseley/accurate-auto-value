@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   AlertTriangle,
   ArrowRight,
@@ -12,7 +13,7 @@ import {
   FileText,
   HelpCircle,
   Home,
-  Image,
+  Image as ImageIcon,
   Laptop,
   LayoutPanelLeft,
   LineChart,
@@ -103,8 +104,16 @@ export const Icons = {
   home: Home,
   laptop: Laptop,
   lineChart: LineChart,
-  logo: Puzzle,
-  media: Image,
+  logo: ({ ...props }: LucideProps) => (
+    <Image
+      src="/images/round-logo.jpg"
+      // src="/logo-white.png"
+      alt="AAV Logo"
+      width={50}
+      height={50}
+    />
+  ),
+  media: ImageIcon,
   messages: MessagesSquare,
   moon: Moon,
   package: Package,
