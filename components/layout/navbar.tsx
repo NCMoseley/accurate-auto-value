@@ -107,7 +107,7 @@ export function NavBar({ params, scroll = false }: NavBarProps) {
             </div>
           ) : null}
 
-          {/* <LocaleSwitcher /> */}
+          <LocaleSwitcher />
 
           {session ? (
             <Link
