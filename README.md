@@ -14,7 +14,6 @@
 Empower your next project with the stack of Next.js 14, Prisma, Neon, Auth.js v5, Resend, React Email, Shadcn/ui, and Stripe.
 
 <br/>
-All seamlessly integrated with the Accurate Auto Value to accelerate your development and saas journey.
 
 ## Installation
 
