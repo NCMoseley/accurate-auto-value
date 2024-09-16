@@ -99,6 +99,13 @@ export const features: FeatureLdg[] = [
 
 export const testimonials: TestimonialType[] = [
   {
+    name: "Nathan Moseley",
+    job: "Project Manager",
+    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    review:
+      "I'm always looking for efficient solutions, and this car selling platform exceeded my expectations. The process was incredibly easy and trustworthy from start to finish. I appreciated the transparent pricing model and the ability to communicate directly with potential buyers. The platform's reputation system gave me confidence in the transactions, and I felt secure throughout the entire selling process. It's rare to find a service that combines simplicity with such a high level of trust and reliability. I've already recommended it to several colleagues who are looking to sell their vehicles.",
+  },
+  {
     name: "Jackie C Shaffer",
     job: "Developer",
     image: "https://randomuser.me/api/portraits/women/1.jpg",
@@ -111,13 +118,6 @@ export const testimonials: TestimonialType[] = [
     image: "https://randomuser.me/api/portraits/men/5.jpg",
     review:
       "As a DevOps engineer, I was skeptical about using an online platform to sell my car. However, I was pleasantly surprised by the high value I received for my vehicle. The dealer I connected with through the platform was professional and accepted my asking price without hesitation. The entire process was smooth and efficient, saving me time and effort. I highly recommend this service to anyone looking to get a fair deal on their car sale.",
-  },
-  {
-    name: "Nathan Moseley",
-    job: "Project Manager",
-    image: "https://randomuser.me/api/portraits/men/3.jpg",
-    review:
-      "I'm always looking for efficient solutions, and this car selling platform exceeded my expectations. The process was incredibly easy and trustworthy from start to finish. I appreciated the transparent pricing model and the ability to communicate directly with potential buyers. The platform's reputation system gave me confidence in the transactions, and I felt secure throughout the entire selling process. It's rare to find a service that combines simplicity with such a high level of trust and reliability. I've already recommended it to several colleagues who are looking to sell their vehicles.",
   },
   // {
   //   name: "Sophia Garcia",

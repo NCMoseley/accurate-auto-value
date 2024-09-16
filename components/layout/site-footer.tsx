@@ -42,16 +42,15 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             Copyright &copy; 2024. All rights reserved.
           </span> */}
           <p className="text-left text-sm text-muted-foreground">
-            Built by{" "}
-            <Link
+            Support by{" "}
+            {/* <Link
               href={siteConfig.links.twitter}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
-            >
-              mickasmt
-            </Link>
-            . Hosted on{" "}
+            > */}
+            {siteConfig.mailSupport}
+            {/* </Link> */}. Hosted on{" "}
             <Link
               href="https://vercel.com"
               target="_blank"
@@ -60,7 +59,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </Link>
-            . Illustrations by{" "}
+            {/* . Illustrations by{" "}
             <Link
               href="https://popsy.co"
               target="_blank"
@@ -68,18 +67,18 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               className="font-medium underline underline-offset-4"
             >
               Popsy
-            </Link>
+            </Link> */}
           </p>
 
           <div className="flex items-center gap-3">
-            <Link
+            {/* <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               <Icons.gitHub className="size-5" />
-            </Link>
+            </Link> */}
             <ModeToggle />
           </div>
         </div>
