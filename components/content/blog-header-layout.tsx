@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useParams } from "next/navigation";
+import { Link } from "@/i18n/routing";
 import { Check, List } from "lucide-react";
 import { Drawer } from "vaul";
 

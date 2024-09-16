@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { UserSubscriptionPlan } from "@/types";
 
 import { SubscriptionPlan } from "@/types/index";

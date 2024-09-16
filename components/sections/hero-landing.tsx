@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
@@ -65,7 +65,7 @@ export default async function HeroLanding() {
               "gap-2",
             )}
           >
-            <span>Go to Pricing</span>
+            <span>Go to Price Calculator</span>
             <Icons.arrowRight className="size-4" />
           </Link>
           {/* <Link

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import { Link } from "@/i18n/routing";
 import { Menu, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -60,17 +60,19 @@ export function NavMobile() {
         )}
       >
         <ul className="grid divide-y divide-muted">
-          {links && links.length > 0 && links.map(({ title, href }) => (
-            <li key={href} className="py-3">
-              <Link
-                href={href}
-                onClick={() => setOpen(false)}
-                className="flex w-full font-medium capitalize"
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
+          {links &&
+            links.length > 0 &&
+            links.map(({ title, href }) => (
+              <li key={href} className="py-3">
+                <Link
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="flex w-full font-medium capitalize"
+                >
+                  {title}
+                </Link>
+              </li>
+            ))}
 
           {session ? (
             <>

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";

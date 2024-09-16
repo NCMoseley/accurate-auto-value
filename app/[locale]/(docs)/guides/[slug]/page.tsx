@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Link } from "@/i18n/routing";
 import { allGuides } from "contentlayer/generated";
 
 import { getTableOfContents } from "@/lib/toc";
