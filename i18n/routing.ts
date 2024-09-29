@@ -20,21 +20,22 @@ export const routing = defineRouting({
 
   // Used when no locale matches
   defaultLocale: "en",
+  localePrefix,
 });
 
 export const AllLocales = routing.locales;
 
-export const getI18nPath = (url: string, locale?: string) => {
-  if (locale === routing.defaultLocale) {
-    return url;
-  }
+// export const getI18nPath = (url: string, locale?: string) => {
+//   if (locale === routing.defaultLocale) {
+//     return url;
+//   }
 
-  if (!locale) {
-    return `/${routing.defaultLocale}${url}`;
-  }
+//   if (!locale) {
+//     return `/${routing.defaultLocale}${url}`;
+//   }
 
-  return `/${locale}${url}`;
-};
+//   return `/${locale}${url}`;
+// };
 
 // Lightweight wrappers around Next.js' navigation APIs
 // that will consider the routing configuration
