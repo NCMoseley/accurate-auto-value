@@ -8,5 +8,19 @@
 		"a": "Testimonials",
 		"b": "What our clients are sharing.",
 		"c": "Discover the glowing feedback from our delighted customers worldwide."
+	},
+	"PricingPage": {
+		"a": "Pricing - Accurate Auto Value",
+		"b": "Explore our subscription plans.",
+		"c": "Learn more about our pricing."
+	},
+	"PricingCards": {
+		"a": "Calculator",
+		"b": "Start at full speed",
+		"c": "Yearly",
+		"d": "Monthly",
+		"e": "Email",
+		"f": "for to contact our support team.",
+		"g": "You can test the subscriptions and won&apos;t be charged."
 	}
 }

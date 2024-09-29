@@ -8,5 +8,10 @@
     "a": "Témoignages",
     "b": "Ce que nos clients partagent.",
     "c": "Découvrez les avis élogieux de nos clients satisfaits à travers le monde."
-  }
+  },
+	"PricingPage": {
+  "a": "Tarification - Accurate Auto Value",
+  "b": "Découvrez nos plans d'abonnement.",
+  "c": "En savoir plus sur nos tarifs."
+}
 }
