@@ -10,8 +10,8 @@ export default function PreviewLanding() {
           <div className="relative aspect-video overflow-hidden rounded-xl border md:rounded-lg">
             <Image
               // className="size-full object-cover object-center dark:opacity-85 dark:invert"
-              className="size-full object-cover object-center dark:opacity-35"
-              src="/images/finger-pressing-keyless-ingnition-car-valuation.jpg"
+              className="size-full object-cover object-center"
+              src="/images/finger-pressing-keyless-ingnition-car-valuation.png"
               alt="preview landing"
               width={2000}
               height={1000}
