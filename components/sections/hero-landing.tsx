@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
 import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
@@ -7,6 +8,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";
 
 export default async function HeroLanding() {
+  const t = await getTranslations("HeroLanding");
+  console.log("t:", t.raw("title"));
   const { stargazers_count: stars } = await fetch(
     "https://api.github.com/repos/ncmoseley/accurate-auto-value",
     {
@@ -40,7 +43,7 @@ export default async function HeroLanding() {
         </Link> */}
 
         <h1 className="text-balance font-urban text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-[66px]">
-          Kick off with a bang with{" "}
+          {t.raw("a")}{" "}
           <span className="text-gradient_indigo-purple font-extrabold">
             {siteConfig.name}
           </span>
@@ -65,7 +68,7 @@ export default async function HeroLanding() {
               "gap-2",
             )}
           >
-            <span>Go to Price Calculator</span>
+            <span>{t.raw("b")}</span>
             <Icons.arrowRight className="size-4" />
           </Link>
           {/* <Link

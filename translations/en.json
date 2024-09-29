@@ -1,6 +1,6 @@
 {
-	"HomePage": {
-		"title": "Hello world!",
-		"about": "Go to the about page"
+	"HeroLanding": {
+		"a": "Kick off with a bang with",
+		"b": "Go to the about page"
 	}
 }
