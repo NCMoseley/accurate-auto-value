@@ -1,6 +1,12 @@
 {
 	"HeroLanding": {
 		"a": "Kick off with a bang with",
-		"b": "Go to the about page"
+		"b": "Get a fair and accurate value for your car in minutes. No personal information required.",
+		"c": "Go to the about page"
+	},
+	"Testimonials": {
+		"a": "Testimonials",
+		"b": "What our clients are sharing.",
+		"c": "Discover the glowing feedback from our delighted customers worldwide."
 	}
 }

@@ -45,11 +45,9 @@ export default async function RootLayout(props: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <ModalProvider>
-              <NextIntlClientProvider messages={messages} locale={locale}>
-                {props.children}
-              </NextIntlClientProvider>
-            </ModalProvider>
+            <NextIntlClientProvider messages={messages} locale={locale}>
+              <ModalProvider>{props.children}</ModalProvider>
+            </NextIntlClientProvider>
             <Analytics />
             <Toaster richColors closeButton />
             <TailwindIndicator />

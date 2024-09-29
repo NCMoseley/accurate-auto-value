@@ -99,4 +99,4 @@ Adapted by ncmoseley ([ncmoseley](https://github.com/NCMoseley))
 
 ## Credits
 
-This project was inspired by [@miickasmt](https://twitter.com/miickasmt) in 2023, released under the [MIT license](https://github.com/shadcn/taxonomy/blob/main/LICENSE.md).
+This project was inspired by [@nathan](https://twitter.com/nathan) in 2023, released under the [MIT license](https://github.com/shadcn/taxonomy/blob/main/LICENSE.md).

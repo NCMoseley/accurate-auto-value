@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
   // ogImage: `${site_url}/_static/og.jpg`,
   ogImage: ``,
   links: {
-    twitter: "https://twitter.com/miickasmt",
+    twitter: "https://twitter.com/nathan",
     github: "https://github.com/ncmoseley/accurate-auto-value",
   },
   mailSupport: "ncmoseley+support@gmail.com",

@@ -1,10 +1,12 @@
 {
-	"HomePage": {
-		"title": "Bonjour le monde!",
-		"about": "Go to the about page"
-	},
-	"HeroLanding": {
-		"a": "Démarrez en beauté avec",
-		"b": "Aller à la page À propos"
-	}
+  "HeroLanding": {
+    "a": "Démarrez en beauté avec",
+    "b": "Obtenez une estimation juste et précise de votre voiture en quelques minutes. Aucune information personnelle requise.",
+    "c": "Aller à la page À propos"
+  },
+  "Testimonials": {
+    "a": "Témoignages",
+    "b": "Ce que nos clients partagent.",
+    "c": "Découvrez les avis élogieux de nos clients satisfaits à travers le monde."
+  }
 }
