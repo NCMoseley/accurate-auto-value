@@ -21,10 +21,7 @@ interface PricingCardsProps {
   subscriptionPlan?: UserSubscriptionPlan;
 }
 
-export async function PricingCards({
-  userId,
-  subscriptionPlan,
-}: PricingCardsProps) {
+export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   const t = useTranslations("PricingCards");
 
   const isYearlyDefault =
