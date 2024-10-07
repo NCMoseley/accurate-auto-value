@@ -107,9 +107,8 @@ export function absoluteUrl(path: string) {
 // Utils from precedent.dev
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
   if (!timestamp) return "never";
-  return `${ms(Date.now() - new Date(timestamp).getTime())}${
-    timeOnly ? "" : " ago"
-  }`;
+  return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? "" : " ago"
+    }`;
 };
 
 export async function fetcher<JSON = any>(
@@ -117,6 +116,8 @@ export async function fetcher<JSON = any>(
   init?: RequestInit,
 ): Promise<JSON> {
   const res = await fetch(input, init);
+
+  console.log("res", res);
 
   if (!res.ok) {
     const json = await res.json();
@@ -191,3 +192,60 @@ export const getBlurDataURL = async (url: string | null) => {
 
 export const placeholderBlurhash =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAoJJREFUWEfFl4lu4zAMRO3cx/9/au6reMaOdkxTTl0grQFCRoqaT+SQotq2bV9N8rRt28xms87m83l553eZ/9vr9Wpkz+ezkT0ej+6dv1X81AFw7M4FBACPVn2c1Z3zLgDeJwHgeLFYdAARYioAEAKJEG2WAjl3gCwNYymQQ9b7/V4spmIAwO6Wy2VnAMikBWlDURBELf8CuN1uHQSrPwMAHK5WqwFELQ01AIXdAa7XawfAb3p6AOwK5+v1ugAoEq4FRSFLgavfQ49jAGQpAE5wjgGCeRrGdBArwHOPcwFcLpcGU1X0IsBuN5tNgYhaiFFwHTiAwq8I+O5xfj6fOz38K+X/fYAdb7fbAgFAjIJ6Aav3AYlQ6nfnDoDz0+lUxNiLALvf7XaDNGQ6GANQBKR85V27B4D3QQRw7hGIYlQKWGM79hSweyCUe1blXhEAogfABwHAXAcqSYkxCtHLUK3XBajSc4Dj8dilAeiSAgD2+30BAEKV4GKcAuDqB4TdYwBgPQByCgApUBoE4EJUGvxUjF3Q69/zLw3g/HA45ABKgdIQu+JPIyDnisCfAxAFNFM0EFNQ64gfS0EUoQP8ighrZSjn3oziZEQpauyKbfjbZchHUL/3AS/Dd30gAkxuRACgfO+EWQW8qwI1o+wseNuKcQiESjALvwNoMI0TcRzD4lFcPYwIM+JTF5x6HOs8yI7jeB5oKhpMRFH9UwaSCDB2Jmg4rc6E2TT0biIaG0rQhNqyhpHBcayTTSXH6vcDL7/sdqRK8LkwTsU499E8vRcAojHcZ4AxABdilgrp4lsXk8oVqgwh7+6H3phqd8J0Kk4vbx/+sZqCD/vNLya/5dT9fAH8g1WdNGgwbQAAAABJRU5ErkJggg==";
+
+export const makes = [
+  { label: "vw", value: "vw" },
+  { label: "mercedes-benz", value: "mercedes-benz" },
+  { label: "bmw", value: "bmw" },
+  { label: "audi", value: "audi" },
+  { label: "skoda", value: "skoda" },
+  { label: "ford", value: "ford" },
+  { label: "renault", value: "renault" },
+  { label: "toyota", value: "toyota" },
+  { label: "volvo", value: "volvo" },
+  { label: "peugeot", value: "peugeot" },
+  { label: "opel", value: "opel" },
+  { label: "fiat", value: "fiat" },
+  { label: "porsche", value: "porsche" },
+  { label: "hyundai", value: "hyundai" },
+  { label: "seat", value: "seat" },
+  { label: "citroen", value: "citroen" },
+  { label: "mazda", value: "mazda" },
+  { label: "mini", value: "mini" },
+  { label: "nissan", value: "nissan" },
+  { label: "land rover", value: "land rover" },
+  { label: "suzuki", value: "suzuki" },
+  { label: "subaru", value: "subaru" },
+  { label: "jeep", value: "jeep" },
+  { label: "kia", value: "kia" },
+  { label: "honda", value: "honda" },
+  { label: "cupra", value: "cupra" },
+  { label: "mitsubishi", value: "mitsubishi" },
+  { label: "dacia", value: "dacia" },
+  { label: "alfa romeo", value: "alfa romeo" },
+  { label: "jaguar", value: "jaguar" },
+  { label: "tesla", value: "tesla" },
+  { label: "smart", value: "smart" },
+  { label: "chevrolet", value: "chevrolet" },
+  { label: "maserati", value: "maserati" },
+  { label: "ds automobiles", value: "ds automobiles" },
+  { label: "ferrari", value: "ferrari" },
+  { label: "lexus", value: "lexus" },
+  { label: "iveco", value: "iveco" },
+  { label: "dodge", value: "dodge" },
+  { label: "bentley", value: "bentley" },
+  { label: "cadillac", value: "cadillac" },
+  { label: "ssang yong", value: "ssang yong" },
+  { label: "lamborghini", value: "lamborghini" },
+  { label: "daihatsu", value: "daihatsu" },
+  { label: "aston martin", value: "aston martin" },
+  { label: "chrysler", value: "chrysler" },
+  { label: "saab", value: "saab" },
+  { label: "lancia", value: "lancia" },
+  { label: "bmw-alpina", value: "bmw-alpina" },
+  { label: "genesis", value: "genesis" },
+  { label: "lotus", value: "lotus" },
+  { label: "rolls-royce", value: "rolls-royce" },
+  { label: "polestar", value: "polestar" },
+  { label: "isuzu", value: "isuzu" }
+];

@@ -26,9 +26,15 @@ interface ComboBoxProps {
   }[];
   label?: string;
   disabled?: boolean;
+  onChange: (value: string) => void;
 }
 
-export function Combobox({ values, label, disabled = false }: ComboBoxProps) {
+export function Combobox({
+  values,
+  label,
+  disabled = false,
+  onChange,
+}: ComboBoxProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -44,15 +50,15 @@ export function Combobox({ values, label, disabled = false }: ComboBoxProps) {
         >
           {value
             ? values.find((item) => item.value === value)?.label
-            : "Select item..."}
+            : `Select ${label}...`}
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search item..." />
+          <CommandInput placeholder={`Search ${label}...`} />
           <CommandList>
-            <CommandEmpty>No item found.</CommandEmpty>
+            <CommandEmpty>No {label} found.</CommandEmpty>
             <CommandGroup>
               {values.map((item) => (
                 <CommandItem
@@ -60,6 +66,7 @@ export function Combobox({ values, label, disabled = false }: ComboBoxProps) {
                   value={item.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
+                    onChange(currentValue);
                     setOpen(false);
                   }}
                 >

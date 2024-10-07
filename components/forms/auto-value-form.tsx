@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { cn } from "@/lib/utils";
+import { cn, fetcher, makes } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -45,9 +45,27 @@ export function AutoValueForm({
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   });
-  const [make, setMake] = React.useState<string>("");
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const searchParams = useSearchParams();
+  const [make, setMake] = React.useState<string>("");
+  const [model, setModel] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if (!make) {
+      // getMakes();
+      return;
+    }
+  }, [make, model]);
+
+  // async function getMakes() {
+  //   const makes = await fetcher(`https://carstimate.ch/api/estimation/brands`);
+  //   console.log("makes", makes);
+  // }
+
+  // async function getModels() {
+  //   const models = await fetcher(`/api/models?make=${make}`);
+  //   console.log(models);
+  // }
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
@@ -74,7 +92,7 @@ export function AutoValueForm({
   return (
     <MaxWidthWrapper>
       <Card className="xl:col-span-2">
-        <CardHeader className="flex flex-row items-center">
+        <CardHeader className="flex flex-row flex-wrap">
           <div className="grid gap-2">
             <CardTitle>Rapid car valuation</CardTitle>
             <CardDescription className="text-balance">
@@ -91,7 +109,7 @@ export function AutoValueForm({
         <CardContent>
           <div className={cn("grid gap-6", className)} {...props}>
             <form
-              className="flex flex-row items-center gap-6"
+              className="flex flex-row flex-wrap gap-6"
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="gap-6">
@@ -101,7 +119,8 @@ export function AutoValueForm({
                 <Combobox
                   disabled={isLoading}
                   label="Make"
-                  values={[{ value: "Make", label: "Choose Make" }]}
+                  values={makes}
+                  onChange={(value) => setMake(value)}
                 />
                 {errors?.email && (
                   <p className="px-1 text-xs text-red-600">
@@ -117,6 +136,7 @@ export function AutoValueForm({
                   label="Model"
                   disabled={isLoading || !make}
                   values={[{ value: "Model", label: "Choose Model" }]}
+                  onChange={(value) => setModel(value)}
                 />
                 {errors?.email && (
                   <p className="px-1 text-xs text-red-600">
