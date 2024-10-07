@@ -7,11 +7,14 @@ import Powered from "@/components/sections/powered";
 import PreviewLanding from "@/components/sections/preview-landing";
 import Testimonials from "@/components/sections/testimonials";
 
+import { AutoValueForm } from "../../../components/forms/auto-value-form";
+
 export default function IndexPage() {
   return (
     <>
       <HeroLanding />
       <PreviewLanding />
+      <AutoValueForm />
       {/* <Powered /> */}
       {/* <BentoGrid /> */}
       {/* <InfoLanding data={infos[0]} reverse={true} /> */}
