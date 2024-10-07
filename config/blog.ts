@@ -19,7 +19,7 @@ export const BLOG_AUTHORS = {
   mickasmt: {
     name: "mickasmt",
     image: "/_static/avatars/mickasmt.png",
-    twitter: "miickasmt",
+    twitter: "nathan",
   },
   shadcn: {
     name: "shadcn",

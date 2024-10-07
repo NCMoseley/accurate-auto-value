@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
 import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
@@ -7,6 +8,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";
 
 export default async function HeroLanding() {
+  const t = await getTranslations("HeroLanding");
+
   const { stargazers_count: stars } = await fetch(
     "https://api.github.com/repos/ncmoseley/accurate-auto-value",
     {
@@ -27,7 +30,7 @@ export default async function HeroLanding() {
     <section className="space-y-6 py-12 sm:py-20 lg:py-20">
       <div className="container flex max-w-5xl flex-col items-center gap-5 text-center">
         {/* <Link
-          href="https://twitter.com/miickasmt/status/1810465801649938857"
+          href="https://twitter.com/nathan/status/1810465801649938857"
           className={cn(
             buttonVariants({ variant: "outline", size: "sm", rounded: "full" }),
             "px-4",
@@ -40,7 +43,7 @@ export default async function HeroLanding() {
         </Link> */}
 
         <h1 className="text-balance font-urban text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-[66px]">
-          Kick off with a bang with{" "}
+          {t.raw("a")}{" "}
           <span className="text-gradient_indigo-purple font-extrabold">
             {siteConfig.name}
           </span>
@@ -50,7 +53,7 @@ export default async function HeroLanding() {
           className="max-w-2xl text-balance leading-normal text-muted-foreground sm:text-xl sm:leading-8"
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
-          {siteConfig.description}
+          {t.raw("b")}
         </p>
 
         <div
@@ -65,7 +68,7 @@ export default async function HeroLanding() {
               "gap-2",
             )}
           >
-            <span>Go to Pricing</span>
+            <span>{t.raw("c")}</span>
             <Icons.arrowRight className="size-4" />
           </Link>
           {/* <Link

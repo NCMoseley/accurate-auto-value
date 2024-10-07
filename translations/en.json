@@ -1,6 +1,26 @@
 {
-	"HomePage": {
-		"title": "Hello world!",
-		"about": "Go to the about page"
+	"HeroLanding": {
+		"a": "Kick off with a bang with",
+		"b": "Get a fair and accurate value for your car in minutes. No personal information required.",
+		"c": "Go to the about page"
+	},
+	"Testimonials": {
+		"a": "Testimonials",
+		"b": "What our clients are sharing.",
+		"c": "Discover the glowing feedback from our delighted customers worldwide."
+	},
+	"PricingPage": {
+		"a": "Pricing - Accurate Auto Value",
+		"b": "Explore our subscription plans.",
+		"c": "Learn more about our pricing."
+	},
+	"PricingCards": {
+		"a": "Calculator",
+		"b": "Start at full speed",
+		"c": "Yearly",
+		"d": "Monthly",
+		"e": "Email",
+		"f": "for to contact our support team.",
+		"g": "You can test the subscriptions and won&apos;t be charged."
 	}
 }

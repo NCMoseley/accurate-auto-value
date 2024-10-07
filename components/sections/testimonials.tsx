@@ -1,20 +1,22 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 
 import { testimonials } from "@/config/landing";
 import { HeaderSection } from "@/components/shared/header-section";
 
-export default function Testimonials() {
+export default async function Testimonials() {
+  const t = await getTranslations("Testimonials");
+
   return (
     <section>
       <div className="container flex max-w-6xl flex-col gap-10 py-32 sm:gap-y-16">
         <HeaderSection
-          label="Testimonials"
-          title="What our clients are sharing."
-          subtitle="Discover the glowing feedback from our delighted customers
-            worldwide."
+          label={t.raw("a")}
+          title={t.raw("b")}
+          subtitle={t.raw("c")}
         />
 
-        <div className="column-1 gap-5 space-y-5 md:columns-2 lg:columns-3 ">
+        <div className="column-1 gap-5 space-y-5 md:columns-2 lg:columns-3">
           {testimonials.map((item) => (
             <div className="break-inside-avoid" key={item.name}>
               <div className="relative rounded-xl border bg-muted/25">

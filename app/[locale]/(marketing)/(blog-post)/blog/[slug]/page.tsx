@@ -6,7 +6,7 @@ import { Mdx } from "@/components/content/mdx-components";
 import "@/styles/mdx.css";
 
 import { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { getTableOfContents } from "@/lib/toc";
@@ -42,7 +42,7 @@ export async function generateMetadata({
   const { title, description, image } = post;
 
   return constructMetadata({
-    title: `${title} – Accurate Auto Value`,
+    title: `${title} - Accurate Auto Value`,
     description: description,
     image,
   });

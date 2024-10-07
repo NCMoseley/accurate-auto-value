@@ -11,7 +11,7 @@ export default function PreviewLanding() {
             <Image
               // className="size-full object-cover object-center dark:opacity-85 dark:invert"
               className="size-full object-cover object-center dark:opacity-35"
-              src="/images/car-dealer.jpg"
+              src="/images/finger-pressing-keyless-ingnition-car-valuation.png"
               alt="preview landing"
               width={2000}
               height={1000}

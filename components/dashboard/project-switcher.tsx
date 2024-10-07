@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Check, ChevronsUpDown, Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -56,10 +56,7 @@ export default function ProjectSwitcher({
           >
             <div className="flex items-center space-x-3 pr-2">
               <div
-                className={cn(
-                  "size-3 shrink-0 rounded-full",
-                  selected.color,
-                )}
+                className={cn("size-3 shrink-0 rounded-full", selected.color)}
               />
               <div className="flex items-center space-x-3">
                 <span

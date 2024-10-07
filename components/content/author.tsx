@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 import { BLOG_AUTHORS } from "@/config/blog";
 import { getBlurDataURL } from "@/lib/utils";

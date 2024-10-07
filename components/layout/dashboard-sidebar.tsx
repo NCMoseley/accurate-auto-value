@@ -1,8 +1,8 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/routing";
 import { NavItem, SidebarNavItem } from "@/types";
 import { Menu, PanelLeftClose, PanelRightClose } from "lucide-react";
 

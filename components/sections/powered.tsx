@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 

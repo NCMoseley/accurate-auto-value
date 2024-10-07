@@ -1,6 +1,26 @@
 {
-	"HomePage": {
-		"title": "Hello world!",
-		"about": "Go to the about page"
-	}
+  "HeroLanding": {
+    "a": "Démarrez en beauté avec",
+    "b": "Obtenez une estimation juste et précise de votre voiture en quelques minutes. Aucune information personnelle requise.",
+    "c": "Aller à la page À propos"
+  },
+  "Testimonials": {
+    "a": "Témoignages",
+    "b": "Ce que nos clients partagent.",
+    "c": "Découvrez les avis élogieux de nos clients satisfaits à travers le monde."
+  },
+  "PricingPage": {
+    "a": "Tarification - Accurate Auto Value",
+    "b": "Découvrez nos plans d'abonnement.",
+    "c": "En savoir plus sur nos tarifs."
+  },
+  "PricingCards": {
+    "a": "Calculateur",
+    "b": "Commencez à pleine vitesse",
+    "c": "Annuel",
+    "d": "Mensuel",
+    "e": "E-mail",
+    "f": "pour contacter notre équipe de support.",
+    "g": "Vous pouvez tester les abonnements sans être facturé."
+  }
 }

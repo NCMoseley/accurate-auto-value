@@ -1,8 +1,9 @@
 "use client";
 
 import { useContext, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { UserSubscriptionPlan } from "@/types";
+import { useTranslations } from "next-intl";
 
 import { SubscriptionPlan } from "@/types/index";
 import { pricingData } from "@/config/subscriptions";
@@ -21,6 +22,8 @@ interface PricingCardsProps {
 }
 
 export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
+  const t = useTranslations("PricingCards");
+
   const isYearlyDefault =
     !subscriptionPlan?.stripeCustomerId || subscriptionPlan.interval === "year"
       ? true
@@ -139,7 +142,7 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
   return (
     <MaxWidthWrapper>
       <section className="flex flex-col items-center text-center">
-        <HeaderSection label="Pricing" title="Start at full speed !" />
+        <HeaderSection label={t.raw("a")} title={t.raw("b")} />
 
         <div className="mb-4 mt-10 flex items-center gap-5">
           <ToggleGroup
@@ -155,14 +158,14 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
               className="rounded-full px-5 data-[state=on]:!bg-primary data-[state=on]:!text-primary-foreground"
               aria-label="Toggle yearly billing"
             >
-              Yearly (-20%)
+              {t.raw("c")} (-20%)
             </ToggleGroupItem>
             <ToggleGroupItem
               value="monthly"
               className="rounded-full px-5 data-[state=on]:!bg-primary data-[state=on]:!text-primary-foreground"
               aria-label="Toggle monthly billing"
             >
-              Monthly
+              {t.raw("d")}
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
@@ -174,18 +177,16 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
         </div>
 
         <p className="mt-3 text-balance text-center text-base text-muted-foreground">
-          Email{" "}
+          {t.raw("e")}{" "}
           <a
             className="font-medium text-primary hover:underline"
-            href="mailto:support@saas-starter.com"
+            href="mailto:support@accurate-auto-value.com"
           >
-            support@saas-starter.com
+            support@accurate-auto-value.com
           </a>{" "}
-          for to contact our support team.
+          {t.raw("f")}
           <br />
-          <strong>
-            You can test the subscriptions and won&apos;t be charged.
-          </strong>
+          <strong>{t.raw("g")}</strong>
         </p>
       </section>
     </MaxWidthWrapper>

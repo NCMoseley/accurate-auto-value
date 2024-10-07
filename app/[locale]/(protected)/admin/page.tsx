@@ -7,7 +7,7 @@ import InfoCard from "@/components/dashboard/info-card";
 import TransactionsList from "@/components/dashboard/transactions-list";
 
 export const metadata = constructMetadata({
-  title: "Admin – Accurate Auto Value",
+  title: "Admin - Accurate Auto Value",
   description: "Admin page for only admin management.",
 });
 
