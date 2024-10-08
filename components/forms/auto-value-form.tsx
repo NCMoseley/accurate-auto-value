@@ -36,14 +36,30 @@ import { Combobox } from "../alt-ui/combo-box";
 
 interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: string;
+  initialMakes?: DropdownValue[];
 }
 
 type FormData = z.infer<typeof userAuthSchema>;
 
+interface Trims {
+  cylinders: DropdownValue[];
+  drive: DropdownValue[];
+  eng_dscr: DropdownValue[];
+  fueltype: DropdownValue[];
+  fueltype1: DropdownValue[];
+  mpgdata: DropdownValue[];
+  phevblended: DropdownValue[];
+  trany: DropdownValue[];
+  vclass: DropdownValue[];
+  year: DropdownValue[];
+  make: DropdownValue[];
+  model: DropdownValue[];
+}
+
 export function AutoValueForm({
   className,
   type,
-  ...props
+  initialMakes,
 }: AutoValueFormProps) {
   const locale = useLocale();
   const {
@@ -54,21 +70,30 @@ export function AutoValueForm({
     resolver: zodResolver(userAuthSchema),
   });
   const searchParams = useSearchParams();
+  const [year, setYear] = React.useState<string>("");
+  const [years, setYears] = React.useState<DropdownValue[]>([]);
   const [make, setMake] = React.useState<string>("");
-  const [makes, setMakes] = React.useState<DropdownValue[]>([]);
+  const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
   const [model, setModel] = React.useState<string>("");
   const [models, setModels] = React.useState<DropdownValue[]>([]);
-  const [trim, setTrim] = React.useState<string>("");
-  const [trims, setTrims] = React.useState<DropdownValue[]>([]);
+  const [trim, setTrim] = React.useState<{ [key: string]: string }>({});
+  const [trims, setTrims] = React.useState<Partial<Trims> | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (!make) {
+    if (!makes.length) {
       getMakes();
       return;
     }
-    getModels();
-  }, [make, model]);
+    if (!models.length) {
+      getModels();
+      return;
+    }
+    if (!trims) {
+      getTrims();
+      return;
+    }
+  }, [make, model, trims]);
 
   async function getMakes() {
     const makes = await getAllMakes(locale);
@@ -107,6 +132,8 @@ export function AutoValueForm({
     });
   }
 
+  console.log("trim:", trim);
+
   return (
     <MaxWidthWrapper>
       <Card className="xl:col-span-2">
@@ -125,59 +152,74 @@ export function AutoValueForm({
           </Button> */}
         </CardHeader>
         <CardContent>
-          <div className={cn("grid gap-6", className)} {...props}>
+          <div className={cn("grid gap-6", className)}>
             <form
               className="flex flex-row flex-wrap gap-6"
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="gap-6">
-                <Label className="sr-only" htmlFor="email">
-                  Make
-                </Label>
+                <Label className="sr-only">Year</Label>
                 <Combobox
                   disabled={isLoading}
+                  label="Year"
+                  values={years}
+                  onChange={(value) => setYear(value)}
+                />
+                {/* {errors?.email && (
+                  <p className="px-1 text-xs text-red-600">
+                    {errors.email.message}
+                  </p>
+                )} */}
+              </div>
+              <div className="gap-6">
+                <Label className="sr-only">Make</Label>
+                <Combobox
+                  disabled={isLoading || !makes.length}
                   label="Make"
                   values={makes}
                   onChange={(value) => setMake(value)}
                 />
-                {errors?.email && (
+                {/* {errors?.email && (
                   <p className="px-1 text-xs text-red-600">
                     {errors.email.message}
                   </p>
-                )}
+                )} */}
               </div>
               <div className="gap-6">
-                <Label className="sr-only" htmlFor="email">
-                  Model
-                </Label>
+                <Label className="sr-only">Model</Label>
                 <Combobox
                   label="Model"
                   disabled={isLoading || !models.length}
                   values={models}
                   onChange={(value) => setModel(value)}
                 />
-                {errors?.email && (
+                {/* {errors?.email && (
                   <p className="px-1 text-xs text-red-600">
                     {errors.email.message}
                   </p>
-                )}
+                )} */}
               </div>
-              <div className="gap-6">
-                <Label className="sr-only" htmlFor="email">
-                  Trim
-                </Label>
-                <Combobox
-                  label="Model"
-                  disabled={isLoading || !trim.length}
-                  values={trims}
-                  onChange={(value) => setTrim(value)}
-                />
-                {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
+              {trims &&
+                Object.keys(trims).map((key) => (
+                  <div key={key} className="gap-6">
+                    <Label className="sr-only" htmlFor="email">
+                      {key}
+                    </Label>
+                    <Combobox
+                      label={key}
+                      disabled={isLoading}
+                      values={trims[key]}
+                      onChange={(value) =>
+                        setTrim((prev) => ({ ...prev, [key]: value }))
+                      }
+                    />
+                    {/* {errors?.trims && (
+                    <p className="px-1 text-xs text-red-600">
+                      {errors.trims.message}
+                    </p>
+                  )} */}
+                  </div>
+                ))}
               <div className="gap-6">
                 <Label className="sr-only" htmlFor="email">
                   Email

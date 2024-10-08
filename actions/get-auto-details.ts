@@ -59,6 +59,7 @@ export async function getAllModels(make: string, locale: string) {
 
 export async function getAllTrims(make: string, model: string, locale: string) {
   const url = baseURL + make + "&refine.make=" + make + "&refine.model=" + model + `&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
+  console.log(url);
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -75,7 +76,28 @@ export async function getAllTrims(make: string, model: string, locale: string) {
   }
 
   const data = await res.json();
-  const dropdownValues = deriveDropdownValues(data.facet_groups[1].facets);
+  console.log(data);
+  let r = [
+    { name: 'cylinders', facets: [Array] },
+    { name: 'drive', facets: [Array] },
+    { name: 'eng_dscr', facets: [Array] },
+    { name: 'fueltype', facets: [Array] },
+    { name: 'fueltype1', facets: [Array] },
+    { name: 'mpgdata', facets: [Array] },
+    { name: 'phevblended', facets: [Array] },
+    { name: 'trany', facets: [Array] },
+    { name: 'vclass', facets: [Array] },
+    { name: 'year', facets: [Array] },
+    { name: 'make', facets: [Array] },
+    { name: 'model', facets: [Array] }
+  ]
+  let trims = {}
+  data.facet_groups.forEach((facetGroup) => {
+    trims[facetGroup.name] = deriveDropdownValues(facetGroup.facets);
+  });
 
-  return dropdownValues;
+  const dropdownValues = deriveDropdownValues(data.facet_groups[1].facets);
+  console.log('dropdownValues:', dropdownValues);
+
+  return trims;
 }
