@@ -110,13 +110,10 @@ export function AutoValueForm({
 
   async function getTrims() {
     const res = await getAllTrims(year, make, model, locale);
-    console.log("res:", res);
 
     Object.keys(res).forEach((key) => {
       if (res[key].length === 1) {
         setTrim((prev) => ({ ...prev, [key]: res[key][0].value }));
-        // } else {
-        // setTrim((prev) => ({ ...prev, [key]: res[key] }));
       }
     });
     setTrims(res);
@@ -143,8 +140,6 @@ export function AutoValueForm({
       description: "We sent you a login link. Be sure to check your spam too.",
     });
   }
-
-  console.log("trim:", trim);
 
   return (
     <MaxWidthWrapper>
@@ -238,22 +233,23 @@ export function AutoValueForm({
                   )} */}
                   </div>
                 ))}
-              <div className="gap-6">
-                <Label className="sr-only" htmlFor="email">
-                  Email
-                </Label>
-                <Input
-                  type="search"
-                  placeholder="Search documentation..."
-                  className="h-8 w-full sm:w-64 sm:pr-12"
-                />
-                {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-              {/* <button className={cn(buttonVariants())} disabled={isLoading}>
+            </form>
+            <div className="gap-6">
+              <Label className="sr-only" htmlFor="search">
+                Search
+              </Label>
+              <Input
+                type="search"
+                placeholder="Search documentation..."
+                className="h-8 w-full sm:w-64 sm:pr-12"
+              />
+              {errors?.email && (
+                <p className="px-1 text-xs text-red-600">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+            {/* <button className={cn(buttonVariants())} disabled={isLoading}>
                   {isLoading && (
                     <Icons.spinner className="mr-2 size-4 animate-spin" />
                   )}
@@ -261,28 +257,27 @@ export function AutoValueForm({
                     ? "Sign Up with Email"
                     : "Sign In with Email"}
                 </button> */}
-              <div className="gap-6">
-                <Label className="sr-only" htmlFor="email">
-                  Email
-                </Label>
-                <Input
-                  className="h-8 w-full sm:w-64 sm:pr-12"
-                  id="email"
-                  placeholder="name@example.com"
-                  type="email"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                  {...register("email")}
-                />
-                {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-            </form>
+            <div className="gap-6">
+              <Label className="sr-only" htmlFor="email">
+                Email
+              </Label>
+              <Input
+                className="h-8 w-full sm:w-64 sm:pr-12"
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                disabled={isLoading}
+                {...register("email")}
+              />
+              {errors?.email && (
+                <p className="px-1 text-xs text-red-600">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
