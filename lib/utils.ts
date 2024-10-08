@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
 import { SafeForDropdown } from "../types";
+import { getLocale } from 'next-intl/server';
 
 export const MILLISECONDS_IN_ONE_DAY = 86_400_000;
 
@@ -200,7 +201,12 @@ export function deriveDropdownValues(data: SafeForDropdown[]) {
     label: item.name,
     value: item.name,
   }));
-}
+};
+
+export async function fetchTranslations() {
+  const locale = await getLocale();
+  return locale;
+};
 
 export const makes = [
   { label: "vw", value: "vw" },

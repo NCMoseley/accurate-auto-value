@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowUpRight } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -25,7 +26,11 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
-import { getAllMakes, getAutoDetails } from "../../actions/get-auto-details";
+import {
+  getAllMakes,
+  getAllModels,
+  getAllTrims,
+} from "../../actions/get-auto-details";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../alt-ui/combo-box";
 
@@ -40,6 +45,7 @@ export function AutoValueForm({
   type,
   ...props
 }: AutoValueFormProps) {
+  const locale = useLocale();
   const {
     register,
     handleSubmit,
@@ -51,26 +57,32 @@ export function AutoValueForm({
   const [make, setMake] = React.useState<string>("");
   const [makes, setMakes] = React.useState<DropdownValue[]>([]);
   const [model, setModel] = React.useState<string>("");
+  const [models, setModels] = React.useState<DropdownValue[]>([]);
+  const [trim, setTrim] = React.useState<string>("");
+  const [trims, setTrims] = React.useState<DropdownValue[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (!make) {
-      // getMakes();
+      getMakes();
       return;
     }
-    // getModels();
-    getMakes();
+    getModels();
   }, [make, model]);
 
   async function getMakes() {
-    const makes = await getAllMakes();
-    console.log("makes", makes);
+    const makes = await getAllMakes(locale);
     setMakes(makes);
   }
 
   async function getModels() {
-    const models = await getAutoDetails(make);
-    console.log(models);
+    const models = await getAllModels(make, locale);
+    setModels(models);
+  }
+
+  async function getTrims() {
+    const trims = await getAllTrims(make, model, locale);
+    setTrims(trims);
   }
 
   async function onSubmit(data: FormData) {
@@ -140,9 +152,25 @@ export function AutoValueForm({
                 </Label>
                 <Combobox
                   label="Model"
-                  disabled={isLoading || !make}
-                  values={[{ value: "Model", label: "Choose Model" }]}
+                  disabled={isLoading || !models.length}
+                  values={models}
                   onChange={(value) => setModel(value)}
+                />
+                {errors?.email && (
+                  <p className="px-1 text-xs text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label className="sr-only" htmlFor="email">
+                  Trim
+                </Label>
+                <Combobox
+                  label="Model"
+                  disabled={isLoading || !trim.length}
+                  values={trims}
+                  onChange={(value) => setTrim(value)}
                 />
                 {errors?.email && (
                   <p className="px-1 text-xs text-red-600">
