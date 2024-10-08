@@ -25,6 +25,8 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
+import { getAllMakes, getAutoDetails } from "../../actions/get-auto-details";
+import { DropdownValue } from "../../types";
 import { Combobox } from "../alt-ui/combo-box";
 
 interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,6 +49,7 @@ export function AutoValueForm({
   });
   const searchParams = useSearchParams();
   const [make, setMake] = React.useState<string>("");
+  const [makes, setMakes] = React.useState<DropdownValue[]>([]);
   const [model, setModel] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -55,17 +58,20 @@ export function AutoValueForm({
       // getMakes();
       return;
     }
+    // getModels();
+    getMakes();
   }, [make, model]);
 
-  // async function getMakes() {
-  //   const makes = await fetcher(`https://carstimate.ch/api/estimation/brands`);
-  //   console.log("makes", makes);
-  // }
+  async function getMakes() {
+    const makes = await getAllMakes();
+    console.log("makes", makes);
+    setMakes(makes);
+  }
 
-  // async function getModels() {
-  //   const models = await fetcher(`/api/models?make=${make}`);
-  //   console.log(models);
-  // }
+  async function getModels() {
+    const models = await getAutoDetails(make);
+    console.log(models);
+  }
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
