@@ -26,7 +26,9 @@ interface ComboBoxProps {
   }[];
   label?: string;
   disabled?: boolean;
+  autoFocus?: boolean;
   onChange: (value: string) => void;
+  initialValue?: string;
 }
 
 export function Combobox({
@@ -34,9 +36,11 @@ export function Combobox({
   label,
   disabled = false,
   onChange,
+  autoFocus = false,
+  initialValue,
 }: ComboBoxProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(initialValue);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -47,6 +51,7 @@ export function Combobox({
           role="combobox"
           aria-expanded={open}
           className="w-[200px] justify-between"
+          autoFocus={autoFocus}
         >
           {value
             ? values.find((item) => item.value === value)?.label

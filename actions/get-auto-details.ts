@@ -1,5 +1,3 @@
-'use server';
-
 import { deriveDropdownValues } from "../lib/utils";
 
 // https://public.opendatasoft.com/api/records/1.0/search/?refine.make=Volkswagen&rows=0&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=en
@@ -9,10 +7,12 @@ import { deriveDropdownValues } from "../lib/utils";
 
 const baseURLPlus = "https://public.opendatasoft.com/api/records/1.0/search/?q=BMW&refine.make=BMW&rows=0&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=en";
 
-const baseURL = "https://public.opendatasoft.com/api/records/1.0/search/?q="
+const baseURL = "https://public.opendatasoft.com/api/records/1.0/search/"
 
-export async function getAllMakes(locale: string) {
-  const makeURL = `https://public.opendatasoft.com/api/records/1.0/search/?rows=0&facet=make&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
+// &refine=year:2021&refine=make:"Bugatti
+
+export async function getAllMakes(year: string, locale: string) {
+  const makeURL = baseURL + `?rows=0&refine.year=${year}&facet=make&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
   const res = await fetch(makeURL);
 
   if (!res.ok) {
@@ -34,8 +34,8 @@ export async function getAllMakes(locale: string) {
   return dropdownValues;
 }
 
-export async function getAllModels(make: string, locale: string) {
-  const url = baseURL + make + "&refine.make=" + make + `&rows=0&facet=make&facet=model&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
+export async function getAllModels(year: string, make: string, locale: string) {
+  const url = baseURL + `?q=${make}&refine.make=${make}&refine.year=${year}&rows=0&facet=make&facet=model&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -57,8 +57,8 @@ export async function getAllModels(make: string, locale: string) {
   return dropdownValues;
 }
 
-export async function getAllTrims(make: string, model: string, locale: string) {
-  const url = baseURL + make + "&refine.make=" + make + "&refine.model=" + model + `&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
+export async function getAllTrims(year: string, make: string, model: string, locale: string) {
+  const url = baseURL + `?q=${make}&refine.make=${make}&refine.year=${year}&refine.model=${model}&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
   console.log(url);
   const res = await fetch(url);
 
@@ -77,27 +77,10 @@ export async function getAllTrims(make: string, model: string, locale: string) {
 
   const data = await res.json();
   console.log(data);
-  let r = [
-    { name: 'cylinders', facets: [Array] },
-    { name: 'drive', facets: [Array] },
-    { name: 'eng_dscr', facets: [Array] },
-    { name: 'fueltype', facets: [Array] },
-    { name: 'fueltype1', facets: [Array] },
-    { name: 'mpgdata', facets: [Array] },
-    { name: 'phevblended', facets: [Array] },
-    { name: 'trany', facets: [Array] },
-    { name: 'vclass', facets: [Array] },
-    { name: 'year', facets: [Array] },
-    { name: 'make', facets: [Array] },
-    { name: 'model', facets: [Array] }
-  ]
   let trims = {}
   data.facet_groups.forEach((facetGroup) => {
     trims[facetGroup.name] = deriveDropdownValues(facetGroup.facets);
   });
-
-  const dropdownValues = deriveDropdownValues(data.facet_groups[1].facets);
-  console.log('dropdownValues:', dropdownValues);
 
   return trims;
 }

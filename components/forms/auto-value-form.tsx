@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { cn, fetcher, makes } from "@/lib/utils";
+import { cn, fetcher, yearsArr } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -71,7 +71,7 @@ export function AutoValueForm({
   });
   const searchParams = useSearchParams();
   const [year, setYear] = React.useState<string>("");
-  const [years, setYears] = React.useState<DropdownValue[]>([]);
+  const [years, setYears] = React.useState<DropdownValue[]>(yearsArr);
   const [make, setMake] = React.useState<string>("");
   const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
   const [model, setModel] = React.useState<string>("");
@@ -81,6 +81,9 @@ export function AutoValueForm({
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    if (!year) {
+      return;
+    }
     if (!makes.length) {
       getMakes();
       return;
@@ -93,21 +96,30 @@ export function AutoValueForm({
       getTrims();
       return;
     }
-  }, [make, model, trims]);
+  }, [year, make, model, trims]);
 
   async function getMakes() {
-    const makes = await getAllMakes(locale);
+    const makes = await getAllMakes(year, locale);
     setMakes(makes);
   }
 
   async function getModels() {
-    const models = await getAllModels(make, locale);
+    const models = await getAllModels(year, make, locale);
     setModels(models);
   }
 
   async function getTrims() {
-    const trims = await getAllTrims(make, model, locale);
-    setTrims(trims);
+    const res = await getAllTrims(year, make, model, locale);
+    console.log("res:", res);
+
+    Object.keys(res).forEach((key) => {
+      if (res[key].length === 1) {
+        setTrim((prev) => ({ ...prev, [key]: res[key][0].value }));
+        // } else {
+        // setTrim((prev) => ({ ...prev, [key]: res[key] }));
+      }
+    });
+    setTrims(res);
   }
 
   async function onSubmit(data: FormData) {
@@ -163,7 +175,12 @@ export function AutoValueForm({
                   disabled={isLoading}
                   label="Year"
                   values={years}
-                  onChange={(value) => setYear(value)}
+                  onChange={(value) => {
+                    setYear(value);
+                    setMake("");
+                    setModel("");
+                  }}
+                  autoFocus={true}
                 />
                 {/* {errors?.email && (
                   <p className="px-1 text-xs text-red-600">
@@ -209,6 +226,7 @@ export function AutoValueForm({
                       label={key}
                       disabled={isLoading}
                       values={trims[key]}
+                      initialValue={trim[key]}
                       onChange={(value) =>
                         setTrim((prev) => ({ ...prev, [key]: value }))
                       }
