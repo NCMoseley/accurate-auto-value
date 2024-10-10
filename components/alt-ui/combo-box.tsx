@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn, truncateString } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -54,7 +54,10 @@ export function Combobox({
           autoFocus={autoFocus}
         >
           {value
-            ? values.find((item) => item.value === value)?.label
+            ? truncateString(
+                values.find((item) => item.value === value)?.label,
+                15,
+              )
             : `Select ${label}...`}
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
