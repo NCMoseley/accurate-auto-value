@@ -87,7 +87,7 @@ export function AutoValueForm({
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    document.getElementById("year")?.focus();
+    // document.getElementById("year")?.focus();
   }, []);
 
   async function getMakes(dYear: string) {
