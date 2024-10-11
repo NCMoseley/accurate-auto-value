@@ -32,6 +32,7 @@ interface ComboBoxProps {
   onChange: (value: string) => void;
   initialValue?: string;
   isLoading?: boolean;
+  ref?: React.RefObject<HTMLButtonElement>;
 }
 
 export function Combobox({
@@ -42,14 +43,32 @@ export function Combobox({
   autoFocus = false,
   initialValue,
   isLoading = false,
+  ref,
 }: ComboBoxProps) {
   const [open, setOpen] = React.useState(false);
+  const [localFocus, setLocalFocus] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
+
+  const Loading = () => {
+    return (
+      <>
+        <Icons.spinner className="mr-2 size-4 animate-spin" />
+        Loading...
+      </>
+    );
+  };
+
+  const ValueForDisplay = () => {
+    return value
+      ? truncateString(values.find((item) => item.value === value)?.label, 15)
+      : `Select ${label}...`;
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
+          ref={ref}
           disabled={disabled}
           variant="outline"
           role="combobox"
@@ -57,19 +76,7 @@ export function Combobox({
           className="w-[200px] justify-between"
           autoFocus={autoFocus}
         >
-          {isLoading ? (
-            <>
-              <Icons.spinner className="mr-2 size-4 animate-spin" />
-              Loading...
-            </>
-          ) : value ? (
-            truncateString(
-              values.find((item) => item.value === value)?.label,
-              15,
-            )
-          ) : (
-            `Select ${label}...`
-          )}
+          {isLoading ? <Loading /> : <ValueForDisplay />}
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

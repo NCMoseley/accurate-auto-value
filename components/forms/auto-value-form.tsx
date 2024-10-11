@@ -91,7 +91,6 @@ export function AutoValueForm({
     resolver: zodResolver(userAuthSchema),
   });
   const searchParams = useSearchParams();
-
   const [email, setEmail] = React.useState<string>("");
   const [year, setYear] = React.useState<string>("");
   const [autoErrors, setAutoErrors] = React.useState<{ [key: string]: string }>(
@@ -106,10 +105,15 @@ export function AutoValueForm({
   const [trims, setTrims] = React.useState<Partial<Trims> | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
+  React.useEffect(() => {
+    document.getElementById("year")?.focus();
+  }, []);
+
   async function getMakes(dYear: string) {
     setIsLoading(true);
     const makes = await getAllMakes(dYear, locale);
     setMakes(makes);
+    document.getElementById("make")?.focus();
     setIsLoading(false);
   }
 
@@ -117,15 +121,16 @@ export function AutoValueForm({
     setIsLoading(true);
     const models = await getAllModels(dYear, dMake, locale);
     setModels(models);
+    document.getElementById("model")?.focus();
     setIsLoading(false);
   }
 
   async function getTrims(dYear: string, dMake: string, dModel: string) {
     setIsLoading(true);
     const res = await getAllTrims(dYear, dMake, dModel, locale);
-
     setTrims(res.trims);
     setTrim(res.trim);
+    document.getElementById("trim")?.focus();
     setIsLoading(false);
   }
 
@@ -192,11 +197,11 @@ export function AutoValueForm({
           </Button> */}
         </CardHeader>
         <CardContent>
-          <div className={cn("grid gap-6", className)}>
-            <form
-              className="flex flex-row flex-wrap gap-6"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+          <form
+            className="flex flex-col gap-6"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
               <div className="gap-6">
                 <Label className="sr-only">Year</Label>
                 <NumberInput
@@ -231,7 +236,7 @@ export function AutoValueForm({
                   <p className="px-1 text-xs text-red-600">{autoErrors.year}</p>
                 )}
               </div>
-              <div className="gap-6">
+              <div id="make" className="gap-6">
                 <Label className="sr-only">Make</Label>
                 <Combobox
                   disabled={isLoading || !makes.length}
@@ -247,11 +252,12 @@ export function AutoValueForm({
                   }}
                 />
               </div>
-              <div className="gap-6">
+              <div id="model" className="gap-6">
                 <Label className="sr-only">Model</Label>
                 <Combobox
                   label="Model"
                   disabled={isLoading || !models.length}
+                  autoFocus={true}
                   values={models}
                   isLoading={isLoading}
                   onChange={(value) => {
@@ -262,9 +268,11 @@ export function AutoValueForm({
                   }}
                 />
               </div>
+            </div>
+            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
               {trims &&
-                Object.keys(trims).map((key) => (
-                  <div key={key} className="gap-6">
+                Object.keys(trims).map((key, i) => (
+                  <div id={i === 0 ? "trim" : ""} key={key} className="gap-6">
                     <Label className="sr-only" htmlFor="email">
                       {key}
                     </Label>
@@ -280,46 +288,47 @@ export function AutoValueForm({
                     />
                   </div>
                 ))}
-              <div className="gap-6">
-                <Label htmlFor="email">
-                  We won&apos;t share your email with anyone
-                </Label>
-                <Input
-                  className="h-8 w-full sm:w-64 sm:pr-12"
-                  id="email"
-                  placeholder="name@example.com"
-                  type="email"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                  {...register("email")}
-                />
-                {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-              {email && (
-                <Button
-                  type="submit"
-                  className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Icons.spinner className="mr-2 size-4 animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    "Submit"
-                  )}
-                </Button>
+            </div>
+            <div className="mt-4 flex flex-col items-end gap-6">
+              <Label htmlFor="email">
+                We won&apos;t share your email with anyone
+              </Label>
+              <Input
+                className="h-10 w-full sm:w-64 sm:pr-12"
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                disabled={isLoading}
+                {...register("email")}
+              />
+              {errors?.email && (
+                <p className="px-1 text-xs text-red-600">
+                  {errors.email.message}
+                </p>
               )}
-            </form>
+            </div>
+            {email && (
+              <Button
+                type="submit"
+                className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <Icons.spinner className="mr-2 size-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Submit"
+                )}
+              </Button>
+            )}
+          </form>
 
-            {/* <div className="gap-6">
+          {/* <div className="gap-6">
               <Label className="sr-only" htmlFor="search">
                 Search
               </Label>
@@ -329,7 +338,7 @@ export function AutoValueForm({
                 className="h-8 w-full sm:w-64 sm:pr-12"
               />
             </div> */}
-            {/* <button className={cn(buttonVariants())} disabled={isLoading}>
+          {/* <button className={cn(buttonVariants())} disabled={isLoading}>
                   {isLoading && (
                     <Icons.spinner className="mr-2 size-4 animate-spin" />
                   )}
@@ -337,7 +346,6 @@ export function AutoValueForm({
                     ? "Sign Up with Email"
                     : "Sign In with Email"}
                 </button> */}
-          </div>
         </CardContent>
       </Card>
     </MaxWidthWrapper>
