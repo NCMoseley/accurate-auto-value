@@ -3,14 +3,14 @@
 import { displayConfig, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 
-import { Button } from "@/components/alt-ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/alt-ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 export default function LocaleSwitcher() {
   const router = useRouter();
