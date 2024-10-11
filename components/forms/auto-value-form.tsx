@@ -34,7 +34,7 @@ import {
 } from "../../actions/get-auto-details";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
-import { Combobox } from "../alt-ui/combo-box";
+import { Combobox } from "../ui/combo-box";
 
 interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: string;

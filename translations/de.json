@@ -1,6 +1,26 @@
 {
-	"HomePage": {
-		"title": "Guten Tag!",
-		"about": "ja ja ja"
+	"HeroLanding": {
+		"a": "Blitzschnelle Fahrzeugbewertung",
+		"b": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Keine persönlichen Informationen erforderlich.",
+		"c": "Gehe zur Über-Seite"
+	},
+	"Testimonials": {
+		"a": "Kundenbewertungen",
+		"b": "Was unsere Kunden teilen.",
+		"c": "Entdecken Sie das begeisterte Feedback unserer zufriedenen Kunden weltweit."
+	},
+	"PricingPage": {
+		"a": "Preise - Genaue Fahrzeugbewertung",
+		"b": "Entdecken Sie unsere Abonnementpläne.",
+		"c": "Erfahren Sie mehr über unsere Preise."
+	},
+	"PricingCards": {
+		"a": "Rechner",
+		"b": "Starten Sie mit voller Geschwindigkeit",
+		"c": "Jährlich",
+		"d": "Monatlich",
+		"e": "E-Mail",
+		"f": "um unser Support-Team zu kontaktieren.",
+		"g": "Sie können die Abonnements testen und werden nicht belastet."
 	}
 }

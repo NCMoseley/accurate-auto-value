@@ -34,8 +34,7 @@ export function BillingFormButton({
   return (
     <Button
       variant={userOffer ? "default" : "outline"}
-      rounded="full"
-      className="w-full"
+      className="w-full rounded-full"
       disabled={isPending}
       onClick={stripeSessionAction}
     >

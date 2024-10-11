@@ -123,12 +123,12 @@ export function PricingCards({ userId, subscriptionPlan }: PricingCardsProps) {
             )
           ) : (
             <Button
+              className="rounded-full"
               variant={
                 offer.title.toLocaleLowerCase() === "pro"
                   ? "default"
                   : "outline"
               }
-              rounded="full"
               onClick={() => setShowSignInModal(true)}
             >
               Sign in
