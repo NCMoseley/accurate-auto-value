@@ -14,7 +14,7 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/nathan",
     github: "https://github.com/ncmoseley/accurate-auto-value",
   },
-  mailSupport: "ncmoseley+support@gmail.com",
+  mailSupport: "ncmoseley@gmail.com",
 };
 
 export const footerLinks: SidebarNavItem[] = [

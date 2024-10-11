@@ -100,3 +100,12 @@ export type TestimonialType = {
   image: string;
   review: string;
 };
+
+export type DropdownValue = {
+  value: string;
+  label: string;
+}
+
+export interface SafeForDropdown {
+  name: string;
+};
