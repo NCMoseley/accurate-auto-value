@@ -34,6 +34,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function truncateString(str, maxLength) {
+  if (!str) return "Select...";
   if (str.length > maxLength) {
     return str.slice(0, maxLength) + "...";
   }
@@ -204,6 +205,7 @@ export const placeholderBlurhash =
 
 
 export function deriveDropdownValues(data: SafeForDropdown[]) {
+  if (!data) return [];
   return data.map((item) => ({
     label: item.name,
     value: item.name,

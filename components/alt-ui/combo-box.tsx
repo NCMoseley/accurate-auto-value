@@ -19,6 +19,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import { Icons } from "../shared/icons";
+
 interface ComboBoxProps {
   values: {
     value: string;
@@ -29,6 +31,7 @@ interface ComboBoxProps {
   autoFocus?: boolean;
   onChange: (value: string) => void;
   initialValue?: string;
+  isLoading?: boolean;
 }
 
 export function Combobox({
@@ -38,6 +41,7 @@ export function Combobox({
   onChange,
   autoFocus = false,
   initialValue,
+  isLoading = false,
 }: ComboBoxProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
@@ -53,12 +57,19 @@ export function Combobox({
           className="w-[200px] justify-between"
           autoFocus={autoFocus}
         >
-          {value
-            ? truncateString(
-                values.find((item) => item.value === value)?.label,
-                15,
-              )
-            : `Select ${label}...`}
+          {isLoading ? (
+            <>
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
+              Loading...
+            </>
+          ) : value ? (
+            truncateString(
+              values.find((item) => item.value === value)?.label,
+              15,
+            )
+          ) : (
+            `Select ${label}...`
+          )}
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

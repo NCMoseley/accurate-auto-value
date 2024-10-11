@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { NumberInput } from "@/components/ui/number-input";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
@@ -56,6 +57,26 @@ interface Trims {
   model: DropdownValue[];
 }
 
+export default function debounce(func, wait, immediate) {
+  let timeout;
+  return function (...args) {
+    return new Promise((resolve) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        timeout = null;
+        if (!immediate) {
+          console.log("not immediate");
+          Promise.resolve(func.apply(this, [...args])).then(resolve);
+        }
+      }, wait);
+      if (immediate && !timeout) {
+        console.log("immediate:", immediate, timeout);
+        Promise.resolve(func.apply(this, [...args])).then(resolve);
+      }
+    });
+  };
+}
+
 export function AutoValueForm({
   className,
   type,
@@ -70,7 +91,12 @@ export function AutoValueForm({
     resolver: zodResolver(userAuthSchema),
   });
   const searchParams = useSearchParams();
+
+  const [email, setEmail] = React.useState<string>("");
   const [year, setYear] = React.useState<string>("");
+  const [autoErrors, setAutoErrors] = React.useState<{ [key: string]: string }>(
+    {},
+  );
   const [years, setYears] = React.useState<DropdownValue[]>(yearsArr);
   const [make, setMake] = React.useState<string>("");
   const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
@@ -80,66 +106,73 @@ export function AutoValueForm({
   const [trims, setTrims] = React.useState<Partial<Trims> | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    if (!year) {
-      return;
-    }
-    if (!makes.length) {
-      getMakes();
-      return;
-    }
-    if (!models.length) {
-      getModels();
-      return;
-    }
-    if (!trims) {
-      getTrims();
-      return;
-    }
-  }, [year, make, model, trims]);
-
-  async function getMakes() {
-    const makes = await getAllMakes(year, locale);
+  async function getMakes(dYear: string) {
+    setIsLoading(true);
+    const makes = await getAllMakes(dYear, locale);
     setMakes(makes);
+    setIsLoading(false);
   }
 
-  async function getModels() {
-    const models = await getAllModels(year, make, locale);
+  async function getModels(dYear: string, dMake: string) {
+    setIsLoading(true);
+    const models = await getAllModels(dYear, dMake, locale);
     setModels(models);
+    setIsLoading(false);
   }
 
-  async function getTrims() {
-    const res = await getAllTrims(year, make, model, locale);
+  async function getTrims(dYear: string, dMake: string, dModel: string) {
+    setIsLoading(true);
+    const res = await getAllTrims(dYear, dMake, dModel, locale);
 
-    Object.keys(res).forEach((key) => {
-      if (res[key].length === 1) {
-        setTrim((prev) => ({ ...prev, [key]: res[key][0].value }));
-      }
-    });
-    setTrims(res);
+    setTrims(res.trims);
+    setTrim(res.trim);
+    setIsLoading(false);
+  }
+
+  function handleAutoError(key: string, message: string) {
+    setAutoErrors((prev) => ({ ...prev, [key]: message }));
   }
 
   async function onSubmit(data: FormData) {
+    if (!year || !make || !model || !trim) {
+      return toast.error("Please fill in all fields");
+    }
+    if (!data.email) {
+      return toast.error("Please enter your email");
+    }
     setIsLoading(true);
+    console.log("onSubmit", data);
 
-    const signInResult = await signIn("resend", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    });
+    // const signInResult = await signIn("resend", {
+    //   email: data.email.toLowerCase(),
+    //   redirect: false,
+    //   callbackUrl: searchParams?.get("from") || "/dashboard",
+    // });
+
+    // const submitCarInfoResult = await submitCarInfo("frontpage", {
+    //   email: data.email.toLowerCase(),
+    //   make,
+    //   model,
+    //   year,
+    //   trim,
+    //   redirect: false,
+    // });
 
     setIsLoading(false);
 
-    if (!signInResult?.ok) {
-      return toast.error("Something went wrong.", {
-        description: "Your sign in request failed. Please try again.",
-      });
-    }
+    // if (!signInResult?.ok) {
+    //   return toast.error("Something went wrong.", {
+    //     description: "Your sign in request failed. Please try again.",
+    //   });
+    // }
 
     return toast.success("Check your email", {
       description: "We sent you a login link. Be sure to check your spam too.",
     });
   }
+
+  console.log("trims:", trims);
+  console.log("trim:", trim);
 
   return (
     <MaxWidthWrapper>
@@ -166,22 +199,37 @@ export function AutoValueForm({
             >
               <div className="gap-6">
                 <Label className="sr-only">Year</Label>
-                <Combobox
+                <NumberInput
+                  className="h-10 w-full sm:w-64 sm:pr-12"
+                  id="year"
+                  placeholder="Year"
+                  type="text"
+                  autoComplete="year"
+                  autoCorrect="off"
                   disabled={isLoading}
-                  label="Year"
-                  values={years}
-                  onChange={(value) => {
-                    setYear(value);
-                    setMake("");
-                    setModel("");
+                  onChange={(e) => {
+                    if (e.target.value.length === 4) {
+                      handleAutoError("year", "");
+                      if (Number(e.target.value) < 1983) {
+                        handleAutoError(
+                          "year",
+                          "Year must be greater than 1983",
+                        );
+                      }
+                      if (Number(e.target.value) <= new Date().getFullYear()) {
+                        let year = e.target.value.slice(0, 4);
+                        setYear(year);
+                        setMake("");
+                        setModel("");
+                        setTrim({});
+                        getMakes(year);
+                      }
+                    }
                   }}
-                  autoFocus={true}
                 />
-                {/* {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )} */}
+                {autoErrors?.year && (
+                  <p className="px-1 text-xs text-red-600">{autoErrors.year}</p>
+                )}
               </div>
               <div className="gap-6">
                 <Label className="sr-only">Make</Label>
@@ -189,13 +237,15 @@ export function AutoValueForm({
                   disabled={isLoading || !makes.length}
                   label="Make"
                   values={makes}
-                  onChange={(value) => setMake(value)}
+                  isLoading={isLoading}
+                  onChange={(value) => {
+                    setModel("");
+                    setTrim({});
+                    setTrims({});
+                    setMake(value);
+                    getModels(year, value);
+                  }}
                 />
-                {/* {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )} */}
               </div>
               <div className="gap-6">
                 <Label className="sr-only">Model</Label>
@@ -203,13 +253,14 @@ export function AutoValueForm({
                   label="Model"
                   disabled={isLoading || !models.length}
                   values={models}
-                  onChange={(value) => setModel(value)}
+                  isLoading={isLoading}
+                  onChange={(value) => {
+                    setTrim({});
+                    setTrims({});
+                    setModel(value);
+                    getTrims(year, make, value);
+                  }}
                 />
-                {/* {errors?.email && (
-                  <p className="px-1 text-xs text-red-600">
-                    {errors.email.message}
-                  </p>
-                )} */}
               </div>
               {trims &&
                 Object.keys(trims).map((key) => (
@@ -222,19 +273,53 @@ export function AutoValueForm({
                       disabled={isLoading}
                       values={trims[key]}
                       initialValue={trim[key]}
+                      isLoading={isLoading}
                       onChange={(value) =>
                         setTrim((prev) => ({ ...prev, [key]: value }))
                       }
                     />
-                    {/* {errors?.trims && (
-                    <p className="px-1 text-xs text-red-600">
-                      {errors.trims.message}
-                    </p>
-                  )} */}
                   </div>
                 ))}
+              <div className="gap-6">
+                <Label htmlFor="email">
+                  We won&apos;t share your email with anyone
+                </Label>
+                <Input
+                  className="h-8 w-full sm:w-64 sm:pr-12"
+                  id="email"
+                  placeholder="name@example.com"
+                  type="email"
+                  autoCapitalize="none"
+                  autoComplete="email"
+                  autoCorrect="off"
+                  disabled={isLoading}
+                  {...register("email")}
+                />
+                {errors?.email && (
+                  <p className="px-1 text-xs text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+              {email && (
+                <Button
+                  type="submit"
+                  className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Icons.spinner className="mr-2 size-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
+                </Button>
+              )}
             </form>
-            <div className="gap-6">
+
+            {/* <div className="gap-6">
               <Label className="sr-only" htmlFor="search">
                 Search
               </Label>
@@ -243,12 +328,7 @@ export function AutoValueForm({
                 placeholder="Search documentation..."
                 className="h-8 w-full sm:w-64 sm:pr-12"
               />
-              {errors?.email && (
-                <p className="px-1 text-xs text-red-600">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
+            </div> */}
             {/* <button className={cn(buttonVariants())} disabled={isLoading}>
                   {isLoading && (
                     <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -257,27 +337,6 @@ export function AutoValueForm({
                     ? "Sign Up with Email"
                     : "Sign In with Email"}
                 </button> */}
-            <div className="gap-6">
-              <Label className="sr-only" htmlFor="email">
-                Email
-              </Label>
-              <Input
-                className="h-8 w-full sm:w-64 sm:pr-12"
-                id="email"
-                placeholder="name@example.com"
-                type="email"
-                autoCapitalize="none"
-                autoComplete="email"
-                autoCorrect="off"
-                disabled={isLoading}
-                {...register("email")}
-              />
-              {errors?.email && (
-                <p className="px-1 text-xs text-red-600">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
           </div>
         </CardContent>
       </Card>

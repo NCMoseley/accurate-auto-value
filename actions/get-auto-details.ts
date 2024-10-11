@@ -1,15 +1,6 @@
 import { deriveDropdownValues } from "../lib/utils";
 
-// https://public.opendatasoft.com/api/records/1.0/search/?refine.make=Volkswagen&rows=0&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=en
-
-
-// https://public.opendatasoft.com/api/records/1.0/search/?rows=0&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=en
-
-const baseURLPlus = "https://public.opendatasoft.com/api/records/1.0/search/?q=BMW&refine.make=BMW&rows=0&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&facetsort.year=-count&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=en";
-
 const baseURL = "https://public.opendatasoft.com/api/records/1.0/search/"
-
-// &refine=year:2021&refine=make:"Bugatti
 
 export async function getAllMakes(year: string, locale: string) {
   const makeURL = baseURL + `?rows=0&refine.year=${year}&facet=make&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
@@ -29,7 +20,9 @@ export async function getAllMakes(year: string, locale: string) {
   }
 
   const data = await res.json();
-  const dropdownValues = deriveDropdownValues(data.facet_groups[0].facets);
+  console.log("data:", data);
+  if (!data?.facet_groups?.length) return [];
+  const dropdownValues = deriveDropdownValues(data?.facet_groups[0]?.facets);
 
   return dropdownValues;
 }
@@ -52,12 +45,15 @@ export async function getAllModels(year: string, make: string, locale: string) {
   }
 
   const data = await res.json();
-  const dropdownValues = deriveDropdownValues(data.facet_groups[1].facets);
+  console.log("data:", data);
+  if (!data?.facet_groups?.length) return [];
+
+  const dropdownValues = deriveDropdownValues(data?.facet_groups[1]?.facets);
 
   return dropdownValues;
 }
 
-export async function getAllTrims(year: string, make: string, model: string, locale: string) {
+export async function getAllTrims(year: string, make: string, model: string, locale: string): Promise<{ trims: Record<string, { value: string; label: string }[]>, trim: Record<string, string> }> {
   const url = baseURL + `?q=${make}&refine.make=${make}&refine.year=${year}&refine.model=${model}&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&dataset=all-vehicles-model&timezone=Europe%2FBerlin&lang=${locale}`;
   console.log(url);
   const res = await fetch(url);
@@ -76,11 +72,26 @@ export async function getAllTrims(year: string, make: string, model: string, loc
   }
 
   const data = await res.json();
-  console.log(data);
-  let trims = {}
-  data.facet_groups.forEach((facetGroup) => {
-    trims[facetGroup.name] = deriveDropdownValues(facetGroup.facets);
+  let trims = {};
+  let trim = {};
+  if (!data) return { trims, trim };
+  data?.facet_groups?.forEach((facetGroup) => {
+    if (facetGroup.name !== "mpgdata" && facetGroup.name !== "phevblended" && facetGroup.name !== "fueltype") {
+      trims[facetGroup.name] = deriveDropdownValues(facetGroup.facets);
+    }
   });
 
-  return trims;
+  Object.keys(trims).forEach((key) => {
+    if (trims[key].length === 1) {
+      trim[key] = trims[key][0].value
+    }
+  });
+
+  console.log("trims:", trims);
+  console.log("trim:", trim);
+
+  return {
+    trims,
+    trim,
+  };
 }
