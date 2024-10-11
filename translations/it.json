@@ -1,6 +1,26 @@
 {
-	"HomePage": {
-		"title": "Bonjourno!",
-		"about": "Go to the about page"
+	"HeroLanding": {
+		"a": "Valutazione dell'auto fulminea",
+		"b": "Ottieni un valore equo e accurato per la tua auto in pochi minuti. Nessuna informazione personale richiesta.",
+		"c": "Vai alla pagina 'Chi siamo'"
+	},
+	"Testimonials": {
+		"a": "Testimonianze",
+		"b": "Cosa condividono i nostri clienti.",
+		"c": "Scopri il feedback entusiasta dei nostri clienti soddisfatti in tutto il mondo."
+	},
+	"PricingPage": {
+		"a": "Prezzi - Valore Auto Accurato",
+		"b": "Esplora i nostri piani di abbonamento.",
+		"c": "Scopri di più sui nostri prezzi."
+	},
+	"PricingCards": {
+		"a": "Calcolatore",
+		"b": "Inizia a tutta velocità",
+		"c": "Annuale",
+		"d": "Mensile",
+		"e": "Email",
+		"f": "per contattare il nostro team di supporto.",
+		"g": "Puoi provare gli abbonamenti e non verrà addebitato alcun costo."
 	}
 }

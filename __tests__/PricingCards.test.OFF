@@ -1,0 +1,93 @@
+import "@testing-library/jest-dom";
+
+import { render, screen } from "@testing-library/react";
+
+import { PricingCards } from "@/components/pricing/pricing-cards";
+
+describe("PricingCards", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("renders pricing cards correctly", () => {
+    const mockSubscriptionPlan = {
+      title: "Starter",
+      description: "For Beginners",
+      benefits: [
+        "Up to 100 monthly posts",
+        "Basic analytics and reporting",
+        "Access to standard templates",
+      ],
+      limitations: [
+        "No priority access to new features.",
+        "Limited customer support",
+        "No custom branding",
+        "Limited access to business resources.",
+      ],
+      prices: { monthly: 0, yearly: 0 },
+      stripeIds: { monthly: null, yearly: null },
+      stripeSubscriptionId: null,
+      stripeCurrentPeriodEnd: new Date("2024-12-31T00:00:00Z").getTime(),
+      stripeCustomerId: null,
+      stripePriceId: null,
+      isPaid: false,
+      interval: null,
+      isCanceled: false,
+    };
+
+    render(
+      <PricingCards userId="user123" subscriptionPlan={mockSubscriptionPlan} />,
+    );
+
+    // Add your assertions here
+    expect(screen.getByText("Starter")).toBeInTheDocument();
+    expect(screen.getByText("Pro")).toBeInTheDocument();
+    // Add more assertions as needed
+  });
+
+  // Check if the component renders
+  // expect(screen.getByText("PricingCards.a")).toBeInTheDocument();
+  // expect(screen.getByText("PricingCards.b")).toBeInTheDocument();
+
+  // // Check if pricing cards are rendered
+  // expect(screen.getByText("Starter")).toBeInTheDocument();
+  // expect(screen.getByText("Pro")).toBeInTheDocument();
+  // // Check if toggle buttons are rendered
+  // expect(screen.getByText("PricingCards.c")).toBeInTheDocument();
+  // expect(screen.getByText("PricingCards.d")).toBeInTheDocument();
+
+  // // Check if benefits and limitations are rendered
+  // expect(screen.getByText("Benefit 1")).toBeInTheDocument();
+  // expect(screen.getByText("Limitation 1")).toBeInTheDocument();
+
+  // // Check if prices are rendered
+  // expect(screen.getByText("$0")).toBeInTheDocument();
+  // expect(screen.getByText("$15")).toBeInTheDocument();
+});
+
+// it('renders sign in buttons when user is not logged in', () => {
+//   render(
+//     <ModalContext.Provider value={{ setShowSignInModal: mockSetShowSignInModal }}>
+//       <PricingCards />
+//     </ModalContext.Provider>
+//   );
+
+//   const signInButtons = screen.getAllByText('Sign in');
+//   expect(signInButtons).toHaveLength(2);
+
+//   // Click on a sign in button and check if the modal is triggered
+//   signInButtons[0].click();
+//   expect(mockSetShowSignInModal).toHaveBeenCalledWith(true);
+// });
+
+// test("renders correct buttons for logged-in user", () => {
+//   const subscriptionPlan = {
+//     stripeCustomerId: "cus_123",
+//     interval: "month",
+//   };
+
+//   render(typeof PricingCards);
+
+//   expect(screen.getByText("Go to dashboard")).toBeInTheDocument();
+//   expect(screen.getByText("Upgrade")).toBeInTheDocument();
+// });
