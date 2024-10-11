@@ -32,6 +32,7 @@ import {
   getAllModels,
   getAllTrims,
 } from "../../actions/get-auto-details";
+import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../alt-ui/combo-box";
 
@@ -55,26 +56,6 @@ interface Trims {
   year: DropdownValue[];
   make: DropdownValue[];
   model: DropdownValue[];
-}
-
-export default function debounce(func, wait, immediate) {
-  let timeout;
-  return function (...args) {
-    return new Promise((resolve) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        timeout = null;
-        if (!immediate) {
-          console.log("not immediate");
-          Promise.resolve(func.apply(this, [...args])).then(resolve);
-        }
-      }, wait);
-      if (immediate && !timeout) {
-        console.log("immediate:", immediate, timeout);
-        Promise.resolve(func.apply(this, [...args])).then(resolve);
-      }
-    });
-  };
 }
 
 export function AutoValueForm({
@@ -113,16 +94,16 @@ export function AutoValueForm({
     setIsLoading(true);
     const makes = await getAllMakes(dYear, locale);
     setMakes(makes);
-    document.getElementById("make")?.focus();
     setIsLoading(false);
+    document.getElementById("make")?.focus();
   }
 
   async function getModels(dYear: string, dMake: string) {
     setIsLoading(true);
     const models = await getAllModels(dYear, dMake, locale);
     setModels(models);
-    document.getElementById("model")?.focus();
     setIsLoading(false);
+    document.getElementById("model")?.focus();
   }
 
   async function getTrims(dYear: string, dMake: string, dModel: string) {
@@ -130,8 +111,8 @@ export function AutoValueForm({
     const res = await getAllTrims(dYear, dMake, dModel, locale);
     setTrims(res.trims);
     setTrim(res.trim);
-    document.getElementById("trim")?.focus();
     setIsLoading(false);
+    document.getElementById("trim")?.focus();
   }
 
   function handleAutoError(key: string, message: string) {
@@ -148,35 +129,40 @@ export function AutoValueForm({
     setIsLoading(true);
     console.log("onSubmit", data);
 
-    // const signInResult = await signIn("resend", {
-    //   email: data.email.toLowerCase(),
-    //   redirect: false,
-    //   callbackUrl: searchParams?.get("from") || "/dashboard",
-    // });
+    const submitAutoInfoResult = await submitAutoInfo({
+      userEmail: data.email.toLowerCase(),
+      make,
+      model,
+      year,
+      trim,
+      // redirect: false,
+    });
 
-    // const submitCarInfoResult = await submitCarInfo("frontpage", {
-    //   email: data.email.toLowerCase(),
-    //   make,
-    //   model,
-    //   year,
-    //   trim,
-    //   redirect: false,
-    // });
+    if (!submitAutoInfoResult?.ok) {
+      return toast.error("Something went wrong.", {
+        description: "Your submission request failed. Please try again.",
+      });
+    }
+
+    const signInResult = await signIn("resend", {
+      email: data.email.toLowerCase(),
+      redirect: false,
+      callbackUrl: searchParams?.get("from") || "/dashboard",
+    });
 
     setIsLoading(false);
 
-    // if (!signInResult?.ok) {
-    //   return toast.error("Something went wrong.", {
-    //     description: "Your sign in request failed. Please try again.",
-    //   });
-    // }
+    if (!signInResult?.ok) {
+      return toast.error("Something went wrong.", {
+        description: "Your sign in request failed. Please try again.",
+      });
+    }
 
     return toast.success("Check your email", {
       description: "We sent you a login link. Be sure to check your spam too.",
     });
   }
 
-  console.log("trims:", trims);
   console.log("trim:", trim);
 
   return (
@@ -186,7 +172,7 @@ export function AutoValueForm({
           <div className="grid gap-2">
             <CardTitle>Rapid car valuation</CardTitle>
             <CardDescription className="text-balance">
-              Just a few details to get your car value.
+              Just a few details to get your car value
             </CardDescription>
           </div>
           {/* <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
@@ -289,20 +275,21 @@ export function AutoValueForm({
                   </div>
                 ))}
             </div>
-            <div className="mt-4 flex flex-col items-end gap-6">
-              <Label htmlFor="email">
+            <div className="mt-4 flex flex-col items-end gap-2">
+              <CardDescription className="text-balance text-xs">
                 We won&apos;t share your email with anyone
-              </Label>
+              </CardDescription>
               <Input
                 className="h-10 w-full sm:w-64 sm:pr-12"
                 id="email"
-                placeholder="name@example.com"
+                placeholder="email@email.com"
                 type="email"
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading}
+                disabled={isLoading || Object.keys(trim).length === 0}
                 {...register("email")}
+                onChange={(e) => setEmail(e.target.value)}
               />
               {errors?.email && (
                 <p className="px-1 text-xs text-red-600">
@@ -327,25 +314,6 @@ export function AutoValueForm({
               </Button>
             )}
           </form>
-
-          {/* <div className="gap-6">
-              <Label className="sr-only" htmlFor="search">
-                Search
-              </Label>
-              <Input
-                type="search"
-                placeholder="Search documentation..."
-                className="h-8 w-full sm:w-64 sm:pr-12"
-              />
-            </div> */}
-          {/* <button className={cn(buttonVariants())} disabled={isLoading}>
-                  {isLoading && (
-                    <Icons.spinner className="mr-2 size-4 animate-spin" />
-                  )}
-                  {type === "register"
-                    ? "Sign Up with Email"
-                    : "Sign In with Email"}
-                </button> */}
         </CardContent>
       </Card>
     </MaxWidthWrapper>
