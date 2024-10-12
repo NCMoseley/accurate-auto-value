@@ -54,7 +54,7 @@ pnpm run dev
 ### Frameworks
 
 - [Next.js](https://nextjs.org/) – React framework for building performant apps with the best developer experience
-- [Auth.js](https://authjs.dev/) – Handle user authentication with ease with providers like Google, Twitter, GitHub, etc.
+- [Auth.js](https://authjs.dev/) – Handle user authentication with ease with providers like Google, X, GitHub, etc.
 - [Prisma](https://www.prisma.io/) – Typescript-first ORM for Node.js
 - [React Email](https://react.email/) – Versatile email framework for efficient and flexible email development
 
@@ -95,8 +95,4 @@ pnpm run dev
 
 ## Author
 
-Adapted by ncmoseley ([ncmoseley](https://github.com/NCMoseley))
-
-## Credits
-
-This project was inspired by [@nathan](https://twitter.com/nathan) in 2023, released under the [MIT license](https://github.com/shadcn/taxonomy/blob/main/LICENSE.md).
+Adapted by ncmoseley ([ncmoseley](https://github.com/ncmoseley))

@@ -80,6 +80,9 @@ export function NavBar({ scroll = false }: NavBarProps) {
         </div>
 
         <div className="flex items-center space-x-3">
+          <div className="mr-[25px] md:mr-0">
+            <LocaleSwitcher />
+          </div>
           {/* right header for docs */}
           {documentation ? (
             <div className="hidden flex-1 items-center space-x-4 sm:justify-end lg:flex">
@@ -101,8 +104,6 @@ export function NavBar({ scroll = false }: NavBarProps) {
               </div>
             </div>
           ) : null}
-
-          <LocaleSwitcher />
 
           {session ? (
             <Link
