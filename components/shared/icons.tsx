@@ -105,13 +105,7 @@ export const Icons = {
   laptop: Laptop,
   lineChart: LineChart,
   logo: ({ ...props }: LucideProps) => (
-    <Image
-      src="/images/round-logo.jpg"
-      // src="/logo-white.png"
-      alt="AAV Logo"
-      width={50}
-      height={50}
-    />
+    <Image src="/images/aav.logo.png" alt="AAV Logo" width={50} height={50} />
   ),
   media: ImageIcon,
   messages: MessagesSquare,
