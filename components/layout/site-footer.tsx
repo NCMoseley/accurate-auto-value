@@ -38,19 +38,20 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
 
       <div className="border-t py-4">
         <div className="container flex max-w-6xl items-center justify-between">
-          {/* <span className="text-muted-foreground text-sm">
+          <span className="text-sm text-muted-foreground">
             Copyright &copy; 2024. All rights reserved.
-          </span> */}
+          </span>
           <p className="text-left text-sm text-muted-foreground">
             Support by{" "}
-            {/* <Link
-              href={siteConfig.links.twitter}
+            <Link
+              href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
-            > */}
-            {siteConfig.mailSupport}
-            {/* </Link> */}. Hosted on{" "}
+            >
+              {siteConfig.mailSupport}
+            </Link>
+            . Hosted on{" "}
             <Link
               href="https://vercel.com"
               target="_blank"
@@ -59,26 +60,17 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </Link>
-            {/* . Illustrations by{" "}
-            <Link
-              href="https://popsy.co"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Popsy
-            </Link> */}
           </p>
 
           <div className="flex items-center gap-3">
-            {/* <Link
+            <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               <Icons.gitHub className="size-5" />
-            </Link> */}
+            </Link>
             <ModeToggle />
           </div>
         </div>
