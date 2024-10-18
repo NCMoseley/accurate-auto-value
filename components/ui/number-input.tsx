@@ -51,8 +51,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, InputProps>(
         <InputMask
           ref={ref}
           mask={props.mask}
-          alwaysShowMask={false}
-          type={type}
+          type="text"
           className={baseClassNames}
           onKeyDown={handleKeyDown}
           {...props}

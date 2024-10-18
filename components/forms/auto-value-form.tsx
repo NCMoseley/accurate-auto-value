@@ -56,7 +56,6 @@ export function AutoValueForm({
   type,
   initialMakes,
 }: AutoValueFormProps) {
-  const locale = useLocale();
   const t = useTranslations("AutoValueForm");
   const {
     register,
@@ -78,11 +77,14 @@ export function AutoValueForm({
   const [serieses, setSerieses] = React.useState<DropdownValue[]>([]);
   const [option, setOption] = React.useState<{ [key: string]: string }>({});
   const [options, setOptions] = React.useState<Partial<Options> | null>(null);
+  const [mileage, setMileage] = React.useState<string>("");
+  const [displacement, setDisplacement] = React.useState<string>("");
+
   const [email, setEmail] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    // document.getElementById("registrationDate")?.focus();
+    document.getElementById("registrationDate")?.focus();
     getMakes();
   }, []);
 
@@ -196,24 +198,42 @@ export function AutoValueForm({
               Just a few details to get your car value
             </CardDescription>
           </div>
-          {/* <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
-            <Link href="#" className="flex items-center gap-2">
-              <span>View All</span>
-              <ArrowUpRight className="hidden size-4 sm:block" />
-            </Link>
-          </Button> */}
         </CardHeader>
         <CardContent>
           <form
             className="flex flex-col gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
+            <div
+              id="registrationDate"
+              className={cn("flex flex-row flex-wrap gap-6", className)}
+            >
+              <div className="gap-6">
+                <Label className="sr-only">{t("registrationDate.label")}</Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="registrationDate"
+                  placeholder={t("registrationDate.placeholder")}
+                  mask={"99/9999"}
+                  type="number"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoFocus={true}
+                  onChange={(e) => {
+                    setRegistrationDate(e.target.value);
+                  }}
+                />
+                {autoErrors?.registrationDate && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.registrationDate}
+                  </p>
+                )}
+              </div>
               <div id="make" className="gap-6">
-                <Label className="sr-only">Make</Label>
+                <Label className="sr-only">{t("make.label")}</Label>
                 <Combobox
                   disabled={isLoading || !makes.length}
-                  label="Make"
+                  label={t("make.label")}
                   values={makes}
                   isLoading={!make && isLoading}
                   onChange={(value) => {
@@ -226,11 +246,10 @@ export function AutoValueForm({
                 />
               </div>
               <div id="model" className="gap-6">
-                <Label className="sr-only">Model</Label>
+                <Label className="sr-only">{t("model.label")}</Label>
                 <Combobox
-                  label="Model"
+                  label={t("model.label")}
                   disabled={isLoading || !models.length}
-                  autoFocus={true}
                   values={models}
                   isLoading={!model && isLoading}
                   onChange={(value) => {
@@ -242,11 +261,10 @@ export function AutoValueForm({
                 />
               </div>
               <div id="series" className="gap-6">
-                <Label className="sr-only">Series</Label>
+                <Label className="sr-only">{t("series.label")}</Label>
                 <Combobox
-                  label="Series"
+                  label={t("series.label")}
                   disabled={isLoading || !serieses.length}
-                  autoFocus={true}
                   values={serieses}
                   isLoading={!series && isLoading}
                   onChange={(value) => {
@@ -257,27 +275,59 @@ export function AutoValueForm({
                   }}
                 />
               </div>
-
-              {/* // Page 2 */}
               <div className="gap-6">
-                <Label className="sr-only">{t("registrationDate.label")}</Label>
+                <Label className="sr-only">{t("mileage.label")}</Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
-                  id="registrationDate"
-                  placeholder={"MM/YYYY"}
-                  mask={"99/9999"}
+                  id="mileage"
+                  placeholder={t("mileage.placeholder")}
                   type="text"
-                  autoComplete="registrationDate"
+                  autoComplete="off"
                   autoCorrect="off"
-                  // disabled={isLoading}
                   onChange={(e) => {
-                    setRegistrationDate(e.target.value);
+                    setMileage(e.target.value);
                   }}
                 />
-                {autoErrors?.registrationDate && (
+                {autoErrors?.mileage && (
                   <p className="px-1 text-xs text-red-600">
-                    {autoErrors.registrationDate}
+                    {autoErrors.mileage}
                   </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label className="sr-only">{t("displacement.label")}</Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="displacement"
+                  placeholder={t("displacement.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  onChange={(e) => {
+                    setDisplacement(e.target.value);
+                  }}
+                />
+                {autoErrors?.mileage && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.mileage}
+                  </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label className="sr-only">{t("body.label")}</Label>
+                <Input
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="body"
+                  placeholder={t("body.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  onChange={(e) => {
+                    setDisplacement(e.target.value);
+                  }}
+                />
+                {autoErrors?.body && (
+                  <p className="px-1 text-xs text-red-600">{autoErrors.body}</p>
                 )}
               </div>
             </div>

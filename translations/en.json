@@ -15,9 +15,33 @@
 		"c": "Learn more about our pricing."
 	},
 	"AutoValueForm": {
+		"make": {
+			"label": "Make",
+			"placeholder": "Make"
+		},
+		"model": {
+			"label": "Model",
+			"placeholder": "Model"
+		},
+		"series": {
+			"label": "Series",
+			"placeholder": "Series"
+		},
 		"registrationDate": {
 			"label": "Date of Registration",
-			"placeholder": "Year"
+			"placeholder": "mm/yyyy"
+		},
+		"mileage": {
+			"label": "Mileage",
+			"placeholder": "Mileage"
+		},
+		"displacement": {
+			"label": "Engine Displacement",
+			"placeholder": "cc"
+		},
+		"body": {
+			"label": "Body",
+			"placeholder": "e.g. Hatchback"
 		}
 	},
 	"PricingCards": {
