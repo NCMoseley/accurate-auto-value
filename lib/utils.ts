@@ -160,31 +160,36 @@ export function nFormatter(num: number, digits?: number) {
     : "0";
 }
 
-export function capitalize(str: string) {
+export function capitalize(str: string | undefined) {
   if (!str || typeof str !== "string") return str;
   // if (str.length <= 3) return str.toUpperCase();
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  let strBreak: string = " ";
 
-export function truncateString(str, maxLength) {
-  if (!str) return "Select...";
-  if (str.length > maxLength) {
-    return str.slice(0, maxLength) + "...";
+  if (str.indexOf("-") !== -1) {
+    strBreak = "-";
   }
-  return capitalize(str);
+
+  const strArr = str.split(strBreak);
+  const capitalizedArr = strArr.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  return capitalizedArr.join(strBreak)
 }
 
-export const truncate = (str: string, length: number) => {
-  if (!str || str.length <= length) return str;
-  return `${str.slice(0, length)}...`;
+export function truncateWithCapitalization(str: string | undefined, maxLength: number) {
+  if (!str || str.length <= maxLength) return capitalize(str);
+  return capitalize(`${str.slice(0, maxLength)}...`);
+}
+
+export const truncate = (str: string, maxLength: number) => {
+  if (!str || str.length <= maxLength) return str;
+  return `${str.slice(0, maxLength)}...`;
 };
 
-export const displayFormat = (value) => {
+export const displayFormat = (value: string | number, length: number) => {
   if (typeof value === 'number') {
     return value.toFixed(2);
   }
   if (typeof value === 'string') {
-    return capitalize(truncate(value, 10));
+    return capitalize(truncate(value, length));
   }
   return value;
 };

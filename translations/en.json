@@ -1,7 +1,7 @@
 {
 	"HeroLanding": {
 		"a": "Lightning fast car valuation",
-		"b": "Get a fair and accurate value for your car in minutes. No personal information required.",
+		"b": "Get a fair and accurate value for your car in minutes.",
 		"c": "Go to the about page"
 	},
 	"Testimonials": {
@@ -15,6 +15,16 @@
 		"c": "Learn more about our pricing."
 	},
 	"AutoValueForm": {
+		"bodyStyles": {
+			"wagon": "Wagon",
+			"sedan": "Sedan",
+			"hatchback": "Hatchback",
+			"suv": "SUV",
+			"coupe": "Coupe",
+			"convertible": "Convertible",
+			"van": "Van",
+			"pickup": "Pickup"
+		},
 		"make": {
 			"label": "Make",
 			"placeholder": "Make"
@@ -40,8 +50,12 @@
 			"placeholder": "cc"
 		},
 		"body": {
-			"label": "Body",
+			"label": "Body Style",
 			"placeholder": "e.g. Hatchback"
+		},
+		"doors": {
+			"label": "Number of Doors",
+			"placeholder": "e.g. 4"
 		},
 		"email": {
 			"description": "We won&apos;t share your email with anyone",

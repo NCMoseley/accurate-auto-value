@@ -60,7 +60,7 @@ export default async function HeroLanding() {
           className="flex justify-center space-x-2 md:space-x-4"
           style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
         >
-          <Link
+          {/* <Link
             href="/pricing"
             prefetch={true}
             className={cn(
@@ -70,7 +70,7 @@ export default async function HeroLanding() {
           >
             <span>{t.raw("c")}</span>
             <Icons.arrowRight className="size-4" />
-          </Link>
+          </Link> */}
           {/* <Link
             href={siteConfig.links.github}
             target="_blank"

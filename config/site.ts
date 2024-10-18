@@ -6,7 +6,7 @@ const site_url = env.NEXT_PUBLIC_APP_URL;
 export const siteConfig: SiteConfig = {
   name: "Accurate Auto Value",
   description:
-    "Get a fair and accurate value for your car in minutes. No personal information required.",
+    "Get a fair and accurate value for your car in minutes.",
   url: site_url,
   // ogImage: `${site_url}/_static/og.jpg`,
   ogImage: ``,

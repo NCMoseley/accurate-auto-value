@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn, displayFormat, truncateString } from "@/lib/utils";
+import { cn, displayFormat, truncateWithCapitalization } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -60,7 +60,10 @@ export function Combobox({
 
   const ButtonValueForDisplay = () => {
     return value
-      ? truncateString(values.find((item) => item.value === value)?.label, 25)
+      ? truncateWithCapitalization(
+          values.find((item) => item.value === value)?.label,
+          25,
+        )
       : `Select ${label}...`;
   };
 
@@ -103,7 +106,7 @@ export function Combobox({
                         value === item.value ? "opacity-100" : "opacity-0",
                       )}
                     />
-                    {displayFormat(item.label)}
+                    {displayFormat(item.label, 25)}
                   </CommandItem>
                 ))}
               </CommandGroup>

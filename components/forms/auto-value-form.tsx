@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,9 +80,21 @@ export function AutoValueForm({
   const [options, setOptions] = React.useState<Partial<Options> | null>(null);
   const [mileage, setMileage] = React.useState<string>("");
   const [displacement, setDisplacement] = React.useState<string>("");
-
+  const [body, setBody] = React.useState<string>("");
+  const [doors, setDoors] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  const bodyStyles = [
+    { value: t("bodyStyles.wagon"), label: t("bodyStyles.wagon") },
+    { value: t("bodyStyles.sedan"), label: t("bodyStyles.sedan") },
+    { value: t("bodyStyles.hatchback"), label: t("bodyStyles.hatchback") },
+    { value: t("bodyStyles.suv"), label: t("bodyStyles.suv") },
+    { value: t("bodyStyles.coupe"), label: t("bodyStyles.coupe") },
+    { value: t("bodyStyles.convertible"), label: t("bodyStyles.convertible") },
+    { value: t("bodyStyles.van"), label: t("bodyStyles.van") },
+    { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
+  ];
 
   React.useEffect(() => {
     document.getElementById("registrationDate")?.focus();
@@ -98,7 +111,6 @@ export function AutoValueForm({
 
   async function getModels(dMake: string) {
     setIsLoading(true);
-    console.log("getModels:", dMake);
     const models = await getAllModels(dMake);
     setModels(models);
     setIsLoading(false);
@@ -176,23 +188,23 @@ export function AutoValueForm({
 
   return (
     <MaxWidthWrapper className="flex flex-row gap-6">
-      <Card className="w-[700px] xl:col-span-2">
+      <Card className="">
         <CardHeader className="flex flex-row flex-wrap">
           <div className="grid gap-2">
             <CardTitle></CardTitle>
-            {/* <CardDescription className="text-balance">
-              Just a few details to get your car value
-            </CardDescription> */}
+            <Image
+              // className="size-full object-cover object-center dark:opacity-85 dark:invert"
+              className="size-full object-cover object-center dark:opacity-35"
+              src="/images/finger-pressing-keyless-ingnition-car-valuation.png"
+              alt="preview landing"
+              width={2000}
+              height={1000}
+              priority={true}
+            />
           </div>
-          {/* <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
-            <Link href="#" className="flex items-center gap-2">
-              <span>View All</span>
-              <ArrowUpRight className="hidden size-4 sm:block" />
-            </Link>
-          </Button> */}
         </CardHeader>
       </Card>
-      <Card className="w-[1/2] xl:col-span-2">
+      <Card className="w-full">
         <CardHeader className="flex flex-row flex-wrap">
           <div className="grid gap-2">
             <CardTitle>Rapid car valuation</CardTitle>
@@ -206,7 +218,12 @@ export function AutoValueForm({
             className="flex flex-col gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
+            <div
+              className={cn(
+                "flex flex-row flex-wrap justify-center gap-6",
+                className,
+              )}
+            >
               <div id="registrationDate" className="gap-6">
                 <Label>{t("registrationDate.label")}</Label>
                 <NumberInput
@@ -313,16 +330,33 @@ export function AutoValueForm({
                 )}
               </div>
               <div className="gap-6">
-                <Label>{t("body.label")}</Label>
-                <Input
+                <Label>{t("doors.label")}</Label>
+                <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
-                  id="body"
-                  placeholder={t("body.placeholder")}
+                  id="doors"
+                  placeholder={t("doors.placeholder")}
                   type="text"
                   autoComplete="off"
                   autoCorrect="off"
                   onChange={(e) => {
-                    setDisplacement(e.target.value);
+                    setDoors(e.target.value);
+                  }}
+                />
+                {autoErrors?.doors && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.doors}
+                  </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label>{t("body.label")}</Label>
+                <Combobox
+                  label={t("body.label")}
+                  disabled={isLoading || !bodyStyles.length}
+                  values={bodyStyles}
+                  isLoading={!body && isLoading}
+                  onChange={(value) => {
+                    setBody(value);
                   }}
                 />
                 {autoErrors?.body && (
@@ -330,7 +364,12 @@ export function AutoValueForm({
                 )}
               </div>
             </div>
-            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
+            <div
+              className={cn(
+                "flex flex-row flex-wrap justify-center gap-6",
+                className,
+              )}
+            >
               {options &&
                 Object.keys(options).map((key, i) => (
                   <div id={i === 0 ? "option" : ""} key={key} className="gap-6">
@@ -340,7 +379,6 @@ export function AutoValueForm({
                       disabled={isLoading}
                       values={options[key]}
                       initialValue={option[key]}
-                      // isLoading={isLoading}
                       onChange={(value) =>
                         setOption((prev) => ({ ...prev, [key]: value }))
                       }
