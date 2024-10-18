@@ -27,7 +27,6 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
   }
 
   const data = await res.json();
-  console.log("getAllMakes:", data);
   if (!data) return [];
   const dropdownValues = deriveDropdownValues(data);
 
@@ -76,7 +75,6 @@ export async function getAllSeries(make: string, model: string): Promise<Dropdow
   }
 
   const data = await res.json();
-  console.log("getAllSeries:", data);
   if (!data) return [];
   const dropdownValues = deriveDropdownValues(data);
 
@@ -99,7 +97,6 @@ async function getData(url) {
   }
 
   const data = await res.json();
-  console.log("getData:", data);
   return data;
 }
 
@@ -158,8 +155,6 @@ export async function getAllOptions(make: string, model: string, trim: string): 
     }
   });
 
-  console.log("options:", options);
-  console.log("option:", option);
   return {
     options: options,
     option,

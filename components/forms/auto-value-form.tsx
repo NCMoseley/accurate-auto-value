@@ -191,8 +191,6 @@ export function AutoValueForm({
     });
   }
 
-  console.log("options:", options);
-
   return (
     <MaxWidthWrapper className="flex flex-row gap-6">
       <Card className="">
