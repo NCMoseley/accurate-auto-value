@@ -138,11 +138,13 @@ export function AutoValueForm({
 
     const submitAutoInfoResult = await submitAutoInfo({
       userEmail: data.email.toLowerCase(),
+      registrationDate,
       make,
       model,
-      registrationDate,
       series,
       option,
+      mileage,
+      displacement,
       // redirect: false,
     });
 
@@ -204,12 +206,9 @@ export function AutoValueForm({
             className="flex flex-col gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div
-              id="registrationDate"
-              className={cn("flex flex-row flex-wrap gap-6", className)}
-            >
-              <div className="gap-6">
-                <Label className="sr-only">{t("registrationDate.label")}</Label>
+            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
+              <div id="registrationDate" className="gap-6">
+                <Label>{t("registrationDate.label")}</Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="registrationDate"
@@ -230,7 +229,7 @@ export function AutoValueForm({
                 )}
               </div>
               <div id="make" className="gap-6">
-                <Label className="sr-only">{t("make.label")}</Label>
+                <Label>{t("make.label")}</Label>
                 <Combobox
                   disabled={isLoading || !makes.length}
                   label={t("make.label")}
@@ -246,7 +245,7 @@ export function AutoValueForm({
                 />
               </div>
               <div id="model" className="gap-6">
-                <Label className="sr-only">{t("model.label")}</Label>
+                <Label>{t("model.label")}</Label>
                 <Combobox
                   label={t("model.label")}
                   disabled={isLoading || !models.length}
@@ -261,7 +260,7 @@ export function AutoValueForm({
                 />
               </div>
               <div id="series" className="gap-6">
-                <Label className="sr-only">{t("series.label")}</Label>
+                <Label>{t("series.label")}</Label>
                 <Combobox
                   label={t("series.label")}
                   disabled={isLoading || !serieses.length}
@@ -276,7 +275,7 @@ export function AutoValueForm({
                 />
               </div>
               <div className="gap-6">
-                <Label className="sr-only">{t("mileage.label")}</Label>
+                <Label>{t("mileage.label")}</Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="mileage"
@@ -295,7 +294,7 @@ export function AutoValueForm({
                 )}
               </div>
               <div className="gap-6">
-                <Label className="sr-only">{t("displacement.label")}</Label>
+                <Label>{t("displacement.label")}</Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="displacement"
@@ -314,7 +313,7 @@ export function AutoValueForm({
                 )}
               </div>
               <div className="gap-6">
-                <Label className="sr-only">{t("body.label")}</Label>
+                <Label>{t("body.label")}</Label>
                 <Input
                   className="h-12 sm:w-64 sm:pr-12"
                   id="body"
@@ -335,9 +334,7 @@ export function AutoValueForm({
               {options &&
                 Object.keys(options).map((key, i) => (
                   <div id={i === 0 ? "option" : ""} key={key} className="gap-6">
-                    <Label className="sr-only" htmlFor="email">
-                      {key}
-                    </Label>
+                    <Label htmlFor="email">{key}</Label>
                     <Combobox
                       label={key}
                       disabled={isLoading}
@@ -353,12 +350,12 @@ export function AutoValueForm({
             </div>
             <div className="mt-4 flex flex-col items-end gap-2">
               <CardDescription className="text-balance text-xs">
-                We won&apos;t share your email with anyone
+                {t("email.description")}
               </CardDescription>
               <Input
                 className="h-10 w-full sm:w-64 sm:pr-12"
                 id="email"
-                placeholder="email@email.com"
+                placeholder={t("email.placeholder")}
                 type="email"
                 autoCapitalize="none"
                 autoComplete="email"
@@ -382,10 +379,10 @@ export function AutoValueForm({
                 {isLoading ? (
                   <>
                     <Icons.spinner className="mr-2 size-4 animate-spin" />
-                    Submitting...
+                    {t("submit.loading")}
                   </>
                 ) : (
-                  "Submit"
+                  t("submit.label")
                 )}
               </Button>
             )}

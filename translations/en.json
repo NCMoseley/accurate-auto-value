@@ -42,6 +42,14 @@
 		"body": {
 			"label": "Body",
 			"placeholder": "e.g. Hatchback"
+		},
+		"email": {
+			"description": "We won&apos;t share your email with anyone",
+			"placeholder": "Your email address"
+		},
+		"submit": {
+			"loading": "Calculating...",
+			"label": "Get a valuation"
 		}
 	},
 	"PricingCards": {
