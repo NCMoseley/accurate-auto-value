@@ -1,7 +1,7 @@
 {
 	"HeroLanding": {
 		"a": "Valutazione dell'auto fulminea",
-		"b": "Ottieni un valore equo e accurato per la tua auto in pochi minuti. Nessuna informazione personale richiesta.",
+		"b": "Ottieni un valore equo e accurato per la tua auto in pochi minuti.",
 		"c": "Vai alla pagina 'Chi siamo'"
 	},
 	"Testimonials": {
@@ -10,17 +10,101 @@
 		"c": "Scopri il feedback entusiasta dei nostri clienti soddisfatti in tutto il mondo."
 	},
 	"PricingPage": {
-		"a": "Prezzi - Valore Auto Accurato",
+		"a": "Prezzi - Valutazione Auto Accurata",
 		"b": "Esplora i nostri piani di abbonamento.",
 		"c": "Scopri di più sui nostri prezzi."
 	},
+	"AutoValueForm": {
+		"title": "Valutazione Auto Rapida",
+		"description": "Solo alcuni dettagli per ottenere il valore della tua auto",
+		"bodyStyles": {
+			"wagon": "Station Wagon",
+			"sedan": "Berlina",
+			"hatchback": "Hatchback",
+			"suv": "SUV",
+			"coupe": "Coupé",
+			"convertible": "Cabriolet",
+			"van": "Furgone",
+			"pickup": "Pickup"
+		},
+		"make": {
+			"label": "Marca",
+			"placeholder": "Marca"
+		},
+		"model": {
+			"label": "Modello",
+			"placeholder": "Modello"
+		},
+		"series": {
+			"label": "Serie",
+			"placeholder": "Serie"
+		},
+		"registrationDate": {
+			"label": "Data di Registrazione",
+			"placeholder": "mm/aaaa"
+		},
+		"mileage": {
+			"label": "Chilometraggio",
+			"placeholder": "Chilometraggio"
+		},
+		"transmission": {
+			"label": "Trasmissione",
+			"placeholder": "es. Automatica"
+		},
+		"fuelType": {
+			"label": "Tipo di Carburante",
+			"placeholder": "es. Benzina"
+		},
+		"colors": {
+			"label": "Colori",
+			"placeholder": "es. Rosso"
+		},
+		"output": {
+			"label": "Potenza (kW)",
+			"placeholder": "es. 100 kW"
+		},
+		"displacement": {
+			"label": "Cilindrata",
+			"placeholder": "cc"
+		},
+		"body": {
+			"label": "Stile della Carrozzeria",
+			"placeholder": "es. Hatchback"
+		},
+		"doors": {
+			"label": "Numero di Porte",
+			"placeholder": "es. 4"
+		},
+		"email": {
+			"description": "Non condivideremo la tua email con nessuno",
+			"placeholder": "Il tuo indirizzo email"
+		},
+		"phone": {
+			"label": "Numero di Telefono",
+			"placeholder": "Il tuo numero di telefono"
+		},
+		"submit": {
+			"loading": "Calcolo in corso...",
+			"label": "Ottieni una valutazione"
+		},
+		"success": {
+			"title": "Valutazione inviata",
+			"description": "Ti contatteremo presto."
+		},
+		"error": {
+			"title": "Qualcosa è andato storto.",
+			"description": "La tua richiesta di invio è fallita. Per favore riprova.",
+			"fillInAllFields": "Per favore compila tutti i campi",
+			"enterEmail": "Per favore inserisci la tua email"
+		}
+	},
 	"PricingCards": {
 		"a": "Calcolatore",
-		"b": "Inizia a tutta velocità",
+		"b": "Reattivo e accurato",
 		"c": "Annuale",
 		"d": "Mensile",
 		"e": "Email",
 		"f": "per contattare il nostro team di supporto.",
-		"g": "Puoi provare gli abbonamenti e non verrà addebitato alcun costo."
+		"g": "Puoi testare gli abbonamenti e non sarai addebitato."
 	}
 }
