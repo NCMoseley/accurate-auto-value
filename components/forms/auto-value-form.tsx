@@ -31,7 +31,7 @@ import {
   getAllMakes,
   getAllModels,
   getAllTrims,
-} from "../../actions/get-auto-details";
+} from "../../actions/get-auto-details-carstimate";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
