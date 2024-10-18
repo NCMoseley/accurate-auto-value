@@ -62,9 +62,9 @@ export function Combobox({
     return value
       ? truncateWithCapitalization(
           values.find((item) => item.value === value)?.label,
-          25,
+          18,
         ) || `Select ...`
-      : `Select ${label}...`;
+      : `Select ${truncateWithCapitalization(label, 18)}...`;
   };
 
   return (
@@ -106,7 +106,7 @@ export function Combobox({
                         value === item.value ? "opacity-100" : "opacity-0",
                       )}
                     />
-                    {displayFormat(item.label, 25)}
+                    {displayFormat(item.label, 18)}
                   </CommandItem>
                 ))}
               </CommandGroup>
