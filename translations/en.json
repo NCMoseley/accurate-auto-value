@@ -60,7 +60,7 @@
 			"placeholder": "e.g. Red"
 		},
 		"output": {
-			"label": "Output",
+			"label": "Output (kW)",
 			"placeholder": "e.g. 100 kW"
 		},
 		"displacement": {

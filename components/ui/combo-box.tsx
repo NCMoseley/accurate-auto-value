@@ -63,7 +63,7 @@ export function Combobox({
       ? truncateWithCapitalization(
           values.find((item) => item.value === value)?.label,
           25,
-        )
+        ) || `Select ...`
       : `Select ${label}...`;
   };
 

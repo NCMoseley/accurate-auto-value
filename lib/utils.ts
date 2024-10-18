@@ -221,16 +221,26 @@ export const placeholderBlurhash =
 
 export function deriveDropdownValues(data: SafeForDropdown[] | any[]) {
   if (!data) return [];
-  if (data[0]?.name) {
-    return data.map((item) => ({
+  let nomalizedData = data.map((item) => {
+    if (typeof item === 'number') {
+      return item.toFixed(0);
+    }
+    return item;
+  });
+  let uniqueData = nomalizedData.filter((value, index) => nomalizedData.indexOf(value) === index);
+  let result: { label: string, value: string }[] = [];
+  if (uniqueData[0]?.name) {
+    result = uniqueData.map((item) => ({
       label: item.name,
       value: item.name,
     }));
+  } else {
+    result = uniqueData.map((item) => ({
+      label: typeof item === 'number' ? item.toFixed(0) : item,
+      value: typeof item === 'number' ? item.toFixed(0) : item,
+    }));
   }
-  return data.map((item) => ({
-    label: typeof item === 'number' ? item.toFixed(0) : item,
-    value: typeof item === 'number' ? item.toFixed(0) : item,
-  })).sort((a, b) => a.label.localeCompare(b.label));
+  return result.sort((a, b) => a.label.localeCompare(b.label))
 };
 
 export async function fetchTranslations() {

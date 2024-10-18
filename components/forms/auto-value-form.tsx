@@ -80,6 +80,7 @@ export function AutoValueForm({
   const [options, setOptions] = React.useState<Partial<Options> | null>(null);
   const [mileage, setMileage] = React.useState<string>("");
   const [displacement, setDisplacement] = React.useState<string>("");
+
   const [body, setBody] = React.useState<string>("");
   const [doors, setDoors] = React.useState<string>("");
   const [phone, setPhone] = React.useState<string>("");
@@ -122,6 +123,10 @@ export function AutoValueForm({
     setIsLoading(true);
     const res = await getAllSeries(dMake, dModel);
     setSerieses(res);
+    console.log("res:", res.length, res[0].value);
+    if (res.length === 1) {
+      setSeries(res[0].value);
+    }
     setIsLoading(false);
     document.getElementById("series")?.focus();
   }
@@ -185,6 +190,8 @@ export function AutoValueForm({
       description: t("success.description"),
     });
   }
+
+  console.log("options:", options);
 
   return (
     <MaxWidthWrapper className="flex flex-row gap-6">
@@ -258,6 +265,10 @@ export function AutoValueForm({
                   isLoading={!make && isLoading}
                   onChange={(value) => {
                     setModel("");
+                    setSeries("");
+                    setDisplacement("");
+                    setDoors("");
+                    setBody("");
                     setOption({});
                     setOptions({});
                     setMake(value);
@@ -275,6 +286,10 @@ export function AutoValueForm({
                   values={models}
                   isLoading={!model && isLoading}
                   onChange={(value) => {
+                    setSeries("");
+                    setDisplacement("");
+                    setDoors("");
+                    setBody("");
                     setOption({});
                     setOptions({});
                     setModel(value);
@@ -292,6 +307,9 @@ export function AutoValueForm({
                   values={serieses}
                   isLoading={!series && isLoading}
                   onChange={(value) => {
+                    setDisplacement("");
+                    setDoors("");
+                    setBody("");
                     setOption({});
                     setOptions({});
                     setSeries(value);
@@ -430,7 +448,7 @@ export function AutoValueForm({
                   {t("phone.label")}
                 </Label>
                 <NumberInput
-                  className="h-12 sm:w-64 sm:pr-12"
+                  className="h-10 sm:w-64 sm:pr-12"
                   id="doors"
                   placeholder={t("phone.placeholder")}
                   type="text"
