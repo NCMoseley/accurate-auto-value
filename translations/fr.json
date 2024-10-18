@@ -1,26 +1,110 @@
 {
-  "HeroLanding": {
-    "a": "Démarrez en beauté avec",
-    "b": "Obtenez une estimation juste et précise de votre voiture en quelques minutes. Aucune information personnelle requise.",
-    "c": "Aller à la page À propos"
-  },
-  "Testimonials": {
-    "a": "Témoignages",
-    "b": "Ce que nos clients partagent.",
-    "c": "Découvrez les avis élogieux de nos clients satisfaits à travers le monde."
-  },
-  "PricingPage": {
-    "a": "Tarification - Accurate Auto Value",
-    "b": "Découvrez nos plans d'abonnement.",
-    "c": "En savoir plus sur nos tarifs."
-  },
-  "PricingCards": {
-    "a": "Calculateur",
-    "b": "Commencez à pleine vitesse",
-    "c": "Annuel",
-    "d": "Mensuel",
-    "e": "E-mail",
-    "f": "pour contacter notre équipe de support.",
-    "g": "Vous pouvez tester les abonnements sans être facturé."
-  }
+	"HeroLanding": {
+		"a": "Évaluation de voiture ultra-rapide",
+		"b": "Obtenez une valeur juste et précise pour votre voiture en quelques minutes.",
+		"c": "Allez à la page À propos"
+	},
+	"Testimonials": {
+		"a": "Témoignages",
+		"b": "Ce que nos clients partagent.",
+		"c": "Découvrez les retours élogieux de nos clients satisfaits à travers le monde."
+	},
+	"PricingPage": {
+		"a": "Tarification - Valeur Automobile Précise",
+		"b": "Explorez nos plans d'abonnement.",
+		"c": "En savoir plus sur nos prix."
+	},
+	"AutoValueForm": {
+		"title": "Évaluation Rapide de Voiture",
+		"description": "Juste quelques détails pour obtenir la valeur de votre voiture",
+		"bodyStyles": {
+			"wagon": "Break",
+			"sedan": "Berline",
+			"hatchback": "Hatchback",
+			"suv": "SUV",
+			"coupe": "Coupé",
+			"convertible": "Cabriolet",
+			"van": "Fourgon",
+			"pickup": "Pickup"
+		},
+		"make": {
+			"label": "Marque",
+			"placeholder": "Marque"
+		},
+		"model": {
+			"label": "Modèle",
+			"placeholder": "Modèle"
+		},
+		"series": {
+			"label": "Série",
+			"placeholder": "Série"
+		},
+		"registrationDate": {
+			"label": "Date d'Enregistrement",
+			"placeholder": "mm/aaaa"
+		},
+		"mileage": {
+			"label": "Kilométrage",
+			"placeholder": "Kilométrage"
+		},
+		"transmission": {
+			"label": "Transmission",
+			"placeholder": "ex. Automatique"
+		},
+		"fuelType": {
+			"label": "Type de Carburant",
+			"placeholder": "ex. Essence"
+		},
+		"colors": {
+			"label": "Couleurs",
+			"placeholder": "ex. Rouge"
+		},
+		"output": {
+			"label": "Puissance (kW)",
+			"placeholder": "ex. 100 kW"
+		},
+		"displacement": {
+			"label": "Cylindrée",
+			"placeholder": "cc"
+		},
+		"body": {
+			"label": "Style de Carrosserie",
+			"placeholder": "ex. Hatchback"
+		},
+		"doors": {
+			"label": "Nombre de Portes",
+			"placeholder": "ex. 4"
+		},
+		"email": {
+			"description": "Nous ne partagerons pas votre e-mail avec qui que ce soit",
+			"placeholder": "Votre adresse e-mail"
+		},
+		"phone": {
+			"label": "Numéro de Téléphone",
+			"placeholder": "Votre numéro de téléphone"
+		},
+		"submit": {
+			"loading": "Calcul en cours...",
+			"label": "Obtenez une évaluation"
+		},
+		"success": {
+			"title": "Évaluation soumise",
+			"description": "Nous vous contacterons bientôt."
+		},
+		"error": {
+			"title": "Quelque chose a mal tourné.",
+			"description": "Votre demande de soumission a échoué. Veuillez réessayer.",
+			"fillInAllFields": "Veuillez remplir tous les champs",
+			"enterEmail": "Veuillez entrer votre e-mail"
+		}
+	},
+	"PricingCards": {
+		"a": "Calculateur",
+		"b": "Réactif et précis",
+		"c": "Annuel",
+		"d": "Mensuel",
+		"e": "E-mail",
+		"f": "pour contacter notre équipe de support.",
+		"g": "Vous pouvez tester les abonnements et ne serez pas facturé."
+	}
 }
