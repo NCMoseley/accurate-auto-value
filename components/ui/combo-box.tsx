@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn, truncateString } from "@/lib/utils";
+import { cn, displayFormat, truncateString } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -58,9 +58,9 @@ export function Combobox({
     );
   };
 
-  const ValueForDisplay = () => {
+  const ButtonValueForDisplay = () => {
     return value
-      ? truncateString(values.find((item) => item.value === value)?.label, 15)
+      ? truncateString(values.find((item) => item.value === value)?.label, 25)
       : `Select ${label}...`;
   };
 
@@ -73,14 +73,14 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="h-12 w-64 justify-between"
           autoFocus={autoFocus}
         >
-          {isLoading ? <Loading /> : <ValueForDisplay />}
+          {isLoading ? <Loading /> : <ButtonValueForDisplay />}
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-64 p-0">
         <Command>
           <CommandInput placeholder={`Search ${label}...`} />
           <CommandList>
@@ -102,7 +102,7 @@ export function Combobox({
                       value === item.value ? "opacity-100" : "opacity-0",
                     )}
                   />
-                  {item.label}
+                  {displayFormat(item.label)}
                 </CommandItem>
               ))}
             </CommandGroup>

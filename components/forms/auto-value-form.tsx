@@ -6,12 +6,12 @@ import { Link } from "@/i18n/routing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowUpRight } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { cn, fetcher, yearsArr } from "@/lib/utils";
+import { cn, fetcher } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -57,6 +57,7 @@ export function AutoValueForm({
   initialMakes,
 }: AutoValueFormProps) {
   const locale = useLocale();
+  const t = useTranslations("AutoValueForm");
   const {
     register,
     handleSubmit,
@@ -65,12 +66,10 @@ export function AutoValueForm({
     resolver: zodResolver(userAuthSchema),
   });
   const searchParams = useSearchParams();
-  const [email, setEmail] = React.useState<string>("");
-  const [year, setYear] = React.useState<string>("");
+  const [registrationDate, setRegistrationDate] = React.useState<string>("");
   const [autoErrors, setAutoErrors] = React.useState<{ [key: string]: string }>(
     {},
   );
-  const [years, setYears] = React.useState<DropdownValue[]>(yearsArr);
   const [make, setMake] = React.useState<string>("");
   const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
   const [model, setModel] = React.useState<string>("");
@@ -79,10 +78,12 @@ export function AutoValueForm({
   const [serieses, setSerieses] = React.useState<DropdownValue[]>([]);
   const [option, setOption] = React.useState<{ [key: string]: string }>({});
   const [options, setOptions] = React.useState<Partial<Options> | null>(null);
+  const [email, setEmail] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    // document.getElementById("year")?.focus();
+    // document.getElementById("registrationDate")?.focus();
+    getMakes();
   }, []);
 
   async function getMakes() {
@@ -124,7 +125,7 @@ export function AutoValueForm({
   }
 
   async function onSubmit(data: FormData) {
-    if (!year || !make || !model || !series || !option) {
+    if (!registrationDate || !make || !model || !series || !option) {
       return toast.error("Please fill in all fields");
     }
     if (!data.email) {
@@ -137,7 +138,7 @@ export function AutoValueForm({
       userEmail: data.email.toLowerCase(),
       make,
       model,
-      year,
+      registrationDate,
       series,
       option,
       // redirect: false,
@@ -170,8 +171,24 @@ export function AutoValueForm({
   }
 
   return (
-    <MaxWidthWrapper>
-      <Card className="xl:col-span-2">
+    <MaxWidthWrapper className="flex flex-row gap-6">
+      <Card className="w-[700px] xl:col-span-2">
+        <CardHeader className="flex flex-row flex-wrap">
+          <div className="grid gap-2">
+            <CardTitle></CardTitle>
+            {/* <CardDescription className="text-balance">
+              Just a few details to get your car value
+            </CardDescription> */}
+          </div>
+          {/* <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
+            <Link href="#" className="flex items-center gap-2">
+              <span>View All</span>
+              <ArrowUpRight className="hidden size-4 sm:block" />
+            </Link>
+          </Button> */}
+        </CardHeader>
+      </Card>
+      <Card className="w-[1/2] xl:col-span-2">
         <CardHeader className="flex flex-row flex-wrap">
           <div className="grid gap-2">
             <CardTitle>Rapid car valuation</CardTitle>
@@ -192,47 +209,13 @@ export function AutoValueForm({
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className={cn("flex flex-row flex-wrap gap-6", className)}>
-              <div className="gap-6">
-                <Label className="sr-only">Year</Label>
-                <NumberInput
-                  className="h-10 w-full sm:w-64 sm:pr-12"
-                  id="year"
-                  placeholder="Year"
-                  type="text"
-                  autoComplete="year"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                  onChange={(e) => {
-                    if (e.target.value.length === 4) {
-                      handleAutoError("year", "");
-                      if (Number(e.target.value) < 1983) {
-                        handleAutoError(
-                          "year",
-                          "Year must be greater than 1983",
-                        );
-                      }
-                      if (Number(e.target.value) <= new Date().getFullYear()) {
-                        let year = e.target.value.slice(0, 4);
-                        setYear(year);
-                        setMake("");
-                        setModel("");
-                        setOption({});
-                        getMakes();
-                      }
-                    }
-                  }}
-                />
-                {autoErrors?.year && (
-                  <p className="px-1 text-xs text-red-600">{autoErrors.year}</p>
-                )}
-              </div>
               <div id="make" className="gap-6">
                 <Label className="sr-only">Make</Label>
                 <Combobox
                   disabled={isLoading || !makes.length}
                   label="Make"
                   values={makes}
-                  isLoading={isLoading}
+                  isLoading={!make && isLoading}
                   onChange={(value) => {
                     setModel("");
                     setOption({});
@@ -249,7 +232,7 @@ export function AutoValueForm({
                   disabled={isLoading || !models.length}
                   autoFocus={true}
                   values={models}
-                  isLoading={isLoading}
+                  isLoading={!model && isLoading}
                   onChange={(value) => {
                     setOption({});
                     setOptions({});
@@ -265,7 +248,7 @@ export function AutoValueForm({
                   disabled={isLoading || !serieses.length}
                   autoFocus={true}
                   values={serieses}
-                  isLoading={isLoading}
+                  isLoading={!series && isLoading}
                   onChange={(value) => {
                     setOption({});
                     setOptions({});
@@ -273,6 +256,29 @@ export function AutoValueForm({
                     getOptions(make, model, value);
                   }}
                 />
+              </div>
+
+              {/* // Page 2 */}
+              <div className="gap-6">
+                <Label className="sr-only">{t("registrationDate.label")}</Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="registrationDate"
+                  placeholder={"MM/YYYY"}
+                  mask={"99/9999"}
+                  type="text"
+                  autoComplete="registrationDate"
+                  autoCorrect="off"
+                  // disabled={isLoading}
+                  onChange={(e) => {
+                    setRegistrationDate(e.target.value);
+                  }}
+                />
+                {autoErrors?.registrationDate && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.registrationDate}
+                  </p>
+                )}
               </div>
             </div>
             <div className={cn("flex flex-row flex-wrap gap-6", className)}>
@@ -287,7 +293,7 @@ export function AutoValueForm({
                       disabled={isLoading}
                       values={options[key]}
                       initialValue={option[key]}
-                      isLoading={isLoading}
+                      // isLoading={isLoading}
                       onChange={(value) =>
                         setOption((prev) => ({ ...prev, [key]: value }))
                       }

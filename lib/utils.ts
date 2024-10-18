@@ -33,14 +33,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function truncateString(str, maxLength) {
-  if (!str) return "Select...";
-  if (str.length > maxLength) {
-    return str.slice(0, maxLength) + "...";
-  }
-  return str;
-}
-
 export function constructMetadata({
   title = siteConfig.name,
   description = siteConfig.description,
@@ -170,12 +162,31 @@ export function nFormatter(num: number, digits?: number) {
 
 export function capitalize(str: string) {
   if (!str || typeof str !== "string") return str;
+  // if (str.length <= 3) return str.toUpperCase();
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function truncateString(str, maxLength) {
+  if (!str) return "Select...";
+  if (str.length > maxLength) {
+    return str.slice(0, maxLength) + "...";
+  }
+  return capitalize(str);
 }
 
 export const truncate = (str: string, length: number) => {
   if (!str || str.length <= length) return str;
   return `${str.slice(0, length)}...`;
+};
+
+export const displayFormat = (value) => {
+  if (typeof value === 'number') {
+    return value.toFixed(2);
+  }
+  if (typeof value === 'string') {
+    return capitalize(truncate(value, 10));
+  }
+  return value;
 };
 
 export const getBlurDataURL = async (url: string | null) => {
@@ -214,7 +225,7 @@ export function deriveDropdownValues(data: SafeForDropdown[] | any[]) {
   return data.map((item) => ({
     label: typeof item === 'number' ? item.toFixed(0) : item,
     value: typeof item === 'number' ? item.toFixed(0) : item,
-  }));
+  })).sort((a, b) => a.label.localeCompare(b.label));
 };
 
 export async function fetchTranslations() {

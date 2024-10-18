@@ -145,7 +145,6 @@ export async function getAllOptions(make: string, model: string, trim: string): 
     })
   );
 
-  console.log("getAllOptions:", res);
   if (!Object.keys(res).length) return { options: [], option: { label: "", value: "" } };
   let options = {} as any;
   let option = {} as DropdownValues;
