@@ -15,6 +15,8 @@
 		"c": "Learn more about our pricing."
 	},
 	"AutoValueForm": {
+		"title": "Rapid Auto Valuation",
+		"description": "Just a few details to get your car value",
 		"bodyStyles": {
 			"wagon": "Wagon",
 			"sedan": "Sedan",
@@ -45,6 +47,22 @@
 			"label": "Mileage",
 			"placeholder": "Mileage"
 		},
+		"transmission": {
+			"label": "Transmission",
+			"placeholder": "e.g. Automatic"
+		},
+		"fuelType": {
+			"label": "Fuel Type",
+			"placeholder": "e.g. Petrol"
+		},
+		"colors": {
+			"label": "Colors",
+			"placeholder": "e.g. Red"
+		},
+		"output": {
+			"label": "Output",
+			"placeholder": "e.g. 100 kW"
+		},
 		"displacement": {
 			"label": "Engine Displacement",
 			"placeholder": "cc"
@@ -58,12 +76,26 @@
 			"placeholder": "e.g. 4"
 		},
 		"email": {
-			"description": "We won&apos;t share your email with anyone",
+			"description": "We won't share your email with anyone",
 			"placeholder": "Your email address"
+		},
+		"phone": {
+			"label": "Phone Number",
+			"placeholder": "Your phone number"
 		},
 		"submit": {
 			"loading": "Calculating...",
 			"label": "Get a valuation"
+		},
+		"success": {
+			"title": "Valuation submitted",
+			"description": "We'll get back to you soon."
+		},
+		"error": {
+			"title": "Something went wrong.",
+			"description": "Your submission request failed. Please try again.",
+			"fillInAllFields": "Please fill in all fields",
+			"enterEmail": "Please enter your email"
 		}
 	},
 	"PricingCards": {

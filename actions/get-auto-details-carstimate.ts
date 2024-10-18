@@ -141,7 +141,7 @@ export async function getAllOptions(make: string, model: string, trim: string): 
           model
         )}&modeltype=${encodeURIComponent(trim)}`
       );
-      res = { gears, colors, fuelTypes, output };
+      res = { transmission: gears, colors, fuelType: fuelTypes, output };
     })
   );
 

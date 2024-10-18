@@ -82,6 +82,7 @@ export function AutoValueForm({
   const [displacement, setDisplacement] = React.useState<string>("");
   const [body, setBody] = React.useState<string>("");
   const [doors, setDoors] = React.useState<string>("");
+  const [phone, setPhone] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -139,17 +140,27 @@ export function AutoValueForm({
   }
 
   async function onSubmit(data: FormData) {
-    if (!registrationDate || !make || !model || !series || !option) {
-      return toast.error("Please fill in all fields");
+    if (
+      (!phone && !email) ||
+      !registrationDate ||
+      !make ||
+      !model ||
+      !series ||
+      !option ||
+      !body ||
+      !doors
+    ) {
+      return toast.error(t("error.fillInAllFields"));
     }
     if (!data.email) {
-      return toast.error("Please enter your email");
+      return toast.error(t("error.enterEmail"));
     }
     setIsLoading(true);
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
-      userEmail: data.email.toLowerCase(),
+      userEmail: data.email.toLowerCase() || "",
+      userPhone: data.phone || "",
       registrationDate,
       make,
       model,
@@ -157,32 +168,21 @@ export function AutoValueForm({
       option,
       mileage,
       displacement,
+      body,
+      doors,
       // redirect: false,
     });
 
     if (!submitAutoInfoResult?.ok) {
-      return toast.error("Something went wrong.", {
-        description: "Your submission request failed. Please try again.",
+      return toast.error(t("error"), {
+        description: t("error.description"),
       });
     }
-
-    const signInResult = await signIn("resend", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    });
 
     setIsLoading(false);
 
-    if (!signInResult?.ok) {
-      return toast.error("Something went wrong.", {
-        description: "Your sign in request failed. Please try again.",
-      });
-    }
-
-    return toast.success("We will be in touch with you shortly", {
-      description:
-        "If you submitted your phone number we can might contact you by phone. Be sure to check your spam too.",
+    return toast.success(t("success"), {
+      description: t("success.description"),
     });
   }
 
@@ -193,7 +193,6 @@ export function AutoValueForm({
           <div className="grid gap-2">
             <CardTitle></CardTitle>
             <Image
-              // className="size-full object-cover object-center dark:opacity-85 dark:invert"
               className="size-full object-cover object-center dark:opacity-35"
               src="/images/finger-pressing-keyless-ingnition-car-valuation.png"
               alt="preview landing"
@@ -207,9 +206,9 @@ export function AutoValueForm({
       <Card className="w-full">
         <CardHeader className="flex flex-row flex-wrap">
           <div className="grid gap-2">
-            <CardTitle>Rapid car valuation</CardTitle>
+            <CardTitle>{t("title")}</CardTitle>
             <CardDescription className="text-balance">
-              Just a few details to get your car value
+              {t("description")}
             </CardDescription>
           </div>
         </CardHeader>
@@ -225,7 +224,9 @@ export function AutoValueForm({
               )}
             >
               <div id="registrationDate" className="gap-6">
-                <Label>{t("registrationDate.label")}</Label>
+                <Label className={`${registrationDate ? "" : "opacity-50"}`}>
+                  {t("registrationDate.label")}
+                </Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="registrationDate"
@@ -236,6 +237,7 @@ export function AutoValueForm({
                   autoCorrect="off"
                   autoFocus={true}
                   onChange={(e) => {
+                    console.log("registrationDate:", e.target.value);
                     setRegistrationDate(e.target.value);
                   }}
                 />
@@ -246,7 +248,9 @@ export function AutoValueForm({
                 )}
               </div>
               <div id="make" className="gap-6">
-                <Label>{t("make.label")}</Label>
+                <Label className={`${make ? "" : "opacity-50"}`}>
+                  {t("make.label")}
+                </Label>
                 <Combobox
                   disabled={isLoading || !makes.length}
                   label={t("make.label")}
@@ -262,7 +266,9 @@ export function AutoValueForm({
                 />
               </div>
               <div id="model" className="gap-6">
-                <Label>{t("model.label")}</Label>
+                <Label className={`${model ? "" : "opacity-50"}`}>
+                  {t("model.label")}
+                </Label>
                 <Combobox
                   label={t("model.label")}
                   disabled={isLoading || !models.length}
@@ -277,7 +283,9 @@ export function AutoValueForm({
                 />
               </div>
               <div id="series" className="gap-6">
-                <Label>{t("series.label")}</Label>
+                <Label className={`${series ? "" : "opacity-50"}`}>
+                  {t("series.label")}
+                </Label>
                 <Combobox
                   label={t("series.label")}
                   disabled={isLoading || !serieses.length}
@@ -292,7 +300,9 @@ export function AutoValueForm({
                 />
               </div>
               <div className="gap-6">
-                <Label>{t("mileage.label")}</Label>
+                <Label className={`${mileage ? "" : "opacity-50"}`}>
+                  {t("mileage.label")}
+                </Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="mileage"
@@ -311,7 +321,9 @@ export function AutoValueForm({
                 )}
               </div>
               <div className="gap-6">
-                <Label>{t("displacement.label")}</Label>
+                <Label className={`${displacement ? "" : "opacity-50"}`}>
+                  {t("displacement.label")}
+                </Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="displacement"
@@ -330,7 +342,9 @@ export function AutoValueForm({
                 )}
               </div>
               <div className="gap-6">
-                <Label>{t("doors.label")}</Label>
+                <Label className={`${doors ? "" : "opacity-50"}`}>
+                  {t("doors.label")}
+                </Label>
                 <NumberInput
                   className="h-12 sm:w-64 sm:pr-12"
                   id="doors"
@@ -349,7 +363,9 @@ export function AutoValueForm({
                 )}
               </div>
               <div className="gap-6">
-                <Label>{t("body.label")}</Label>
+                <Label className={`${body ? "" : "opacity-50"}`}>
+                  {t("body.label")}
+                </Label>
                 <Combobox
                   label={t("body.label")}
                   disabled={isLoading || !bodyStyles.length}
@@ -373,9 +389,11 @@ export function AutoValueForm({
               {options &&
                 Object.keys(options).map((key, i) => (
                   <div id={i === 0 ? "option" : ""} key={key} className="gap-6">
-                    <Label htmlFor="email">{key}</Label>
+                    <Label className={`${option[key] ? "" : "opacity-50"}`}>
+                      {t(`${key}.label`)}
+                    </Label>
                     <Combobox
-                      label={key}
+                      label={t(`${key}.label`)}
                       disabled={isLoading}
                       values={options[key]}
                       initialValue={option[key]}
@@ -387,7 +405,7 @@ export function AutoValueForm({
                 ))}
             </div>
             <div className="mt-4 flex flex-col items-end gap-2">
-              <CardDescription className="text-balance text-xs">
+              <CardDescription className={`${email ? "" : "opacity-50"}`}>
                 {t("email.description")}
               </CardDescription>
               <Input
@@ -400,13 +418,35 @@ export function AutoValueForm({
                 autoCorrect="off"
                 disabled={isLoading || Object.keys(option).length === 0}
                 {...register("email")}
-                onChange={(e) => setEmail(e.target.value)}
+                // onChange={(e) => setEmail(e.target.value)}
               />
               {errors?.email && (
                 <p className="px-1 text-xs text-red-600">
                   {errors.email.message}
                 </p>
               )}
+              <div className="gap-6">
+                <Label className={`${phone ? "" : "opacity-50"}`}>
+                  {t("phone.label")}
+                </Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="doors"
+                  placeholder={t("phone.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  {...register("phone")}
+                  // onChange={(e) => {
+                  //   setPhone(e.target.value);
+                  // }}
+                />
+                {autoErrors?.phone && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.phone}
+                  </p>
+                )}
+              </div>
             </div>
             {email && (
               <Button
