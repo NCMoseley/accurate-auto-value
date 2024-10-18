@@ -1,17 +1,18 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowUpRight } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { cn, fetcher, yearsArr } from "@/lib/utils";
+import { cn, fetcher } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -30,8 +31,9 @@ import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import {
   getAllMakes,
   getAllModels,
-  getAllTrims,
-} from "../../actions/get-auto-details";
+  getAllOptions,
+  getAllSeries,
+} from "../../actions/get-auto-details-carstimate";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
@@ -43,19 +45,11 @@ interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
 
 type FormData = z.infer<typeof userAuthSchema>;
 
-interface Trims {
-  cylinders: DropdownValue[];
-  drive: DropdownValue[];
-  eng_dscr: DropdownValue[];
-  fueltype: DropdownValue[];
-  fueltype1: DropdownValue[];
-  mpgdata: DropdownValue[];
-  phevblended: DropdownValue[];
-  trany: DropdownValue[];
-  vclass: DropdownValue[];
-  year: DropdownValue[];
-  make: DropdownValue[];
-  model: DropdownValue[];
+export interface Options {
+  colors: DropdownValue[];
+  power: DropdownValue[];
+  output: DropdownValue[];
+  gears: DropdownValue[];
 }
 
 export function AutoValueForm({
@@ -63,7 +57,7 @@ export function AutoValueForm({
   type,
   initialMakes,
 }: AutoValueFormProps) {
-  const locale = useLocale();
+  const t = useTranslations("AutoValueForm");
   const {
     register,
     handleSubmit,
@@ -72,47 +66,78 @@ export function AutoValueForm({
     resolver: zodResolver(userAuthSchema),
   });
   const searchParams = useSearchParams();
-  const [email, setEmail] = React.useState<string>("");
-  const [year, setYear] = React.useState<string>("");
+  const [registrationDate, setRegistrationDate] = React.useState<string>("");
   const [autoErrors, setAutoErrors] = React.useState<{ [key: string]: string }>(
     {},
   );
-  const [years, setYears] = React.useState<DropdownValue[]>(yearsArr);
   const [make, setMake] = React.useState<string>("");
   const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
   const [model, setModel] = React.useState<string>("");
   const [models, setModels] = React.useState<DropdownValue[]>([]);
-  const [trim, setTrim] = React.useState<{ [key: string]: string }>({});
-  const [trims, setTrims] = React.useState<Partial<Trims> | null>(null);
+  const [series, setSeries] = React.useState<string>("");
+  const [serieses, setSerieses] = React.useState<DropdownValue[]>([]);
+  const [option, setOption] = React.useState<{ [key: string]: string }>({});
+  const [options, setOptions] = React.useState<Partial<Options> | null>(null);
+  const [mileage, setMileage] = React.useState<string>("");
+  const [displacement, setDisplacement] = React.useState<string>("");
+
+  const [body, setBody] = React.useState<string>("");
+  const [doors, setDoors] = React.useState<string>("");
+  const [phone, setPhone] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
+  const bodyStyles = [
+    { value: t("bodyStyles.wagon"), label: t("bodyStyles.wagon") },
+    { value: t("bodyStyles.sedan"), label: t("bodyStyles.sedan") },
+    { value: t("bodyStyles.hatchback"), label: t("bodyStyles.hatchback") },
+    { value: t("bodyStyles.suv"), label: t("bodyStyles.suv") },
+    { value: t("bodyStyles.coupe"), label: t("bodyStyles.coupe") },
+    { value: t("bodyStyles.convertible"), label: t("bodyStyles.convertible") },
+    { value: t("bodyStyles.van"), label: t("bodyStyles.van") },
+    { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
+  ];
+
   React.useEffect(() => {
-    // document.getElementById("year")?.focus();
+    document.getElementById("registrationDate")?.focus();
+    getMakes();
   }, []);
 
-  async function getMakes(dYear: string) {
+  async function getMakes() {
     setIsLoading(true);
-    const makes = await getAllMakes(dYear, locale);
+    const makes = await getAllMakes();
     setMakes(makes);
     setIsLoading(false);
     document.getElementById("make")?.focus();
   }
 
-  async function getModels(dYear: string, dMake: string) {
+  async function getModels(dMake: string) {
     setIsLoading(true);
-    const models = await getAllModels(dYear, dMake, locale);
+    const models = await getAllModels(dMake);
     setModels(models);
     setIsLoading(false);
     document.getElementById("model")?.focus();
   }
 
-  async function getTrims(dYear: string, dMake: string, dModel: string) {
+  async function getSeries(dMake: string, dModel: string) {
     setIsLoading(true);
-    const res = await getAllTrims(dYear, dMake, dModel, locale);
-    setTrims(res.trims);
-    setTrim(res.trim);
+    const res = await getAllSeries(dMake, dModel);
+    setSerieses(res);
+    console.log("res:", res.length, res[0].value);
+    if (res.length === 1) {
+      setSeries(res[0].value);
+    }
     setIsLoading(false);
-    document.getElementById("trim")?.focus();
+    document.getElementById("series")?.focus();
+  }
+
+  async function getOptions(dMake: string, dModel: string, dSeries: string) {
+    setIsLoading(true);
+    const res = await getAllOptions(dMake, dModel, dSeries);
+    setOptions(res.options as any);
+    setOption(res.option);
+    setIsLoading(false);
+    document.getElementById("options")?.focus();
   }
 
   function handleAutoError(key: string, message: string) {
@@ -120,182 +145,324 @@ export function AutoValueForm({
   }
 
   async function onSubmit(data: FormData) {
-    if (!year || !make || !model || !trim) {
-      return toast.error("Please fill in all fields");
+    if (
+      (!phone && !email) ||
+      !registrationDate ||
+      !make ||
+      !model ||
+      !series ||
+      !option ||
+      !body ||
+      !doors
+    ) {
+      return toast.error(t("error.fillInAllFields"));
     }
     if (!data.email) {
-      return toast.error("Please enter your email");
+      return toast.error(t("error.enterEmail"));
     }
     setIsLoading(true);
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
-      userEmail: data.email.toLowerCase(),
+      userEmail: data.email.toLowerCase() || "",
+      userPhone: data.phone || "",
+      registrationDate,
       make,
       model,
-      year,
-      trim,
+      series,
+      option,
+      mileage,
+      displacement,
+      body,
+      doors,
       // redirect: false,
     });
 
     if (!submitAutoInfoResult?.ok) {
-      return toast.error("Something went wrong.", {
-        description: "Your submission request failed. Please try again.",
+      return toast.error(t("error"), {
+        description: t("error.description"),
       });
     }
-
-    const signInResult = await signIn("resend", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    });
 
     setIsLoading(false);
 
-    if (!signInResult?.ok) {
-      return toast.error("Something went wrong.", {
-        description: "Your sign in request failed. Please try again.",
-      });
-    }
-
-    return toast.success("Check your email", {
-      description: "We sent you a login link. Be sure to check your spam too.",
+    return toast.success(t("success"), {
+      description: t("success.description"),
     });
   }
 
-  console.log("trim:", trim);
-
   return (
-    <MaxWidthWrapper>
-      <Card className="xl:col-span-2">
+    <MaxWidthWrapper className="flex flex-row gap-6">
+      <Card className="">
         <CardHeader className="flex flex-row flex-wrap">
           <div className="grid gap-2">
-            <CardTitle>Rapid car valuation</CardTitle>
+            <CardTitle></CardTitle>
+            <Image
+              className="size-full object-cover object-center dark:opacity-35"
+              src="/images/finger-pressing-keyless-ingnition-car-valuation.png"
+              alt="preview landing"
+              width={2000}
+              height={1000}
+              priority={true}
+            />
+          </div>
+        </CardHeader>
+      </Card>
+      <Card className="w-full">
+        <CardHeader className="flex flex-row flex-wrap">
+          <div className="grid gap-2">
+            <CardTitle>{t("title")}</CardTitle>
             <CardDescription className="text-balance">
-              Just a few details to get your car value
+              {t("description")}
             </CardDescription>
           </div>
-          {/* <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
-            <Link href="#" className="flex items-center gap-2">
-              <span>View All</span>
-              <ArrowUpRight className="hidden size-4 sm:block" />
-            </Link>
-          </Button> */}
         </CardHeader>
         <CardContent>
           <form
             className="flex flex-col gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
-              <div className="gap-6">
-                <Label className="sr-only">Year</Label>
+            <div
+              className={cn(
+                "flex flex-row flex-wrap justify-center gap-6",
+                className,
+              )}
+            >
+              <div id="registrationDate" className="gap-6">
+                <Label className={`${registrationDate ? "" : "opacity-50"}`}>
+                  {t("registrationDate.label")}
+                </Label>
                 <NumberInput
-                  className="h-10 w-full sm:w-64 sm:pr-12"
-                  id="year"
-                  placeholder="Year"
-                  type="text"
-                  autoComplete="year"
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="registrationDate"
+                  placeholder={t("registrationDate.placeholder")}
+                  mask={"99/9999"}
+                  type="number"
+                  autoComplete="off"
                   autoCorrect="off"
-                  disabled={isLoading}
+                  autoFocus={true}
                   onChange={(e) => {
-                    if (e.target.value.length === 4) {
-                      handleAutoError("year", "");
-                      if (Number(e.target.value) < 1983) {
-                        handleAutoError(
-                          "year",
-                          "Year must be greater than 1983",
-                        );
-                      }
-                      if (Number(e.target.value) <= new Date().getFullYear()) {
-                        let year = e.target.value.slice(0, 4);
-                        setYear(year);
-                        setMake("");
-                        setModel("");
-                        setTrim({});
-                        getMakes(year);
-                      }
-                    }
+                    console.log("registrationDate:", e.target.value);
+                    setRegistrationDate(e.target.value);
                   }}
                 />
-                {autoErrors?.year && (
-                  <p className="px-1 text-xs text-red-600">{autoErrors.year}</p>
+                {autoErrors?.registrationDate && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.registrationDate}
+                  </p>
                 )}
               </div>
               <div id="make" className="gap-6">
-                <Label className="sr-only">Make</Label>
+                <Label className={`${make ? "" : "opacity-50"}`}>
+                  {t("make.label")}
+                </Label>
                 <Combobox
                   disabled={isLoading || !makes.length}
-                  label="Make"
+                  label={t("make.label")}
                   values={makes}
-                  isLoading={isLoading}
+                  isLoading={!make && isLoading}
                   onChange={(value) => {
                     setModel("");
-                    setTrim({});
-                    setTrims({});
+                    setSeries("");
+                    setDisplacement("");
+                    setDoors("");
+                    setBody("");
+                    setOption({});
+                    setOptions({});
                     setMake(value);
-                    getModels(year, value);
+                    getModels(value);
                   }}
                 />
               </div>
               <div id="model" className="gap-6">
-                <Label className="sr-only">Model</Label>
+                <Label className={`${model ? "" : "opacity-50"}`}>
+                  {t("model.label")}
+                </Label>
                 <Combobox
-                  label="Model"
+                  label={t("model.label")}
                   disabled={isLoading || !models.length}
-                  autoFocus={true}
                   values={models}
-                  isLoading={isLoading}
+                  isLoading={!model && isLoading}
                   onChange={(value) => {
-                    setTrim({});
-                    setTrims({});
+                    setSeries("");
+                    setDisplacement("");
+                    setDoors("");
+                    setBody("");
+                    setOption({});
+                    setOptions({});
                     setModel(value);
-                    getTrims(year, make, value);
+                    getSeries(make, value);
                   }}
                 />
               </div>
+              <div id="series" className="gap-6">
+                <Label className={`${series ? "" : "opacity-50"}`}>
+                  {t("series.label")}
+                </Label>
+                <Combobox
+                  label={t("series.label")}
+                  disabled={isLoading || !serieses.length}
+                  values={serieses}
+                  isLoading={!series && isLoading}
+                  onChange={(value) => {
+                    setDisplacement("");
+                    setDoors("");
+                    setBody("");
+                    setOption({});
+                    setOptions({});
+                    setSeries(value);
+                    getOptions(make, model, value);
+                  }}
+                />
+              </div>
+              <div className="gap-6">
+                <Label className={`${mileage ? "" : "opacity-50"}`}>
+                  {t("mileage.label")}
+                </Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="mileage"
+                  placeholder={t("mileage.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  onChange={(e) => {
+                    setMileage(e.target.value);
+                  }}
+                />
+                {autoErrors?.mileage && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.mileage}
+                  </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label className={`${displacement ? "" : "opacity-50"}`}>
+                  {t("displacement.label")}
+                </Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="displacement"
+                  placeholder={t("displacement.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  onChange={(e) => {
+                    setDisplacement(e.target.value);
+                  }}
+                />
+                {autoErrors?.mileage && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.mileage}
+                  </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label className={`${doors ? "" : "opacity-50"}`}>
+                  {t("doors.label")}
+                </Label>
+                <NumberInput
+                  className="h-12 sm:w-64 sm:pr-12"
+                  id="doors"
+                  placeholder={t("doors.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  onChange={(e) => {
+                    setDoors(e.target.value);
+                  }}
+                />
+                {autoErrors?.doors && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.doors}
+                  </p>
+                )}
+              </div>
+              <div className="gap-6">
+                <Label className={`${body ? "" : "opacity-50"}`}>
+                  {t("body.label")}
+                </Label>
+                <Combobox
+                  label={t("body.label")}
+                  disabled={isLoading || !bodyStyles.length}
+                  values={bodyStyles}
+                  isLoading={!body && isLoading}
+                  onChange={(value) => {
+                    setBody(value);
+                  }}
+                />
+                {autoErrors?.body && (
+                  <p className="px-1 text-xs text-red-600">{autoErrors.body}</p>
+                )}
+              </div>
             </div>
-            <div className={cn("flex flex-row flex-wrap gap-6", className)}>
-              {trims &&
-                Object.keys(trims).map((key, i) => (
-                  <div id={i === 0 ? "trim" : ""} key={key} className="gap-6">
-                    <Label className="sr-only" htmlFor="email">
-                      {key}
+            <div
+              className={cn(
+                "flex flex-row flex-wrap justify-center gap-6",
+                className,
+              )}
+            >
+              {options &&
+                Object.keys(options).map((key, i) => (
+                  <div id={i === 0 ? "option" : ""} key={key} className="gap-6">
+                    <Label className={`${option[key] ? "" : "opacity-50"}`}>
+                      {t(`${key}.label`)}
                     </Label>
                     <Combobox
-                      label={key}
+                      label={t(`${key}.label`)}
                       disabled={isLoading}
-                      values={trims[key]}
-                      initialValue={trim[key]}
-                      isLoading={isLoading}
+                      values={options[key]}
+                      initialValue={option[key]}
                       onChange={(value) =>
-                        setTrim((prev) => ({ ...prev, [key]: value }))
+                        setOption((prev) => ({ ...prev, [key]: value }))
                       }
                     />
                   </div>
                 ))}
             </div>
             <div className="mt-4 flex flex-col items-end gap-2">
-              <CardDescription className="text-balance text-xs">
-                We won&apos;t share your email with anyone
+              <CardDescription className={`${email ? "" : "opacity-50"}`}>
+                {t("email.description")}
               </CardDescription>
               <Input
                 className="h-10 w-full sm:w-64 sm:pr-12"
                 id="email"
-                placeholder="email@email.com"
+                placeholder={t("email.placeholder")}
                 type="email"
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading || Object.keys(trim).length === 0}
+                disabled={isLoading || Object.keys(option).length === 0}
                 {...register("email")}
-                onChange={(e) => setEmail(e.target.value)}
+                // onChange={(e) => setEmail(e.target.value)}
               />
               {errors?.email && (
                 <p className="px-1 text-xs text-red-600">
                   {errors.email.message}
                 </p>
               )}
+              <div className="gap-6">
+                <Label className={`${phone ? "" : "opacity-50"}`}>
+                  {t("phone.label")}
+                </Label>
+                <NumberInput
+                  className="h-10 sm:w-64 sm:pr-12"
+                  id="doors"
+                  placeholder={t("phone.placeholder")}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  {...register("phone")}
+                  // onChange={(e) => {
+                  //   setPhone(e.target.value);
+                  // }}
+                />
+                {autoErrors?.phone && (
+                  <p className="px-1 text-xs text-red-600">
+                    {autoErrors.phone}
+                  </p>
+                )}
+              </div>
             </div>
             {email && (
               <Button
@@ -306,10 +473,10 @@ export function AutoValueForm({
                 {isLoading ? (
                   <>
                     <Icons.spinner className="mr-2 size-4 animate-spin" />
-                    Submitting...
+                    {t("submit.loading")}
                   </>
                 ) : (
-                  "Submit"
+                  t("submit.label")
                 )}
               </Button>
             )}

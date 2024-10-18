@@ -5,17 +5,13 @@ import { Resend } from "resend";
 import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
 
-// import { getUserByEmail } from "./user";
-
 const resend = new Resend(env.RESEND_API_KEY);
 
-export const submitAutoInfo = async ({ userEmail, make, model, year, trim }) => {
-	console.log('resend:', resend);
-
-	const trimAsHTMLString = (trim) => {
+export const submitAutoInfo = async ({ userEmail, userPhone, make, model, registrationDate, series, option, mileage, displacement, body, doors }) => {
+	const optionsAsHTMLString = (option) => {
 		let html: string | null = null;
-		Object.keys(trim).forEach(key => {
-			html += `<p>${key}: ${trim[key]}</p>`;
+		Object.keys(option).forEach(key => {
+			html += `<p>${key}: ${option[key]}</p>`;
 		});
 		if (!html) {
 			html = '<p>None</p>';
@@ -23,44 +19,25 @@ export const submitAutoInfo = async ({ userEmail, make, model, year, trim }) => 
 		return html;
 	}
 	try {
-		console.log('submitAutoInfo:', userEmail, make, model, year, trim);
+		console.log('submitAutoInfo:', userEmail, make, model, registrationDate, series, option);
 		await resend.emails.send({
 			from: siteConfig.name + '<info@resend.dev>',
 			to: siteConfig.mailSupport,
 			subject: 'New User Auto Info',
 			html: `
-				<h3>User Email: ${userEmail}</h3>
-				<p>Make: ${make}</p>
-				<p>Model: ${model}</p>
-				<p>Year: ${year}</p>
-				<div>Trim: ${trimAsHTMLString(trim)}</div>
+	<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Email: ${userEmail}</h3>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">User Phone: ${userPhone}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Registration Date: ${registrationDate}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Make: ${make}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Model: ${model}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Series: ${series}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Mileage: ${mileage}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Displacement: ${displacement}</p>
+	<div style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Trim: ${optionsAsHTMLString(option)}</div>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Body: ${body}</p>
+	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Doors: ${doors}</p>
 			`,
 		});
-		// const { data, error } = await resend.emails.send({
-		//   from: provider.from,
-		//   to:
-		//     process.env.NODE_ENV === "development"
-		//       ? "delivered@resend.dev"
-		//       : identifier,
-		//   subject: authSubject,
-		//   react: MagicLinkEmail({
-		//     firstName: 'New User',
-		//     actionUrl: url,
-		//     mailType: "register",
-		//     siteName: siteConfig.name,
-		//   }),
-		//   // Set this to prevent Gmail from threading emails.
-		//   // More info: https://resend.com/changelog/custom-email-headers
-		//   headers: {
-		//     "X-Entity-Ref-ID": new Date().getTime() + "",
-		//   },
-		// });
-
-		// if (error || !data) {
-		//   throw new Error(error?.message);
-		// }
-
-		// console.log(data)
 	} catch (error) {
 		throw new Error("Failed to send verification email.");
 	}

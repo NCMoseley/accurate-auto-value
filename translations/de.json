@@ -1,22 +1,106 @@
 {
 	"HeroLanding": {
 		"a": "Blitzschnelle Fahrzeugbewertung",
-		"b": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Keine persönlichen Informationen erforderlich.",
+		"b": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto.",
 		"c": "Gehe zur Über-Seite"
 	},
 	"Testimonials": {
-		"a": "Kundenbewertungen",
+		"a": "Testimonials",
 		"b": "Was unsere Kunden teilen.",
-		"c": "Entdecken Sie das begeisterte Feedback unserer zufriedenen Kunden weltweit."
+		"c": "Entdecken Sie das strahlende Feedback unserer zufriedenen Kunden weltweit."
 	},
 	"PricingPage": {
 		"a": "Preise - Genaue Fahrzeugbewertung",
 		"b": "Entdecken Sie unsere Abonnementpläne.",
 		"c": "Erfahren Sie mehr über unsere Preise."
 	},
+	"AutoValueForm": {
+		"title": "Schnelle Fahrzeugbewertung",
+		"description": "Nur ein paar Details, um den Wert Ihres Autos zu erhalten",
+		"bodyStyles": {
+			"wagon": "Kombi",
+			"sedan": "Limousine",
+			"hatchback": "Schrägheck",
+			"suv": "SUV",
+			"coupe": "Coupé",
+			"convertible": "Cabriolet",
+			"van": "Van",
+			"pickup": "Pickup"
+		},
+		"make": {
+			"label": "Marke",
+			"placeholder": "Marke"
+		},
+		"model": {
+			"label": "Modell",
+			"placeholder": "Modell"
+		},
+		"series": {
+			"label": "Serie",
+			"placeholder": "Serie"
+		},
+		"registrationDate": {
+			"label": "Registrierungsdatum",
+			"placeholder": "mm/jjjj"
+		},
+		"mileage": {
+			"label": "Kilometerstand",
+			"placeholder": "Kilometerstand"
+		},
+		"transmission": {
+			"label": "Getriebe",
+			"placeholder": "z.B. Automatik"
+		},
+		"fuelType": {
+			"label": "Kraftstoffart",
+			"placeholder": "z.B. Benzin"
+		},
+		"colors": {
+			"label": "Farben",
+			"placeholder": "z.B. Rot"
+		},
+		"output": {
+			"label": "Leistung (kW)",
+			"placeholder": "z.B. 100 kW"
+		},
+		"displacement": {
+			"label": "Motorhubraum",
+			"placeholder": "cc"
+		},
+		"body": {
+			"label": "Karosseriestil",
+			"placeholder": "z.B. Schrägheck"
+		},
+		"doors": {
+			"label": "Anzahl der Türen",
+			"placeholder": "z.B. 4"
+		},
+		"email": {
+			"description": "Wir werden Ihre E-Mail-Adresse nicht mit anderen teilen",
+			"placeholder": "Ihre E-Mail-Adresse"
+		},
+		"phone": {
+			"label": "Telefonnummer",
+			"placeholder": "Ihre Telefonnummer"
+		},
+		"submit": {
+			"loading": "Berechne...",
+			"label": "Bewertung erhalten"
+		},
+		"success": {
+			"title": "Bewertung eingereicht",
+			"description": "Wir werden uns bald bei Ihnen melden."
+		},
+		"error": {
+			"title": "Etwas ist schiefgelaufen.",
+			"description": "Ihre Anfrage zur Einreichung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+			"fillInAllFields": "Bitte füllen Sie alle Felder aus",
+			"enterEmail": "Bitte geben Sie Ihre E-Mail-Adresse ein"
+		}
+	},
 	"PricingCards": {
 		"a": "Rechner",
-		"b": "Starten Sie mit voller Geschwindigkeit",
+		"b": "Reaktionsschnell und genau",
 		"c": "Jährlich",
 		"d": "Monatlich",
 		"e": "E-Mail",

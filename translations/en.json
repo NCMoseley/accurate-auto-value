@@ -1,7 +1,7 @@
 {
 	"HeroLanding": {
 		"a": "Lightning fast car valuation",
-		"b": "Get a fair and accurate value for your car in minutes. No personal information required.",
+		"b": "Get a fair and accurate value for your car in minutes.",
 		"c": "Go to the about page"
 	},
 	"Testimonials": {
@@ -13,6 +13,90 @@
 		"a": "Pricing - Accurate Auto Value",
 		"b": "Explore our subscription plans.",
 		"c": "Learn more about our pricing."
+	},
+	"AutoValueForm": {
+		"title": "Rapid Auto Valuation",
+		"description": "Just a few details to get your car value",
+		"bodyStyles": {
+			"wagon": "Wagon",
+			"sedan": "Sedan",
+			"hatchback": "Hatchback",
+			"suv": "SUV",
+			"coupe": "Coupe",
+			"convertible": "Convertible",
+			"van": "Van",
+			"pickup": "Pickup"
+		},
+		"make": {
+			"label": "Make",
+			"placeholder": "Make"
+		},
+		"model": {
+			"label": "Model",
+			"placeholder": "Model"
+		},
+		"series": {
+			"label": "Series",
+			"placeholder": "Series"
+		},
+		"registrationDate": {
+			"label": "Date of Registration",
+			"placeholder": "mm/yyyy"
+		},
+		"mileage": {
+			"label": "Mileage",
+			"placeholder": "Mileage"
+		},
+		"transmission": {
+			"label": "Transmission",
+			"placeholder": "e.g. Automatic"
+		},
+		"fuelType": {
+			"label": "Fuel Type",
+			"placeholder": "e.g. Petrol"
+		},
+		"colors": {
+			"label": "Colors",
+			"placeholder": "e.g. Red"
+		},
+		"output": {
+			"label": "Output (kW)",
+			"placeholder": "e.g. 100 kW"
+		},
+		"displacement": {
+			"label": "Engine Displacement",
+			"placeholder": "cc"
+		},
+		"body": {
+			"label": "Body Style",
+			"placeholder": "e.g. Hatchback"
+		},
+		"doors": {
+			"label": "Number of Doors",
+			"placeholder": "e.g. 4"
+		},
+		"email": {
+			"description": "We won't share your email with anyone",
+			"placeholder": "Your email address"
+		},
+		"phone": {
+			"label": "Phone Number",
+			"placeholder": "Your phone number"
+		},
+		"submit": {
+			"loading": "Calculating...",
+			"label": "Get a valuation"
+		},
+		"success": {
+			"title": "Valuation submitted",
+			"description": "We'll get back to you soon."
+		},
+		"error": {
+			"title": "Something went wrong.",
+			"description": "Your submission request failed. Please try again.",
+			"fillInAllFields": "Please fill in all fields",
+			"enterEmail": "Please enter your email"
+		}
 	},
 	"PricingCards": {
 		"a": "Calculator",

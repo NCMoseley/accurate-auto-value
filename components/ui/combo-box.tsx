@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn, truncateString } from "@/lib/utils";
+import { cn, displayFormat, truncateWithCapitalization } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -58,57 +58,62 @@ export function Combobox({
     );
   };
 
-  const ValueForDisplay = () => {
+  const ButtonValueForDisplay = () => {
     return value
-      ? truncateString(values.find((item) => item.value === value)?.label, 15)
-      : `Select ${label}...`;
+      ? truncateWithCapitalization(
+          values.find((item) => item.value === value)?.label,
+          18,
+        ) || `Select ...`
+      : `Select ${truncateWithCapitalization(label, 18)}...`;
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          ref={ref}
-          disabled={disabled}
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-[200px] justify-between"
-          autoFocus={autoFocus}
-        >
-          {isLoading ? <Loading /> : <ValueForDisplay />}
-          <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
-        <Command>
-          <CommandInput placeholder={`Search ${label}...`} />
-          <CommandList>
-            <CommandEmpty>No {label} found.</CommandEmpty>
-            <CommandGroup>
-              {values.map((item) => (
-                <CommandItem
-                  key={item.value}
-                  value={item.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    onChange(currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 size-4",
-                      value === item.value ? "opacity-100" : "opacity-0",
-                    )}
-                  />
-                  {item.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+    <div>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            ref={ref}
+            disabled={disabled}
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="h-12 w-64 justify-between"
+            autoFocus={autoFocus}
+          >
+            {isLoading ? <Loading /> : <ButtonValueForDisplay />}
+            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-64 p-0">
+          <Command>
+            <CommandInput placeholder={`Search ${label}...`} />
+            <CommandList>
+              <CommandEmpty>No {label} found.</CommandEmpty>
+              <CommandGroup>
+                {values.map((item) => (
+                  <CommandItem
+                    key={item.value}
+                    value={item.value}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      onChange(currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 size-4",
+                        value === item.value ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                    {displayFormat(item.label, 18)}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }

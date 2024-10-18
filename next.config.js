@@ -7,7 +7,7 @@ import("./env.mjs");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withNextIntl({
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     remotePatterns: [
