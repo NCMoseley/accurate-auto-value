@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
-export const submitAutoInfo = async ({ userEmail, make, model, year, trim }) => {
+export const submitAutoInfo = async ({ userEmail, make, model, year, series, option }) => {
 	console.log('resend:', resend);
 
 	const trimAsHTMLString = (trim) => {
@@ -23,7 +23,7 @@ export const submitAutoInfo = async ({ userEmail, make, model, year, trim }) => 
 		return html;
 	}
 	try {
-		console.log('submitAutoInfo:', userEmail, make, model, year, trim);
+		console.log('submitAutoInfo:', userEmail, make, model, year, series, option);
 		await resend.emails.send({
 			from: siteConfig.name + '<info@resend.dev>',
 			to: siteConfig.mailSupport,
@@ -33,7 +33,8 @@ export const submitAutoInfo = async ({ userEmail, make, model, year, trim }) => 
 				<p>Make: ${make}</p>
 				<p>Model: ${model}</p>
 				<p>Year: ${year}</p>
-				<div>Trim: ${trimAsHTMLString(trim)}</div>
+				<p>Series: ${series}</p>
+				<div>Trim: ${trimAsHTMLString(option)}</div>
 			`,
 		});
 		// const { data, error } = await resend.emails.send({

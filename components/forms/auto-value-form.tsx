@@ -30,7 +30,8 @@ import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import {
   getAllMakes,
   getAllModels,
-  getAllTrims,
+  getAllOptions,
+  getAllSeries,
 } from "../../actions/get-auto-details-carstimate";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
@@ -43,19 +44,11 @@ interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
 
 type FormData = z.infer<typeof userAuthSchema>;
 
-interface Trims {
-  cylinders: DropdownValue[];
-  drive: DropdownValue[];
-  eng_dscr: DropdownValue[];
-  fueltype: DropdownValue[];
-  fueltype1: DropdownValue[];
-  mpgdata: DropdownValue[];
-  phevblended: DropdownValue[];
-  trany: DropdownValue[];
-  vclass: DropdownValue[];
-  year: DropdownValue[];
-  make: DropdownValue[];
-  model: DropdownValue[];
+export interface Options {
+  colors: DropdownValue[];
+  power: DropdownValue[];
+  output: DropdownValue[];
+  gears: DropdownValue[];
 }
 
 export function AutoValueForm({
@@ -82,37 +75,48 @@ export function AutoValueForm({
   const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
   const [model, setModel] = React.useState<string>("");
   const [models, setModels] = React.useState<DropdownValue[]>([]);
-  const [trim, setTrim] = React.useState<{ [key: string]: string }>({});
-  const [trims, setTrims] = React.useState<Partial<Trims> | null>(null);
+  const [series, setSeries] = React.useState<string>("");
+  const [serieses, setSerieses] = React.useState<DropdownValue[]>([]);
+  const [option, setOption] = React.useState<{ [key: string]: string }>({});
+  const [options, setOptions] = React.useState<Partial<Options> | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     // document.getElementById("year")?.focus();
   }, []);
 
-  async function getMakes(dYear: string) {
+  async function getMakes() {
     setIsLoading(true);
-    const makes = await getAllMakes(dYear, locale);
+    const makes = await getAllMakes();
     setMakes(makes);
     setIsLoading(false);
     document.getElementById("make")?.focus();
   }
 
-  async function getModels(dYear: string, dMake: string) {
+  async function getModels(dMake: string) {
     setIsLoading(true);
-    const models = await getAllModels(dYear, dMake, locale);
+    console.log("getModels:", dMake);
+    const models = await getAllModels(dMake);
     setModels(models);
     setIsLoading(false);
     document.getElementById("model")?.focus();
   }
 
-  async function getTrims(dYear: string, dMake: string, dModel: string) {
+  async function getSeries(dMake: string, dModel: string) {
     setIsLoading(true);
-    const res = await getAllTrims(dYear, dMake, dModel, locale);
-    setTrims(res.trims);
-    setTrim(res.trim);
+    const res = await getAllSeries(dMake, dModel);
+    setSerieses(res);
     setIsLoading(false);
-    document.getElementById("trim")?.focus();
+    document.getElementById("series")?.focus();
+  }
+
+  async function getOptions(dMake: string, dModel: string, dSeries: string) {
+    setIsLoading(true);
+    const res = await getAllOptions(dMake, dModel, dSeries);
+    setOptions(res.options as any);
+    setOption(res.option);
+    setIsLoading(false);
+    document.getElementById("options")?.focus();
   }
 
   function handleAutoError(key: string, message: string) {
@@ -120,7 +124,7 @@ export function AutoValueForm({
   }
 
   async function onSubmit(data: FormData) {
-    if (!year || !make || !model || !trim) {
+    if (!year || !make || !model || !series || !option) {
       return toast.error("Please fill in all fields");
     }
     if (!data.email) {
@@ -134,7 +138,8 @@ export function AutoValueForm({
       make,
       model,
       year,
-      trim,
+      series,
+      option,
       // redirect: false,
     });
 
@@ -158,12 +163,11 @@ export function AutoValueForm({
       });
     }
 
-    return toast.success("Check your email", {
-      description: "We sent you a login link. Be sure to check your spam too.",
+    return toast.success("We will be in touch with you shortly", {
+      description:
+        "If you submitted your phone number we can might contact you by phone. Be sure to check your spam too.",
     });
   }
-
-  console.log("trim:", trim);
 
   return (
     <MaxWidthWrapper>
@@ -212,8 +216,8 @@ export function AutoValueForm({
                         setYear(year);
                         setMake("");
                         setModel("");
-                        setTrim({});
-                        getMakes(year);
+                        setOption({});
+                        getMakes();
                       }
                     }
                   }}
@@ -231,10 +235,10 @@ export function AutoValueForm({
                   isLoading={isLoading}
                   onChange={(value) => {
                     setModel("");
-                    setTrim({});
-                    setTrims({});
+                    setOption({});
+                    setOptions({});
                     setMake(value);
-                    getModels(year, value);
+                    getModels(value);
                   }}
                 />
               </div>
@@ -247,29 +251,45 @@ export function AutoValueForm({
                   values={models}
                   isLoading={isLoading}
                   onChange={(value) => {
-                    setTrim({});
-                    setTrims({});
+                    setOption({});
+                    setOptions({});
                     setModel(value);
-                    getTrims(year, make, value);
+                    getSeries(make, value);
+                  }}
+                />
+              </div>
+              <div id="series" className="gap-6">
+                <Label className="sr-only">Series</Label>
+                <Combobox
+                  label="Series"
+                  disabled={isLoading || !serieses.length}
+                  autoFocus={true}
+                  values={serieses}
+                  isLoading={isLoading}
+                  onChange={(value) => {
+                    setOption({});
+                    setOptions({});
+                    setSeries(value);
+                    getOptions(make, model, value);
                   }}
                 />
               </div>
             </div>
             <div className={cn("flex flex-row flex-wrap gap-6", className)}>
-              {trims &&
-                Object.keys(trims).map((key, i) => (
-                  <div id={i === 0 ? "trim" : ""} key={key} className="gap-6">
+              {options &&
+                Object.keys(options).map((key, i) => (
+                  <div id={i === 0 ? "option" : ""} key={key} className="gap-6">
                     <Label className="sr-only" htmlFor="email">
                       {key}
                     </Label>
                     <Combobox
                       label={key}
                       disabled={isLoading}
-                      values={trims[key]}
-                      initialValue={trim[key]}
+                      values={options[key]}
+                      initialValue={option[key]}
                       isLoading={isLoading}
                       onChange={(value) =>
-                        setTrim((prev) => ({ ...prev, [key]: value }))
+                        setOption((prev) => ({ ...prev, [key]: value }))
                       }
                     />
                   </div>
@@ -287,7 +307,7 @@ export function AutoValueForm({
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading || Object.keys(trim).length === 0}
+                disabled={isLoading || Object.keys(option).length === 0}
                 {...register("email")}
                 onChange={(e) => setEmail(e.target.value)}
               />

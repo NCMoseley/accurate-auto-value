@@ -205,15 +205,15 @@ export const placeholderBlurhash =
 
 export function deriveDropdownValues(data: SafeForDropdown[] | any[]) {
   if (!data) return [];
-  if (data[0].name) {
+  if (data[0]?.name) {
     return data.map((item) => ({
       label: item.name,
       value: item.name,
     }));
   }
   return data.map((item) => ({
-    label: item,
-    value: item,
+    label: typeof item === 'number' ? item.toFixed(0) : item,
+    value: typeof item === 'number' ? item.toFixed(0) : item,
   }));
 };
 
