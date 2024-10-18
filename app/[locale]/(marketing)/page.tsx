@@ -19,7 +19,7 @@ export default function IndexPage() {
   return (
     <>
       <HeroLanding />
-      <PreviewLanding />
+      {/* <PreviewLanding /> */}
       <AutoValueForm />
       {/* <Powered /> */}
       {/* <BentoGrid /> */}

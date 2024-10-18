@@ -1,9 +1,12 @@
 import * as React from "react";
+import InputMask from "react-input-mask";
 
 import { cn } from "@/lib/utils";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  mask?: string;
+}
 
 const NumberInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -37,14 +40,30 @@ const NumberInput = React.forwardRef<HTMLInputElement, InputProps>(
         event.preventDefault(); // Prevent the default action if the key is not allowed
       }
     };
+
+    const baseClassNames = cn(
+      "focus-visible:ring-offset-2file:font-medium flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+      className,
+    );
+
+    if (props.mask) {
+      return (
+        <InputMask
+          ref={ref}
+          mask={props.mask}
+          type="text"
+          className={baseClassNames}
+          onKeyDown={handleKeyDown}
+          {...props}
+        />
+      );
+    }
+
     return (
       <input
-        type={type}
-        className={cn(
-          "focus-visible:ring-offset-2file:font-medium flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          className,
-        )}
         ref={ref}
+        className={baseClassNames}
+        type={type}
         onKeyDown={handleKeyDown}
         {...props}
       />
