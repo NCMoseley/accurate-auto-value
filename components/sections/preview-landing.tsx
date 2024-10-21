@@ -61,7 +61,7 @@ function BlindsImage() {
 
 export default function PreviewLanding() {
   return (
-    <div className="pb-6 sm:pb-16">
+    <div className="pb-6 sm:pb-6">
       <MaxWidthWrapper>
         {/* <motion.svg
           width="600"

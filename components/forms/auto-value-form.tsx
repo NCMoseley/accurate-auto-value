@@ -26,7 +26,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NumberInput } from "@/components/ui/number-input";
 import { Icons } from "@/components/shared/icons";
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 import {
   getAllMakes,
@@ -37,6 +36,7 @@ import {
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
+import { InputItem } from "../ui/input-item";
 
 interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: string;
@@ -76,16 +76,18 @@ export function AutoValueForm({
   const [models, setModels] = React.useState<DropdownValue[]>([]);
   const [series, setSeries] = React.useState<string>("");
   const [serieses, setSerieses] = React.useState<DropdownValue[]>([]);
-  const [option, setOption] = React.useState<{ [key: string]: string }>({});
-  const [options, setOptions] = React.useState<Partial<Options> | null>(null);
   const [mileage, setMileage] = React.useState<string>("");
   const [displacement, setDisplacement] = React.useState<string>("");
-
   const [body, setBody] = React.useState<string>("");
   const [doors, setDoors] = React.useState<string>("");
+  const [option, setOption] = React.useState<{ [key: string]: string }>({});
+  const [options, setOptions] = React.useState<Partial<Options>>({});
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [stage, setStage] = React.useState<number>(1);
+
   const [phone, setPhone] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const bodyStyles = [
     { value: t("bodyStyles.wagon"), label: t("bodyStyles.wagon") },
@@ -191,298 +193,322 @@ export function AutoValueForm({
     });
   }
 
+  function allFilled() {
+    return (
+      registrationDate &&
+      make &&
+      model &&
+      series &&
+      mileage &&
+      displacement &&
+      doors &&
+      body &&
+      Object.keys(option).length === Object.keys(options).length
+    );
+  }
+
   return (
-    <MaxWidthWrapper className="flex flex-row gap-6">
-      <Card className="">
-        <CardHeader className="flex flex-row flex-wrap">
-          <div className="grid gap-2">
-            <CardTitle></CardTitle>
-            <Image
-              className="size-full object-cover object-center dark:opacity-35"
-              src="/images/finger-pressing-keyless-ingnition-car-valuation.png"
-              alt="preview landing"
-              width={2000}
-              height={1000}
-              priority={true}
-            />
-          </div>
-        </CardHeader>
-      </Card>
-      <Card className="w-full">
-        <CardHeader className="flex flex-row flex-wrap">
-          <div className="grid gap-2">
-            <CardTitle>{t("title")}</CardTitle>
-            <CardDescription className="text-balance">
-              {t("description")}
-            </CardDescription>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <form
-            className="flex flex-col gap-6"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div
-              className={cn(
-                "flex flex-row flex-wrap justify-center gap-6",
-                className,
-              )}
-            >
-              <div id="registrationDate" className="gap-6">
-                <Label className={`${registrationDate ? "" : "opacity-50"}`}>
-                  {t("registrationDate.label")}
-                </Label>
-                <NumberInput
-                  className="h-12 sm:w-64 sm:pr-12"
-                  id="registrationDate"
-                  placeholder={t("registrationDate.placeholder")}
-                  mask={"99/9999"}
-                  type="number"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  autoFocus={true}
-                  onChange={(e) => {
-                    console.log("registrationDate:", e.target.value);
-                    setRegistrationDate(e.target.value);
-                  }}
-                />
-                {autoErrors?.registrationDate && (
-                  <p className="px-1 text-xs text-red-600">
-                    {autoErrors.registrationDate}
-                  </p>
-                )}
-              </div>
-              <div id="make" className="gap-6">
-                <Label className={`${make ? "" : "opacity-50"}`}>
-                  {t("make.label")}
-                </Label>
-                <Combobox
-                  disabled={isLoading || !makes.length}
-                  label={t("make.label")}
-                  values={makes}
-                  isLoading={!make && isLoading}
-                  onChange={(value) => {
-                    setModel("");
-                    setSeries("");
-                    setDisplacement("");
-                    setDoors("");
-                    setBody("");
-                    setOption({});
-                    setOptions({});
-                    setMake(value);
-                    getModels(value);
-                  }}
-                />
-              </div>
-              <div id="model" className="gap-6">
-                <Label className={`${model ? "" : "opacity-50"}`}>
-                  {t("model.label")}
-                </Label>
-                <Combobox
-                  label={t("model.label")}
-                  disabled={isLoading || !models.length}
-                  values={models}
-                  isLoading={!model && isLoading}
-                  onChange={(value) => {
-                    setSeries("");
-                    setDisplacement("");
-                    setDoors("");
-                    setBody("");
-                    setOption({});
-                    setOptions({});
-                    setModel(value);
-                    getSeries(make, value);
-                  }}
-                />
-              </div>
-              <div id="series" className="gap-6">
-                <Label className={`${series ? "" : "opacity-50"}`}>
-                  {t("series.label")}
-                </Label>
-                <Combobox
-                  label={t("series.label")}
-                  disabled={isLoading || !serieses.length}
-                  values={serieses}
-                  isLoading={!series && isLoading}
-                  onChange={(value) => {
-                    setDisplacement("");
-                    setDoors("");
-                    setBody("");
-                    setOption({});
-                    setOptions({});
-                    setSeries(value);
-                    getOptions(make, model, value);
-                  }}
-                />
-              </div>
-              <div className="gap-6">
-                <Label className={`${mileage ? "" : "opacity-50"}`}>
-                  {t("mileage.label")}
-                </Label>
-                <NumberInput
-                  className="h-12 sm:w-64 sm:pr-12"
-                  id="mileage"
-                  placeholder={t("mileage.placeholder")}
-                  type="text"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  onChange={(e) => {
-                    setMileage(e.target.value);
-                  }}
-                />
-                {autoErrors?.mileage && (
-                  <p className="px-1 text-xs text-red-600">
-                    {autoErrors.mileage}
-                  </p>
-                )}
-              </div>
-              <div className="gap-6">
-                <Label className={`${displacement ? "" : "opacity-50"}`}>
-                  {t("displacement.label")}
-                </Label>
-                <NumberInput
-                  className="h-12 sm:w-64 sm:pr-12"
-                  id="displacement"
-                  placeholder={t("displacement.placeholder")}
-                  type="text"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  onChange={(e) => {
-                    setDisplacement(e.target.value);
-                  }}
-                />
-                {autoErrors?.mileage && (
-                  <p className="px-1 text-xs text-red-600">
-                    {autoErrors.mileage}
-                  </p>
-                )}
-              </div>
-              <div className="gap-6">
-                <Label className={`${doors ? "" : "opacity-50"}`}>
-                  {t("doors.label")}
-                </Label>
-                <NumberInput
-                  className="h-12 sm:w-64 sm:pr-12"
-                  id="doors"
-                  placeholder={t("doors.placeholder")}
-                  type="text"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  onChange={(e) => {
-                    setDoors(e.target.value);
-                  }}
-                />
-                {autoErrors?.doors && (
-                  <p className="px-1 text-xs text-red-600">
-                    {autoErrors.doors}
-                  </p>
-                )}
-              </div>
-              <div className="gap-6">
-                <Label className={`${body ? "" : "opacity-50"}`}>
-                  {t("body.label")}
-                </Label>
-                <Combobox
-                  label={t("body.label")}
-                  disabled={isLoading || !bodyStyles.length}
-                  values={bodyStyles}
-                  isLoading={!body && isLoading}
-                  onChange={(value) => {
-                    setBody(value);
-                  }}
-                />
-                {autoErrors?.body && (
-                  <p className="px-1 text-xs text-red-600">{autoErrors.body}</p>
-                )}
-              </div>
+    <section>
+      <div className="container flex max-w-6xl flex-col gap-10 py-32 sm:gap-y-16">
+        <Card className="ml-auto max-w-2xl">
+          <CardHeader className="flex flex-row flex-wrap">
+            <div className="grid gap-2">
+              <CardTitle>{t("title")}</CardTitle>
+              <CardDescription className="text-balance">
+                {t("description")}
+              </CardDescription>
             </div>
-            <div
-              className={cn(
-                "flex flex-row flex-wrap justify-center gap-6",
-                className,
-              )}
-            >
-              {options &&
-                Object.keys(options).map((key, i) => (
-                  <div id={i === 0 ? "option" : ""} key={key} className="gap-6">
-                    <Label className={`${option[key] ? "" : "opacity-50"}`}>
-                      {t(`${key}.label`)}
+          </CardHeader>
+
+          {stage === 1 ? (
+            <CardContent className="p-4">
+              <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+                <div
+                  className={cn(
+                    "flex flex-row flex-wrap justify-center gap-4",
+                    className,
+                  )}
+                >
+                  <InputItem id="registrationDate">
+                    <Label
+                      className={`${registrationDate ? "" : "opacity-50"}`}
+                    >
+                      {t("registrationDate.label")}
+                    </Label>
+                    <NumberInput
+                      className="h-12 sm:pr-12"
+                      id="registrationDate"
+                      placeholder={t("registrationDate.placeholder")}
+                      mask={"99/9999"}
+                      type="number"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      // autoFocus={true}
+                      onChange={(e) => {
+                        console.log("registrationDate:", e.target.value);
+                        setRegistrationDate(e.target.value);
+                      }}
+                    />
+                    {autoErrors?.registrationDate && (
+                      <p className="px-1 text-xs text-red-600">
+                        {autoErrors.registrationDate}
+                      </p>
+                    )}
+                  </InputItem>
+                  <InputItem id="make">
+                    <Label className={`${make ? "" : "opacity-50"}`}>
+                      {t("make.label")}
                     </Label>
                     <Combobox
-                      label={t(`${key}.label`)}
-                      disabled={isLoading}
-                      values={options[key]}
-                      initialValue={option[key]}
-                      onChange={(value) =>
-                        setOption((prev) => ({ ...prev, [key]: value }))
-                      }
+                      disabled={isLoading || !makes.length}
+                      label={t("make.label")}
+                      values={makes}
+                      isLoading={!make && isLoading}
+                      onChange={(value) => {
+                        setModel("");
+                        setSeries("");
+                        setDisplacement("");
+                        setDoors("");
+                        setBody("");
+                        setOption({});
+                        setOptions({});
+                        setMake(value);
+                        getModels(value);
+                      }}
                     />
-                  </div>
-                ))}
-            </div>
-            <div className="mt-4 flex flex-col items-end gap-2">
-              <CardDescription className={`${email ? "" : "opacity-50"}`}>
-                {t("email.description")}
-              </CardDescription>
-              <Input
-                className="h-10 w-full sm:w-64 sm:pr-12"
-                id="email"
-                placeholder={t("email.placeholder")}
-                type="email"
-                autoCapitalize="none"
-                autoComplete="email"
-                autoCorrect="off"
-                disabled={isLoading || Object.keys(option).length === 0}
-                {...register("email")}
-                // onChange={(e) => setEmail(e.target.value)}
-              />
-              {errors?.email && (
-                <p className="px-1 text-xs text-red-600">
-                  {errors.email.message}
-                </p>
-              )}
-              <div className="gap-6">
-                <Label className={`${phone ? "" : "opacity-50"}`}>
-                  {t("phone.label")}
-                </Label>
-                <NumberInput
-                  className="h-10 sm:w-64 sm:pr-12"
-                  id="doors"
-                  placeholder={t("phone.placeholder")}
-                  type="text"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  {...register("phone")}
-                  // onChange={(e) => {
-                  //   setPhone(e.target.value);
-                  // }}
-                />
-                {autoErrors?.phone && (
-                  <p className="px-1 text-xs text-red-600">
-                    {autoErrors.phone}
-                  </p>
+                  </InputItem>
+                  <InputItem id="model">
+                    <Label className={`${model ? "" : "opacity-50"}`}>
+                      {t("model.label")}
+                    </Label>
+                    <Combobox
+                      label={t("model.label")}
+                      disabled={isLoading || !models.length}
+                      values={models}
+                      isLoading={!model && isLoading}
+                      onChange={(value) => {
+                        setSeries("");
+                        setDisplacement("");
+                        setDoors("");
+                        setBody("");
+                        setOption({});
+                        setOptions({});
+                        setModel(value);
+                        getSeries(make, value);
+                      }}
+                    />
+                  </InputItem>
+                  <InputItem id="series">
+                    <Label className={`${series ? "" : "opacity-50"}`}>
+                      {t("series.label")}
+                    </Label>
+                    <Combobox
+                      label={t("series.label")}
+                      disabled={isLoading || !serieses.length}
+                      values={serieses}
+                      isLoading={!series && isLoading}
+                      onChange={(value) => {
+                        setDisplacement("");
+                        setDoors("");
+                        setBody("");
+                        setOption({});
+                        setOptions({});
+                        setSeries(value);
+                        getOptions(make, model, value);
+                      }}
+                    />
+                  </InputItem>
+                  <InputItem id="mileage">
+                    <Label className={`${mileage ? "" : "opacity-50"}`}>
+                      {t("mileage.label")}
+                    </Label>
+                    <NumberInput
+                      className="h-12 sm:pr-12"
+                      id="mileage"
+                      placeholder={t("mileage.placeholder")}
+                      type="text"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      onChange={(e) => {
+                        setMileage(e.target.value);
+                      }}
+                    />
+                    {autoErrors?.mileage && (
+                      <p className="px-1 text-xs text-red-600">
+                        {autoErrors.mileage}
+                      </p>
+                    )}
+                  </InputItem>
+                  <InputItem id="displacement">
+                    <Label className={`${displacement ? "" : "opacity-50"}`}>
+                      {t("displacement.label")}
+                    </Label>
+                    <NumberInput
+                      className="h-12 sm:pr-12"
+                      id="displacement"
+                      placeholder={t("displacement.placeholder")}
+                      type="text"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      onChange={(e) => {
+                        setDisplacement(e.target.value);
+                      }}
+                    />
+                    {autoErrors?.mileage && (
+                      <p className="px-1 text-xs text-red-600">
+                        {autoErrors.mileage}
+                      </p>
+                    )}
+                  </InputItem>
+                  <InputItem id="doors">
+                    <Label className={`${doors ? "" : "opacity-50"}`}>
+                      {t("doors.label")}
+                    </Label>
+                    <NumberInput
+                      className="h-12 sm:pr-12"
+                      id="doors"
+                      placeholder={t("doors.placeholder")}
+                      type="text"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      onChange={(e) => {
+                        setDoors(e.target.value);
+                      }}
+                    />
+                    {autoErrors?.doors && (
+                      <p className="px-1 text-xs text-red-600">
+                        {autoErrors.doors}
+                      </p>
+                    )}
+                  </InputItem>
+                  <InputItem id="body">
+                    <Label className={`${body ? "" : "opacity-50"}`}>
+                      {t("body.label")}
+                    </Label>
+                    <Combobox
+                      label={t("body.label")}
+                      disabled={isLoading || !bodyStyles.length}
+                      values={bodyStyles}
+                      isLoading={!body && isLoading}
+                      onChange={(value) => {
+                        setBody(value);
+                      }}
+                    />
+                    {autoErrors?.body && (
+                      <p className="px-1 text-xs text-red-600">
+                        {autoErrors.body}
+                      </p>
+                    )}
+                  </InputItem>
+                  {options &&
+                    Object.keys(options).map((key, i) => (
+                      <InputItem
+                        id={i === 0 ? "option" : ""}
+                        key={key}
+                        className="gap-6"
+                      >
+                        <Label className={`${option[key] ? "" : "opacity-50"}`}>
+                          {t(`${key}.label`)}
+                        </Label>
+                        <Combobox
+                          label={t(`${key}.label`)}
+                          disabled={isLoading}
+                          values={options[key]}
+                          initialValue={option[key]}
+                          onChange={(value) =>
+                            setOption((prev) => ({ ...prev, [key]: value }))
+                          }
+                        />
+                      </InputItem>
+                    ))}
+                </div>
+                {allFilled() && (
+                  <Button
+                    // type="submit"
+                    onClick={() => setStage(2)}
+                    className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                    disabled={isLoading}
+                  >
+                    {t("next.label")}
+                  </Button>
                 )}
-              </div>
-            </div>
-            {email && (
-              <Button
-                type="submit"
-                className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Icons.spinner className="mr-2 size-4 animate-spin" />
-                    {t("submit.loading")}
-                  </>
-                ) : (
-                  t("submit.label")
+              </form>
+            </CardContent>
+          ) : null}
+          {stage === 2 ? (
+            <CardContent className="p-4">
+              <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+                <div
+                  className={cn(
+                    "mt-24 flex flex-row flex-wrap justify-center gap-4",
+                    className,
+                  )}
+                >
+                  <InputItem id="email">
+                    <Label className={`${email ? "" : "opacity-50"}`}>
+                      {t("email.label")}
+                    </Label>
+                    <Input
+                      className="h-12 sm:pr-12"
+                      id="email"
+                      placeholder={t("email.placeholder")}
+                      type="email"
+                      autoCapitalize="none"
+                      autoComplete="email"
+                      autoCorrect="off"
+                      {...register("email")}
+                      // onChange={(e) => setEmail(e.target.value)}
+                    />
+                    {errors?.email && (
+                      <p className="px-1 text-xs text-red-600">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </InputItem>
+                  <InputItem id="phone">
+                    <Label className={`${phone ? "" : "opacity-50"}`}>
+                      {t("phone.label")}
+                    </Label>
+                    <NumberInput
+                      className="h-12 sm:pr-12"
+                      id="phone"
+                      placeholder={t("phone.placeholder")}
+                      type="text"
+                      autoComplete="tel"
+                      autoCorrect="off"
+                      {...register("phone")}
+                      // onChange={(e) => {
+                      //   setPhone(e.target.value);
+                      // }}
+                    />
+                    {autoErrors?.phone && (
+                      <p className="px-1 text-xs text-red-600">
+                        {autoErrors.phone}
+                      </p>
+                    )}
+                  </InputItem>
+                </div>
+                {email && (
+                  <Button
+                    type="submit"
+                    className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Icons.spinner className="mr-2 size-4 animate-spin" />
+                        {t("submit.loading")}
+                      </>
+                    ) : (
+                      t("submit.label")
+                    )}
+                  </Button>
                 )}
-              </Button>
-            )}
-          </form>
-        </CardContent>
-      </Card>
-    </MaxWidthWrapper>
+              </form>
+            </CardContent>
+          ) : null}
+        </Card>
+      </div>
+    </section>
   );
 }

@@ -68,7 +68,7 @@ export function Combobox({
   };
 
   return (
-    <div>
+    <div className="w-full">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -77,7 +77,7 @@ export function Combobox({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="h-12 w-64 justify-between"
+            className="h-12 w-full justify-between"
             autoFocus={autoFocus}
           >
             {isLoading ? <Loading /> : <ButtonValueForDisplay />}

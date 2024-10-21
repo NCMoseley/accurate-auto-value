@@ -75,8 +75,11 @@
 			"label": "Number of Doors",
 			"placeholder": "e.g. 4"
 		},
+		"next": {
+			"label": "Next"
+		},
 		"email": {
-			"description": "We won't share your email with anyone",
+			"label": "We won't share your email with anyone",
 			"placeholder": "Your email address"
 		},
 		"phone": {
