@@ -101,6 +101,12 @@
 			"enterEmail": "Please enter your email"
 		}
 	},
+	"CheckoutForm": {
+		"submit": {
+			"loading": "Processing...",
+			"label": "Pay"
+		}
+	},
 	"PricingCards": {
 		"a": "Calculator",
 		"b": "Responsive and accurate",

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/routing";
@@ -25,6 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NumberInput } from "@/components/ui/number-input";
+import CheckoutForm from "@/components/forms/checkout-form";
 import { Icons } from "@/components/shared/icons";
 
 import {
@@ -37,6 +39,10 @@ import { submitAutoInfo } from "../../actions/send-auto-info";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
 import { InputItem } from "../ui/input-item";
+
+export const metadata: Metadata = {
+  title: "Pay with hosted Checkout",
+};
 
 interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: string;
@@ -84,7 +90,7 @@ export function AutoValueForm({
   const [options, setOptions] = React.useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [stage, setStage] = React.useState<number>(1);
+  const [stage, setStage] = React.useState<number>(2);
 
   const [phone, setPhone] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
@@ -437,6 +443,7 @@ export function AutoValueForm({
           ) : null}
           {stage === 2 ? (
             <CardContent className="p-4">
+              <CheckoutForm uiMode="hosted" />
               <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                 <div
                   className={cn(
