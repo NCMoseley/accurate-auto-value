@@ -3,7 +3,6 @@
 import * as React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowUpRight } from "lucide-react";
@@ -71,7 +70,6 @@ export function AutoValueForm({
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   });
-  const searchParams = useSearchParams();
   const [registrationDate, setRegistrationDate] = React.useState<string>("");
   const [autoErrors, setAutoErrors] = React.useState<{ [key: string]: string }>(
     {},
@@ -443,7 +441,8 @@ export function AutoValueForm({
           ) : null}
           {stage === 2 ? (
             <CardContent className="p-4">
-              <CheckoutForm uiMode="hosted" />
+              {/* <CheckoutForm uiMode="hosted" /> */}
+              <CheckoutForm uiMode="embedded" />
               <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                 <div
                   className={cn(

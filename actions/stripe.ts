@@ -1,9 +1,7 @@
 "use server";
 
 import type { Stripe } from "stripe";
-
 import { headers } from "next/headers";
-
 import { CURRENCY } from "@/config/stripe";
 import { formatAmountForStripe } from "@/lib/stripe-helpers";
 import { stripe } from "@/lib/stripe";
@@ -41,17 +39,44 @@ export async function createCheckoutSession(
         success_url: `${origin}/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/`,
       }),
+      // ...(ui_mode === "embedded" && {
+      //   return_url: `${origin}/result?session_id={CHECKOUT_SESSION_ID}`,
+      // }),
+      // ...(ui_mode === "hosted" && {
+      //   success_url: `${origin}/result`,
+      //   cancel_url: `${origin}`,
+      // }),
       ...(ui_mode === "embedded" && {
         return_url: `${origin}/result?session_id={CHECKOUT_SESSION_ID}`,
       }),
       ui_mode,
     });
 
+  // console.log("checkoutSession", checkoutSession);
+
   return {
     client_secret: checkoutSession.client_secret,
     url: checkoutSession.url,
   };
 }
+
+export async function confirmPayment(session_id: string): Promise<boolean> {
+  console.log("confirmPayment session_id", session_id);
+  if (session_id) {
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+    // Check the session status
+    if (session.payment_status === "paid") {
+      // Payment was successful
+      console.log("Payment successful!");
+      return true;
+    } else {
+      // Handle payment failure
+      console.log("Payment not successful.");
+      return false;
+    }
+  }
+  return false;
+};
 
 export async function createPaymentIntent(
   data: FormData,
