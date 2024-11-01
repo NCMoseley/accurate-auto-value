@@ -60,23 +60,24 @@ export async function createCheckoutSession(
   };
 }
 
-export async function confirmPayment(session_id: string): Promise<boolean> {
-  console.log("confirmPayment session_id", session_id);
-  if (session_id) {
+export async function confirmPayment(session_id: string): Promise<{ confirmed: boolean, email: string, name: string }> {
+  try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
-    // Check the session status
-    if (session.payment_status === "paid") {
-      // Payment was successful
-      console.log("Payment successful!");
-      return true;
-    } else {
-      // Handle payment failure
-      console.log("Payment not successful.");
-      return false;
-    }
+    console.log("confirmPayment session", session);
+    return {
+      confirmed: session.payment_status === "paid",
+      email: session.customer_details?.email || "",
+      name: session.customer_details?.name || "",
+    };
+  } catch (error) {
+    console.error("confirmPayment error", error);
+    return {
+      confirmed: false,
+      email: "",
+      name: "",
+    };
   }
-  return false;
-};
+}
 
 export async function createPaymentIntent(
   data: FormData,

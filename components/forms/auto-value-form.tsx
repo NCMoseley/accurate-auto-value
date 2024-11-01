@@ -1,8 +1,9 @@
 "use client";
 
-import * as React from "react";
+import React, { HTMLAttributes, useEffect, useState } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowUpRight } from "lucide-react";
@@ -35,6 +36,7 @@ import {
   getAllSeries,
 } from "../../actions/get-auto-details-carstimate";
 import { submitAutoInfo } from "../../actions/send-auto-info";
+import { confirmPayment } from "../../actions/stripe";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
 import { InputItem } from "../ui/input-item";
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
   title: "Pay with hosted Checkout",
 };
 
-interface AutoValueFormProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AutoValueFormProps extends HTMLAttributes<HTMLDivElement> {
   type?: string;
   initialMakes?: DropdownValue[];
 }
@@ -63,6 +65,8 @@ export function AutoValueForm({
   initialMakes,
 }: AutoValueFormProps) {
   const t = useTranslations("AutoValueForm");
+  const router = useSearchParams();
+  const session_id = router.get("session_id");
   const {
     register,
     handleSubmit,
@@ -70,28 +74,29 @@ export function AutoValueForm({
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   });
-  const [registrationDate, setRegistrationDate] = React.useState<string>("");
-  const [autoErrors, setAutoErrors] = React.useState<{ [key: string]: string }>(
-    {},
-  );
-  const [make, setMake] = React.useState<string>("");
-  const [makes, setMakes] = React.useState<DropdownValue[]>(initialMakes ?? []);
-  const [model, setModel] = React.useState<string>("");
-  const [models, setModels] = React.useState<DropdownValue[]>([]);
-  const [series, setSeries] = React.useState<string>("");
-  const [serieses, setSerieses] = React.useState<DropdownValue[]>([]);
-  const [mileage, setMileage] = React.useState<string>("");
-  const [displacement, setDisplacement] = React.useState<string>("");
-  const [body, setBody] = React.useState<string>("");
-  const [doors, setDoors] = React.useState<string>("");
-  const [option, setOption] = React.useState<{ [key: string]: string }>({});
-  const [options, setOptions] = React.useState<Partial<Options>>({});
+  const [registrationDate, setRegistrationDate] = useState<string>("");
+  const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
+  const [make, setMake] = useState<string>("");
+  const [makes, setMakes] = useState<DropdownValue[]>(initialMakes ?? []);
+  const [model, setModel] = useState<string>("");
+  const [models, setModels] = useState<DropdownValue[]>([]);
+  const [series, setSeries] = useState<string>("");
+  const [serieses, setSerieses] = useState<DropdownValue[]>([]);
+  const [mileage, setMileage] = useState<string>("");
+  const [displacement, setDisplacement] = useState<string>("");
+  const [body, setBody] = useState<string>("");
+  const [doors, setDoors] = useState<string>("");
+  const [option, setOption] = useState<{ [key: string]: string }>({});
+  const [options, setOptions] = useState<Partial<Options>>({});
 
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [stage, setStage] = React.useState<number>(2);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [stage, setStage] = useState<number>(2);
 
-  const [phone, setPhone] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
+  const [paymentConfirmed, setPaymentConfirmed] = useState<boolean>(false);
 
   const bodyStyles = [
     { value: t("bodyStyles.wagon"), label: t("bodyStyles.wagon") },
@@ -104,10 +109,22 @@ export function AutoValueForm({
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.getElementById("registrationDate")?.focus();
     getMakes();
-  }, []);
+    console.log("sessionId", session_id);
+    if (session_id) {
+      setStage(3);
+      confirmPayment(session_id).then(({ confirmed, email, name }) => {
+        setPaymentConfirmed(confirmed);
+        setEmail(email);
+        setName(name);
+        if (phone) {
+          setPhone(phone);
+        }
+      });
+    }
+  }, [session_id]);
 
   async function getMakes() {
     setIsLoading(true);
@@ -441,9 +458,15 @@ export function AutoValueForm({
           ) : null}
           {stage === 2 ? (
             <CardContent className="p-4">
-              {/* <CheckoutForm uiMode="hosted" /> */}
-              <CheckoutForm uiMode="embedded" />
-              <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+              <div
+                className={cn(
+                  "mt-24 flex flex-row flex-wrap justify-center gap-4",
+                  className,
+                )}
+              >
+                <CheckoutForm uiMode="embedded" />
+              </div>
+              {/* <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                 <div
                   className={cn(
                     "mt-24 flex flex-row flex-wrap justify-center gap-4",
@@ -510,7 +533,36 @@ export function AutoValueForm({
                     )}
                   </Button>
                 )}
-              </form>
+              </form> */}
+            </CardContent>
+          ) : null}
+          {stage === 3 ? (
+            <CardContent className="p-4">
+              <div
+                className={cn(
+                  "mt-24 flex flex-row flex-wrap justify-center gap-4",
+                  className,
+                )}
+              >
+                {paymentConfirmed ? (
+                  <>
+                    <CardHeader className="flex flex-row flex-wrap">
+                      <div className="grid gap-2">
+                        <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
+                        <CardDescription className="text-balance">
+                          {t("paymentConfirmed.description")}
+                        </CardDescription>
+                      </div>
+                    </CardHeader>
+
+                    <div>Payment confirmed.</div>
+                    <div>Name: {name}</div>
+                    <div>Email: {email}</div>
+                  </>
+                ) : (
+                  <div>Payment not confirmed</div>
+                )}
+              </div>
             </CardContent>
           ) : null}
         </Card>

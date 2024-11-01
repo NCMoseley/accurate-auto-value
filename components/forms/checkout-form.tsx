@@ -23,23 +23,11 @@ interface CheckoutFormProps {
 
 export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
   const t = useTranslations("CheckoutForm");
-  const router = useSearchParams();
-  const session_id = router.get("session_id");
   const [loading] = useState<boolean>(false);
   const [input, setInput] = useState<{ paymentAmount: number }>({
     paymentAmount: config.MAX_AMOUNT,
   });
   const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const [paymentConfirmed, setPaymentConfirmed] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log("sessionId", session_id);
-    if (session_id) {
-      confirmPayment(session_id).then((confirmed) => {
-        setPaymentConfirmed(confirmed);
-      });
-    }
-  }, [session_id]);
 
   const formAction = async (data: FormData): Promise<void> => {
     const uiMode = data.get(
@@ -51,10 +39,6 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
 
     window.location.assign(url as string);
   };
-
-  if (paymentConfirmed) {
-    return <div>Payment confirmed</div>;
-  }
 
   return (
     <>
