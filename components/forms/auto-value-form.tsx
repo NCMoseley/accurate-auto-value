@@ -112,8 +112,8 @@ export function AutoValueForm({
   useEffect(() => {
     document.getElementById("registrationDate")?.focus();
     getMakes();
-    console.log("sessionId", session_id);
     if (session_id) {
+      setIsLoading(true);
       setStage(3);
       confirmPayment(session_id).then(({ confirmed, email, name }) => {
         setPaymentConfirmed(confirmed);
@@ -122,6 +122,9 @@ export function AutoValueForm({
         if (phone) {
           setPhone(phone);
         }
+        const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
+        onSubmit(data, name, email, phone);
+        setIsLoading(false);
       });
     }
   }, [session_id]);
@@ -167,7 +170,16 @@ export function AutoValueForm({
     setAutoErrors((prev) => ({ ...prev, [key]: message }));
   }
 
-  async function onSubmit(data: FormData) {
+  function saveAutoData(data: FormData) {
+    localStorage.setItem("user-auto-data", JSON.stringify(data));
+  }
+
+  async function onSubmit(
+    data: any,
+    name: string,
+    email: string,
+    phone?: string,
+  ) {
     if (
       (!phone && !email) ||
       !registrationDate ||
@@ -187,6 +199,7 @@ export function AutoValueForm({
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
+      userName: name,
       userEmail: data.email.toLowerCase() || "",
       userPhone: data.phone || "",
       registrationDate,
@@ -246,7 +259,7 @@ export function AutoValueForm({
               <CardContent className="p-4">
                 <form
                   className="flex flex-col"
-                  onSubmit={handleSubmit(onSubmit)}
+                  onSubmit={handleSubmit(saveAutoData)}
                 >
                   <div
                     className={cn(
@@ -451,7 +464,7 @@ export function AutoValueForm({
                   </div>
                   {allFilled() && (
                     <Button
-                      // type="submit"
+                      type="submit"
                       onClick={() => setStage(2)}
                       className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
                       disabled={isLoading}
@@ -560,11 +573,19 @@ export function AutoValueForm({
                   <CardHeader className="flex flex-row flex-wrap">
                     <div className="grid gap-2">
                       <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
-                      <CardDescription className="text-balance">
-                        {t("paymentConfirmed.description")}
-                        {name && <div>Name: {name}</div>}
-                        {email && <div>Email: {email}</div>}
-                      </CardDescription>
+                      {isLoading ? (
+                        <>
+                          <Icons.spinner className="mr-2 size-4 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          <CardDescription className="text-balance">
+                            {t("paymentConfirmed.description")}
+                            {name && <div>Name: {name}</div>}
+                            {email && <div>Email: {email}</div>}
+                          </CardDescription>
+                        </>
+                      )}
                     </div>
                   </CardHeader>
                 </>
@@ -572,12 +593,20 @@ export function AutoValueForm({
                 <CardHeader className="flex flex-row flex-wrap">
                   <div className="grid gap-2">
                     <CardTitle>{t("paymentNotConfirmed.title")}</CardTitle>
-                    <CardDescription className="text-balance">
-                      {t("paymentNotConfirmed.description")}
-                    </CardDescription>
-                    <Button onClick={() => setStage(2)}>
-                      {t("paymentNotConfirmed.button")}
-                    </Button>
+                    {isLoading ? (
+                      <>
+                        <Icons.spinner className="mr-2 size-4 animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        <CardDescription className="text-balance">
+                          {t("paymentNotConfirmed.description")}
+                        </CardDescription>
+                        <Button onClick={() => setStage(2)}>
+                          {t("paymentNotConfirmed.button")}
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </CardHeader>
               )}

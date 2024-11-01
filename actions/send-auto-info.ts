@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
-export const submitAutoInfo = async ({ userEmail, userPhone, make, model, registrationDate, series, option, mileage, displacement, body, doors }) => {
+export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make, model, registrationDate, series, option, mileage, displacement, body, doors }) => {
 	const optionsAsHTMLString = (option) => {
 		let html: string | null = null;
 		Object.keys(option).forEach(key => {
@@ -19,12 +19,13 @@ export const submitAutoInfo = async ({ userEmail, userPhone, make, model, regist
 		return html;
 	}
 	try {
-		console.log('submitAutoInfo:', userEmail, make, model, registrationDate, series, option);
+		console.log('submitAutoInfo:', userName, userEmail, userPhone, make, model, registrationDate, series, option);
 		await resend.emails.send({
 			from: siteConfig.name + '<info@resend.dev>',
 			to: siteConfig.mailSupport,
 			subject: 'New User Auto Info',
 			html: `
+	<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Name: ${userName}</h3>
 	<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Email: ${userEmail}</h3>
 	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">User Phone: ${userPhone}</p>
 	<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Registration Date: ${registrationDate}</p>
