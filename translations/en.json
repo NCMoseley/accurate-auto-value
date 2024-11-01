@@ -99,6 +99,19 @@
 			"description": "Your submission request failed. Please try again.",
 			"fillInAllFields": "Please fill in all fields",
 			"enterEmail": "Please enter your email"
+		},
+		"checkout": {
+			"title": "Checkout",
+			"description": "Please confirm your payment details with Stripe"
+		},
+		"paymentConfirmed": {
+			"title": "Payment confirmed",
+			"description": "We'll get back to you very swiftly at the following email/phone number."
+		},
+		"paymentNotConfirmed": {
+			"title": "Payment not confirmed",
+			"description": "Your payment was not successful. Please click below to try again. Please contact support if the issue persists.",
+			"button": "Try again"
 		}
 	},
 	"CheckoutForm": {

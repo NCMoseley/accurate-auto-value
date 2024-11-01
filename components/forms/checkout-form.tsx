@@ -50,7 +50,7 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
           <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
       ) : (
-        <form action={formAction}>
+        <form className="flex w-full flex-col" action={formAction}>
           <input type="hidden" name="uiMode" value={props.uiMode} />
           <input
             type="hidden"

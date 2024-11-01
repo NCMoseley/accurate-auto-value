@@ -90,7 +90,7 @@ export function AutoValueForm({
   const [options, setOptions] = useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [stage, setStage] = useState<number>(2);
+  const [stage, setStage] = useState<number>(3);
 
   const [phone, setPhone] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -230,243 +230,259 @@ export function AutoValueForm({
 
   return (
     <section>
-      <div className="container flex max-w-6xl flex-col gap-10 py-32 sm:gap-y-16">
-        <Card className="ml-auto max-w-2xl">
-          <CardHeader className="flex flex-row flex-wrap">
-            <div className="grid gap-2">
-              <CardTitle>{t("title")}</CardTitle>
-              <CardDescription className="text-balance">
-                {t("description")}
-              </CardDescription>
-            </div>
-          </CardHeader>
-
+      <div className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16">
+        <Card className="ml-auto w-full max-w-2xl">
           {stage === 1 ? (
-            <CardContent className="p-4">
-              <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+            <>
+              <CardHeader className="flex flex-row flex-wrap">
+                <div className="grid gap-2">
+                  <CardTitle>{t("title")}</CardTitle>
+                  <CardDescription className="text-balance">
+                    {t("description")}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+
+              <CardContent className="p-4">
+                <form
+                  className="flex flex-col"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <div
+                    className={cn(
+                      "flex flex-row flex-wrap justify-center gap-4",
+                      className,
+                    )}
+                  >
+                    <InputItem id="registrationDate">
+                      <Label
+                        className={`${registrationDate ? "" : "opacity-50"}`}
+                      >
+                        {t("registrationDate.label")}
+                      </Label>
+                      <NumberInput
+                        className="h-12 sm:pr-12"
+                        id="registrationDate"
+                        placeholder={t("registrationDate.placeholder")}
+                        mask={"99/9999"}
+                        type="number"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        // autoFocus={true}
+                        onChange={(e) => {
+                          console.log("registrationDate:", e.target.value);
+                          setRegistrationDate(e.target.value);
+                        }}
+                      />
+                      {autoErrors?.registrationDate && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.registrationDate}
+                        </p>
+                      )}
+                    </InputItem>
+                    <InputItem id="make">
+                      <Label className={`${make ? "" : "opacity-50"}`}>
+                        {t("make.label")}
+                      </Label>
+                      <Combobox
+                        disabled={isLoading || !makes.length}
+                        label={t("make.label")}
+                        values={makes}
+                        isLoading={!make && isLoading}
+                        onChange={(value) => {
+                          setModel("");
+                          setSeries("");
+                          setDisplacement("");
+                          setDoors("");
+                          setBody("");
+                          setOption({});
+                          setOptions({});
+                          setMake(value);
+                          getModels(value);
+                        }}
+                      />
+                    </InputItem>
+                    <InputItem id="model">
+                      <Label className={`${model ? "" : "opacity-50"}`}>
+                        {t("model.label")}
+                      </Label>
+                      <Combobox
+                        label={t("model.label")}
+                        disabled={isLoading || !models.length}
+                        values={models}
+                        isLoading={!model && isLoading}
+                        onChange={(value) => {
+                          setSeries("");
+                          setDisplacement("");
+                          setDoors("");
+                          setBody("");
+                          setOption({});
+                          setOptions({});
+                          setModel(value);
+                          getSeries(make, value);
+                        }}
+                      />
+                    </InputItem>
+                    <InputItem id="series">
+                      <Label className={`${series ? "" : "opacity-50"}`}>
+                        {t("series.label")}
+                      </Label>
+                      <Combobox
+                        label={t("series.label")}
+                        disabled={isLoading || !serieses.length}
+                        values={serieses}
+                        isLoading={!series && isLoading}
+                        onChange={(value) => {
+                          setDisplacement("");
+                          setDoors("");
+                          setBody("");
+                          setOption({});
+                          setOptions({});
+                          setSeries(value);
+                          getOptions(make, model, value);
+                        }}
+                      />
+                    </InputItem>
+                    <InputItem id="mileage">
+                      <Label className={`${mileage ? "" : "opacity-50"}`}>
+                        {t("mileage.label")}
+                      </Label>
+                      <NumberInput
+                        className="h-12 sm:pr-12"
+                        id="mileage"
+                        placeholder={t("mileage.placeholder")}
+                        type="text"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        onChange={(e) => {
+                          setMileage(e.target.value);
+                        }}
+                      />
+                      {autoErrors?.mileage && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.mileage}
+                        </p>
+                      )}
+                    </InputItem>
+                    <InputItem id="displacement">
+                      <Label className={`${displacement ? "" : "opacity-50"}`}>
+                        {t("displacement.label")}
+                      </Label>
+                      <NumberInput
+                        className="h-12 sm:pr-12"
+                        id="displacement"
+                        placeholder={t("displacement.placeholder")}
+                        type="text"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        onChange={(e) => {
+                          setDisplacement(e.target.value);
+                        }}
+                      />
+                      {autoErrors?.mileage && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.mileage}
+                        </p>
+                      )}
+                    </InputItem>
+                    <InputItem id="doors">
+                      <Label className={`${doors ? "" : "opacity-50"}`}>
+                        {t("doors.label")}
+                      </Label>
+                      <NumberInput
+                        className="h-12 sm:pr-12"
+                        id="doors"
+                        placeholder={t("doors.placeholder")}
+                        type="text"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        onChange={(e) => {
+                          setDoors(e.target.value);
+                        }}
+                      />
+                      {autoErrors?.doors && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.doors}
+                        </p>
+                      )}
+                    </InputItem>
+                    <InputItem id="body">
+                      <Label className={`${body ? "" : "opacity-50"}`}>
+                        {t("body.label")}
+                      </Label>
+                      <Combobox
+                        label={t("body.label")}
+                        disabled={isLoading || !bodyStyles.length}
+                        values={bodyStyles}
+                        isLoading={!body && isLoading}
+                        onChange={(value) => {
+                          setBody(value);
+                        }}
+                      />
+                      {autoErrors?.body && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.body}
+                        </p>
+                      )}
+                    </InputItem>
+                    {options &&
+                      Object.keys(options).map((key, i) => (
+                        <InputItem
+                          id={i === 0 ? "option" : ""}
+                          key={key}
+                          className="gap-6"
+                        >
+                          <Label
+                            className={`${option[key] ? "" : "opacity-50"}`}
+                          >
+                            {t(`${key}.label`)}
+                          </Label>
+                          <Combobox
+                            label={t(`${key}.label`)}
+                            disabled={isLoading}
+                            values={options[key]}
+                            initialValue={option[key]}
+                            onChange={(value) =>
+                              setOption((prev) => ({ ...prev, [key]: value }))
+                            }
+                          />
+                        </InputItem>
+                      ))}
+                  </div>
+                  {allFilled() && (
+                    <Button
+                      // type="submit"
+                      onClick={() => setStage(2)}
+                      className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                      disabled={isLoading}
+                    >
+                      {t("next.label")}
+                    </Button>
+                  )}
+                </form>
+              </CardContent>
+            </>
+          ) : null}
+          {stage === 2 ? (
+            <>
+              <CardHeader className="flex flex-row flex-wrap">
+                <div className="grid gap-2">
+                  <CardTitle>{t("checkout.title")}</CardTitle>
+                  <CardDescription className="text-balance">
+                    {t("checkout.description")}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4">
                 <div
                   className={cn(
-                    "flex flex-row flex-wrap justify-center gap-4",
+                    "flex w-full flex-row flex-wrap justify-center gap-4",
                     className,
                   )}
                 >
-                  <InputItem id="registrationDate">
-                    <Label
-                      className={`${registrationDate ? "" : "opacity-50"}`}
-                    >
-                      {t("registrationDate.label")}
-                    </Label>
-                    <NumberInput
-                      className="h-12 sm:pr-12"
-                      id="registrationDate"
-                      placeholder={t("registrationDate.placeholder")}
-                      mask={"99/9999"}
-                      type="number"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      // autoFocus={true}
-                      onChange={(e) => {
-                        console.log("registrationDate:", e.target.value);
-                        setRegistrationDate(e.target.value);
-                      }}
-                    />
-                    {autoErrors?.registrationDate && (
-                      <p className="px-1 text-xs text-red-600">
-                        {autoErrors.registrationDate}
-                      </p>
-                    )}
-                  </InputItem>
-                  <InputItem id="make">
-                    <Label className={`${make ? "" : "opacity-50"}`}>
-                      {t("make.label")}
-                    </Label>
-                    <Combobox
-                      disabled={isLoading || !makes.length}
-                      label={t("make.label")}
-                      values={makes}
-                      isLoading={!make && isLoading}
-                      onChange={(value) => {
-                        setModel("");
-                        setSeries("");
-                        setDisplacement("");
-                        setDoors("");
-                        setBody("");
-                        setOption({});
-                        setOptions({});
-                        setMake(value);
-                        getModels(value);
-                      }}
-                    />
-                  </InputItem>
-                  <InputItem id="model">
-                    <Label className={`${model ? "" : "opacity-50"}`}>
-                      {t("model.label")}
-                    </Label>
-                    <Combobox
-                      label={t("model.label")}
-                      disabled={isLoading || !models.length}
-                      values={models}
-                      isLoading={!model && isLoading}
-                      onChange={(value) => {
-                        setSeries("");
-                        setDisplacement("");
-                        setDoors("");
-                        setBody("");
-                        setOption({});
-                        setOptions({});
-                        setModel(value);
-                        getSeries(make, value);
-                      }}
-                    />
-                  </InputItem>
-                  <InputItem id="series">
-                    <Label className={`${series ? "" : "opacity-50"}`}>
-                      {t("series.label")}
-                    </Label>
-                    <Combobox
-                      label={t("series.label")}
-                      disabled={isLoading || !serieses.length}
-                      values={serieses}
-                      isLoading={!series && isLoading}
-                      onChange={(value) => {
-                        setDisplacement("");
-                        setDoors("");
-                        setBody("");
-                        setOption({});
-                        setOptions({});
-                        setSeries(value);
-                        getOptions(make, model, value);
-                      }}
-                    />
-                  </InputItem>
-                  <InputItem id="mileage">
-                    <Label className={`${mileage ? "" : "opacity-50"}`}>
-                      {t("mileage.label")}
-                    </Label>
-                    <NumberInput
-                      className="h-12 sm:pr-12"
-                      id="mileage"
-                      placeholder={t("mileage.placeholder")}
-                      type="text"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      onChange={(e) => {
-                        setMileage(e.target.value);
-                      }}
-                    />
-                    {autoErrors?.mileage && (
-                      <p className="px-1 text-xs text-red-600">
-                        {autoErrors.mileage}
-                      </p>
-                    )}
-                  </InputItem>
-                  <InputItem id="displacement">
-                    <Label className={`${displacement ? "" : "opacity-50"}`}>
-                      {t("displacement.label")}
-                    </Label>
-                    <NumberInput
-                      className="h-12 sm:pr-12"
-                      id="displacement"
-                      placeholder={t("displacement.placeholder")}
-                      type="text"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      onChange={(e) => {
-                        setDisplacement(e.target.value);
-                      }}
-                    />
-                    {autoErrors?.mileage && (
-                      <p className="px-1 text-xs text-red-600">
-                        {autoErrors.mileage}
-                      </p>
-                    )}
-                  </InputItem>
-                  <InputItem id="doors">
-                    <Label className={`${doors ? "" : "opacity-50"}`}>
-                      {t("doors.label")}
-                    </Label>
-                    <NumberInput
-                      className="h-12 sm:pr-12"
-                      id="doors"
-                      placeholder={t("doors.placeholder")}
-                      type="text"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      onChange={(e) => {
-                        setDoors(e.target.value);
-                      }}
-                    />
-                    {autoErrors?.doors && (
-                      <p className="px-1 text-xs text-red-600">
-                        {autoErrors.doors}
-                      </p>
-                    )}
-                  </InputItem>
-                  <InputItem id="body">
-                    <Label className={`${body ? "" : "opacity-50"}`}>
-                      {t("body.label")}
-                    </Label>
-                    <Combobox
-                      label={t("body.label")}
-                      disabled={isLoading || !bodyStyles.length}
-                      values={bodyStyles}
-                      isLoading={!body && isLoading}
-                      onChange={(value) => {
-                        setBody(value);
-                      }}
-                    />
-                    {autoErrors?.body && (
-                      <p className="px-1 text-xs text-red-600">
-                        {autoErrors.body}
-                      </p>
-                    )}
-                  </InputItem>
-                  {options &&
-                    Object.keys(options).map((key, i) => (
-                      <InputItem
-                        id={i === 0 ? "option" : ""}
-                        key={key}
-                        className="gap-6"
-                      >
-                        <Label className={`${option[key] ? "" : "opacity-50"}`}>
-                          {t(`${key}.label`)}
-                        </Label>
-                        <Combobox
-                          label={t(`${key}.label`)}
-                          disabled={isLoading}
-                          values={options[key]}
-                          initialValue={option[key]}
-                          onChange={(value) =>
-                            setOption((prev) => ({ ...prev, [key]: value }))
-                          }
-                        />
-                      </InputItem>
-                    ))}
+                  <CheckoutForm uiMode="embedded" />
                 </div>
-                {allFilled() && (
-                  <Button
-                    // type="submit"
-                    onClick={() => setStage(2)}
-                    className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
-                    disabled={isLoading}
-                  >
-                    {t("next.label")}
-                  </Button>
-                )}
-              </form>
-            </CardContent>
-          ) : null}
-          {stage === 2 ? (
-            <CardContent className="p-4">
-              <div
-                className={cn(
-                  "mt-24 flex flex-row flex-wrap justify-center gap-4",
-                  className,
-                )}
-              >
-                <CheckoutForm uiMode="embedded" />
-              </div>
-              {/* <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+                {/* <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                 <div
                   className={cn(
                     "mt-24 flex flex-row flex-wrap justify-center gap-4",
@@ -532,38 +548,72 @@ export function AutoValueForm({
                       t("submit.label")
                     )}
                   </Button>
-                )}
-              </form> */}
-            </CardContent>
+                  )}
+                </form> */}
+              </CardContent>
+            </>
           ) : null}
           {stage === 3 ? (
-            <CardContent className="p-4">
-              <div
-                className={cn(
-                  "mt-24 flex flex-row flex-wrap justify-center gap-4",
-                  className,
-                )}
-              >
-                {paymentConfirmed ? (
-                  <>
+            <>
+              {paymentConfirmed ? (
+                <>
+                  <CardHeader className="flex flex-row flex-wrap">
+                    <div className="grid gap-2">
+                      <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
+                      <CardDescription className="text-balance">
+                        {t("paymentConfirmed.description")}
+                        {name && <div>Name: {name}</div>}
+                        {email && <div>Email: {email}</div>}
+                      </CardDescription>
+                    </div>
+                  </CardHeader>
+                </>
+              ) : (
+                <CardHeader className="flex flex-row flex-wrap">
+                  <div className="grid gap-2">
+                    <CardTitle>{t("paymentNotConfirmed.title")}</CardTitle>
+                    <CardDescription className="text-balance">
+                      {t("paymentNotConfirmed.description")}
+                    </CardDescription>
+                    <Button onClick={() => setStage(2)}>
+                      {t("paymentNotConfirmed.button")}
+                    </Button>
+                  </div>
+                </CardHeader>
+              )}
+              {/* <CardContent className="p-4">
+                <div
+                  className={cn(
+                    "flex flex-row flex-wrap justify-center gap-4",
+                    className,
+                  )}
+                >
+                  {paymentConfirmed ? (
+                    <>
+                      <CardHeader className="flex flex-row flex-wrap">
+                        <div className="grid gap-2">
+                          <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
+                          <CardDescription className="text-balance">
+                            {t("paymentConfirmed.description")}
+                            {name && <div>Name: {name}</div>}
+                            {email && <div>Email: {email}</div>}
+                          </CardDescription>
+                        </div>
+                      </CardHeader>
+                    </>
+                  ) : (
                     <CardHeader className="flex flex-row flex-wrap">
                       <div className="grid gap-2">
                         <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
                         <CardDescription className="text-balance">
-                          {t("paymentConfirmed.description")}
+                          {t("paymentNotConfirmed.description")}
                         </CardDescription>
                       </div>
                     </CardHeader>
-
-                    <div>Payment confirmed.</div>
-                    <div>Name: {name}</div>
-                    <div>Email: {email}</div>
-                  </>
-                ) : (
-                  <div>Payment not confirmed</div>
-                )}
-              </div>
-            </CardContent>
+                  )}
+                </div>
+              </CardContent> */}
+            </>
           ) : null}
         </Card>
       </div>
