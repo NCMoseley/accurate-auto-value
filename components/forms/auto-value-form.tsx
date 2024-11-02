@@ -40,6 +40,7 @@ import { confirmPayment } from "../../actions/stripe";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
 import { InputItem } from "../ui/input-item";
+import { Textarea } from "../ui/textarea";
 
 export const metadata: Metadata = {
   title: "Pay with hosted Checkout",
@@ -69,8 +70,9 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   });
-  const [registrationDate, setRegistrationDate] = useState<string>("");
   const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
+  const [registrationDate, setRegistrationDate] = useState<string>("");
+  const [isSwiss, setIsSwiss] = useState<string>("");
   const [make, setMake] = useState<string>("");
   const [makes, setMakes] = useState<DropdownValue[]>([]);
   const [model, setModel] = useState<string>("");
@@ -81,6 +83,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const [displacement, setDisplacement] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const [doors, setDoors] = useState<string>("");
+  const [other, setOther] = useState<string>("");
   const [chosenOptions, setChosenOptions] = useState<{ [key: string]: string }>(
     {},
   );
@@ -111,6 +114,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
       setRegistrationDate(data.registrationDate);
+      setIsSwiss(data.isSwiss);
       setMake(data.make);
       getModels(data.make);
       setModel(data.model);
@@ -122,6 +126,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       setDisplacement(data.displacement);
       setBody(data.body);
       setDoors(data.doors);
+      setOther(data.other);
       setIsLoading(false);
     }
   }, []);
@@ -198,6 +203,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   function saveAutoData() {
     const data = {
       registrationDate,
+      isSwiss,
       make,
       model,
       series,
@@ -206,6 +212,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       displacement,
       body,
       doors,
+      other,
     };
     console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
@@ -221,29 +228,34 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ) {
     const {
       registrationDate,
+      isSwiss,
       make,
       model,
       series,
       chosenOptions,
       body,
       doors,
+      mileage,
+      other,
     } = data;
     if (
       // (!phone) ||
       !registrationDate ||
+      !isSwiss ||
       !make ||
       !model ||
       !series ||
       !chosenOptions ||
       !body ||
-      !doors
+      !doors ||
+      !mileage ||
+      !other
     ) {
       return toast.error(t("error.fillInAllFields"));
     }
     if (!email) {
       return toast.error(t("error.enterEmail"));
     }
-    // setIsLoading(true);
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
@@ -258,7 +270,9 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       mileage,
       displacement,
       body,
+      isSwiss,
       doors,
+      other: other || "",
       // redirect: false,
     });
 
@@ -278,13 +292,14 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   function allFilled() {
     return (
       registrationDate &&
+      isSwiss &&
       make &&
       model &&
       series &&
       mileage &&
       displacement &&
-      doors &&
       body &&
+      doors &&
       Object.keys(chosenOptions).length === Object.keys(options).length
     );
   }
@@ -321,6 +336,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
           <CardContent className="p-4">
             <div className="flex flex-col gap-2">
               <InfoRow title="registrationDate" value={registrationDate} />
+              <InfoRow title="isSwiss" value={isSwiss} />
               <InfoRow title="make" value={make} />
               <InfoRow title="model" value={model} />
               <InfoRow title="series" value={series} />
@@ -331,6 +347,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               {Object.keys(chosenOptions).map((key) => (
                 <InfoRow title={key} value={chosenOptions[key]} />
               ))}
+              <div className="flex flex-row flex-wrap items-baseline">
+                <CardDescription>{t(`autoInfo.other`)}</CardDescription>
+                <h3 className="ml-2">{other}</h3>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -371,8 +391,29 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         value={registrationDate}
                         // autoFocus={true}
                         onChange={(e) => {
-                          console.log("registrationDate:", e.target.value);
                           setRegistrationDate(e.target.value);
+                        }}
+                      />
+                      {autoErrors?.registrationDate && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.registrationDate}
+                        </p>
+                      )}
+                    </InputItem>
+                    <InputItem id="isSwiss">
+                      <Label className={`${isSwiss ? "" : "opacity-50"}`}>
+                        {t("isSwiss.label")}
+                      </Label>
+                      <Combobox
+                        label={t("isSwiss.label")}
+                        disabled={isLoading}
+                        values={[
+                          { value: "Yes", label: "Yes" },
+                          { value: "No", label: "No" },
+                        ]}
+                        initialValue={isSwiss}
+                        onChange={(value) => {
+                          setIsSwiss(value);
                         }}
                       />
                       {autoErrors?.registrationDate && (
@@ -395,7 +436,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setModel("");
                           setSeries("");
                           setDisplacement("");
-                          setDoors("");
                           setBody("");
                           setChosenOptions({});
                           setOptions({});
@@ -417,7 +457,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         onChange={(value) => {
                           setSeries("");
                           setDisplacement("");
-                          setDoors("");
                           setBody("");
                           setChosenOptions({});
                           setOptions({});
@@ -438,7 +477,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         isLoading={!series && isLoading}
                         onChange={(value) => {
                           setDisplacement("");
-                          setDoors("");
                           setBody("");
                           setChosenOptions({});
                           setOptions({});
@@ -491,6 +529,26 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         </p>
                       )}
                     </InputItem>
+                    <InputItem id="body">
+                      <Label className={`${body ? "" : "opacity-50"}`}>
+                        {t("body.label")}
+                      </Label>
+                      <Combobox
+                        label={t("body.label")}
+                        disabled={isLoading || !bodyStyles.length}
+                        values={bodyStyles}
+                        initialValue={body}
+                        isLoading={!body && isLoading}
+                        onChange={(value) => {
+                          setBody(value);
+                        }}
+                      />
+                      {autoErrors?.body && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.body}
+                        </p>
+                      )}
+                    </InputItem>
                     <InputItem id="doors">
                       <Label className={`${doors ? "" : "opacity-50"}`}>
                         {t("doors.label")}
@@ -513,23 +571,24 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         </p>
                       )}
                     </InputItem>
-                    <InputItem id="body">
-                      <Label className={`${body ? "" : "opacity-50"}`}>
-                        {t("body.label")}
+                    <InputItem id="other">
+                      <Label className={`${other ? "" : "opacity-50"}`}>
+                        {t("other.label")}
                       </Label>
-                      <Combobox
-                        label={t("body.label")}
-                        disabled={isLoading || !bodyStyles.length}
-                        values={bodyStyles}
-                        initialValue={body}
-                        isLoading={!body && isLoading}
-                        onChange={(value) => {
-                          setBody(value);
+                      <Textarea
+                        className="h-12 sm:pr-12"
+                        id="other"
+                        placeholder={t("other.placeholder")}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        value={other}
+                        onChange={(e) => {
+                          setOther(e.target.value);
                         }}
                       />
-                      {autoErrors?.body && (
+                      {autoErrors?.doors && (
                         <p className="px-1 text-xs text-red-600">
-                          {autoErrors.body}
+                          {autoErrors.doors}
                         </p>
                       )}
                     </InputItem>

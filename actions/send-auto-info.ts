@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
-export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make, model, registrationDate, series, chosenOptions, mileage, displacement, body, doors }) => {
+export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make, model, registrationDate, series, chosenOptions, mileage, displacement, body, isSwiss, doors, other }) => {
 	const optionsAsHTMLString = (option) => {
 		let html: string | null = null;
 		Object.keys(option).forEach(key => {
@@ -21,7 +21,7 @@ export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make
 	}
 
 	try {
-		console.log('submitAutoInfo:', userName, userEmail, userPhone, make, model, registrationDate, series, optionsAsHTMLString(chosenOptions));
+		console.log('submitAutoInfo:', userName, userEmail, userPhone, make, model, registrationDate, series, mileage, displacement, body, isSwiss, doors, optionsAsHTMLString(chosenOptions), other);
 		// await resend.emails.send({
 		// 	from: siteConfig.name + '<info@resend.dev>',
 		// 	to: siteConfig.mailSupport,
@@ -38,7 +38,9 @@ export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make
 		// 		<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Displacement: ${displacement}</p>
 		// 		<div style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Trim: ${optionsAsHTMLString(chosenOptions)}</div>
 		// 		<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Body: ${body}</p>
+		// 		<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Is Swiss: ${isSwiss}</p>
 		// 		<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Doors: ${doors}</p>
+		// 		<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Other: ${other}</p>
 		// 	`,
 		// });
 	} catch (error) {
