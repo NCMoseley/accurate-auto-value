@@ -1,8 +1,9 @@
 {
 	"HeroLanding": {
-		"a": "Lightning fast car valuation",
-		"b": "Get a fair and accurate value for your car in minutes.",
-		"c": "Go to the about page"
+		"title": "Lightning fast car valuation",
+		"title-b": "for Switzerland",
+		"subtitle": "Get a fair and accurate value for your car in minutes. Swiss cars and cars from other countries are supported.",
+		"link": "Go to the about page"
 	},
 	"Testimonials": {
 		"a": "Testimonials",
