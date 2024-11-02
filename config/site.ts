@@ -4,7 +4,7 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  name: "Accurate Auto Value",
+  name: "CAR VAL APP",
   description:
     "Get a fair and accurate value for your car in minutes.",
   url: site_url,

@@ -47,7 +47,7 @@ export default async function HeroLanding() {
 
         <h1 className="text-balance font-urban text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-[66px]">
           {t.raw("title")}{" "}
-          <span className="text-gradient_indigo-purple font-extrabold">
+          <span className="font-extrabold text-red-500">
             {/* {siteConfig.name} */}
             {t.raw("title-b")}
           </span>

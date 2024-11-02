@@ -229,7 +229,7 @@ export function scrollToElement(elementId: string, offset: number = 0) {
     // Scroll to the new position with the offset
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth', // Optional: smooth scrolling
+      behavior: 'instant', // Optional: smooth scrolling
     });
 
   } else {

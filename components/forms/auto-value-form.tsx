@@ -2,20 +2,14 @@
 
 import React, { HTMLAttributes, useEffect, useState } from "react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { Link } from "@/i18n/routing";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowUpRight } from "lucide-react";
-import { signIn } from "next-auth/react";
-import { useLocale, useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { capitalize, cn, fetcher, scrollToElement } from "@/lib/utils";
+import { capitalize, cn, scrollToElement } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -23,7 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NumberInput } from "@/components/ui/number-input";
 import CheckoutForm from "@/components/forms/checkout-form";
@@ -311,7 +304,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   }
 
   const TitleWithLoader = ({ title }: { title: string }) => (
-    <CardTitle className="text-gradient_indigo-purple flex flex-row">
+    <CardTitle className="flex flex-row text-red-500">
       {t(title)}
       {isLoading ? (
         <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
@@ -328,8 +321,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     value: string;
     required?: boolean;
   }) => {
-    const requiredClassName =
-      required && !value ? "text-gradient_indigo-purple" : "";
+    const requiredClassName = required && !value ? "text-red-500" : "";
     const classNames = cn("flex flex-row items-baseline", requiredClassName);
     return (
       <div className={classNames}>
@@ -422,7 +414,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.registrationDate}
                         </p>
                       )}
@@ -449,7 +441,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.registrationDate}
                         </p>
                       )}
@@ -534,7 +526,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.mileage && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.mileage}
                         </p>
                       )}
@@ -554,7 +546,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.body && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.body}
                         </p>
                       )}
@@ -576,7 +568,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.mileage && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.mileage}
                         </p>
                       )}
@@ -598,7 +590,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.doors && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.doors}
                         </p>
                       )}
@@ -619,7 +611,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.doors && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.doors}
                         </p>
                       )}
@@ -653,11 +645,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                   </div>
                   {allFilled() && (
                     <Button
-                      // type="submit"
                       onClick={() => {
                         saveAutoData();
                       }}
-                      className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                      className="mb-4 mt-24 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
                       disabled={isLoading}
                     >
                       {t("next.label")}
