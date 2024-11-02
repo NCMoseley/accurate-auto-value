@@ -17,7 +17,7 @@
 	},
 	"AutoValueForm": {
 		"title": "Please fill in the following details to get your car value.",
-		"description": "Just a few details to get your car value",
+		"description": "Just a few details to get your rapid, accurate valuation",
 		"bodyStyles": {
 			"wagon": "Wagon",
 			"sedan": "Sedan",

@@ -304,7 +304,16 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   }
 
   const TitleWithLoader = ({ title }: { title: string }) => (
-    <CardTitle className="flex flex-row text-red-500">
+    <CardTitle className="flex flex-row font-bold text-red-500">
+      {t(title)}
+      {isLoading ? (
+        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+      ) : null}
+    </CardTitle>
+  );
+
+  const TitleWithLoaderAlt = ({ title }: { title: string }) => (
+    <CardTitle className="flex flex-row font-bold text-white">
       {t(title)}
       {isLoading ? (
         <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
@@ -321,12 +330,14 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     value: string;
     required?: boolean;
   }) => {
-    const requiredClassName = required && !value ? "text-red-500" : "";
-    const classNames = cn("flex flex-row items-baseline", requiredClassName);
+    const requiredClassName = required && !value ? "text-orange-500" : "";
+    const classNames = cn("text-light-blue", requiredClassName);
     return (
-      <div className={classNames}>
-        <CardDescription>{t(`autoInfo.${title}`)}</CardDescription>
-        <h3 className="ml-2">{capitalize(value)}</h3>
+      <div className={"flex flex-row items-baseline"}>
+        <CardDescription className={classNames}>
+          {t(`autoInfo.${title}`)}
+        </CardDescription>
+        <h3 className="ml-2 text-white">{capitalize(value)}</h3>
       </div>
     );
   };
@@ -334,11 +345,11 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
-        <Card className="sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
+        <Card className="bg-blue-500 sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
             <div className="grid gap-2">
-              <TitleWithLoader title="autoInfo.title" />
-              <CardDescription className="text-balance">
+              <TitleWithLoaderAlt title="autoInfo.title" />
+              <CardDescription className="text-balance text-white">
                 {t("autoInfo.description")}
               </CardDescription>
             </div>
@@ -368,8 +379,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                 />
               ))}
               <div className="flex flex-row flex-wrap items-baseline">
-                <CardDescription>{t(`autoInfo.other`)}</CardDescription>
-                <h3 className="ml-2">{other}</h3>
+                <CardDescription className="text-light-blue">
+                  {t(`autoInfo.other`)}
+                </CardDescription>
+                <h3 className="ml-2 text-white">{other}</h3>
               </div>
             </div>
           </CardContent>
@@ -648,7 +661,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                       onClick={() => {
                         saveAutoData();
                       }}
-                      className="mb-4 mt-24 w-full rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                      className="mb-4 mt-24 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
                       disabled={isLoading}
                     >
                       {t("next.label")}
@@ -699,7 +712,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                   </div>
                   <Button
                     onClick={startOver}
-                    className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                    className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
                     disabled={isLoading}
                   >
                     {t("paymentConfirmed.button")}
