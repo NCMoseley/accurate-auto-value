@@ -298,6 +298,13 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     </CardTitle>
   );
 
+  const InfoRow = ({ title, value }: { title: string; value: string }) => (
+    <div className="flex flex-row items-baseline">
+      <CardDescription>{t(`autoInfo.${title}`)}</CardDescription>
+      <h3 className="ml-2">{capitalize(value)}</h3>
+    </div>
+  );
+
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row gap-10 pb-32 sm:gap-y-16">
@@ -313,31 +320,16 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
           <CardContent className="p-4">
             <div className="flex flex-col gap-2">
-              <CardDescription>
-                {t("autoInfo.registrationDate")}
-              </CardDescription>{" "}
-              <h3>{registrationDate}</h3>
-              <CardDescription>{t("autoInfo.make")}</CardDescription>{" "}
-              <h3>{make}</h3>
-              <CardDescription>{t("autoInfo.model")}</CardDescription>{" "}
-              <h3>{model}</h3>
-              <CardDescription>{t("autoInfo.series")}</CardDescription>{" "}
-              <h3>{series}</h3>
-              <CardDescription>{t("autoInfo.mileage")}</CardDescription>{" "}
-              <h3>{mileage}</h3>
-              <CardDescription>
-                {t("autoInfo.displacement")}
-              </CardDescription>{" "}
-              <h3>{displacement}</h3>
-              <CardDescription>{t("autoInfo.body")}</CardDescription>{" "}
-              <h3>{body}</h3>
-              <CardDescription>{t("autoInfo.doors")}</CardDescription>{" "}
-              <h3>{doors}</h3>
+              <InfoRow title="registrationDate" value={registrationDate} />
+              <InfoRow title="make" value={make} />
+              <InfoRow title="model" value={model} />
+              <InfoRow title="series" value={series} />
+              <InfoRow title="mileage" value={mileage} />
+              <InfoRow title="displacement" value={displacement} />
+              <InfoRow title="body" value={body} />
+              <InfoRow title="doors" value={doors} />
               {Object.keys(chosenOptions).map((key) => (
-                <>
-                  <CardDescription>{t(`autoInfo.${key}`)}:</CardDescription>
-                  <h3>{chosenOptions[key]}</h3>
-                </>
+                <InfoRow title={key} value={chosenOptions[key]} />
               ))}
             </div>
           </CardContent>
