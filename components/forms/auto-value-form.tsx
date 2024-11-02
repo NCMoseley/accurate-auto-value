@@ -111,7 +111,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   useEffect(() => {
-    scrollToElement("scroll-to-anchor");
+    scrollToElement("scroll-to-anchor", 300);
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
       setRegistrationDate(data.registrationDate);
@@ -235,7 +235,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
     setStage(2);
-    scrollToElement("scroll-to-anchor");
+    scrollToElement("scroll-to-anchor", 300);
   }
 
   function allFilled() {
@@ -304,14 +304,14 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   function startOver() {
     setIsLoading(true);
     setStage(1);
-    scrollToElement("scroll-to-anchor");
+    scrollToElement("scroll-to-anchor", 300);
     localStorage.removeItem("user-auto-data");
     window.location.assign("/");
     setIsLoading(false);
   }
 
   const TitleWithLoader = ({ title }: { title: string }) => (
-    <CardTitle className="flex flex-row">
+    <CardTitle className="text-gradient_indigo-purple flex flex-row">
       {t(title)}
       {isLoading ? (
         <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />

@@ -216,12 +216,22 @@ export const getBlurDataURL = async (url: string | null) => {
   }
 };
 
-export function scrollToElement(elementId: string) {
+export function scrollToElement(elementId: string, offset: number = 0) {
   if (typeof document === 'undefined') return;
   const element = document.getElementById(elementId);
   if (element) {
-    // Scroll to the element smoothly
-    element.scrollIntoView({ behavior: 'instant', block: 'center' });
+    element.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+    // Calculate the new scroll position
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - offset;
+
+    // Scroll to the new position with the offset
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth', // Optional: smooth scrolling
+    });
+
   } else {
     console.warn(`Element with ID "${elementId}" not found.`);
   }
