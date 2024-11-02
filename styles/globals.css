@@ -101,3 +101,15 @@
 .gradient_indigo-purple {
   background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
 }
+
+.text-red-500 {
+  color: rgb(255 0 0 / 0.8);
+}
+
+.bg-red-500 {
+  background-color: rgb(255 0 0 / 0.8);
+}
+
+.bg-blue-500 {
+  background-color: rgb(0 0 255 / 0.8);
+}

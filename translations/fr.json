@@ -1,8 +1,9 @@
 {
 	"HeroLanding": {
-		"a": "Évaluation de voiture ultra-rapide",
-		"b": "Obtenez une valeur juste et précise pour votre voiture en quelques minutes.",
-		"c": "Allez à la page À propos"
+		"title": "Évaluation de voiture ultra-rapide",
+		"title-b": "pour la Suisse.",
+		"subtitle": "Obtenez une valeur juste et précise pour votre voiture en quelques minutes. Les voitures suisses et les voitures d'autres pays sont prises en charge.",
+		"link": "Allez à la page À propos"
 	},
 	"Testimonials": {
 		"a": "Témoignages",
@@ -10,12 +11,12 @@
 		"c": "Découvrez les retours élogieux de nos clients satisfaits à travers le monde."
 	},
 	"PricingPage": {
-		"a": "Tarification - Valeur Automobile Précise",
+		"a": "Tarification - Évaluation Automobile",
 		"b": "Explorez nos plans d'abonnement.",
 		"c": "En savoir plus sur nos prix."
 	},
 	"AutoValueForm": {
-		"title": "Évaluation Rapide de Voiture",
+		"title": "Veuillez remplir les détails suivants pour obtenir la valeur de votre voiture.",
 		"description": "Juste quelques détails pour obtenir la valeur de votre voiture",
 		"bodyStyles": {
 			"wagon": "Break",
@@ -42,6 +43,10 @@
 		"registrationDate": {
 			"label": "Date d'Enregistrement",
 			"placeholder": "mm/aaaa"
+		},
+		"isSwiss": {
+			"label": "Vendu neuf en Suisse à l'origine ?",
+			"placeholder": "Oui"
 		},
 		"mileage": {
 			"label": "Kilométrage",
@@ -75,8 +80,15 @@
 			"label": "Nombre de Portes",
 			"placeholder": "ex. 4"
 		},
+		"other": {
+			"label": "Informations Supplémentaires",
+			"placeholder": "ex. Historique d'accidents"
+		},
+		"next": {
+			"label": "Suivant"
+		},
 		"email": {
-			"description": "Nous ne partagerons pas votre e-mail avec qui que ce soit",
+			"label": "Nous ne partagerons pas votre e-mail avec qui que ce soit",
 			"placeholder": "Votre adresse e-mail"
 		},
 		"phone": {
@@ -96,6 +108,45 @@
 			"description": "Votre demande de soumission a échoué. Veuillez réessayer.",
 			"fillInAllFields": "Veuillez remplir tous les champs",
 			"enterEmail": "Veuillez entrer votre e-mail"
+		},
+		"checkout": {
+			"title": "Caisse",
+			"description": "Veuillez confirmer vos détails de paiement avec Stripe",
+			"backButton": "Retour"
+		},
+		"paymentConfirmed": {
+			"title": "Paiement confirmé",
+			"description": "Nous vous contacterons très rapidement à l'adresse e-mail suivante.",
+			"button": "Commencer une autre évaluation"
+		},
+		"paymentNotConfirmed": {
+			"title": "Paiement non confirmé",
+			"description": "Votre paiement n'a pas été réussi. Veuillez cliquer ci-dessous pour réessayer. Veuillez contacter le support si le problème persiste.",
+			"button": "Réessayer"
+		},
+		"autoInfo": {
+			"title": "Informations sur le Véhicule",
+			"description": "Les informations suivantes seront utilisées pour calculer la valeur de votre véhicule.",
+			"isSwiss": "*Est Suisse :",
+			"registrationDate": "*Date d'Enregistrement :",
+			"make": "*Marque :",
+			"model": "*Modèle :",
+			"series": "*Série :",
+			"mileage": "*Kilométrage :",
+			"displacement": "Cylindrée :",
+			"body": "*Carrosserie :",
+			"doors": "Portes :",
+			"output": "Puissance (kW) :",
+			"colors": "*Couleur :",
+			"transmission": "*Transmission :",
+			"fuelType": "*Type de Carburant :",
+			"other": "Informations Supplémentaires :"
+		}
+	},
+	"CheckoutForm": {
+		"submit": {
+			"loading": "Traitement...",
+			"label": "Payer"
 		}
 	},
 	"PricingCards": {

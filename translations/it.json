@@ -1,8 +1,9 @@
 {
 	"HeroLanding": {
-		"a": "Valutazione dell'auto fulminea",
-		"b": "Ottieni un valore equo e accurato per la tua auto in pochi minuti.",
-		"c": "Vai alla pagina 'Chi siamo'"
+		"title": "Valutazione auto fulminea",
+		"title-b": "per la Svizzera.",
+		"subtitle": "Ottieni un valore equo e accurato per la tua auto in pochi minuti. Sono supportate auto svizzere e auto di altri paesi.",
+		"link": "Vai alla pagina Chi siamo"
 	},
 	"Testimonials": {
 		"a": "Testimonianze",
@@ -10,16 +11,16 @@
 		"c": "Scopri il feedback entusiasta dei nostri clienti soddisfatti in tutto il mondo."
 	},
 	"PricingPage": {
-		"a": "Prezzi - Valutazione Auto Accurata",
+		"a": "Prezzi - Valutazione Auto",
 		"b": "Esplora i nostri piani di abbonamento.",
 		"c": "Scopri di più sui nostri prezzi."
 	},
 	"AutoValueForm": {
-		"title": "Valutazione Auto Rapida",
+		"title": "Si prega di compilare i seguenti dettagli per ottenere il valore della tua auto.",
 		"description": "Solo alcuni dettagli per ottenere il valore della tua auto",
 		"bodyStyles": {
 			"wagon": "Station Wagon",
-			"sedan": "Berlina",
+			"sedan": "Berline",
 			"hatchback": "Hatchback",
 			"suv": "SUV",
 			"coupe": "Coupé",
@@ -42,6 +43,10 @@
 		"registrationDate": {
 			"label": "Data di Registrazione",
 			"placeholder": "mm/aaaa"
+		},
+		"isSwiss": {
+			"label": "Venduto nuovo in Svizzera?",
+			"placeholder": "Sì"
 		},
 		"mileage": {
 			"label": "Chilometraggio",
@@ -68,15 +73,22 @@
 			"placeholder": "cc"
 		},
 		"body": {
-			"label": "Stile della Carrozzeria",
+			"label": "Stile di Carrozzeria",
 			"placeholder": "es. Hatchback"
 		},
 		"doors": {
 			"label": "Numero di Porte",
 			"placeholder": "es. 4"
 		},
+		"other": {
+			"label": "Informazioni Aggiuntive",
+			"placeholder": "es. Storia degli incidenti"
+		},
+		"next": {
+			"label": "Avanti"
+		},
 		"email": {
-			"description": "Non condivideremo la tua email con nessuno",
+			"label": "Non condivideremo la tua email con nessuno",
 			"placeholder": "Il tuo indirizzo email"
 		},
 		"phone": {
@@ -96,11 +108,50 @@
 			"description": "La tua richiesta di invio è fallita. Per favore riprova.",
 			"fillInAllFields": "Per favore compila tutti i campi",
 			"enterEmail": "Per favore inserisci la tua email"
+		},
+		"checkout": {
+			"title": "Cassa",
+			"description": "Si prega di confermare i dettagli di pagamento con Stripe",
+			"backButton": "Torna indietro"
+		},
+		"paymentConfirmed": {
+			"title": "Pagamento confermato",
+			"description": "Ti contatteremo molto rapidamente all'indirizzo email seguente.",
+			"button": "Inizia un'altra valutazione"
+		},
+		"paymentNotConfirmed": {
+			"title": "Pagamento non confermato",
+			"description": "Il tuo pagamento non è andato a buon fine. Per favore clicca qui sotto per riprovare. Contatta il supporto se il problema persiste.",
+			"button": "Riprova"
+		},
+		"autoInfo": {
+			"title": "Informazioni sul Veicolo",
+			"description": "Le seguenti informazioni saranno utilizzate per calcolare il valore del tuo veicolo.",
+			"isSwiss": "*È svizzero:",
+			"registrationDate": "*Data di Registrazione:",
+			"make": "*Marca:",
+			"model": "*Modello:",
+			"series": "*Serie:",
+			"mileage": "*Chilometraggio:",
+			"displacement": "Cilindrata:",
+			"body": "*Carrozzeria:",
+			"doors": "Porte:",
+			"output": "Potenza (kW):",
+			"colors": "*Colore:",
+			"transmission": "*Trasmissione:",
+			"fuelType": "*Tipo di Carburante:",
+			"other": "Informazioni Aggiuntive:"
+		}
+	},
+	"CheckoutForm": {
+		"submit": {
+			"loading": "Elaborazione...",
+			"label": "Paga"
 		}
 	},
 	"PricingCards": {
 		"a": "Calcolatore",
-		"b": "Reattivo e accurato",
+		"b": "Reattivo e preciso",
 		"c": "Annuale",
 		"d": "Mensile",
 		"e": "Email",
