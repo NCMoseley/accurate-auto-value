@@ -86,7 +86,9 @@ export function AutoValueForm({
   const [displacement, setDisplacement] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const [doors, setDoors] = useState<string>("");
-  const [option, setOption] = useState<{ [key: string]: string }>({});
+  const [chosenOptions, setChosenOptions] = useState<{ [key: string]: string }>(
+    {},
+  );
   const [options, setOptions] = useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -108,6 +110,25 @@ export function AutoValueForm({
     { value: t("bodyStyles.van"), label: t("bodyStyles.van") },
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
   ];
+
+  useEffect(() => {
+    scrollToElement("stage-1");
+    if (localStorage.getItem("user-auto-data")) {
+      const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
+      setRegistrationDate(data.registrationDate);
+      setMake(data.make);
+      getModels(data.make);
+      setModel(data.model);
+      getSeries(data.make, data.model);
+      setSeries(data.series);
+      getOptions(data.make, data.model, data.series);
+      setChosenOptions(data.chosenOptions);
+      setMileage(data.mileage);
+      setDisplacement(data.displacement);
+      setBody(data.body);
+      setDoors(data.doors);
+    }
+  }, []);
 
   useEffect(() => {
     document.getElementById("registrationDate")?.focus();
@@ -149,7 +170,6 @@ export function AutoValueForm({
     setIsLoading(true);
     const res = await getAllSeries(dMake, dModel);
     setSerieses(res);
-    console.log("res:", res.length, res[0].value);
     if (res.length === 1) {
       setSeries(res[0].value);
     }
@@ -161,7 +181,7 @@ export function AutoValueForm({
     setIsLoading(true);
     const res = await getAllOptions(dMake, dModel, dSeries);
     setOptions(res.options as any);
-    setOption(res.option);
+    // setChosenOptions(res.option);
     setIsLoading(false);
     document.getElementById("options")?.focus();
   }
@@ -170,8 +190,22 @@ export function AutoValueForm({
     setAutoErrors((prev) => ({ ...prev, [key]: message }));
   }
 
-  function saveAutoData(data: FormData) {
+  function saveAutoData() {
+    const data = {
+      registrationDate,
+      make,
+      model,
+      series,
+      chosenOptions,
+      mileage,
+      displacement,
+      body,
+      doors,
+    };
+    console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
+    setStage(2);
+    scrollToElement("form-element");
   }
 
   async function onSubmit(
@@ -186,7 +220,7 @@ export function AutoValueForm({
       !make ||
       !model ||
       !series ||
-      !option ||
+      !chosenOptions ||
       !body ||
       !doors
     ) {
@@ -206,7 +240,7 @@ export function AutoValueForm({
       make,
       model,
       series,
-      option,
+      chosenOptions,
       mileage,
       displacement,
       body,
@@ -237,20 +271,27 @@ export function AutoValueForm({
       displacement &&
       doors &&
       body &&
-      Object.keys(option).length === Object.keys(options).length
+      Object.keys(chosenOptions).length === Object.keys(options).length
     );
   }
 
   return (
     <section>
-      <div className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16">
+      <div
+        id="form-element"
+        className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16"
+      >
         <Card className="ml-auto w-full max-w-2xl">
           {stage === 1 ? (
             <>
-              {scrollToElement("stage-1")}
               <CardHeader className="flex flex-row flex-wrap">
-                <div id="stage-1" className="grid gap-2">
-                  <CardTitle>{t("title")}</CardTitle>
+                <div className="grid gap-2">
+                  <CardTitle className="flex flex-row">
+                    {t("title")}
+                    {isLoading ? (
+                      <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+                    ) : null}
+                  </CardTitle>
                   <CardDescription className="text-balance">
                     {t("description")}
                   </CardDescription>
@@ -260,7 +301,7 @@ export function AutoValueForm({
               <CardContent className="p-4">
                 <form
                   className="flex flex-col"
-                  onSubmit={handleSubmit(saveAutoData)}
+                  // onSubmit={handleSubmit(saveAutoData)}
                 >
                   <div
                     className={cn(
@@ -282,6 +323,7 @@ export function AutoValueForm({
                         type="number"
                         autoComplete="off"
                         autoCorrect="off"
+                        value={registrationDate}
                         // autoFocus={true}
                         onChange={(e) => {
                           console.log("registrationDate:", e.target.value);
@@ -302,6 +344,7 @@ export function AutoValueForm({
                         disabled={isLoading || !makes.length}
                         label={t("make.label")}
                         values={makes}
+                        initialValue={make}
                         isLoading={!make && isLoading}
                         onChange={(value) => {
                           setModel("");
@@ -309,7 +352,7 @@ export function AutoValueForm({
                           setDisplacement("");
                           setDoors("");
                           setBody("");
-                          setOption({});
+                          setChosenOptions({});
                           setOptions({});
                           setMake(value);
                           getModels(value);
@@ -324,13 +367,14 @@ export function AutoValueForm({
                         label={t("model.label")}
                         disabled={isLoading || !models.length}
                         values={models}
+                        initialValue={model}
                         isLoading={!model && isLoading}
                         onChange={(value) => {
                           setSeries("");
                           setDisplacement("");
                           setDoors("");
                           setBody("");
-                          setOption({});
+                          setChosenOptions({});
                           setOptions({});
                           setModel(value);
                           getSeries(make, value);
@@ -345,12 +389,13 @@ export function AutoValueForm({
                         label={t("series.label")}
                         disabled={isLoading || !serieses.length}
                         values={serieses}
+                        initialValue={series}
                         isLoading={!series && isLoading}
                         onChange={(value) => {
                           setDisplacement("");
                           setDoors("");
                           setBody("");
-                          setOption({});
+                          setChosenOptions({});
                           setOptions({});
                           setSeries(value);
                           getOptions(make, model, value);
@@ -368,6 +413,7 @@ export function AutoValueForm({
                         type="text"
                         autoComplete="off"
                         autoCorrect="off"
+                        value={mileage}
                         onChange={(e) => {
                           setMileage(e.target.value);
                         }}
@@ -389,6 +435,7 @@ export function AutoValueForm({
                         type="text"
                         autoComplete="off"
                         autoCorrect="off"
+                        value={displacement}
                         onChange={(e) => {
                           setDisplacement(e.target.value);
                         }}
@@ -410,6 +457,7 @@ export function AutoValueForm({
                         type="text"
                         autoComplete="off"
                         autoCorrect="off"
+                        value={doors}
                         onChange={(e) => {
                           setDoors(e.target.value);
                         }}
@@ -428,6 +476,7 @@ export function AutoValueForm({
                         label={t("body.label")}
                         disabled={isLoading || !bodyStyles.length}
                         values={bodyStyles}
+                        initialValue={body}
                         isLoading={!body && isLoading}
                         onChange={(value) => {
                           setBody(value);
@@ -442,12 +491,12 @@ export function AutoValueForm({
                     {options &&
                       Object.keys(options).map((key, i) => (
                         <InputItem
-                          id={i === 0 ? "option" : ""}
+                          id={i === 0 ? "chosenOptions" : ""}
                           key={key}
                           className="gap-6"
                         >
                           <Label
-                            className={`${option[key] ? "" : "opacity-50"}`}
+                            className={`${chosenOptions[key] ? "" : "opacity-50"}`}
                           >
                             {t(`${key}.label`)}
                           </Label>
@@ -455,9 +504,12 @@ export function AutoValueForm({
                             label={t(`${key}.label`)}
                             disabled={isLoading}
                             values={options[key]}
-                            initialValue={option[key]}
+                            initialValue={chosenOptions[key]}
                             onChange={(value) =>
-                              setOption((prev) => ({ ...prev, [key]: value }))
+                              setChosenOptions((prev) => ({
+                                ...prev,
+                                [key]: value,
+                              }))
                             }
                           />
                         </InputItem>
@@ -465,8 +517,12 @@ export function AutoValueForm({
                   </div>
                   {allFilled() && (
                     <Button
-                      type="submit"
-                      onClick={() => setStage(2)}
+                      // type="submit"
+                      onClick={() => {
+                        saveAutoData();
+                        setStage(2);
+                        scrollToElement("form-element");
+                      }}
                       className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
                       disabled={isLoading}
                     >
@@ -479,10 +535,14 @@ export function AutoValueForm({
           ) : null}
           {stage === 2 ? (
             <>
-              {scrollToElement("stage-2")} {scrollToElement("stage-2")}
               <CardHeader className="flex flex-row flex-wrap">
-                <div id="stage-2" className="grid gap-2">
-                  <CardTitle>{t("checkout.title")}</CardTitle>
+                <div className="grid gap-2">
+                  <CardTitle>
+                    {t("checkout.title")}{" "}
+                    {isLoading ? (
+                      <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+                    ) : null}
+                  </CardTitle>
                   <CardDescription className="text-balance">
                     {t("checkout.description")}
                   </CardDescription>
@@ -570,12 +630,16 @@ export function AutoValueForm({
           ) : null}
           {stage === 3 ? (
             <>
-              {scrollToElement("stage-3")}
               {paymentConfirmed ? (
                 <>
                   <CardHeader className="flex flex-row flex-wrap">
-                    <div id="stage-3" className="grid gap-2">
-                      <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
+                    <div className="grid gap-2">
+                      <CardTitle>
+                        {t("paymentConfirmed.title")}{" "}
+                        {isLoading ? (
+                          <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+                        ) : null}
+                      </CardTitle>
                       {isLoading ? (
                         <>
                           <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -595,7 +659,12 @@ export function AutoValueForm({
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
                   <div id="stage-3" className="grid gap-2">
-                    <CardTitle>{t("paymentNotConfirmed.title")}</CardTitle>
+                    <CardTitle>
+                      {t("paymentNotConfirmed.title")}{" "}
+                      {isLoading ? (
+                        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+                      ) : null}
+                    </CardTitle>
                     {isLoading ? (
                       <>
                         <Icons.spinner className="mr-2 size-4 animate-spin" />

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useEffect } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn, displayFormat, truncateWithCapitalization } from "@/lib/utils";
@@ -49,6 +50,10 @@ export function Combobox({
   const [localFocus, setLocalFocus] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
 
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
   const Loading = () => {
     return (
       <>
@@ -95,7 +100,7 @@ export function Combobox({
                     key={item.value}
                     value={item.value}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
+                      // setValue(currentValue === value ? "" : currentValue);
                       onChange(currentValue);
                       setOpen(false);
                     }}

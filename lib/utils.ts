@@ -217,6 +217,7 @@ export const getBlurDataURL = async (url: string | null) => {
 };
 
 export function scrollToElement(elementId: string) {
+  if (typeof document === 'undefined') return;
   const element = document.getElementById(elementId);
   if (element) {
     // Scroll to the element smoothly
