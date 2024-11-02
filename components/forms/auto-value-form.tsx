@@ -341,8 +341,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
   return (
     <section>
-      <div className="container flex w-full max-w-6xl flex-row gap-10 pb-32 sm:gap-y-16">
-        <Card className="w-[33%]">
+      <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
+        <Card className="sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
             <div className="grid gap-2">
               <TitleWithLoader title="autoInfo.title" />
@@ -352,7 +352,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
             </div>
           </CardHeader>
 
-          <CardContent className="p-4">
+          <CardContent>
             <div className="flex flex-col gap-2">
               <InfoRow
                 title="registrationDate"
@@ -382,7 +382,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
             </div>
           </CardContent>
         </Card>
-        <Card className="w-[66%]">
+        <Card
+          id="scroll-to-anchor"
+          className="sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[650px]"
+        >
           {stage === 1 ? (
             <>
               <CardHeader className="flex flex-row flex-wrap">
@@ -675,15 +678,19 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                 </div>
               </CardHeader>
 
-              <CardContent className="p-4">
-                <div
+              <CardContent>
+                <Button variant="link" onClick={() => setStage(1)}>
+                  <Icons.chevronLeft className="size-4" />
+                  {t("checkout.backButton")}
+                </Button>
+                {/* <div
                   className={cn(
                     "flex w-full flex-row flex-wrap justify-center gap-4",
                     className,
                   )}
-                >
-                  <CheckoutForm uiMode="embedded" />
-                </div>
+                > */}
+                <CheckoutForm uiMode="embedded" />
+                {/* </div> */}
               </CardContent>
             </>
           ) : null}

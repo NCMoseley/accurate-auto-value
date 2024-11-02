@@ -1,7 +1,7 @@
 {
 	"HeroLanding": {
 		"title": "Lightning fast auto valuation",
-		"title-b": "for Switzerland",
+		"title-b": "for Switzerland.",
 		"subtitle": "Get a fair and accurate value for your car in minutes. Swiss cars and cars from other countries are supported.",
 		"link": "Go to the about page"
 	},
@@ -16,7 +16,7 @@
 		"c": "Learn more about our pricing."
 	},
 	"AutoValueForm": {
-		"title": "Rapid Auto Valuation",
+		"title": "Please fill in the following details to get your car value.",
 		"description": "Just a few details to get your car value",
 		"bodyStyles": {
 			"wagon": "Wagon",
@@ -111,7 +111,8 @@
 		},
 		"checkout": {
 			"title": "Checkout",
-			"description": "Please confirm your payment details with Stripe"
+			"description": "Please confirm your payment details with Stripe",
+			"backButton": "Go back"
 		},
 		"paymentConfirmed": {
 			"title": "Payment confirmed",
@@ -126,19 +127,19 @@
 		"autoInfo": {
 			"title": "Vehicle Information",
 			"description": "The following information will be used to calculate the value of your vehicle.",
-			"registrationDate": "Registration Date:",
-			"make": "Make:",
-			"model": "Model:",
-			"series": "Series:",
-			"mileage": "Mileage:",
+			"isSwiss": "*Is Swiss:",
+			"registrationDate": "*Registration Date:",
+			"make": "*Make:",
+			"model": "*Model:",
+			"series": "*Series:",
+			"mileage": "*Mileage:",
 			"displacement": "Displacement:",
-			"body": "Body:",
+			"body": "*Body:",
 			"doors": "Doors:",
-			"isSwiss": "Is Swiss:",
 			"output": "Output (kW):",
-			"colors": "Color:",
-			"transmission": "Transmission:",
-			"fuelType": "Fuel Type:",
+			"colors": "*Color:",
+			"transmission": "*Transmission:",
+			"fuelType": "*Fuel Type:",
 			"other": "Additional Information:"
 		}
 	},
