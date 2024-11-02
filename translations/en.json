@@ -115,7 +115,8 @@
 		},
 		"paymentConfirmed": {
 			"title": "Payment confirmed",
-			"description": "We'll get back to you very swiftly at the following email address."
+			"description": "We'll get back to you very swiftly at the following email address.",
+			"button": "Start another valuation"
 		},
 		"paymentNotConfirmed": {
 			"title": "Payment not confirmed",

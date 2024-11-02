@@ -63,13 +63,13 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const t = useTranslations("AutoValueForm");
   const router = useSearchParams();
   const session_id = router.get("session_id");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(userAuthSchema),
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<FormData>({
+  //   resolver: zodResolver(userAuthSchema),
+  // });
   const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
   const [registrationDate, setRegistrationDate] = useState<string>("");
   const [isSwiss, setIsSwiss] = useState<string>("");
@@ -90,6 +90,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const [options, setOptions] = useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(true);
   const [stage, setStage] = useState<number>(initialStage ?? 1);
 
   const [phone, setPhone] = useState<string>("");
@@ -135,7 +136,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     document.getElementById("registrationDate")?.focus();
     getMakes();
     if (session_id) {
-      setIsLoading(true);
+      setIsPaymentLoading(true);
       setStage(3);
       confirmPayment(session_id)
         .then(({ confirmed, email, name }) => {
@@ -151,11 +152,11 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
           onSubmit(data, name, email, phone);
         })
         .finally(() => {
-          setIsLoading(false);
+          setIsPaymentLoading(false);
         })
         .catch((error) => {
           console.error("Error confirming payment:", error);
-          setIsLoading(false);
+          setIsPaymentLoading(false);
         });
     }
   }, [session_id]);
@@ -207,13 +208,30 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       make,
       model,
       series,
-      chosenOptions,
       mileage,
       displacement,
       body,
       doors,
+      chosenOptions,
       other,
     };
+    if (
+      // (!phone) ||
+      !registrationDate ||
+      !isSwiss ||
+      !make ||
+      !model ||
+      !series ||
+      !mileage ||
+      !body
+    ) {
+      return toast.error(t("error.fillInAllFields"));
+    }
+    Object.keys(chosenOptions).map((key) => {
+      if (key === "transmission" && !chosenOptions[key]) {
+        return toast.error(t("error.fillInAllFields"));
+      }
+    });
     console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
     setStage(2);
@@ -229,7 +247,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       series &&
       mileage &&
       body &&
-      doors &&
       Object.keys(chosenOptions).length === Object.keys(options).length
     );
   }
@@ -250,26 +267,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       body,
       doors,
       mileage,
+      displacement,
       other,
     } = data;
-    if (
-      // (!phone) ||
-      !registrationDate ||
-      !isSwiss ||
-      !make ||
-      !model ||
-      !series ||
-      !chosenOptions ||
-      !body ||
-      !doors ||
-      !mileage ||
-      !other
-    ) {
-      return toast.error(t("error.fillInAllFields"));
-    }
-    if (!email) {
-      return toast.error(t("error.enterEmail"));
-    }
+
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
@@ -287,7 +288,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       isSwiss,
       doors,
       other: other || "",
-      // redirect: false,
     });
 
     if (!submitAutoInfoResult?.ok) {
@@ -296,11 +296,18 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       });
     }
 
-    // setIsLoading(false);
-
     return toast.success(t("success.title"), {
       description: t("success.description"),
     });
+  }
+
+  function startOver() {
+    setIsLoading(true);
+    setStage(1);
+    scrollToElement("scroll-to-anchor");
+    localStorage.removeItem("user-auto-data");
+    window.location.assign("/");
+    setIsLoading(false);
   }
 
   const TitleWithLoader = ({ title }: { title: string }) => (
@@ -361,7 +368,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               <InfoRow title="displacement" value={displacement} />
               <InfoRow title="doors" value={doors} />
               {Object.keys(chosenOptions).map((key) => (
-                <InfoRow title={key} value={chosenOptions[key]} />
+                <InfoRow
+                  key={key}
+                  title={key}
+                  value={chosenOptions[key]}
+                  required={key === "transmission"}
+                />
               ))}
               <div className="flex flex-row flex-wrap items-baseline">
                 <CardDescription>{t(`autoInfo.other`)}</CardDescription>
@@ -679,7 +691,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
             <>
               {paymentConfirmed ? (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="grid gap-2">
+                  <div className="mb-[400px] grid gap-2">
                     <TitleWithLoader title="paymentConfirmed.title" />
                     <CardDescription className="text-balance">
                       {t("paymentConfirmed.description")}
@@ -687,11 +699,18 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     {name && <h3>Name: {name}</h3>}
                     {email && <h2>Email: {email}</h2>}
                   </div>
+                  <Button
+                    onClick={startOver}
+                    className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                    disabled={isLoading}
+                  >
+                    {t("paymentConfirmed.button")}
+                  </Button>
                 </CardHeader>
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="grid gap-2">
-                    {isLoading ? (
+                  <div className="mb-[400px] grid gap-2">
+                    {isPaymentLoading ? (
                       <>
                         <Icons.spinner className="mr-2 size-4 animate-spin" />
                       </>
