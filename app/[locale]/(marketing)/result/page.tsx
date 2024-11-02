@@ -9,7 +9,7 @@ import Powered from "@/components/sections/powered";
 import PreviewLanding from "@/components/sections/preview-landing";
 import Testimonials from "@/components/sections/testimonials";
 
-import { AutoValueForm } from "../../../components/forms/auto-value-form";
+import { AutoValueForm } from "../../../../components/forms/auto-value-form";
 
 export default function IndexPage() {
   const locale = useLocale();
@@ -19,8 +19,8 @@ export default function IndexPage() {
   return (
     <>
       <HeroLanding />
-      <AutoValueForm initialStage={1} />
-      <PreviewLanding />
+      {/* <PreviewLanding /> */}
+      <AutoValueForm initialStage={3} />
       {/* <Powered /> */}
       {/* <BentoGrid /> */}
       {/* <InfoLanding data={infos[0]} reverse={true} /> */}
