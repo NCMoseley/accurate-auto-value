@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { cn, fetcher, scrollToElement } from "@/lib/utils";
+import { capitalize, cn, fetcher, scrollToElement } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -300,8 +300,49 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
   return (
     <section>
-      <div className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16">
-        <Card className="ml-auto w-full max-w-2xl">
+      <div className="container flex w-full max-w-6xl flex-row gap-10 pb-32 sm:gap-y-16">
+        <Card className="w-[33%]">
+          <CardHeader className="flex flex-row flex-wrap">
+            <div className="grid gap-2">
+              <TitleWithLoader title="autoInfo.title" />
+              <CardDescription className="text-balance">
+                {t("autoInfo.description")}
+              </CardDescription>
+            </div>
+          </CardHeader>
+
+          <CardContent className="p-4">
+            <div className="flex flex-col gap-2">
+              <CardDescription>
+                {t("autoInfo.registrationDate")}
+              </CardDescription>{" "}
+              <h3>{registrationDate}</h3>
+              <CardDescription>{t("autoInfo.make")}</CardDescription>{" "}
+              <h3>{make}</h3>
+              <CardDescription>{t("autoInfo.model")}</CardDescription>{" "}
+              <h3>{model}</h3>
+              <CardDescription>{t("autoInfo.series")}</CardDescription>{" "}
+              <h3>{series}</h3>
+              <CardDescription>{t("autoInfo.mileage")}</CardDescription>{" "}
+              <h3>{mileage}</h3>
+              <CardDescription>
+                {t("autoInfo.displacement")}
+              </CardDescription>{" "}
+              <h3>{displacement}</h3>
+              <CardDescription>{t("autoInfo.body")}</CardDescription>{" "}
+              <h3>{body}</h3>
+              <CardDescription>{t("autoInfo.doors")}</CardDescription>{" "}
+              <h3>{doors}</h3>
+              {Object.keys(chosenOptions).map((key) => (
+                <>
+                  <CardDescription>{t(`autoInfo.${key}`)}:</CardDescription>
+                  <h3>{chosenOptions[key]}</h3>
+                </>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="w-[66%]">
           {stage === 1 ? (
             <>
               <CardHeader className="flex flex-row flex-wrap">

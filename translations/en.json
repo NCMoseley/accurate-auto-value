@@ -112,6 +112,22 @@
 			"title": "Payment not confirmed",
 			"description": "Your payment was not successful. Please click below to try again. Please contact support if the issue persists.",
 			"button": "Try again"
+		},
+		"autoInfo": {
+			"title": "Vehicle Information",
+			"description": "The following information will be used to calculate the value of your vehicle.",
+			"registrationDate": "Registration Date:",
+			"make": "Make:",
+			"model": "Model:",
+			"series": "Series:",
+			"mileage": "Mileage:",
+			"displacement": "Displacement:",
+			"body": "Body:",
+			"doors": "Doors:",
+			"output": "Output (kW):",
+			"colors": "Color:",
+			"transmission": "Transmission:",
+			"fuelType": "Fuel Type:"
 		}
 	},
 	"CheckoutForm": {

@@ -35,7 +35,7 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
       if (formRef.current) {
         formRef.current.requestSubmit(); // Trigger form submission
       }
-    }, 300);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);
