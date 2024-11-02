@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { confirmPayment, createCheckoutSession } from "@/actions/stripe";
 import {
@@ -22,12 +22,23 @@ interface CheckoutFormProps {
 }
 
 export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
+  const formRef = useRef<HTMLFormElement | null>(null);
   const t = useTranslations("CheckoutForm");
   const [loading] = useState<boolean>(false);
   const [input, setInput] = useState<{ paymentAmount: number }>({
-    paymentAmount: config.MAX_AMOUNT,
+    paymentAmount: config.MIN_AMOUNT,
   });
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (formRef.current) {
+        formRef.current.requestSubmit(); // Trigger form submission
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const formAction = async (data: FormData): Promise<void> => {
     const uiMode = data.get(
@@ -50,7 +61,11 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
           <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
       ) : (
-        <form className="flex w-full flex-col" action={formAction}>
+        <form
+          ref={formRef}
+          className="flex w-full flex-col"
+          action={formAction}
+        >
           <input type="hidden" name="uiMode" value={props.uiMode} />
           <input
             type="hidden"

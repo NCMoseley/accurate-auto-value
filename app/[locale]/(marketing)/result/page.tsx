@@ -20,7 +20,7 @@ export default function IndexPage() {
     <>
       <HeroLanding />
       {/* <PreviewLanding /> */}
-      <AutoValueForm />
+      <AutoValueForm initialStage={3} />
       {/* <Powered /> */}
       {/* <BentoGrid /> */}
       {/* <InfoLanding data={infos[0]} reverse={true} /> */}

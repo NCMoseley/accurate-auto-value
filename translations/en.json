@@ -106,7 +106,7 @@
 		},
 		"paymentConfirmed": {
 			"title": "Payment confirmed",
-			"description": "We'll get back to you very swiftly at the following email/phone number."
+			"description": "We'll get back to you very swiftly at the following email address."
 		},
 		"paymentNotConfirmed": {
 			"title": "Payment not confirmed",

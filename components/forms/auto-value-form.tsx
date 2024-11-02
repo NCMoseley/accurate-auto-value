@@ -46,8 +46,7 @@ export const metadata: Metadata = {
 };
 
 interface AutoValueFormProps extends HTMLAttributes<HTMLDivElement> {
-  type?: string;
-  initialMakes?: DropdownValue[];
+  initialStage?: number;
 }
 
 type FormData = z.infer<typeof userAuthSchema>;
@@ -59,11 +58,7 @@ export interface Options {
   gears: DropdownValue[];
 }
 
-export function AutoValueForm({
-  className,
-  type,
-  initialMakes,
-}: AutoValueFormProps) {
+export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const t = useTranslations("AutoValueForm");
   const router = useSearchParams();
   const session_id = router.get("session_id");
@@ -77,7 +72,7 @@ export function AutoValueForm({
   const [registrationDate, setRegistrationDate] = useState<string>("");
   const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
   const [make, setMake] = useState<string>("");
-  const [makes, setMakes] = useState<DropdownValue[]>(initialMakes ?? []);
+  const [makes, setMakes] = useState<DropdownValue[]>([]);
   const [model, setModel] = useState<string>("");
   const [models, setModels] = useState<DropdownValue[]>([]);
   const [series, setSeries] = useState<string>("");
@@ -92,7 +87,7 @@ export function AutoValueForm({
   const [options, setOptions] = useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [stage, setStage] = useState<number>(1);
+  const [stage, setStage] = useState<number>(initialStage ?? 1);
 
   const [phone, setPhone] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -127,6 +122,7 @@ export function AutoValueForm({
       setDisplacement(data.displacement);
       setBody(data.body);
       setDoors(data.doors);
+      setIsLoading(false);
     }
   }, []);
 
@@ -136,17 +132,26 @@ export function AutoValueForm({
     if (session_id) {
       setIsLoading(true);
       setStage(3);
-      confirmPayment(session_id).then(({ confirmed, email, name }) => {
-        setPaymentConfirmed(confirmed);
-        setEmail(email);
-        setName(name);
-        if (phone) {
-          setPhone(phone);
-        }
-        const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
-        onSubmit(data, name, email, phone);
-        setIsLoading(false);
-      });
+      confirmPayment(session_id)
+        .then(({ confirmed, email, name }) => {
+          setPaymentConfirmed(confirmed);
+          setEmail(email);
+          setName(name);
+          if (phone) {
+            setPhone(phone);
+          }
+          const data = JSON.parse(
+            localStorage.getItem("user-auto-data") || "{}",
+          );
+          onSubmit(data, name, email, phone);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error confirming payment:", error);
+          setIsLoading(false);
+        });
     }
   }, [session_id]);
 
@@ -214,8 +219,17 @@ export function AutoValueForm({
     email: string,
     phone?: string,
   ) {
+    const {
+      registrationDate,
+      make,
+      model,
+      series,
+      chosenOptions,
+      body,
+      doors,
+    } = data;
     if (
-      (!phone && !email) ||
+      // (!phone) ||
       !registrationDate ||
       !make ||
       !model ||
@@ -226,16 +240,16 @@ export function AutoValueForm({
     ) {
       return toast.error(t("error.fillInAllFields"));
     }
-    if (!data.email) {
+    if (!email) {
       return toast.error(t("error.enterEmail"));
     }
-    setIsLoading(true);
+    // setIsLoading(true);
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
       userName: name,
-      userEmail: data.email.toLowerCase() || "",
-      userPhone: data.phone || "",
+      userEmail: email.toLowerCase() || "",
+      userPhone: phone || "",
       registrationDate,
       make,
       model,
@@ -249,14 +263,14 @@ export function AutoValueForm({
     });
 
     if (!submitAutoInfoResult?.ok) {
-      return toast.error(t("error"), {
+      return toast.error(t("error.title"), {
         description: t("error.description"),
       });
     }
 
-    setIsLoading(false);
+    // setIsLoading(false);
 
-    return toast.success(t("success"), {
+    return toast.success(t("success.title"), {
       description: t("success.description"),
     });
   }
@@ -286,10 +300,7 @@ export function AutoValueForm({
 
   return (
     <section>
-      <div
-        // id="scroll-to-anchor"
-        className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16"
-      >
+      <div className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16">
         <Card className="ml-auto w-full max-w-2xl">
           {stage === 1 ? (
             <>
@@ -303,10 +314,7 @@ export function AutoValueForm({
               </CardHeader>
 
               <CardContent className="p-4">
-                <form
-                  className="flex flex-col"
-                  // onSubmit={handleSubmit(saveAutoData)}
-                >
+                <form className="flex flex-col">
                   <div
                     className={cn(
                       "flex flex-row flex-wrap justify-center gap-4",
@@ -545,6 +553,7 @@ export function AutoValueForm({
                   </CardDescription>
                 </div>
               </CardHeader>
+
               <CardContent className="p-4">
                 <div
                   className={cn(
@@ -554,110 +563,32 @@ export function AutoValueForm({
                 >
                   <CheckoutForm uiMode="embedded" />
                 </div>
-                {/* <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                <div
-                  className={cn(
-                    "mt-24 flex flex-row flex-wrap justify-center gap-4",
-                    className,
-                  )}
-                >
-                  <InputItem id="email">
-                    <Label className={`${email ? "" : "opacity-50"}`}>
-                      {t("email.label")}
-                    </Label>
-                    <Input
-                      className="h-12 sm:pr-12"
-                      id="email"
-                      placeholder={t("email.placeholder")}
-                      type="email"
-                      autoCapitalize="none"
-                      autoComplete="email"
-                      autoCorrect="off"
-                      {...register("email")}
-                      // onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {errors?.email && (
-                      <p className="px-1 text-xs text-red-600">
-                        {errors.email.message}
-                      </p>
-                    )}
-                  </InputItem>
-                  <InputItem id="phone">
-                    <Label className={`${phone ? "" : "opacity-50"}`}>
-                      {t("phone.label")}
-                    </Label>
-                    <NumberInput
-                      className="h-12 sm:pr-12"
-                      id="phone"
-                      placeholder={t("phone.placeholder")}
-                      type="text"
-                      autoComplete="tel"
-                      autoCorrect="off"
-                      {...register("phone")}
-                      // onChange={(e) => {
-                      //   setPhone(e.target.value);
-                      // }}
-                    />
-                    {autoErrors?.phone && (
-                      <p className="px-1 text-xs text-red-600">
-                        {autoErrors.phone}
-                      </p>
-                    )}
-                  </InputItem>
-                </div>
-                {email && (
-                  <Button
-                    type="submit"
-                    className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
-                    disabled={isLoading}
-                  >
-                    {isLoading ? (
-                      <>
-                        <Icons.spinner className="mr-2 size-4 animate-spin" />
-                        {t("submit.loading")}
-                      </>
-                    ) : (
-                      t("submit.label")
-                    )}
-                  </Button>
-                  )}
-                </form> */}
               </CardContent>
             </>
           ) : null}
           {stage === 3 ? (
             <>
               {paymentConfirmed ? (
-                <>
-                  <CardHeader className="flex flex-row flex-wrap">
-                    <div className="grid gap-2">
-                      <TitleWithLoader title="paymentConfirmed.title" />
-                      {isLoading ? (
-                        <>
-                          <Icons.spinner className="mr-2 size-4 animate-spin" />
-                        </>
-                      ) : (
-                        <>
-                          <CardDescription className="text-balance">
-                            {t("paymentConfirmed.description")}
-                            {name && <div>Name: {name}</div>}
-                            {email && <div>Email: {email}</div>}
-                          </CardDescription>
-                        </>
-                      )}
-                    </div>
-                  </CardHeader>
-                </>
+                <CardHeader className="flex flex-row flex-wrap">
+                  <div className="grid gap-2">
+                    <TitleWithLoader title="paymentConfirmed.title" />
+                    <CardDescription className="text-balance">
+                      {t("paymentConfirmed.description")}
+                    </CardDescription>
+                    {name && <h3>Name: {name}</h3>}
+                    {email && <h2>Email: {email}</h2>}
+                  </div>
+                </CardHeader>
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
                   <div className="grid gap-2">
-                    <TitleWithLoader title="paymentNotConfirmed.title" />
                     {isLoading ? (
                       <>
                         <Icons.spinner className="mr-2 size-4 animate-spin" />
                       </>
                     ) : (
                       <>
+                        <TitleWithLoader title="paymentNotConfirmed.title" />
                         <CardDescription className="text-balance">
                           {t("paymentNotConfirmed.description")}
                         </CardDescription>
