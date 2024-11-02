@@ -72,6 +72,8 @@ export function Combobox({
       : `Select ${truncateWithCapitalization(label, 18)}...`;
   };
 
+  const emptyValueClassName = value ? "" : "text-muted-foreground";
+
   return (
     <div className="w-full">
       <Popover open={open} onOpenChange={setOpen}>
@@ -82,7 +84,7 @@ export function Combobox({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="h-12 w-full justify-between"
+            className={cn("h-12 w-full justify-between", emptyValueClassName)}
             autoFocus={autoFocus}
           >
             {isLoading ? <Loading /> : <ButtonValueForDisplay />}

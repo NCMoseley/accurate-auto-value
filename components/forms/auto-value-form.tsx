@@ -220,6 +220,20 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     scrollToElement("scroll-to-anchor");
   }
 
+  function allFilled() {
+    return (
+      registrationDate &&
+      isSwiss &&
+      make &&
+      model &&
+      series &&
+      mileage &&
+      body &&
+      doors &&
+      Object.keys(chosenOptions).length === Object.keys(options).length
+    );
+  }
+
   async function onSubmit(
     data: any,
     name: string,
@@ -289,21 +303,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     });
   }
 
-  function allFilled() {
-    return (
-      registrationDate &&
-      isSwiss &&
-      make &&
-      model &&
-      series &&
-      mileage &&
-      displacement &&
-      body &&
-      doors &&
-      Object.keys(chosenOptions).length === Object.keys(options).length
-    );
-  }
-
   const TitleWithLoader = ({ title }: { title: string }) => (
     <CardTitle className="flex flex-row">
       {t(title)}
@@ -313,12 +312,25 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     </CardTitle>
   );
 
-  const InfoRow = ({ title, value }: { title: string; value: string }) => (
-    <div className="flex flex-row items-baseline">
-      <CardDescription>{t(`autoInfo.${title}`)}</CardDescription>
-      <h3 className="ml-2">{capitalize(value)}</h3>
-    </div>
-  );
+  const InfoRow = ({
+    title,
+    value,
+    required,
+  }: {
+    title: string;
+    value: string;
+    required?: boolean;
+  }) => {
+    const requiredClassName =
+      required && !value ? "text-gradient_indigo-purple" : "";
+    const classNames = cn("flex flex-row items-baseline", requiredClassName);
+    return (
+      <div className={classNames}>
+        <CardDescription>{t(`autoInfo.${title}`)}</CardDescription>
+        <h3 className="ml-2">{capitalize(value)}</h3>
+      </div>
+    );
+  };
 
   return (
     <section>
@@ -335,14 +347,18 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
           <CardContent className="p-4">
             <div className="flex flex-col gap-2">
-              <InfoRow title="registrationDate" value={registrationDate} />
-              <InfoRow title="isSwiss" value={isSwiss} />
-              <InfoRow title="make" value={make} />
-              <InfoRow title="model" value={model} />
-              <InfoRow title="series" value={series} />
-              <InfoRow title="mileage" value={mileage} />
+              <InfoRow
+                title="registrationDate"
+                value={registrationDate}
+                required
+              />
+              <InfoRow title="isSwiss" value={isSwiss} required />
+              <InfoRow title="make" value={make} required />
+              <InfoRow title="model" value={model} required />
+              <InfoRow title="series" value={series} required />
+              <InfoRow title="mileage" value={mileage} required />
+              <InfoRow title="body" value={body} required />
               <InfoRow title="displacement" value={displacement} />
-              <InfoRow title="body" value={body} />
               <InfoRow title="doors" value={doors} />
               {Object.keys(chosenOptions).map((key) => (
                 <InfoRow title={key} value={chosenOptions[key]} />
@@ -374,32 +390,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                       className,
                     )}
                   >
-                    <InputItem id="registrationDate">
-                      <Label
-                        className={`${registrationDate ? "" : "opacity-50"}`}
-                      >
-                        {t("registrationDate.label")}
-                      </Label>
-                      <NumberInput
-                        className="h-12 sm:pr-12"
-                        id="registrationDate"
-                        placeholder={t("registrationDate.placeholder")}
-                        mask={"99/9999"}
-                        type="number"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        value={registrationDate}
-                        // autoFocus={true}
-                        onChange={(e) => {
-                          setRegistrationDate(e.target.value);
-                        }}
-                      />
-                      {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-600">
-                          {autoErrors.registrationDate}
-                        </p>
-                      )}
-                    </InputItem>
                     <InputItem id="isSwiss">
                       <Label className={`${isSwiss ? "" : "opacity-50"}`}>
                         {t("isSwiss.label")}
@@ -414,6 +404,33 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={isSwiss}
                         onChange={(value) => {
                           setIsSwiss(value);
+                        }}
+                      />
+                      {autoErrors?.registrationDate && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.registrationDate}
+                        </p>
+                      )}
+                    </InputItem>
+                    <InputItem id="registrationDate">
+                      <Label
+                        className={`${registrationDate ? "" : "opacity-50"}`}
+                      >
+                        {t("registrationDate.label")}
+                      </Label>
+                      <NumberInput
+                        required
+                        className="h-12 sm:pr-12"
+                        id="registrationDate"
+                        placeholder={t("registrationDate.placeholder")}
+                        mask={"99/9999"}
+                        type="number"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        value={registrationDate}
+                        // autoFocus={true}
+                        onChange={(e) => {
+                          setRegistrationDate(e.target.value);
                         }}
                       />
                       {autoErrors?.registrationDate && (
@@ -507,6 +524,26 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         </p>
                       )}
                     </InputItem>
+                    <InputItem id="body">
+                      <Label className={`${body ? "" : "opacity-50"}`}>
+                        {t("body.label")}
+                      </Label>
+                      <Combobox
+                        label={t("body.label")}
+                        disabled={isLoading || !bodyStyles.length}
+                        values={bodyStyles}
+                        initialValue={body}
+                        isLoading={!body && isLoading}
+                        onChange={(value) => {
+                          setBody(value);
+                        }}
+                      />
+                      {autoErrors?.body && (
+                        <p className="px-1 text-xs text-red-600">
+                          {autoErrors.body}
+                        </p>
+                      )}
+                    </InputItem>
                     <InputItem id="displacement">
                       <Label className={`${displacement ? "" : "opacity-50"}`}>
                         {t("displacement.label")}
@@ -526,26 +563,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                       {autoErrors?.mileage && (
                         <p className="px-1 text-xs text-red-600">
                           {autoErrors.mileage}
-                        </p>
-                      )}
-                    </InputItem>
-                    <InputItem id="body">
-                      <Label className={`${body ? "" : "opacity-50"}`}>
-                        {t("body.label")}
-                      </Label>
-                      <Combobox
-                        label={t("body.label")}
-                        disabled={isLoading || !bodyStyles.length}
-                        values={bodyStyles}
-                        initialValue={body}
-                        isLoading={!body && isLoading}
-                        onChange={(value) => {
-                          setBody(value);
-                        }}
-                      />
-                      {autoErrors?.body && (
-                        <p className="px-1 text-xs text-red-600">
-                          {autoErrors.body}
                         </p>
                       )}
                     </InputItem>
