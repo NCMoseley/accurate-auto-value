@@ -27,7 +27,10 @@ export default async function HeroLanding() {
     .catch((e) => console.log(e));
 
   return (
-    <section className="space-y-6 py-12 sm:py-20 lg:py-20">
+    <section
+      id="scroll-to-anchor"
+      className="space-y-6 py-12 sm:py-20 lg:py-20"
+    >
       <div className="container flex max-w-5xl flex-col items-center gap-5 text-center">
         {/* <Link
           href="https://twitter.com/nathan/status/1810465801649938857"
@@ -43,9 +46,10 @@ export default async function HeroLanding() {
         </Link> */}
 
         <h1 className="text-balance font-urban text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-[66px]">
-          {t.raw("a")}{" "}
+          {t.raw("title")}{" "}
           <span className="text-gradient_indigo-purple font-extrabold">
-            {siteConfig.name}
+            {/* {siteConfig.name} */}
+            {t.raw("title-b")}
           </span>
         </h1>
 
@@ -53,7 +57,7 @@ export default async function HeroLanding() {
           className="max-w-2xl text-balance leading-normal text-muted-foreground sm:text-xl sm:leading-8"
           style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
         >
-          {t.raw("b")}
+          {t.raw("subtitle")}
         </p>
 
         <div
@@ -68,9 +72,9 @@ export default async function HeroLanding() {
               "gap-2",
             )}
           >
-            <span>{t.raw("c")}</span>
+            <span>{t.raw("link")}</span>
             <Icons.arrowRight className="size-4" />
-          </Link> */}
+          </Link>
           {/* <Link
             href={siteConfig.links.github}
             target="_blank"

@@ -91,6 +91,13 @@
   background-clip: text;
 }
 
+.text-gradient_red-white {
+  background: linear-gradient(90deg, #f87171 0%, rgb(255 255 255 / 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .gradient_indigo-purple {
   background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
 }

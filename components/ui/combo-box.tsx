@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useEffect } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn, displayFormat, truncateWithCapitalization } from "@/lib/utils";
@@ -49,6 +50,10 @@ export function Combobox({
   const [localFocus, setLocalFocus] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
 
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
   const Loading = () => {
     return (
       <>
@@ -67,8 +72,10 @@ export function Combobox({
       : `Select ${truncateWithCapitalization(label, 18)}...`;
   };
 
+  const emptyValueClassName = value ? "" : "text-muted-foreground";
+
   return (
-    <div>
+    <div className="w-full">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -77,7 +84,7 @@ export function Combobox({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="h-12 w-64 justify-between"
+            className={cn("h-12 w-full justify-between", emptyValueClassName)}
             autoFocus={autoFocus}
           >
             {isLoading ? <Loading /> : <ButtonValueForDisplay />}
@@ -95,7 +102,7 @@ export function Combobox({
                     key={item.value}
                     value={item.value}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
+                      // setValue(currentValue === value ? "" : currentValue);
                       onChange(currentValue);
                       setOpen(false);
                     }}
