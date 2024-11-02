@@ -63,7 +63,6 @@ export async function createCheckoutSession(
 export async function confirmPayment(session_id: string): Promise<{ confirmed: boolean, email: string, name: string }> {
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
-    console.log("confirmPayment session", session);
     return {
       confirmed: session.payment_status === "paid",
       email: session.customer_details?.email || "",
@@ -77,20 +76,4 @@ export async function confirmPayment(session_id: string): Promise<{ confirmed: b
       name: "",
     };
   }
-}
-
-export async function createPaymentIntent(
-  data: FormData,
-): Promise<{ client_secret: string }> {
-  const paymentIntent: Stripe.PaymentIntent =
-    await stripe.paymentIntents.create({
-      amount: formatAmountForStripe(
-        Number(data.get("paymentAmount") as string),
-        CURRENCY,
-      ),
-      automatic_payment_methods: { enabled: true },
-      currency: CURRENCY,
-    });
-
-  return { client_secret: paymentIntent.client_secret as string };
 }

@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { cn, fetcher } from "@/lib/utils";
+import { cn, fetcher, scrollToElement } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -90,7 +90,7 @@ export function AutoValueForm({
   const [options, setOptions] = useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [stage, setStage] = useState<number>(3);
+  const [stage, setStage] = useState<number>(1);
 
   const [phone, setPhone] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -247,8 +247,9 @@ export function AutoValueForm({
         <Card className="ml-auto w-full max-w-2xl">
           {stage === 1 ? (
             <>
+              {scrollToElement("stage-1")}
               <CardHeader className="flex flex-row flex-wrap">
-                <div className="grid gap-2">
+                <div id="stage-1" className="grid gap-2">
                   <CardTitle>{t("title")}</CardTitle>
                   <CardDescription className="text-balance">
                     {t("description")}
@@ -478,8 +479,9 @@ export function AutoValueForm({
           ) : null}
           {stage === 2 ? (
             <>
+              {scrollToElement("stage-2")} {scrollToElement("stage-2")}
               <CardHeader className="flex flex-row flex-wrap">
-                <div className="grid gap-2">
+                <div id="stage-2" className="grid gap-2">
                   <CardTitle>{t("checkout.title")}</CardTitle>
                   <CardDescription className="text-balance">
                     {t("checkout.description")}
@@ -568,10 +570,11 @@ export function AutoValueForm({
           ) : null}
           {stage === 3 ? (
             <>
+              {scrollToElement("stage-3")}
               {paymentConfirmed ? (
                 <>
                   <CardHeader className="flex flex-row flex-wrap">
-                    <div className="grid gap-2">
+                    <div id="stage-3" className="grid gap-2">
                       <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
                       {isLoading ? (
                         <>
@@ -591,7 +594,7 @@ export function AutoValueForm({
                 </>
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="grid gap-2">
+                  <div id="stage-3" className="grid gap-2">
                     <CardTitle>{t("paymentNotConfirmed.title")}</CardTitle>
                     {isLoading ? (
                       <>
