@@ -1,10 +1,10 @@
 <a href="https://accurate-auto-value.vercel.app">
-  <!-- <img alt="Accurate Auto Value" src="public/_static/og.jpg"> -->
-  <h1 align="center">Accurate Auto Value</h1>
+  <!-- <img alt="Car-Valuation" src="public/_static/og.jpg"> -->
+  <h1 align="center">Car-Valuation</h1>
 </a>
 
 <p align="center">
-  Sell at full speed with Accurate Auto Value !
+  Sell at full speed with Car-Valuation !
 </p>
 
 <br/>

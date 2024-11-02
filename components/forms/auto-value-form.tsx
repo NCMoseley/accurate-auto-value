@@ -2,20 +2,14 @@
 
 import React, { HTMLAttributes, useEffect, useState } from "react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { Link } from "@/i18n/routing";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowUpRight } from "lucide-react";
-import { signIn } from "next-auth/react";
-import { useLocale, useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { capitalize, cn, fetcher, scrollToElement } from "@/lib/utils";
+import { capitalize, cn, scrollToElement } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -23,7 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NumberInput } from "@/components/ui/number-input";
 import CheckoutForm from "@/components/forms/checkout-form";
@@ -63,13 +56,13 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const t = useTranslations("AutoValueForm");
   const router = useSearchParams();
   const session_id = router.get("session_id");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(userAuthSchema),
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<FormData>({
+  //   resolver: zodResolver(userAuthSchema),
+  // });
   const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
   const [registrationDate, setRegistrationDate] = useState<string>("");
   const [isSwiss, setIsSwiss] = useState<string>("");
@@ -90,6 +83,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const [options, setOptions] = useState<Partial<Options>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(true);
   const [stage, setStage] = useState<number>(initialStage ?? 1);
 
   const [phone, setPhone] = useState<string>("");
@@ -110,7 +104,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   useEffect(() => {
-    scrollToElement("scroll-to-anchor");
+    scrollToElement("scroll-to-anchor", 300);
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
       setRegistrationDate(data.registrationDate);
@@ -135,7 +129,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     document.getElementById("registrationDate")?.focus();
     getMakes();
     if (session_id) {
-      setIsLoading(true);
+      setIsPaymentLoading(true);
       setStage(3);
       confirmPayment(session_id)
         .then(({ confirmed, email, name }) => {
@@ -151,11 +145,11 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
           onSubmit(data, name, email, phone);
         })
         .finally(() => {
-          setIsLoading(false);
+          setIsPaymentLoading(false);
         })
         .catch((error) => {
           console.error("Error confirming payment:", error);
-          setIsLoading(false);
+          setIsPaymentLoading(false);
         });
     }
   }, [session_id]);
@@ -207,17 +201,34 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       make,
       model,
       series,
-      chosenOptions,
       mileage,
       displacement,
       body,
       doors,
+      chosenOptions,
       other,
     };
+    if (
+      // (!phone) ||
+      !registrationDate ||
+      !isSwiss ||
+      !make ||
+      !model ||
+      !series ||
+      !mileage ||
+      !body
+    ) {
+      return toast.error(t("error.fillInAllFields"));
+    }
+    Object.keys(chosenOptions).map((key) => {
+      if (key === "transmission" && !chosenOptions[key]) {
+        return toast.error(t("error.fillInAllFields"));
+      }
+    });
     console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
     setStage(2);
-    scrollToElement("scroll-to-anchor");
+    scrollToElement("scroll-to-anchor", 300);
   }
 
   function allFilled() {
@@ -229,7 +240,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       series &&
       mileage &&
       body &&
-      doors &&
       Object.keys(chosenOptions).length === Object.keys(options).length
     );
   }
@@ -250,26 +260,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       body,
       doors,
       mileage,
+      displacement,
       other,
     } = data;
-    if (
-      // (!phone) ||
-      !registrationDate ||
-      !isSwiss ||
-      !make ||
-      !model ||
-      !series ||
-      !chosenOptions ||
-      !body ||
-      !doors ||
-      !mileage ||
-      !other
-    ) {
-      return toast.error(t("error.fillInAllFields"));
-    }
-    if (!email) {
-      return toast.error(t("error.enterEmail"));
-    }
+
     console.log("onSubmit", data);
 
     const submitAutoInfoResult = await submitAutoInfo({
@@ -287,7 +281,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       isSwiss,
       doors,
       other: other || "",
-      // redirect: false,
     });
 
     if (!submitAutoInfoResult?.ok) {
@@ -296,15 +289,31 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       });
     }
 
-    // setIsLoading(false);
-
     return toast.success(t("success.title"), {
       description: t("success.description"),
     });
   }
 
+  function startOver() {
+    setIsLoading(true);
+    setStage(1);
+    scrollToElement("scroll-to-anchor", 300);
+    localStorage.removeItem("user-auto-data");
+    window.location.assign("/");
+    setIsLoading(false);
+  }
+
   const TitleWithLoader = ({ title }: { title: string }) => (
-    <CardTitle className="flex flex-row">
+    <CardTitle className="flex flex-row font-bold text-red-500">
+      {t(title)}
+      {isLoading ? (
+        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+      ) : null}
+    </CardTitle>
+  );
+
+  const TitleWithLoaderAlt = ({ title }: { title: string }) => (
+    <CardTitle className="flex flex-row font-bold text-white">
       {t(title)}
       {isLoading ? (
         <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
@@ -321,31 +330,32 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     value: string;
     required?: boolean;
   }) => {
-    const requiredClassName =
-      required && !value ? "text-gradient_indigo-purple" : "";
-    const classNames = cn("flex flex-row items-baseline", requiredClassName);
+    const requiredClassName = required && !value ? "text-orange-500" : "";
+    const classNames = cn("text-light-blue", requiredClassName);
     return (
-      <div className={classNames}>
-        <CardDescription>{t(`autoInfo.${title}`)}</CardDescription>
-        <h3 className="ml-2">{capitalize(value)}</h3>
+      <div className={"flex flex-row items-baseline"}>
+        <CardDescription className={classNames}>
+          {t(`autoInfo.${title}`)}
+        </CardDescription>
+        <h3 className="ml-2 text-white">{capitalize(value)}</h3>
       </div>
     );
   };
 
   return (
     <section>
-      <div className="container flex w-full max-w-6xl flex-row gap-10 pb-32 sm:gap-y-16">
-        <Card className="w-[33%]">
+      <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
+        <Card className="bg-blue-500 sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
             <div className="grid gap-2">
-              <TitleWithLoader title="autoInfo.title" />
-              <CardDescription className="text-balance">
+              <TitleWithLoaderAlt title="autoInfo.title" />
+              <CardDescription className="text-balance text-white">
                 {t("autoInfo.description")}
               </CardDescription>
             </div>
           </CardHeader>
 
-          <CardContent className="p-4">
+          <CardContent>
             <div className="flex flex-col gap-2">
               <InfoRow
                 title="registrationDate"
@@ -361,16 +371,26 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               <InfoRow title="displacement" value={displacement} />
               <InfoRow title="doors" value={doors} />
               {Object.keys(chosenOptions).map((key) => (
-                <InfoRow title={key} value={chosenOptions[key]} />
+                <InfoRow
+                  key={key}
+                  title={key}
+                  value={chosenOptions[key]}
+                  required={key === "transmission"}
+                />
               ))}
               <div className="flex flex-row flex-wrap items-baseline">
-                <CardDescription>{t(`autoInfo.other`)}</CardDescription>
-                <h3 className="ml-2">{other}</h3>
+                <CardDescription className="text-light-blue">
+                  {t(`autoInfo.other`)}
+                </CardDescription>
+                <h3 className="ml-2 text-white">{other}</h3>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card className="w-[66%]">
+        <Card
+          id="scroll-to-anchor"
+          className="sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[650px]"
+        >
           {stage === 1 ? (
             <>
               <CardHeader className="flex flex-row flex-wrap">
@@ -407,7 +427,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.registrationDate}
                         </p>
                       )}
@@ -434,7 +454,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.registrationDate}
                         </p>
                       )}
@@ -519,7 +539,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.mileage && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.mileage}
                         </p>
                       )}
@@ -539,7 +559,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.body && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.body}
                         </p>
                       )}
@@ -561,7 +581,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.mileage && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.mileage}
                         </p>
                       )}
@@ -583,7 +603,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.doors && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.doors}
                         </p>
                       )}
@@ -604,7 +624,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                       {autoErrors?.doors && (
-                        <p className="px-1 text-xs text-red-600">
+                        <p className="px-1 text-xs text-red-500">
                           {autoErrors.doors}
                         </p>
                       )}
@@ -638,11 +658,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                   </div>
                   {allFilled() && (
                     <Button
-                      // type="submit"
                       onClick={() => {
                         saveAutoData();
                       }}
-                      className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+                      className="mb-4 mt-24 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
                       disabled={isLoading}
                     >
                       {t("next.label")}
@@ -663,15 +682,19 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                 </div>
               </CardHeader>
 
-              <CardContent className="p-4">
-                <div
+              <CardContent>
+                <Button variant="link" onClick={() => setStage(1)}>
+                  <Icons.chevronLeft className="size-4" />
+                  {t("checkout.backButton")}
+                </Button>
+                {/* <div
                   className={cn(
                     "flex w-full flex-row flex-wrap justify-center gap-4",
                     className,
                   )}
-                >
-                  <CheckoutForm uiMode="embedded" />
-                </div>
+                > */}
+                <CheckoutForm uiMode="embedded" />
+                {/* </div> */}
               </CardContent>
             </>
           ) : null}
@@ -679,7 +702,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
             <>
               {paymentConfirmed ? (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="grid gap-2">
+                  <div className="mb-[400px] grid gap-2">
                     <TitleWithLoader title="paymentConfirmed.title" />
                     <CardDescription className="text-balance">
                       {t("paymentConfirmed.description")}
@@ -687,11 +710,18 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     {name && <h3>Name: {name}</h3>}
                     {email && <h2>Email: {email}</h2>}
                   </div>
+                  <Button
+                    onClick={startOver}
+                    className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
+                    disabled={isLoading}
+                  >
+                    {t("paymentConfirmed.button")}
+                  </Button>
                 </CardHeader>
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="grid gap-2">
-                    {isLoading ? (
+                  <div className="mb-[400px] grid gap-2">
+                    {isPaymentLoading ? (
                       <>
                         <Icons.spinner className="mr-2 size-4 animate-spin" />
                       </>

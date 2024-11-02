@@ -35,7 +35,7 @@ export async function generateMetadata({
   const { title, description } = guide;
 
   return constructMetadata({
-    title: `${title} - Accurate Auto Value`,
+    title: `${title} - Car-Valuation`,
     description: description,
   });
 }
