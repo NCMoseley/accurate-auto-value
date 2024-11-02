@@ -112,7 +112,7 @@ export function AutoValueForm({
   ];
 
   useEffect(() => {
-    scrollToElement("stage-1");
+    scrollToElement("scroll-to-anchor");
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
       setRegistrationDate(data.registrationDate);
@@ -205,7 +205,7 @@ export function AutoValueForm({
     console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
     setStage(2);
-    scrollToElement("form-element");
+    scrollToElement("scroll-to-anchor");
   }
 
   async function onSubmit(
@@ -275,10 +275,19 @@ export function AutoValueForm({
     );
   }
 
+  const TitleWithLoader = ({ title }: { title: string }) => (
+    <CardTitle className="flex flex-row">
+      {t(title)}
+      {isLoading ? (
+        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+      ) : null}
+    </CardTitle>
+  );
+
   return (
     <section>
       <div
-        id="form-element"
+        // id="scroll-to-anchor"
         className="container flex w-full max-w-6xl flex-col gap-10 pb-32 sm:gap-y-16"
       >
         <Card className="ml-auto w-full max-w-2xl">
@@ -286,12 +295,7 @@ export function AutoValueForm({
             <>
               <CardHeader className="flex flex-row flex-wrap">
                 <div className="grid gap-2">
-                  <CardTitle className="flex flex-row">
-                    {t("title")}
-                    {isLoading ? (
-                      <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
-                    ) : null}
-                  </CardTitle>
+                  <TitleWithLoader title="title" />
                   <CardDescription className="text-balance">
                     {t("description")}
                   </CardDescription>
@@ -520,8 +524,6 @@ export function AutoValueForm({
                       // type="submit"
                       onClick={() => {
                         saveAutoData();
-                        setStage(2);
-                        scrollToElement("form-element");
                       }}
                       className="gradient_indigo-purple mb-4 mt-24 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
                       disabled={isLoading}
@@ -537,12 +539,7 @@ export function AutoValueForm({
             <>
               <CardHeader className="flex flex-row flex-wrap">
                 <div className="grid gap-2">
-                  <CardTitle>
-                    {t("checkout.title")}{" "}
-                    {isLoading ? (
-                      <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
-                    ) : null}
-                  </CardTitle>
+                  <TitleWithLoader title="checkout.title" />
                   <CardDescription className="text-balance">
                     {t("checkout.description")}
                   </CardDescription>
@@ -634,12 +631,7 @@ export function AutoValueForm({
                 <>
                   <CardHeader className="flex flex-row flex-wrap">
                     <div className="grid gap-2">
-                      <CardTitle>
-                        {t("paymentConfirmed.title")}{" "}
-                        {isLoading ? (
-                          <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
-                        ) : null}
-                      </CardTitle>
+                      <TitleWithLoader title="paymentConfirmed.title" />
                       {isLoading ? (
                         <>
                           <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -658,13 +650,8 @@ export function AutoValueForm({
                 </>
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div id="stage-3" className="grid gap-2">
-                    <CardTitle>
-                      {t("paymentNotConfirmed.title")}{" "}
-                      {isLoading ? (
-                        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
-                      ) : null}
-                    </CardTitle>
+                  <div className="grid gap-2">
+                    <TitleWithLoader title="paymentNotConfirmed.title" />
                     {isLoading ? (
                       <>
                         <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -682,38 +669,6 @@ export function AutoValueForm({
                   </div>
                 </CardHeader>
               )}
-              {/* <CardContent className="p-4">
-                <div
-                  className={cn(
-                    "flex flex-row flex-wrap justify-center gap-4",
-                    className,
-                  )}
-                >
-                  {paymentConfirmed ? (
-                    <>
-                      <CardHeader className="flex flex-row flex-wrap">
-                        <div className="grid gap-2">
-                          <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
-                          <CardDescription className="text-balance">
-                            {t("paymentConfirmed.description")}
-                            {name && <div>Name: {name}</div>}
-                            {email && <div>Email: {email}</div>}
-                          </CardDescription>
-                        </div>
-                      </CardHeader>
-                    </>
-                  ) : (
-                    <CardHeader className="flex flex-row flex-wrap">
-                      <div className="grid gap-2">
-                        <CardTitle>{t("paymentConfirmed.title")}</CardTitle>
-                        <CardDescription className="text-balance">
-                          {t("paymentNotConfirmed.description")}
-                        </CardDescription>
-                      </div>
-                    </CardHeader>
-                  )}
-                </div>
-              </CardContent> */}
             </>
           ) : null}
         </Card>

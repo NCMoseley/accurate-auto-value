@@ -27,7 +27,10 @@ export default async function HeroLanding() {
     .catch((e) => console.log(e));
 
   return (
-    <section className="space-y-6 py-12 sm:py-20 lg:py-20">
+    <section
+      id="scroll-to-anchor"
+      className="space-y-6 py-12 sm:py-20 lg:py-20"
+    >
       <div className="container flex max-w-5xl flex-col items-center gap-5 text-center">
         {/* <Link
           href="https://twitter.com/nathan/status/1810465801649938857"
