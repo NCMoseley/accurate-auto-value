@@ -9,7 +9,7 @@ import { BillingInfo } from "@/components/pricing/billing-info";
 import { Icons } from "@/components/shared/icons";
 
 export const metadata = constructMetadata({
-  title: "Billing - Accurate Auto Value",
+  title: "Billing - Car-Valuation",
   description: "Manage billing and your subscription plan.",
 });
 
@@ -34,8 +34,8 @@ export default async function BillingPage() {
           <Icons.warning />
           <AlertTitle>This is a demo app.</AlertTitle>
           <AlertDescription className="text-balance">
-            Accurate Auto Value app is a demo app using a Stripe test
-            environment. You can find a list of test card numbers on the{" "}
+            Car-Valuation app is a demo app using a Stripe test environment. You
+            can find a list of test card numbers on the{" "}
             <a
               href="https://stripe.com/docs/testing#cards"
               target="_blank"

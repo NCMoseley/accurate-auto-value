@@ -28,7 +28,7 @@ export default async function HeroLanding() {
 
   return (
     <section
-      id="scroll-to-anchor"
+      // id="scroll-to-anchor"
       className="space-y-6 py-12 sm:py-20 lg:py-20"
     >
       <div className="container flex max-w-5xl flex-col items-center gap-5 text-center">
@@ -47,7 +47,7 @@ export default async function HeroLanding() {
 
         <h1 className="text-balance font-urban text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-[66px]">
           {t.raw("title")}{" "}
-          <span className="text-gradient_indigo-purple font-extrabold">
+          <span className="font-extrabold text-red-500">
             {/* {siteConfig.name} */}
             {t.raw("title-b")}
           </span>

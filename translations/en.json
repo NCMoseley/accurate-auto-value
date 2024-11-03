@@ -1,8 +1,8 @@
 {
 	"HeroLanding": {
 		"title": "Lightning fast auto valuation",
-		"title-b": "for Switzerland",
-		"subtitle": "Get a fair and accurate value for your car in minutes. Swiss cars and cars from other countries are supported.",
+		"title-b": "for Switzerland.",
+		"subtitle": "Get a fair and accurate value for your auto in minutes. Swiss and imported vehicles are supported.",
 		"link": "Go to the about page"
 	},
 	"Testimonials": {
@@ -11,13 +11,13 @@
 		"c": "Discover the glowing feedback from our delighted customers worldwide."
 	},
 	"PricingPage": {
-		"a": "Pricing - Accurate Auto Value",
+		"a": "Pricing - Car-Valuation",
 		"b": "Explore our subscription plans.",
 		"c": "Learn more about our pricing."
 	},
 	"AutoValueForm": {
-		"title": "Rapid Auto Valuation",
-		"description": "Just a few details to get your car value",
+		"title": "Please fill in the following details to get your car value.",
+		"description": "Just a few details to get your rapid, accurate valuation",
 		"bodyStyles": {
 			"wagon": "Wagon",
 			"sedan": "Sedan",
@@ -111,11 +111,13 @@
 		},
 		"checkout": {
 			"title": "Checkout",
-			"description": "Please confirm your payment details with Stripe"
+			"description": "Please confirm your payment details with Stripe",
+			"backButton": "Go back"
 		},
 		"paymentConfirmed": {
 			"title": "Payment confirmed",
-			"description": "We'll get back to you very swiftly at the following email address."
+			"description": "We'll get back to you swiftly at the following contact details.",
+			"button": "Start another valuation"
 		},
 		"paymentNotConfirmed": {
 			"title": "Payment not confirmed",
@@ -125,19 +127,19 @@
 		"autoInfo": {
 			"title": "Vehicle Information",
 			"description": "The following information will be used to calculate the value of your vehicle.",
-			"registrationDate": "Registration Date:",
-			"make": "Make:",
-			"model": "Model:",
-			"series": "Series:",
-			"mileage": "Mileage:",
+			"isSwiss": "*Is Swiss:",
+			"registrationDate": "*Registration Date:",
+			"make": "*Make:",
+			"model": "*Model:",
+			"series": "*Series:",
+			"mileage": "*Mileage:",
 			"displacement": "Displacement:",
-			"body": "Body:",
+			"body": "*Body:",
 			"doors": "Doors:",
-			"isSwiss": "Is Swiss:",
 			"output": "Output (kW):",
-			"colors": "Color:",
-			"transmission": "Transmission:",
-			"fuelType": "Fuel Type:",
+			"colors": "*Color:",
+			"transmission": "*Transmission:",
+			"fuelType": "*Fuel Type:",
 			"other": "Additional Information:"
 		}
 	},

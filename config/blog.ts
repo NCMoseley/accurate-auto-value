@@ -3,17 +3,17 @@ export const BLOG_CATEGORIES: {
   slug: "news" | "education";
   description: string;
 }[] = [
-  {
-    title: "News",
-    slug: "news",
-    description: "Updates and announcements from Next Accurate Auto Value.",
-  },
-  {
-    title: "Education",
-    slug: "education",
-    description: "Educational content about SaaS management.",
-  },
-];
+    {
+      title: "News",
+      slug: "news",
+      description: "Updates and announcements from Next Car-Valuation.",
+    },
+    {
+      title: "Education",
+      slug: "education",
+      description: "Educational content about SaaS management.",
+    },
+  ];
 
 export const BLOG_AUTHORS = {
   mickasmt: {

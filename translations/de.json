@@ -1,8 +1,9 @@
 {
 	"HeroLanding": {
-		"a": "Blitzschnelle Fahrzeugbewertung",
-		"b": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto.",
-		"c": "Gehe zur Über-Seite"
+		"title": "Blitzschnelle Fahrzeugbewertung",
+		"title-b": "für die Schweiz.",
+		"subtitle": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Schweizer Autos und Autos aus anderen Ländern werden unterstützt.",
+		"link": "Gehe zur Über-Seite"
 	},
 	"Testimonials": {
 		"a": "Testimonials",
@@ -10,21 +11,21 @@
 		"c": "Entdecken Sie das strahlende Feedback unserer zufriedenen Kunden weltweit."
 	},
 	"PricingPage": {
-		"a": "Preise - Genaue Fahrzeugbewertung",
+		"a": "Preise - Fahrzeugbewertung",
 		"b": "Entdecken Sie unsere Abonnementpläne.",
 		"c": "Erfahren Sie mehr über unsere Preise."
 	},
 	"AutoValueForm": {
-		"title": "Schnelle Fahrzeugbewertung",
+		"title": "Bitte füllen Sie die folgenden Angaben aus, um den Wert Ihres Autos zu erhalten.",
 		"description": "Nur ein paar Details, um den Wert Ihres Autos zu erhalten",
 		"bodyStyles": {
 			"wagon": "Kombi",
 			"sedan": "Limousine",
-			"hatchback": "Schrägheck",
+			"hatchback": "Hatchback",
 			"suv": "SUV",
 			"coupe": "Coupé",
 			"convertible": "Cabriolet",
-			"van": "Van",
+			"van": "Transporter",
 			"pickup": "Pickup"
 		},
 		"make": {
@@ -40,8 +41,12 @@
 			"placeholder": "Serie"
 		},
 		"registrationDate": {
-			"label": "Registrierungsdatum",
+			"label": "Zulassungsdatum",
 			"placeholder": "mm/jjjj"
+		},
+		"isSwiss": {
+			"label": "Ursprünglich neu in der Schweiz verkauft?",
+			"placeholder": "Ja"
 		},
 		"mileage": {
 			"label": "Kilometerstand",
@@ -64,19 +69,26 @@
 			"placeholder": "z.B. 100 kW"
 		},
 		"displacement": {
-			"label": "Motorhubraum",
+			"label": "Hubraum",
 			"placeholder": "cc"
 		},
 		"body": {
 			"label": "Karosseriestil",
-			"placeholder": "z.B. Schrägheck"
+			"placeholder": "z.B. Hatchback"
 		},
 		"doors": {
 			"label": "Anzahl der Türen",
 			"placeholder": "z.B. 4"
 		},
+		"other": {
+			"label": "Zusätzliche Informationen",
+			"placeholder": "z.B. Unfallhistorie"
+		},
+		"next": {
+			"label": "Weiter"
+		},
 		"email": {
-			"description": "Wir werden Ihre E-Mail-Adresse nicht mit anderen teilen",
+			"label": "Wir werden Ihre E-Mail nicht mit jemandem teilen",
 			"placeholder": "Ihre E-Mail-Adresse"
 		},
 		"phone": {
@@ -96,6 +108,45 @@
 			"description": "Ihre Anfrage zur Einreichung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
 			"fillInAllFields": "Bitte füllen Sie alle Felder aus",
 			"enterEmail": "Bitte geben Sie Ihre E-Mail-Adresse ein"
+		},
+		"checkout": {
+			"title": "Kasse",
+			"description": "Bitte bestätigen Sie Ihre Zahlungsdetails mit Stripe",
+			"backButton": "Zurück"
+		},
+		"paymentConfirmed": {
+			"title": "Zahlung bestätigt",
+			"description": "Wir werden uns sehr schnell unter der folgenden E-Mail-Adresse bei Ihnen melden.",
+			"button": "Eine weitere Bewertung starten"
+		},
+		"paymentNotConfirmed": {
+			"title": "Zahlung nicht bestätigt",
+			"description": "Ihre Zahlung war nicht erfolgreich. Bitte klicken Sie unten, um es erneut zu versuchen. Bitte kontaktieren Sie den Support, wenn das Problem weiterhin besteht.",
+			"button": "Erneut versuchen"
+		},
+		"autoInfo": {
+			"title": "Fahrzeuginformationen",
+			"description": "Die folgenden Informationen werden verwendet, um den Wert Ihres Fahrzeugs zu berechnen.",
+			"isSwiss": "*Ist Schweizer:",
+			"registrationDate": "*Zulassungsdatum:",
+			"make": "*Marke:",
+			"model": "*Modell:",
+			"series": "*Serie:",
+			"mileage": "*Kilometerstand:",
+			"displacement": "Hubraum:",
+			"body": "*Karosserie:",
+			"doors": "Türen:",
+			"output": "Leistung (kW):",
+			"colors": "*Farbe:",
+			"transmission": "*Getriebe:",
+			"fuelType": "*Kraftstoffart:",
+			"other": "Zusätzliche Informationen:"
+		}
+	},
+	"CheckoutForm": {
+		"submit": {
+			"loading": "Verarbeitung...",
+			"label": "Bezahlen"
 		}
 	},
 	"PricingCards": {
