@@ -74,7 +74,7 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
           />
           <Button
             type="submit"
-            className="gradient_indigo-purple mb-4 w-full rounded px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
+            className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
             disabled={loading}
           >
             {loading ? (
