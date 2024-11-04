@@ -99,7 +99,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   console.log("siteConfig.url", siteConfig.url);
-  console.log("process.env", process.env);
+  console.log("process.env", JSON.stringify(process.env, null, 2));
+  const BASE_URL =
+    process.env.NODE_ENV === "production"
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : "http://localhost:3000";
+  console.log("BASE_URL", BASE_URL);
 
   useEffect(() => {
     scrollToElement("scroll-to-anchor", 300);
