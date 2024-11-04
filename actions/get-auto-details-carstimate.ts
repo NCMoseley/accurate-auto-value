@@ -12,26 +12,30 @@ type DropdownValues = {
 export async function getAllMakes(): Promise<DropdownValues[]> {
   const url = baseURL + `/brands`;
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
 
-    // if (!res.ok) {
-    let json;
+    if (!res.ok) {
+      let json;
 
-    try {
-      json = await res.json();
-    } catch (error) {
-      const errorText = await res.text();
-      console.error("Makes json error occurred" + errorText, { cause: error });
+      try {
+        // json = await res.json();
+        const resText = await res.text();
+        console.error("Makes json error occurred" + resText);
+      } catch (error) {
+        const errorText = await res.text();
+        console.error("Makes json error occurred" + errorText, { cause: error });
+      }
+
+      if (json.error) {
+        const error = new Error(json.error) as Error & {
+          status: number;
+        };
+        error.status = res.status;
+        throw new Error("An unexpected error occurred in get all makes" + error);
+      }
     }
-
-    if (json.error) {
-      const error = new Error(json.error) as Error & {
-        status: number;
-      };
-      error.status = res.status;
-      throw new Error("An unexpected error occurred in get all makes" + error);
-    }
-    // }
 
     const data = await res.json();
     if (!data) return [];
