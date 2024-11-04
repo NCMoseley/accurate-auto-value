@@ -99,7 +99,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   console.log("siteConfig.url:", siteConfig.url);
-  console.log("NEXT_PUBLIC_URL:", process.env.NEXT_PUBLIC_URL);
 
   useEffect(() => {
     scrollToElement("scroll-to-anchor", 300);
@@ -125,7 +124,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
   useEffect(() => {
     document.getElementById("registrationDate")?.focus();
-    getMakes();
+    // getMakes();
     if (session_id) {
       setIsPaymentLoading(true);
       setStage(3);
@@ -446,7 +445,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         autoComplete="off"
                         autoCorrect="off"
                         value={registrationDate}
-                        // autoFocus={true}
                         onChange={(e) => {
                           setRegistrationDate(e.target.value);
                         }}
