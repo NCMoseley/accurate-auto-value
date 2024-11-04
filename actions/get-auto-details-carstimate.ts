@@ -14,24 +14,24 @@ type DropdownValues = {
 export async function getAllMakes(): Promise<DropdownValues[]> {
   const url = baseURL + `/brands`;
   try {
-    const res = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // const res = await fetch(url, {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
-    if (!res.ok) {
-      // let resText;
+    // if (!res.ok) {
+    //   // let resText;
 
-      // resText = await res.text();
-      // console.error("Makes json error occurred" + resText, res);
-      // throw new Error("Makes json error occurred" + resText);
-      return res.text().then((html) => {
-        console.error('Error response:', res, html); // Log the HTML error response
-        throw new Error('Request failed with status: ' + res.status);
-      });
-    }
+    //   // resText = await res.text();
+    //   // console.error("Makes json error occurred" + resText, res);
+    //   // throw new Error("Makes json error occurred" + resText);
+    //   return res.text().then((html) => {
+    //     console.error('Error response:', res, html); // Log the HTML error response
+    //     throw new Error('Request failed with status: ' + res.status);
+    //   });
+    // }
 
     const res2 = await fetch('https://jsonplaceholder.typicode.com/comments', {
       method: "GET",
