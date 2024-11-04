@@ -2,6 +2,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { defineRouting } from "next-intl/routing";
 import type { LocalePrefix } from "node_modules/next-intl/dist/types/src/routing/types";
 
+// @ts-ignore
 const localePrefix: LocalePrefix = "as-needed";
 
 export const displayConfig = {
