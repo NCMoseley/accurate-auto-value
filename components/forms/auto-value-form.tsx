@@ -102,24 +102,24 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
   useEffect(() => {
     scrollToElement("scroll-to-anchor", 300);
-    if (localStorage.getItem("user-auto-data")) {
-      const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
-      setRegistrationDate(data.registrationDate);
-      setIsSwiss(data.isSwiss);
-      setMake(data.make);
-      getModels(data.make);
-      setModel(data.model);
-      getSeries(data.make, data.model);
-      setSeries(data.series);
-      getOptions(data.make, data.model, data.series);
-      setChosenOptions(data.chosenOptions);
-      setMileage(data.mileage);
-      setDisplacement(data.displacement);
-      setBody(data.body);
-      setDoors(data.doors);
-      setOther(data.other);
-      setIsLoading(false);
-    }
+    // if (localStorage.getItem("user-auto-data")) {
+    //   const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
+    //   setRegistrationDate(data.registrationDate);
+    //   setIsSwiss(data.isSwiss);
+    //   setMake(data.make);
+    //   getModels(data.make);
+    //   setModel(data.model);
+    //   getSeries(data.make, data.model);
+    //   setSeries(data.series);
+    //   getOptions(data.make, data.model, data.series);
+    //   setChosenOptions(data.chosenOptions);
+    //   setMileage(data.mileage);
+    //   setDisplacement(data.displacement);
+    //   setBody(data.body);
+    //   setDoors(data.doors);
+    //   setOther(data.other);
+    //   setIsLoading(false);
+    // }
   }, []);
 
   useEffect(() => {
