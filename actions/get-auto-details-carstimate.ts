@@ -10,8 +10,8 @@ type DropdownValues = {
 };
 
 export async function getAllMakes(): Promise<DropdownValues[]> {
-  const makeURL = baseURL + `/brands`;
-  const res = await fetch(makeURL);
+  const url = baseURL + `/brands`;
+  const res = await fetch(url);
 
   if (!res.ok) {
     const json = await res.json();

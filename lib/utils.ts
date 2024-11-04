@@ -10,6 +10,11 @@ import { getLocale } from 'next-intl/server';
 
 export const MILLISECONDS_IN_ONE_DAY = 86_400_000;
 
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : "http://localhost:3000";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -84,7 +89,7 @@ export function formatDate(input: string | number): string {
 }
 
 export function absoluteUrl(path: string) {
-  return `${env.NEXT_PUBLIC_URL}${path}`;
+  return `${BASE_URL}${path}`;
 }
 
 // Utils from precedent.dev

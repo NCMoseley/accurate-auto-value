@@ -1,8 +1,12 @@
 import { SidebarNavItem, SiteConfig } from "types";
 // import { env } from "@/env.mjs";
 
-const site_url = process.env.NEXT_PUBLIC_URL || '';
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : "http://localhost:3000";
 
+const site_url = BASE_URL;
 
 export const siteConfig: SiteConfig = {
   name: "CAR VAL APP",
