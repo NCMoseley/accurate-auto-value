@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { capitalize, cn, getBaseUrl, scrollToElement } from "@/lib/utils";
+import { capitalize, cn, scrollToElement } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
 import {
@@ -98,7 +98,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
   ];
 
-  console.log("getBaseUrl", getBaseUrl());
   console.log("siteConfig.url", siteConfig.url);
   console.log("process.env", process.env);
 
