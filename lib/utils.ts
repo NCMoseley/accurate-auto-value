@@ -22,6 +22,13 @@ export const getBaseUrl = () => {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   }
 
+  if (
+    process.env.VERCEL_ENV === "preview" &&
+    process.env.VERCEL_PROJECT_PREVIEW_URL
+  ) {
+    return `https://${process.env.VERCEL_PROJECT_PREVIEW_URL}`;
+  }
+
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
