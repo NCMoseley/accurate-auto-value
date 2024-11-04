@@ -33,8 +33,30 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
       });
     }
 
-    const data = await res.json();
-    // const data = ["vw", "mercedes-benz", "bmw", "audi", "skoda", "ford", "renault", "toyota", "volvo", "peugeot", "opel", "fiat", "porsche", "hyundai", "seat", "citroen", "mazda", "mini", "nissan", "land rover", "suzuki", "subaru", "jeep", "kia", "honda", "cupra", "mitsubishi", "dacia", "alfa romeo", "jaguar", "tesla", "smart", "chevrolet", "maserati", "ds automobiles", "ferrari", "lexus", "iveco", "dodge", "bentley", "cadillac", "ssang yong", "lamborghini", "daihatsu", "aston martin", "chrysler", "saab", "lancia", "bmw-alpina", "genesis", "lotus", "rolls-royce", "polestar", "isuzu"];
+    const res2 = await fetch('https://jsonplaceholder.typicode.com/comments', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res2.ok) {
+      // let resText;
+
+      // resText = await res.text();
+      // console.error("Makes json error occurred" + resText, res);
+      // throw new Error("Makes json error occurred" + resText);
+      return res2.text().then((html) => {
+        console.error('Error response 2:', res2, html); // Log the HTML error response
+        throw new Error('Request 2 failed with status: ' + res2.status);
+      });
+    }
+
+    const data2 = await res2.json();
+    console.log('data2', data2);
+
+    // const data = await res.json();
+    const data = ["vw", "mercedes-benz", "bmw", "audi", "skoda", "ford", "renault", "toyota", "volvo", "peugeot", "opel", "fiat", "porsche", "hyundai", "seat", "citroen", "mazda", "mini", "nissan", "land rover", "suzuki", "subaru", "jeep", "kia", "honda", "cupra", "mitsubishi", "dacia", "alfa romeo", "jaguar", "tesla", "smart", "chevrolet", "maserati", "ds automobiles", "ferrari", "lexus", "iveco", "dodge", "bentley", "cadillac", "ssang yong", "lamborghini", "daihatsu", "aston martin", "chrysler", "saab", "lancia", "bmw-alpina", "genesis", "lotus", "rolls-royce", "polestar", "isuzu"];
     if (!data || !Array.isArray(data)) return [];
     const dropdownValues = deriveDropdownValues(data);
 
