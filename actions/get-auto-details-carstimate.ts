@@ -30,7 +30,6 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
 
     const data = await res.json();
     // const data = ["vw", "mercedes-benz", "bmw", "audi", "skoda", "ford", "renault", "toyota", "volvo", "peugeot", "opel", "fiat", "porsche", "hyundai", "seat", "citroen", "mazda", "mini", "nissan", "land rover", "suzuki", "subaru", "jeep", "kia", "honda", "cupra", "mitsubishi", "dacia", "alfa romeo", "jaguar", "tesla", "smart", "chevrolet", "maserati", "ds automobiles", "ferrari", "lexus", "iveco", "dodge", "bentley", "cadillac", "ssang yong", "lamborghini", "daihatsu", "aston martin", "chrysler", "saab", "lancia", "bmw-alpina", "genesis", "lotus", "rolls-royce", "polestar", "isuzu"];
-    console.log('data:', data);
     if (!data || !Array.isArray(data)) return [];
     const dropdownValues = deriveDropdownValues(data);
 
