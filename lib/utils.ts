@@ -10,32 +10,6 @@ import { getLocale } from 'next-intl/server';
 
 export const MILLISECONDS_IN_ONE_DAY = 86_400_000;
 
-export const getBaseUrl = () => {
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL;
-  }
-
-  if (
-    process.env.VERCEL_ENV === "production" &&
-    process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  }
-
-  if (
-    process.env.VERCEL_ENV === "preview" &&
-    process.env.VERCEL_PROJECT_PREVIEW_URL
-  ) {
-    return `https://${process.env.VERCEL_PROJECT_PREVIEW_URL}`;
-  }
-
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-
-  return "http://localhost:3000";
-};
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -110,7 +84,7 @@ export function formatDate(input: string | number): string {
 }
 
 export function absoluteUrl(path: string) {
-  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
+  return `${env.NEXT_PUBLIC_URL}${path}`;
 }
 
 // Utils from precedent.dev
