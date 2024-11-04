@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import * as z from "zod";
 
-import { capitalize, cn, scrollToElement } from "@/lib/utils";
+import { capitalize, cn, getBaseUrl, scrollToElement } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,6 +30,7 @@ import {
 } from "../../actions/get-auto-details-carstimate";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { confirmPayment } from "../../actions/stripe";
+import { siteConfig } from "../../config/site";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
 import { InputItem } from "../ui/input-item";
@@ -56,14 +57,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const t = useTranslations("AutoValueForm");
   const router = useSearchParams();
   const session_id = router.get("session_id");
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm<FormData>({
-  //   resolver: zodResolver(userAuthSchema),
-  // });
-  const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
+
   const [registrationDate, setRegistrationDate] = useState<string>("");
   const [isSwiss, setIsSwiss] = useState<string>("");
   const [make, setMake] = useState<string>("");
@@ -76,11 +70,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const [displacement, setDisplacement] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const [doors, setDoors] = useState<string>("");
-  const [other, setOther] = useState<string>("");
+  const [options, setOptions] = useState<Partial<Options>>({});
   const [chosenOptions, setChosenOptions] = useState<{ [key: string]: string }>(
     {},
   );
-  const [options, setOptions] = useState<Partial<Options>>({});
+  const [other, setOther] = useState<string>("");
+  const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(true);
@@ -102,6 +97,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     { value: t("bodyStyles.van"), label: t("bodyStyles.van") },
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
   ];
+
+  console.log("getBaseUrl", getBaseUrl());
+  console.log("siteConfig.url", siteConfig.url);
+  console.log("process.env", process.env);
 
   useEffect(() => {
     scrollToElement("scroll-to-anchor", 300);
