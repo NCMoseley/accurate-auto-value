@@ -26,6 +26,7 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
 
       resText = await res.text();
       console.error("Makes json error occurred" + resText);
+      throw new Error("Makes json error occurred" + resText)
     }
 
     const data = await res.json();
@@ -55,6 +56,7 @@ export async function getAllModels(make: string): Promise<DropdownValues[]> {
 
       resText = await res.text();
       console.error("Models json error occurred" + resText);
+      throw new Error("Models json error occurred" + resText)
     }
 
     const data = await res.json();
@@ -83,6 +85,7 @@ export async function getAllSeries(make: string, model: string): Promise<Dropdow
 
       resText = await res.text();
       console.error("Series json error occurred" + resText);
+      throw new Error("Series json error occurred" + resText)
     }
 
     const data = await res.json();
@@ -110,6 +113,7 @@ async function getData(url: string) {
 
       resText = await res.text();
       console.error("Options json error occurred" + resText);
+      throw new Error("Options json error occurred" + resText)
     }
 
     const data = await res.json();

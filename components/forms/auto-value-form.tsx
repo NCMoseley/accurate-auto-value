@@ -303,7 +303,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     <CardTitle className="flex flex-row font-bold text-red-500">
       {t(title)}
       {isLoading ? (
-        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+        <Icons.spinner className="mx-2 size-4 animate-spin" />
       ) : null}
     </CardTitle>
   );
@@ -312,7 +312,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     <CardTitle className="flex flex-row font-bold text-white">
       {t(title)}
       {isLoading ? (
-        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+        <Icons.spinner className="mx-2 size-4 animate-spin" />
       ) : null}
     </CardTitle>
   );
