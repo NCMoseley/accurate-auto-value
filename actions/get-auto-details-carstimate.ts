@@ -1,5 +1,7 @@
 "use server"
 
+import fetch from 'node-fetch';
+
 import { deriveDropdownValues } from "../lib/utils";
 
 const baseURL = "https://carstimate.ch/api/estimation"
@@ -12,29 +14,23 @@ type DropdownValues = {
 export async function getAllMakes(): Promise<DropdownValues[]> {
   const url = baseURL + `/brands`;
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    // if (!res.ok) {
-    let json;
+    if (!res.ok) {
+      let resText;
 
-    try {
-      json = await res.json();
-    } catch (error) {
-      const errorText = await res.text();
-      console.error("Makes json error occurred" + errorText, { cause: error });
+      resText = await res.text();
+      console.error("Makes json error occurred" + resText);
     }
-
-    if (json.error) {
-      const error = new Error(json.error) as Error & {
-        status: number;
-      };
-      error.status = res.status;
-      throw new Error("An unexpected error occurred in get all makes" + error);
-    }
-    // }
 
     const data = await res.json();
-    if (!data) return [];
+    // const data = ["vw", "mercedes-benz", "bmw", "audi", "skoda", "ford", "renault", "toyota", "volvo", "peugeot", "opel", "fiat", "porsche", "hyundai", "seat", "citroen", "mazda", "mini", "nissan", "land rover", "suzuki", "subaru", "jeep", "kia", "honda", "cupra", "mitsubishi", "dacia", "alfa romeo", "jaguar", "tesla", "smart", "chevrolet", "maserati", "ds automobiles", "ferrari", "lexus", "iveco", "dodge", "bentley", "cadillac", "ssang yong", "lamborghini", "daihatsu", "aston martin", "chrysler", "saab", "lancia", "bmw-alpina", "genesis", "lotus", "rolls-royce", "polestar", "isuzu"];
+    if (!data || !Array.isArray(data)) return [];
     const dropdownValues = deriveDropdownValues(data);
 
     return dropdownValues;
@@ -47,23 +43,22 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
 export async function getAllModels(make: string): Promise<DropdownValues[]> {
   const url = baseURL + `/series?brand=${encodeURIComponent(make)}`;
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!res.ok) {
-      const json = await res.json();
-      if (json.error) {
-        const error = new Error(json.error) as Error & {
-          status: number;
-        };
-        error.status = res.status;
-        throw error;
-      } else {
-        throw new Error("An unexpected error occurred");
-      }
+      let resText;
+
+      resText = await res.text();
+      console.error("Models json error occurred" + resText);
     }
 
     const data = await res.json();
-    if (!data) return [];
+    if (!data || !Array.isArray(data)) return [];
     const dropdownValues = deriveDropdownValues(data);
 
     return dropdownValues;
@@ -76,23 +71,22 @@ export async function getAllModels(make: string): Promise<DropdownValues[]> {
 export async function getAllSeries(make: string, model: string): Promise<DropdownValues[]> {
   const url = baseURL + `/modeltypes?brand=${encodeURIComponent(make)}&series=${encodeURIComponent(model)}`;
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!res.ok) {
-      const json = await res.json();
-      if (json.error) {
-        const error = new Error(json.error) as Error & {
-          status: number;
-        };
-        error.status = res.status;
-        throw error;
-      } else {
-        throw new Error("An unexpected error occurred");
-      }
+      let resText;
+
+      resText = await res.text();
+      console.error("Series json error occurred" + resText);
     }
 
     const data = await res.json();
-    if (!data) return [];
+    if (!data || !Array.isArray(data)) return [];
     const dropdownValues = deriveDropdownValues(data);
 
     return dropdownValues;
@@ -104,21 +98,22 @@ export async function getAllSeries(make: string, model: string): Promise<Dropdow
 
 async function getData(url: string) {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!res.ok) {
-      const json = await res.json();
-      if (json.error) {
-        const error = new Error(json.error);
-        // @ts-ignore
-        error.status = res.status;
-        throw error;
-      } else {
-        throw new Error("An unexpected error occurred");
-      }
+      let resText;
+
+      resText = await res.text();
+      console.error("Options json error occurred" + resText);
     }
 
     const data = await res.json();
+    if (!data || !Array.isArray(data)) return [];
     return data;
   } catch (error) {
     console.error("Error fetching option data:", error);
