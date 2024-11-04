@@ -99,6 +99,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   console.log("siteConfig.url:", siteConfig.url);
+  console.log("NEXT_PUBLIC_URL:", process.env.NEXT_PUBLIC_URL);
 
   useEffect(() => {
     scrollToElement("scroll-to-anchor", 300);
