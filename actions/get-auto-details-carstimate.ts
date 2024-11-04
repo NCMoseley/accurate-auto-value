@@ -12,12 +12,10 @@ type DropdownValues = {
 export async function getAllMakes(): Promise<DropdownValues[]> {
   const url = baseURL + `/brands`;
   try {
-    const res = await fetch(url, {
-      cache: "no-store",
-    });
+    const res = await fetch(url);
 
     if (!res.ok) {
-      let json;
+      // let json;
 
       try {
         // json = await res.json();
@@ -37,7 +35,8 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
       // }
     }
 
-    const data = await res.json();
+    // const data = await res.json();
+    const data = ["vw", "mercedes-benz", "bmw", "audi", "skoda", "ford", "renault", "toyota", "volvo", "peugeot", "opel", "fiat", "porsche", "hyundai", "seat", "citroen", "mazda", "mini", "nissan", "land rover", "suzuki", "subaru", "jeep", "kia", "honda", "cupra", "mitsubishi", "dacia", "alfa romeo", "jaguar", "tesla", "smart", "chevrolet", "maserati", "ds automobiles", "ferrari", "lexus", "iveco", "dodge", "bentley", "cadillac", "ssang yong", "lamborghini", "daihatsu", "aston martin", "chrysler", "saab", "lancia", "bmw-alpina", "genesis", "lotus", "rolls-royce", "polestar", "isuzu"];
     if (!data) return [];
     const dropdownValues = deriveDropdownValues(data);
 
