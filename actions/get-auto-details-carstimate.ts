@@ -28,13 +28,13 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
         console.error("Makes json error occurred" + errorText, { cause: error });
       }
 
-      if (json.error) {
-        const error = new Error(json.error) as Error & {
-          status: number;
-        };
-        error.status = res.status;
-        throw new Error("An unexpected error occurred in get all makes" + error);
-      }
+      // if (json.error) {
+      //   const error = new Error(json.error) as Error & {
+      //     status: number;
+      //   };
+      //   error.status = res.status;
+      //   throw new Error("An unexpected error occurred in get all makes" + error);
+      // }
     }
 
     const data = await res.json();
