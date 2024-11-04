@@ -22,11 +22,15 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
     });
 
     if (!res.ok) {
-      let resText;
+      // let resText;
 
-      resText = await res.text();
-      console.error("Makes json error occurred" + resText);
-      throw new Error("Makes json error occurred" + resText)
+      // resText = await res.text();
+      // console.error("Makes json error occurred" + resText, res);
+      // throw new Error("Makes json error occurred" + resText);
+      return res.text().then((html) => {
+        console.error('Error response:', res, html); // Log the HTML error response
+        throw new Error('Request failed with status: ' + res.status);
+      });
     }
 
     const data = await res.json();
