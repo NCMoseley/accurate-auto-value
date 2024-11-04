@@ -16,14 +16,14 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
 
     if (!res.ok) {
       // let json;
+      let resText;
 
       try {
         // json = await res.json();
-        const resText = await res.text();
+        resText = await res.text();
         console.error("Makes json error occurred" + resText);
       } catch (error) {
-        const errorText = await res.text();
-        console.error("Makes json error occurred" + errorText, { cause: error });
+        console.error("Makes json error occurred" + "resText: " + resText, { cause: error });
       }
 
       // if (json.error) {
