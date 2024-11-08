@@ -26,14 +26,13 @@ import {
   getAllOptions,
   getAllSeries,
 } from "../../actions/get-auto-details-local";
+import { sendPasscode } from "../../actions/infobip-send-passcode";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { confirmPayment } from "../../actions/stripe";
-import { siteConfig } from "../../config/site";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
 import { Input } from "../ui/input";
 import { InputItem } from "../ui/input-item";
-import { Textarea } from "../ui/textarea";
 
 export const metadata: Metadata = {
   title: "Pay with hosted Checkout",
@@ -96,11 +95,14 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   useEffect(() => {
+    sendPasscode("41783110034");
     getMakes();
     scrollToElement("scroll-to-anchor", 300);
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
-      if (data.ttl > Date.now()) {
+      if (data.ttl && data.ttl < Date.now()) {
+        startOver();
+      } else {
         setUseOther(data.useOther);
         setRegistrationDate(data.registrationDate);
         setIsSwiss(data.isSwiss);
@@ -119,10 +121,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
         setDoors(data.doors);
         setAdditionalInfo(data.additionalInfo);
       }
-      setIsLoading(false);
-    } else {
-      startOver();
     }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -185,10 +185,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     // setChosenOptions(res.option);
     setIsLoading(false);
     document.getElementById("options")?.focus();
-  }
-
-  function handleAutoError(key: string, message: string) {
-    setAutoErrors((prev) => ({ ...prev, [key]: message }));
   }
 
   function handleOtherInputChange(arr: DropdownValue[], value: string) {
