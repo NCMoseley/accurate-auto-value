@@ -194,11 +194,13 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       setUseOther(false);
       return false;
     }
+
     if (!arr.find((item) => item.value === value)) {
       arr.push({ value, label: value });
       setUseOther(true);
       return true;
     }
+
     return false;
   }
 
@@ -633,6 +635,33 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         </p>
                       )}
                     </InputItem>
+                    {options &&
+                      Object.keys(options).map((key, i) => (
+                        <InputItem
+                          id={i === 0 ? "chosenOptions" : ""}
+                          key={key}
+                          className="gap-6"
+                        >
+                          <Label
+                            className={`${chosenOptions[key] ? "" : "opacity-50"}`}
+                          >
+                            {t(`${key}.label`)}
+                          </Label>
+                          <Combobox
+                            label={t(`${key}.label`)}
+                            disabled={isLoading}
+                            values={options[key]}
+                            initialValue={chosenOptions[key]}
+                            onChange={(value) => {
+                              handleOtherInputChange(options[key], value);
+                              setChosenOptions((prev) => ({
+                                ...prev,
+                                [key]: value,
+                              }));
+                            }}
+                          />
+                        </InputItem>
+                      ))}
                     <InputItem id="additionalInfo">
                       <Label
                         className={`${additionalInfo ? "" : "opacity-50"}`}
@@ -656,32 +685,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         </p>
                       )}
                     </InputItem>
-                    {options &&
-                      Object.keys(options).map((key, i) => (
-                        <InputItem
-                          id={i === 0 ? "chosenOptions" : ""}
-                          key={key}
-                          className="gap-6"
-                        >
-                          <Label
-                            className={`${chosenOptions[key] ? "" : "opacity-50"}`}
-                          >
-                            {t(`${key}.label`)}
-                          </Label>
-                          <Combobox
-                            label={t(`${key}.label`)}
-                            disabled={isLoading}
-                            values={options[key]}
-                            initialValue={chosenOptions[key]}
-                            onChange={(value) =>
-                              setChosenOptions((prev) => ({
-                                ...prev,
-                                [key]: value,
-                              }))
-                            }
-                          />
-                        </InputItem>
-                      ))}
                   </div>
                   {allFilled() && (
                     <Button

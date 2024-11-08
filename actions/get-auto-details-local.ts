@@ -63,10 +63,21 @@ export async function getAllOptions(
       option: { label: "", value: "" },
     };
   }
-  const res = db[make][model][trim];
 
-  if (!Object.keys(res).length)
-    return { options: {}, option: { label: "", value: "" } };
+  let res = db[make][model][trim];
+
+  if (res && Object.keys(res).length || !res) {
+    return {
+      options: {
+        colors: deriveDropdownValues(emptyOptions.allPossibleColors),
+        fuelType: deriveDropdownValues(emptyOptions.allPossibleFuelTypes),
+        transmission: deriveDropdownValues(emptyOptions.allPossibleTransmissions),
+        output: deriveDropdownValues(emptyOptions.allPossibleOutputs),
+      },
+      option: { label: "", value: "" },
+    };
+  }
+
   let options = {} as any;
   let option = {} as DropdownValues;
 
