@@ -3,10 +3,20 @@
 import React, { HTMLAttributes, useEffect, useState } from "react";
 import type { Metadata } from "next";
 import { useSearchParams } from "next/navigation";
+import {
+  getAllMakes,
+  getAllModels,
+  getAllOptions,
+  getAllSeries,
+} from "@/actions/get-auto-details-local";
+import { sendPasscode, verifyPasscode } from "@/actions/infobip";
+import { submitAutoInfo } from "@/actions/send-auto-info";
+import { confirmPayment } from "@/actions/stripe";
+import { DropdownValue } from "@/types";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-import { capitalize, cn, scrollToElement } from "@/lib/utils";
+import { capitalize, cn, createPhoneMask, scrollToElement } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,24 +25,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Combobox } from "@/components/ui/combo-box";
+import { Input } from "@/components/ui/input";
+import { InputItem } from "@/components/ui/input-item";
 import { Label } from "@/components/ui/label";
 import { NumberInput } from "@/components/ui/number-input";
 import CheckoutForm from "@/components/forms/checkout-form";
 import { Icons } from "@/components/shared/icons";
-
-import {
-  getAllMakes,
-  getAllModels,
-  getAllOptions,
-  getAllSeries,
-} from "../../actions/get-auto-details-local";
-import { sendPasscode, verifyPasscode } from "../../actions/infobip";
-import { submitAutoInfo } from "../../actions/send-auto-info";
-import { confirmPayment } from "../../actions/stripe";
-import { DropdownValue } from "../../types";
-import { Combobox } from "../ui/combo-box";
-import { Input } from "../ui/input";
-import { InputItem } from "../ui/input-item";
 
 export const metadata: Metadata = {
   title: "Pay with hosted Checkout",
@@ -707,38 +706,33 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     {t("phone-entry.description")}
                   </CardDescription>
                 </div>
-                <Button variant="link" onClick={() => setStage(1)}>
-                  <Icons.chevronLeft className="size-4" />
-                  {t("phone-entry.backButton")}
-                </Button>
               </CardHeader>
 
               <CardContent>
                 <form className="mb-[400px] flex flex-col gap-2">
-                  <InputItem id="enterPhoneNumber">
-                    {/* <Label
-                      htmlFor="phone"
-                      className={`${phone ? "" : "opacity-50"}`}
-                    >
-                      {t("phone-entry.enterPhoneNumber")}
-                    </Label> */}
-                    <NumberInput
-                      required
-                      className="h-22 sm:pr-12 sm:text-lg"
-                      id="phone"
-                      placeholder={t("phone-entry.enterPhoneNumberPlaceholder")}
-                      type="text"
-                      name="phone"
-                      mask={"+99 99 999 99 99"}
-                      autoComplete="tel"
-                      autoCorrect="off"
-                      value={`+${phone}`}
-                      onChange={(e) => {
-                        setPhone(e.target.value.replace(/\+/g, ""));
-                      }}
-                    />
-                  </InputItem>
+                  <NumberInput
+                    required
+                    className="h-16 text-3xl md:text-3xl lg:text-3xl xl:text-3xl"
+                    id="phone"
+                    placeholder={t("phone-entry.enterPhoneNumberPlaceholder")}
+                    type="text"
+                    name="phone"
+                    autoComplete="tel"
+                    autoCorrect="off"
+                    value={`+${phone}`}
+                    onChange={(e) => {
+                      setPhone(
+                        createPhoneMask(
+                          e.target.value.replace(/\+/g, "").slice(0, 14),
+                        ),
+                      );
+                    }}
+                  />
                 </form>
+                <Button variant="link" onClick={() => setStage(1)}>
+                  <Icons.chevronLeft className="size-4" />
+                  {t("phone-entry.backButton")}
+                </Button>
                 {phone.length > 10 ? (
                   <Button
                     className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
@@ -762,11 +756,11 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               </CardHeader>
 
               <CardContent>
-                <Button variant="link" onClick={() => setStage(1)}>
+                <CheckoutForm uiMode="embedded" />
+                <Button variant="link" onClick={() => setStage(2)}>
                   <Icons.chevronLeft className="size-4" />
                   {t("checkout.backButton")}
                 </Button>
-                <CheckoutForm uiMode="embedded" />
               </CardContent>
             </>
           ) : null}

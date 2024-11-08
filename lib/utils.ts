@@ -337,3 +337,28 @@ export const yearsArr = [
   { label: "1951", value: "1951" },
   { label: "1950", value: "1950" }
 ];
+
+export function createPhoneMask(value) {
+  // Remove all non-digit characters except the leading '+'
+  const cleanedValue = value.replace(/[^+\d]/g, "");
+
+  // Define the mask pattern
+  const match = cleanedValue.match(
+    /^(\+?)(\d{0,2})(\d{0,2})(\d{0,3})(\d{0,2})$/,
+  );
+
+  if (!match) return value; // Return the original value if it doesn't match
+
+  // Format the number based on the matched groups
+  const formattedValue = [
+    match[1], // The '+' sign
+    match[2] ? `${match[2]}` : "", // Country code
+    match[3] ? ` ${match[3]}` : "", // First part of the number
+    match[4] ? ` ${match[4]}` : "", // Second part of the number
+    match[5] ? ` ${match[5]}` : "", // Last part of the number
+  ]
+    .join("")
+    .trim(); // Join and trim any extra spaces
+
+  return formattedValue; // Return the formatted value
+}

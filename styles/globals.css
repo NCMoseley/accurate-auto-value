@@ -130,3 +130,23 @@ input[type=number] {
   background-color: rgb(0 0 255 / 0.8);
 }
 
+.masked-input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: blue;
+  color: black;
+  background-color: #f9f9f9;
+  /* font-size: 46px; */
+  opacity: 0.7;
+}
+
+.masked-input::placeholder {
+  color: #aaa;
+}
+
+.masked-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
