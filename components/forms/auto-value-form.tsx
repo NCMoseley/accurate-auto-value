@@ -100,24 +100,28 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     scrollToElement("scroll-to-anchor", 300);
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
-      setUseOther(data.useOther);
-      setRegistrationDate(data.registrationDate);
-      setIsSwiss(data.isSwiss);
-      setMake(data.make);
-      if (!data.useOther) {
-        getSeries(data.make, data.model);
-        getModels(data.make);
-        getOptions(data.make, data.model, data.series);
+      if (data.ttl > Date.now()) {
+        setUseOther(data.useOther);
+        setRegistrationDate(data.registrationDate);
+        setIsSwiss(data.isSwiss);
+        setMake(data.make);
+        if (!data.useOther) {
+          getSeries(data.make, data.model);
+          getModels(data.make);
+          getOptions(data.make, data.model, data.series);
+        }
+        setModel(data.model);
+        setSeries(data.series);
+        setChosenOptions(data.chosenOptions);
+        setMileage(data.mileage);
+        setDisplacement(data.displacement);
+        setBody(data.body);
+        setDoors(data.doors);
+        setAdditionalInfo(data.additionalInfo);
       }
-      setModel(data.model);
-      setSeries(data.series);
-      setChosenOptions(data.chosenOptions);
-      setMileage(data.mileage);
-      setDisplacement(data.displacement);
-      setBody(data.body);
-      setDoors(data.doors);
-      setAdditionalInfo(data.additionalInfo);
       setIsLoading(false);
+    } else {
+      startOver();
     }
   }, []);
 
@@ -216,6 +220,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       chosenOptions,
       additionalInfo,
       useOther,
+      // 1 hour
+      ttl: Date.now() + 1000 * 60 * 60 * 1,
     };
     if (
       !registrationDate ||
