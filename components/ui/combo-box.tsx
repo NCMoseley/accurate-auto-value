@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { cn, displayFormat, truncateWithCapitalization } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/popover";
 
 import { Icons } from "../shared/icons";
+import { Input } from "./input";
 
 interface ComboBoxProps {
   values: {
@@ -46,6 +48,7 @@ export function Combobox({
   isLoading = false,
   ref,
 }: ComboBoxProps) {
+  const t = useTranslations("ComboBox");
   const [open, setOpen] = React.useState(false);
   const [localFocus, setLocalFocus] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
@@ -63,13 +66,17 @@ export function Combobox({
     );
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  };
+
   const ButtonValueForDisplay = () => {
     return value
       ? truncateWithCapitalization(
           values.find((item) => item.value === value)?.label,
           18,
-        ) || `Select ...`
-      : `Select ${truncateWithCapitalization(label, 18)}...`;
+        ) || `${t("select")} ...`
+      : `${t("select")} ${truncateWithCapitalization(label, 18)}...`;
   };
 
   const emptyValueClassName = value ? "" : "text-muted-foreground";
@@ -77,20 +84,37 @@ export function Combobox({
   return (
     <div className="w-full">
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            ref={ref}
-            disabled={disabled}
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className={cn("h-12 w-full justify-between", emptyValueClassName)}
-            autoFocus={autoFocus}
-          >
-            {isLoading ? <Loading /> : <ButtonValueForDisplay />}
-            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
+        {value === "other" ? (
+          <Input
+            className="h-12 sm:pr-12"
+            id="combo-box-other"
+            placeholder={`${t("placeholder")} ${label}`}
+            autoComplete="off"
+            autoCorrect="off"
+            // value={value}
+            onChange={(e) => {
+              // handleChange(e);
+            }}
+            onBlur={(e) => {
+              onChange(e.target.value);
+            }}
+          />
+        ) : (
+          <PopoverTrigger asChild>
+            <Button
+              ref={ref}
+              disabled={disabled}
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              className={cn("h-12 w-full justify-between", emptyValueClassName)}
+              autoFocus={autoFocus}
+            >
+              {isLoading ? <Loading /> : <ButtonValueForDisplay />}
+              <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+        )}
         <PopoverContent className="w-64 p-0">
           <Command>
             <CommandInput placeholder={`Search ${label}...`} />

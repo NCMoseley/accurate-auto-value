@@ -249,8 +249,9 @@ export function deriveDropdownValues(data: SafeForDropdown[] | any[]) {
       value: typeof item === 'number' ? item.toFixed(0) : item,
     }));
   }
+  result.sort((a, b) => a.label.localeCompare(b.label))
   result.push(...emptyDropdownValues);
-  return result.sort((a, b) => a.label.localeCompare(b.label))
+  return result;
 };
 
 export async function fetchTranslations() {

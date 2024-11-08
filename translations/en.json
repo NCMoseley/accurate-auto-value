@@ -80,7 +80,7 @@
 			"label": "Number of Doors",
 			"placeholder": "e.g. 4"
 		},
-		"other": {
+		"additionalInfo": {
 			"label": "Additional Information",
 			"placeholder": "e.g. Accident history"
 		},
@@ -140,8 +140,13 @@
 			"colors": "*Color:",
 			"transmission": "*Transmission:",
 			"fuelType": "*Fuel Type:",
-			"other": "Additional Information:"
+			"additionalInfo": "Additional Information:"
 		}
+	},
+	"ComboBox": {
+		"placeholder": "Please enter your",
+		"select": "Select",
+		"other": "Other"
 	},
 	"CheckoutForm": {
 		"submit": {

@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
-export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make, model, registrationDate, series, chosenOptions, mileage, displacement, body, isSwiss, doors, other }) => {
+export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make, model, registrationDate, series, chosenOptions, mileage, displacement, body, isSwiss, doors, additionalInfo }) => {
 	const optionsAsHTMLString = (option) => {
 		let html: string = '';
 		Object.keys(option).forEach(key => {
@@ -19,7 +19,7 @@ export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make
 		return html;
 	}
 
-	console.log('submitAutoInfo:', userName, userEmail, userPhone, make, model, registrationDate, series, mileage, displacement, body, isSwiss, doors, optionsAsHTMLString(chosenOptions), other);
+	console.log('submitAutoInfo:', userName, userEmail, userPhone, make, model, registrationDate, series, mileage, displacement, body, isSwiss, doors, optionsAsHTMLString(chosenOptions), additionalInfo);
 
 	try {
 		await resend.emails.send({
@@ -39,7 +39,7 @@ export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Body: ${body}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Is Swiss: ${isSwiss}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Doors: ${doors}</p>
-				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Other: ${other}</p>
+				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">additionalInfo: ${additionalInfo}</p>
 			`,
 		});
 	} catch (error) {

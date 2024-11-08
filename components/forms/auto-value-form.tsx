@@ -31,6 +31,7 @@ import { confirmPayment } from "../../actions/stripe";
 import { siteConfig } from "../../config/site";
 import { DropdownValue } from "../../types";
 import { Combobox } from "../ui/combo-box";
+import { Input } from "../ui/input";
 import { InputItem } from "../ui/input-item";
 import { Textarea } from "../ui/textarea";
 
@@ -70,13 +71,13 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const [chosenOptions, setChosenOptions] = useState<{ [key: string]: string }>(
     {},
   );
-  const [other, setOther] = useState<string>("");
+  const [additionalInfo, setAdditionalInfo] = useState<string>("");
   const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(true);
   const [stage, setStage] = useState<number>(initialStage ?? 1);
-
+  const [useOther, setUseOther] = useState<boolean>(false);
   const [phone, setPhone] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -112,7 +113,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       setDisplacement(data.displacement);
       setBody(data.body);
       setDoors(data.doors);
-      setOther(data.other);
+      setAdditionalInfo(data.additionalInfo);
       setIsLoading(false);
     }
   }, []);
@@ -185,6 +186,13 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     setAutoErrors((prev) => ({ ...prev, [key]: message }));
   }
 
+  function handleOtherInputChange(arr: DropdownValue[], value: string) {
+    if (!arr.find((item) => item.value === value)) {
+      arr.push({ value, label: value });
+    }
+    setUseOther(true);
+  }
+
   function saveAutoData() {
     const data = {
       registrationDate,
@@ -197,7 +205,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       body,
       doors,
       chosenOptions,
-      other,
+      additionalInfo,
     };
     if (
       // (!phone) ||
@@ -252,7 +260,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       doors,
       mileage,
       displacement,
-      other,
+      additionalInfo,
     } = data;
 
     console.log("onSubmit", data);
@@ -271,7 +279,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       body,
       isSwiss,
       doors,
-      other: other || "",
+      additionalInfo: additionalInfo || "",
     });
 
     if (!submitAutoInfoResult?.ok) {
@@ -333,8 +341,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     );
   };
 
-  console.log("otpions:", options);
-
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
@@ -373,9 +379,9 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               ))}
               <div className="flex flex-row flex-wrap items-baseline">
                 <CardDescription className="text-light-blue">
-                  {t(`autoInfo.other`)}
+                  {t(`autoInfo.additionalInfo`)}
                 </CardDescription>
-                <h3 className="ml-2 text-white">{other}</h3>
+                <h3 className="ml-2 text-white">{additionalInfo}</h3>
               </div>
             </div>
           </CardContent>
@@ -462,6 +468,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={make}
                         isLoading={!make && isLoading}
                         onChange={(value) => {
+                          handleOtherInputChange(makes, value);
                           setModel("");
                           setSeries("");
                           setDisplacement("");
@@ -484,6 +491,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={model}
                         isLoading={!model && isLoading}
                         onChange={(value) => {
+                          handleOtherInputChange(models, value);
                           setSeries("");
                           setDisplacement("");
                           setBody("");
@@ -505,6 +513,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={series}
                         isLoading={!series && isLoading}
                         onChange={(value) => {
+                          handleOtherInputChange(serieses, value);
                           setDisplacement("");
                           setBody("");
                           setChosenOptions({});
@@ -600,19 +609,21 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         </p>
                       )}
                     </InputItem>
-                    <InputItem id="other">
-                      <Label className={`${other ? "" : "opacity-50"}`}>
-                        {t("other.label")}
+                    <InputItem id="additionalInfo">
+                      <Label
+                        className={`${additionalInfo ? "" : "opacity-50"}`}
+                      >
+                        {t("additionalInfo.label")}
                       </Label>
-                      <Textarea
+                      <Input
                         className="h-12 sm:pr-12"
-                        id="other"
-                        placeholder={t("other.placeholder")}
+                        id="additionalInfo"
+                        placeholder={t("additionalInfo.placeholder")}
                         autoComplete="off"
                         autoCorrect="off"
-                        value={other}
+                        value={additionalInfo}
                         onChange={(e) => {
-                          setOther(e.target.value);
+                          setAdditionalInfo(e.target.value);
                         }}
                       />
                       {autoErrors?.doors && (
