@@ -27,7 +27,7 @@ import {
   getAllModels,
   getAllOptions,
   getAllSeries,
-} from "../../actions/get-auto-details-carstimate";
+} from "../../actions/get-auto-details-local";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { confirmPayment } from "../../actions/stripe";
 import { siteConfig } from "../../config/site";
@@ -303,7 +303,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     <CardTitle className="flex flex-row font-bold text-red-500">
       {t(title)}
       {isLoading ? (
-        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+        <Icons.spinner className="mx-2 size-4 animate-spin" />
       ) : null}
     </CardTitle>
   );
@@ -312,7 +312,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     <CardTitle className="flex flex-row font-bold text-white">
       {t(title)}
       {isLoading ? (
-        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+        <Icons.spinner className="mx-2 size-4 animate-spin" />
       ) : null}
     </CardTitle>
   );
@@ -343,7 +343,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
-        <Card className="bg-blue-500 sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
+        <Card className="bg-blue-500 sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
             <div className="grid gap-2">
               <TitleWithLoaderAlt title="autoInfo.title" />
@@ -387,7 +387,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
         </Card>
         <Card
           id="scroll-to-anchor"
-          className="sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[650px]"
+          className="sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[650px]"
         >
           {stage === 1 ? (
             <>
