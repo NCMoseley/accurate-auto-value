@@ -333,6 +333,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     );
   };
 
+  console.log("otpions:", options);
+
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
