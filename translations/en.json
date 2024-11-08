@@ -141,6 +141,19 @@
 			"transmission": "*Transmission:",
 			"fuelType": "*Fuel Type:",
 			"additionalInfo": "Additional Information:"
+		},
+		"phone-entry": {
+			"title": "Please enter your phone number to verify your identity.",
+			"description": "A passcode will be sent to the following phone number.",
+			"backButton": "Go back",
+			"enterPhoneNumber": "Enter phone number",
+			"enterPhoneNumberPlaceholder": "e.g. +41 78 123 45 67",
+			"button": "Send passcode"
+		},
+		"passcode": {
+			"title": "Please enter the passcode we sent you.",
+			"description": "The passcode was sent to the following phone number.",
+			"request": "Request passcode"
 		}
 	},
 	"ComboBox": {

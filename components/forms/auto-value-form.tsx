@@ -26,7 +26,7 @@ import {
   getAllOptions,
   getAllSeries,
 } from "../../actions/get-auto-details-local";
-import { sendPasscode } from "../../actions/infobip-send-passcode";
+import { sendPasscode, verifyPasscode } from "../../actions/infobip";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { confirmPayment } from "../../actions/stripe";
 import { DropdownValue } from "../../types";
@@ -95,7 +95,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   ];
 
   useEffect(() => {
-    sendPasscode("41783110034");
     getMakes();
     scrollToElement("scroll-to-anchor", 300);
     if (localStorage.getItem("user-auto-data")) {
@@ -128,7 +127,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   useEffect(() => {
     if (session_id) {
       setIsPaymentLoading(true);
-      setStage(3);
+      setStage(4);
       confirmPayment(session_id)
         .then(({ confirmed, email, name, phone }) => {
           setPaymentConfirmed(confirmed);
@@ -182,7 +181,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     setIsLoading(true);
     const res = await getAllOptions(dMake, dModel, dSeries, useOther);
     setOptions(res.options as any);
-    // setChosenOptions(res.option);
     setIsLoading(false);
     document.getElementById("options")?.focus();
   }
@@ -702,9 +700,61 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
           ) : null}
           {stage === 2 ? (
             <>
+              <CardHeader className="flex flex-col items-start">
+                <div className="grid gap-2">
+                  <TitleWithLoader title="phone-entry.title" />
+                  <CardDescription className="text-balance">
+                    {t("phone-entry.description")}
+                  </CardDescription>
+                </div>
+                <Button variant="link" onClick={() => setStage(1)}>
+                  <Icons.chevronLeft className="size-4" />
+                  {t("phone-entry.backButton")}
+                </Button>
+              </CardHeader>
+
+              <CardContent>
+                <form className="mb-[400px] flex flex-col gap-2">
+                  <InputItem id="enterPhoneNumber">
+                    {/* <Label
+                      htmlFor="phone"
+                      className={`${phone ? "" : "opacity-50"}`}
+                    >
+                      {t("phone-entry.enterPhoneNumber")}
+                    </Label> */}
+                    <NumberInput
+                      required
+                      className="h-22 sm:pr-12 sm:text-lg"
+                      id="phone"
+                      placeholder={t("phone-entry.enterPhoneNumberPlaceholder")}
+                      type="text"
+                      name="phone"
+                      mask={"+99 99 999 99 99"}
+                      autoComplete="tel"
+                      autoCorrect="off"
+                      value={`+${phone}`}
+                      onChange={(e) => {
+                        setPhone(e.target.value.replace(/\+/g, ""));
+                      }}
+                    />
+                  </InputItem>
+                </form>
+                {phone.length > 10 ? (
+                  <Button
+                    className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
+                    onClick={() => setStage(2)}
+                  >
+                    {t("phone-entry.button")}
+                  </Button>
+                ) : null}
+              </CardContent>
+            </>
+          ) : null}
+          {stage === 3 ? (
+            <>
               <CardHeader className="flex flex-row flex-wrap">
                 <div className="grid gap-2">
-                  <TitleWithLoader title="checkout.title" />
+                  <TitleWithLoader title="pas.title" />
                   <CardDescription className="text-balance">
                     {t("checkout.description")}
                   </CardDescription>
@@ -716,18 +766,11 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                   <Icons.chevronLeft className="size-4" />
                   {t("checkout.backButton")}
                 </Button>
-                {/* <div
-                  className={cn(
-                    "flex w-full flex-row flex-wrap justify-center gap-4",
-                    className,
-                  )}
-                > */}
                 <CheckoutForm uiMode="embedded" />
-                {/* </div> */}
               </CardContent>
             </>
           ) : null}
-          {stage === 3 ? (
+          {stage === 4 ? (
             <>
               {paymentConfirmed ? (
                 <CardHeader className="flex flex-row flex-wrap">
