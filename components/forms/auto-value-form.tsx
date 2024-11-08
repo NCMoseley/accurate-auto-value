@@ -100,14 +100,17 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     scrollToElement("scroll-to-anchor", 300);
     if (localStorage.getItem("user-auto-data")) {
       const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
+      setUseOther(data.useOther);
       setRegistrationDate(data.registrationDate);
       setIsSwiss(data.isSwiss);
       setMake(data.make);
-      getModels(data.make);
+      if (!data.useOther) {
+        getSeries(data.make, data.model);
+        getModels(data.make);
+        getOptions(data.make, data.model, data.series);
+      }
       setModel(data.model);
-      getSeries(data.make, data.model);
       setSeries(data.series);
-      getOptions(data.make, data.model, data.series);
       setChosenOptions(data.chosenOptions);
       setMileage(data.mileage);
       setDisplacement(data.displacement);
@@ -175,7 +178,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
   async function getOptions(dMake: string, dModel: string, dSeries: string) {
     setIsLoading(true);
-    const res = await getAllOptions(dMake, dModel, dSeries);
+    const res = await getAllOptions(dMake, dModel, dSeries, useOther);
     setOptions(res.options as any);
     // setChosenOptions(res.option);
     setIsLoading(false);
@@ -187,10 +190,16 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   }
 
   function handleOtherInputChange(arr: DropdownValue[], value: string) {
+    if (value === "") {
+      setUseOther(false);
+      return false;
+    }
     if (!arr.find((item) => item.value === value)) {
       arr.push({ value, label: value });
+      setUseOther(true);
+      return true;
     }
-    setUseOther(true);
+    return false;
   }
 
   function saveAutoData() {
@@ -206,6 +215,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       doors,
       chosenOptions,
       additionalInfo,
+      useOther,
     };
     if (
       // (!phone) ||
@@ -261,6 +271,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       mileage,
       displacement,
       additionalInfo,
+      useOther,
     } = data;
 
     console.log("onSubmit", data);
@@ -280,6 +291,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       isSwiss,
       doors,
       additionalInfo: additionalInfo || "",
+      useOther,
     });
 
     if (!submitAutoInfoResult?.ok) {
@@ -468,9 +480,14 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={make}
                         isLoading={!make && isLoading}
                         onChange={(value) => {
-                          handleOtherInputChange(makes, value);
-                          setModel("");
-                          setSeries("");
+                          const isOther = handleOtherInputChange(makes, value);
+                          if (!isOther) {
+                            setModel("");
+                            setSeries("");
+                          } else {
+                            setModel("other");
+                            setSeries("other");
+                          }
                           setDisplacement("");
                           setBody("");
                           setChosenOptions({});
@@ -491,8 +508,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={model}
                         isLoading={!model && isLoading}
                         onChange={(value) => {
-                          handleOtherInputChange(models, value);
-                          setSeries("");
+                          const isOther = handleOtherInputChange(models, value);
+                          if (!isOther) {
+                            setSeries("");
+                          } else {
+                            setSeries("other");
+                          }
                           setDisplacement("");
                           setBody("");
                           setChosenOptions({});
@@ -513,7 +534,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={series}
                         isLoading={!series && isLoading}
                         onChange={(value) => {
-                          handleOtherInputChange(serieses, value);
+                          const isOther = handleOtherInputChange(
+                            serieses,
+                            value,
+                          );
                           setDisplacement("");
                           setBody("");
                           setChosenOptions({});

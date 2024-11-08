@@ -50,8 +50,9 @@ export async function getAllOptions(
   make: string,
   model: string,
   trim: string,
+  useOther: boolean,
 ): Promise<{ options: { [key: string]: DropdownValues[] }; option: DropdownValues }> {
-  if (make === "other" || model === "other" || trim === "other") {
+  if (make === "other" || model === "other" || trim === "other" || useOther) {
     return {
       options: {
         colors: deriveDropdownValues(emptyOptions.allPossibleColors),

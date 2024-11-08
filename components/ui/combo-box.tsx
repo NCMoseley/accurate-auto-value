@@ -35,6 +35,7 @@ interface ComboBoxProps {
   onChange: (value: string) => void;
   initialValue?: string;
   isLoading?: boolean;
+  useOther?: boolean;
   ref?: React.RefObject<HTMLButtonElement>;
 }
 
@@ -50,7 +51,6 @@ export function Combobox({
 }: ComboBoxProps) {
   const t = useTranslations("ComboBox");
   const [open, setOpen] = React.useState(false);
-  const [localFocus, setLocalFocus] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
 
   useEffect(() => {
@@ -64,10 +64,6 @@ export function Combobox({
         Loading...
       </>
     );
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
   };
 
   const ButtonValueForDisplay = () => {
@@ -91,10 +87,6 @@ export function Combobox({
             placeholder={`${t("placeholder")} ${label}`}
             autoComplete="off"
             autoCorrect="off"
-            // value={value}
-            onChange={(e) => {
-              // handleChange(e);
-            }}
             onBlur={(e) => {
               onChange(e.target.value);
             }}
@@ -126,7 +118,6 @@ export function Combobox({
                     key={item.value}
                     value={item.value}
                     onSelect={(currentValue) => {
-                      // setValue(currentValue === value ? "" : currentValue);
                       onChange(currentValue);
                       setOpen(false);
                     }}
