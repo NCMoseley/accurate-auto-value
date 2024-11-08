@@ -5,10 +5,8 @@ import type { Metadata } from "next";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import * as z from "zod";
 
 import { capitalize, cn, scrollToElement } from "@/lib/utils";
-import { userAuthSchema } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -44,13 +42,11 @@ interface AutoValueFormProps extends HTMLAttributes<HTMLDivElement> {
   initialStage?: number;
 }
 
-type FormData = z.infer<typeof userAuthSchema>;
-
 export interface Options {
   colors: DropdownValue[];
   power: DropdownValue[];
   output: DropdownValue[];
-  gears: DropdownValue[];
+  transmission: DropdownValue[];
 }
 
 export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
@@ -338,7 +334,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     );
   };
 
-  console.log("makes:", makes);
+  console.log("options:", options);
 
   return (
     <section>

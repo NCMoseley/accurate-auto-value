@@ -44,11 +44,18 @@ export async function getAllOptions(
 ): Promise<{ options: DropdownValues[]; option: DropdownValues }> {
   const res = db[make][model][trim];
 
+  console.log('res:', res)
+
   if (!Object.keys(res).length)
     return { options: [], option: { label: "", value: "" } };
   let options = {} as any;
   let option = {} as DropdownValues;
   Object.keys(res).forEach((key) => {
+    console.log('key:', key)
+    if (key === "gears") {
+      options["transmission"] = deriveDropdownValues(res[key]);
+      return;
+    }
     options[key] = deriveDropdownValues(res[key]);
   });
 
