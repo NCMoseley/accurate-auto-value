@@ -5,10 +5,8 @@ import type { Metadata } from "next";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import * as z from "zod";
 
 import { capitalize, cn, scrollToElement } from "@/lib/utils";
-import { userAuthSchema } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -27,7 +25,7 @@ import {
   getAllModels,
   getAllOptions,
   getAllSeries,
-} from "../../actions/get-auto-details-carstimate";
+} from "../../actions/get-auto-details-local";
 import { submitAutoInfo } from "../../actions/send-auto-info";
 import { confirmPayment } from "../../actions/stripe";
 import { siteConfig } from "../../config/site";
@@ -44,13 +42,11 @@ interface AutoValueFormProps extends HTMLAttributes<HTMLDivElement> {
   initialStage?: number;
 }
 
-type FormData = z.infer<typeof userAuthSchema>;
-
 export interface Options {
   colors: DropdownValue[];
   power: DropdownValue[];
   output: DropdownValue[];
-  gears: DropdownValue[];
+  transmission: DropdownValue[];
 }
 
 export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
@@ -97,8 +93,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     { value: t("bodyStyles.van"), label: t("bodyStyles.van") },
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
   ];
-
-  console.log("siteConfig.url:", siteConfig.url);
 
   useEffect(() => {
     getMakes();
@@ -172,6 +166,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     setSerieses(res);
     if (res.length === 1) {
       setSeries(res[0].value);
+      getOptions(dMake, dModel, res[0].value);
     }
     setIsLoading(false);
     document.getElementById("series")?.focus();
@@ -303,7 +298,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     <CardTitle className="flex flex-row font-bold text-red-500">
       {t(title)}
       {isLoading ? (
-        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+        <Icons.spinner className="mx-2 size-4 animate-spin" />
       ) : null}
     </CardTitle>
   );
@@ -312,7 +307,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     <CardTitle className="flex flex-row font-bold text-white">
       {t(title)}
       {isLoading ? (
-        <Icons.spinner className="ml-2 mr-2 size-4 animate-spin" />
+        <Icons.spinner className="mx-2 size-4 animate-spin" />
       ) : null}
     </CardTitle>
   );
@@ -338,12 +333,10 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     );
   };
 
-  console.log("makes:", makes);
-
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
-        <Card className="bg-blue-500 sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
+        <Card className="bg-blue-500 sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
             <div className="grid gap-2">
               <TitleWithLoaderAlt title="autoInfo.title" />
@@ -387,7 +380,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
         </Card>
         <Card
           id="scroll-to-anchor"
-          className="sm:w-full md:w-[60%] md:min-w-[650px] lg:min-w-[650px]"
+          className="sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[650px]"
         >
           {stage === 1 ? (
             <>
