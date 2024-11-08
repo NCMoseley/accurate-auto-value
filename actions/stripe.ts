@@ -20,6 +20,7 @@ export async function createCheckoutSession(
     await stripe.checkout.sessions.create({
       mode: "payment",
       submit_type: "pay",
+      phone_number_collection: { enabled: true },
       line_items: [
         {
           quantity: 1,
@@ -39,13 +40,6 @@ export async function createCheckoutSession(
         success_url: `${origin}/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/`,
       }),
-      // ...(ui_mode === "embedded" && {
-      //   return_url: `${origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-      // }),
-      // ...(ui_mode === "hosted" && {
-      //   success_url: `${origin}/result`,
-      //   cancel_url: `${origin}`,
-      // }),
       ...(ui_mode === "embedded" && {
         return_url: `${origin}/result?session_id={CHECKOUT_SESSION_ID}`,
       }),
@@ -60,20 +54,22 @@ export async function createCheckoutSession(
   };
 }
 
-export async function confirmPayment(session_id: string): Promise<{ confirmed: boolean, email: string, name: string }> {
+export async function confirmPayment(session_id: string): Promise<{ confirmed: boolean, email: string, name: string, phone: string }> {
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
     return {
       confirmed: session.payment_status === "paid",
       email: session.customer_details?.email || "",
       name: session.customer_details?.name || "",
-    };
+      phone: session.customer_details?.phone || "",
+    }
   } catch (error) {
-    console.error("confirmPayment error", error);
+    console.error("ConfirmPayment error", error);
     return {
       confirmed: false,
       email: "",
       name: "",
+      phone: "",
     };
   }
 }
