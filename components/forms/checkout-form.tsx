@@ -25,7 +25,9 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
   const formRef = useRef<HTMLFormElement | null>(null);
   const t = useTranslations("CheckoutForm");
   const [loading] = useState<boolean>(false);
-  const [input, setInput] = useState<{ paymentAmount: number }>({
+  const [input, setInput] = useState<{
+    paymentAmount: number;
+  }>({
     paymentAmount: config.MIN_AMOUNT,
   });
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -44,6 +46,7 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
     const uiMode = data.get(
       "uiMode",
     ) as Stripe.Checkout.SessionCreateParams.UiMode;
+
     const { client_secret, url } = await createCheckoutSession(data);
 
     if (uiMode === "embedded") return setClientSecret(client_secret);

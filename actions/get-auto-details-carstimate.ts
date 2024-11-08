@@ -10,94 +10,120 @@ type DropdownValues = {
 };
 
 export async function getAllMakes(): Promise<DropdownValues[]> {
-  const makeURL = baseURL + `/brands`;
-  const res = await fetch(makeURL);
+  const url = baseURL + `/brands`;
+  try {
+    const res = await fetch(url);
 
-  if (!res.ok) {
-    const json = await res.json();
+    // if (!res.ok) {
+    let json;
+
+    try {
+      json = await res.json();
+    } catch (error) {
+      const errorText = await res.text();
+      console.error("Makes json error occurred" + errorText, { cause: error });
+    }
+
     if (json.error) {
       const error = new Error(json.error) as Error & {
         status: number;
       };
       error.status = res.status;
-      throw error;
-    } else {
-      throw new Error("An unexpected error occurred");
+      throw new Error("An unexpected error occurred in get all makes" + error);
     }
+    // }
+
+    const data = await res.json();
+    if (!data) return [];
+    const dropdownValues = deriveDropdownValues(data);
+
+    return dropdownValues;
+  } catch (error) {
+    console.error("Error fetching makes:", error);
+    return [];
   }
-
-  const data = await res.json();
-  if (!data) return [];
-  const dropdownValues = deriveDropdownValues(data);
-
-  return dropdownValues;
 }
 
 export async function getAllModels(make: string): Promise<DropdownValues[]> {
   const url = baseURL + `/series?brand=${encodeURIComponent(make)}`;
-  const res = await fetch(url);
+  try {
+    const res = await fetch(url);
 
-  if (!res.ok) {
-    const json = await res.json();
-    if (json.error) {
-      const error = new Error(json.error) as Error & {
-        status: number;
-      };
-      error.status = res.status;
-      throw error;
-    } else {
-      throw new Error("An unexpected error occurred");
+    if (!res.ok) {
+      const json = await res.json();
+      if (json.error) {
+        const error = new Error(json.error) as Error & {
+          status: number;
+        };
+        error.status = res.status;
+        throw error;
+      } else {
+        throw new Error("An unexpected error occurred");
+      }
     }
+
+    const data = await res.json();
+    if (!data) return [];
+    const dropdownValues = deriveDropdownValues(data);
+
+    return dropdownValues;
+  } catch (error) {
+    console.error("Error fetching models:", error);
+    return [];
   }
-
-  const data = await res.json();
-  if (!data) return [];
-  const dropdownValues = deriveDropdownValues(data);
-
-  return dropdownValues;
 }
 
 export async function getAllSeries(make: string, model: string): Promise<DropdownValues[]> {
   const url = baseURL + `/modeltypes?brand=${encodeURIComponent(make)}&series=${encodeURIComponent(model)}`;
-  const res = await fetch(url);
+  try {
+    const res = await fetch(url);
 
-  if (!res.ok) {
-    const json = await res.json();
-    if (json.error) {
-      const error = new Error(json.error) as Error & {
-        status: number;
-      };
-      error.status = res.status;
-      throw error;
-    } else {
-      throw new Error("An unexpected error occurred");
+    if (!res.ok) {
+      const json = await res.json();
+      if (json.error) {
+        const error = new Error(json.error) as Error & {
+          status: number;
+        };
+        error.status = res.status;
+        throw error;
+      } else {
+        throw new Error("An unexpected error occurred");
+      }
     }
+
+    const data = await res.json();
+    if (!data) return [];
+    const dropdownValues = deriveDropdownValues(data);
+
+    return dropdownValues;
+  } catch (error) {
+    console.error("Error fetching series:", error);
+    return [];
   }
-
-  const data = await res.json();
-  if (!data) return [];
-  const dropdownValues = deriveDropdownValues(data);
-
-  return dropdownValues;
 }
 
-async function getData(url) {
-  const res = await fetch(url);
+async function getData(url: string) {
+  try {
+    const res = await fetch(url);
 
-  if (!res.ok) {
-    const json = await res.json();
-    if (json.error) {
-      const error = new Error(json.error);
-      // @ts-ignore
-      error.status = res.status;
-      throw error;
-    } else {
-      throw new Error("An unexpected error occurred");
+    if (!res.ok) {
+      const json = await res.json();
+      if (json.error) {
+        const error = new Error(json.error);
+        // @ts-ignore
+        error.status = res.status;
+        throw error;
+      } else {
+        throw new Error("An unexpected error occurred");
+      }
     }
-  }
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching option data:", error);
+    return [];
+  }
 }
 
 export async function getAllOptions(make: string, model: string, trim: string): Promise<{ options: DropdownValues[], option: DropdownValues }> {
