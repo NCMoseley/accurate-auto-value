@@ -94,8 +94,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
   ];
 
-  console.log("siteConfig.url:", siteConfig.url);
-
   useEffect(() => {
     getMakes();
     scrollToElement("scroll-to-anchor", 300);
@@ -168,6 +166,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     setSerieses(res);
     if (res.length === 1) {
       setSeries(res[0].value);
+      getOptions(dMake, dModel, res[0].value);
     }
     setIsLoading(false);
     document.getElementById("series")?.focus();
@@ -333,8 +332,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       </div>
     );
   };
-
-  console.log("options:", options);
 
   return (
     <section>
