@@ -126,13 +126,11 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       setIsPaymentLoading(true);
       setStage(3);
       confirmPayment(session_id)
-        .then(({ confirmed, email, name }) => {
+        .then(({ confirmed, email, name, phone }) => {
           setPaymentConfirmed(confirmed);
           setEmail(email);
           setName(name);
-          if (phone) {
-            setPhone(phone);
-          }
+          setPhone(phone);
           const data = JSON.parse(
             localStorage.getItem("user-auto-data") || "{}",
           );
@@ -220,7 +218,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       useOther,
     };
     if (
-      // (!phone) ||
       !registrationDate ||
       !isSwiss ||
       !make ||

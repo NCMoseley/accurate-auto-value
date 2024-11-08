@@ -29,6 +29,7 @@ export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make
 				html: `
 				<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Name: ${userName}</h3>
 				<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Email: ${userEmail}</h3>
+				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">User Phone: ${userPhone}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Registration Date: ${registrationDate}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Make: ${make}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Model: ${model}</p>
@@ -57,6 +58,7 @@ export const submitAutoInfo = async ({ userName, userEmail, userPhone = "", make
 			html: `
 				<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Name: ${userName}</h3>
 				<h3 style="font-family: Arial, sans-serif; color: #333; font-size: 18px; margin: 0 0 10px;">User Email: ${userEmail}</h3>
+				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">User Phone: ${userPhone}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Registration Date: ${registrationDate}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Make: ${make}</p>
 				<p style="font-family: Arial, sans-serif; color: #555; font-size: 14px; margin: 0 0 5px;">Model: ${model}</p>

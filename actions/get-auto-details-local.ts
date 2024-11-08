@@ -52,30 +52,24 @@ export async function getAllOptions(
   trim: string,
   useOther: boolean,
 ): Promise<{ options: { [key: string]: DropdownValues[] }; option: DropdownValues }> {
+  const defaultReturn = {
+    options: {
+      colors: deriveDropdownValues(emptyOptions.allPossibleColors),
+      fuelType: deriveDropdownValues(emptyOptions.allPossibleFuelTypes),
+      transmission: deriveDropdownValues(emptyOptions.allPossibleTransmissions),
+      output: deriveDropdownValues(emptyOptions.allPossibleOutputs),
+    },
+    option: { label: "", value: "" },
+  };
+
   if (make === "other" || model === "other" || trim === "other" || useOther) {
-    return {
-      options: {
-        colors: deriveDropdownValues(emptyOptions.allPossibleColors),
-        fuelType: deriveDropdownValues(emptyOptions.allPossibleFuelTypes),
-        transmission: deriveDropdownValues(emptyOptions.allPossibleTransmissions),
-        output: deriveDropdownValues(emptyOptions.allPossibleOutputs),
-      },
-      option: { label: "", value: "" },
-    };
+    return defaultReturn;
   }
 
-  let res = db[make][model][trim];
+  const res = db[make][model][trim];
 
   if (res && Object.keys(res).length || !res) {
-    return {
-      options: {
-        colors: deriveDropdownValues(emptyOptions.allPossibleColors),
-        fuelType: deriveDropdownValues(emptyOptions.allPossibleFuelTypes),
-        transmission: deriveDropdownValues(emptyOptions.allPossibleTransmissions),
-        output: deriveDropdownValues(emptyOptions.allPossibleOutputs),
-      },
-      option: { label: "", value: "" },
-    };
+    return defaultReturn;
   }
 
   let options = {} as any;
