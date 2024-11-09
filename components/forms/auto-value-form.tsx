@@ -129,7 +129,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   useEffect(() => {
     if (session_id) {
       setIsPaymentLoading(true);
-      setStage(4);
+      setStage(5);
       confirmPayment(session_id)
         .then(({ confirmed, email, name, phone }) => {
           setPaymentConfirmed(confirmed);
@@ -322,13 +322,15 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     return false;
   }
 
-  async function verifyPhoneVerificationCode() {
-    const res = await verifyPasscode(pinId, passcode);
+  async function verifyPhoneVerificationCode(pin: string) {
+    const res = await verifyPasscode(pinId, pin);
     console.log("verifyPhoneVerificationCode", res);
     if (res.pinError) {
       toast.error(t("passcode.error.title"), {
         description: t("passcode.error.description"),
       });
+      setPasscode("");
+      document.getElementById("passcode")?.focus();
       return false;
     }
 
@@ -744,6 +746,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                   />
                   {phone.length > 13 ? (
                     <Button
+                      id="sendPhoneVerificationCode"
                       className="my-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
                       onClick={sendPhoneVerificationCode}
                     >
@@ -784,16 +787,19 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     value={passcode}
                     onChange={(e) => {
                       setPasscode(e.target.value.slice(0, 4));
+                      if (e.target.value.length > 3) {
+                        verifyPhoneVerificationCode(e.target.value.slice(0, 4));
+                      }
                     }}
                   />
-                  {passcode.length > 3 ? (
+                  {/* {passcode.length > 3 ? (
                     <Button
                       className="my-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
                       onClick={verifyPhoneVerificationCode}
                     >
                       {t("passcode.button")}
                     </Button>
-                  ) : null}
+                  ) : null} */}
                 </div>
                 <Button variant="link" onClick={() => setStage(1)}>
                   <Icons.chevronLeft className="size-4" />
