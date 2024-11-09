@@ -155,7 +155,7 @@
         "tonale": {
             "tonale": {
                 "colors": ["blue", "white", "grey", "green", "black", "red", "anthracite"],
-                "fuelType": ["petrol/electric", "petrol", "diesel"],
+                "fuelType": ["petrol-electric", "petrol", "diesel"],
                 "gears": ["automatic"],
                 "output": [117.68, 96.3505, 205.94, 118.4155, 132.39, 95.615, 197.114]
             }
@@ -339,13 +339,13 @@
         "a3": {
             "a3": {
                 "colors": ["silver", "white", "black", "grey", "red", "anthracite", "blue", "yellow", "other", "bordeaux", "green", "beige", "purple", "brown"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "electric", "gas", "diesel/electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "electric", "gas", "diesel-electric", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [117.68, 125.035, 135.332, 176.52, 91.9375, 139.745, 110.325, 147.10000000000002, 89.73100000000001, 102.97, 150.042, 80.905, 132.39, 85.31800000000001, 77.2275, 84.58250000000001, 183.875, 116.209, 75.021, 95.615, 90.4665, 66.19500000000001, 101.499]
             },
             "s line": {
                 "colors": ["silver", "white", "black", "grey", "red", "anthracite", "blue", "yellow", "other", "bordeaux", "green", "beige", "purple", "brown"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "electric", "gas", "diesel/electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "electric", "gas", "diesel-electric", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [117.68, 125.035, 135.332, 176.52, 91.9375, 139.745, 110.325, 147.10000000000002, 89.73100000000001, 102.97, 150.042, 80.905, 132.39, 85.31800000000001, 77.2275, 84.58250000000001, 183.875, 116.209, 75.021, 95.615, 90.4665, 66.19500000000001, 101.499]
             }
@@ -353,13 +353,13 @@
         "a4": {
             "a4": {
                 "colors": ["black", "white", "green", "grey", "blue", "red", "silver", "anthracite", "other", "orange", "gold", "brown", "beige"],
-                "fuelType": ["petrol", "diesel", "bioethanol", "diesel/electric", "petrol/electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "bioethanol", "diesel-electric", "petrol-electric", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [147.10000000000002, 150.042, 141.9515, 125.035, 200.056, 132.39, 180.1975, 139.745, 105.1765, 110.325, 119.8865, 73.55000000000001, 155.1905, 194.9075, 95.615, 117.68, 165.4875, 121.3575, 187.5525, 175.7845, 185.346, 220.65, 161.81, 171.3715, 116.209, 130.1835, 159.6035, 102.97, 210.353, 88.26, 160.339, 91.9375, 100.028, 169.90050000000002, 236.0955, 118.4155, 164.752, 103.7055, 144.89350000000002]
             },
             "s line": {
                 "colors": ["black", "white", "green", "grey", "blue", "red", "silver", "anthracite", "other", "orange", "gold", "brown", "beige"],
-                "fuelType": ["petrol", "diesel", "bioethanol", "diesel/electric", "petrol/electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "bioethanol", "diesel-electric", "petrol-electric", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [147.10000000000002, 150.042, 141.9515, 125.035, 200.056, 132.39, 180.1975, 139.745, 105.1765, 110.325, 119.8865, 73.55000000000001, 155.1905, 194.9075, 95.615, 117.68, 165.4875, 121.3575, 187.5525, 175.7845, 185.346, 220.65, 161.81, 171.3715, 116.209, 130.1835, 159.6035, 102.97, 210.353, 88.26, 160.339, 91.9375, 100.028, 169.90050000000002, 236.0955, 118.4155, 164.752, 103.7055, 144.89350000000002]
             }
@@ -367,7 +367,7 @@
         "a4 allroad": {
             "a4 allroad": {
                 "colors": ["grey", "blue", "gold", "black", "silver", "anthracite", "white", "brown"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [160.339, 185.346, 155.1905, 139.745, 180.1975, 130.1835, 200.056, 175.7845, 125.035, 105.1765, 194.9075, 169.90050000000002, 150.042, 210.353, 165.4875, 110.325]
             }
@@ -375,13 +375,13 @@
         "a5": {
             "a5": {
                 "colors": ["black", "blue", "grey", "brown", "silver", "anthracite", "white", "beige", "red"],
-                "fuelType": ["petrol", "diesel", "diesel/electric", "petrol/electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "diesel-electric", "petrol-electric", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [180.1975, 117.68, 169.16500000000002, 130.1835, 150.042, 155.1905, 125.035, 165.4875, 175.7845, 132.39, 185.346, 139.745, 152.984, 194.9075, 213.295, 160.339, 110.325, 105.1765, 210.353, 200.056, 105.912, 177.2555]
             },
             "s line": {
                 "colors": ["black", "blue", "grey", "brown", "silver", "anthracite", "white", "beige", "red"],
-                "fuelType": ["petrol", "diesel", "diesel/electric", "petrol/electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "diesel-electric", "petrol-electric", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [180.1975, 117.68, 169.16500000000002, 130.1835, 150.042, 155.1905, 125.035, 165.4875, 175.7845, 132.39, 185.346, 139.745, 152.984, 194.9075, 213.295, 160.339, 110.325, 105.1765, 210.353, 200.056, 105.912, 177.2555]
             }
@@ -389,7 +389,7 @@
         "a6": {
             "a6": {
                 "colors": ["silver", "black", "grey", "anthracite", "white", "beige", "blue", "other", "brown", "green"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [175.7845, 228.005, 194.17200000000005, 132.39, 194.9075, 210.353, 150.042, 169.90050000000002, 180.1975, 213.295, 244.9215, 200.056, 250.07, 171.3715, 239.773, 141.9515, 139.745, 185.346, 230.2115, 160.339, 110.325, 130.1835, 161.81, 220.65, 187.5525, 165.4875, 154.455, 269.92850000000004, 235.36, 125.035, 176.52, 261.1025, 183.875, 246.3925, 234.6245, 121.3575, 257.425, 127.977, 177.2555, 197.114, 123.564, 114.0025]
             }
@@ -397,7 +397,7 @@
         "a6 allroad": {
             "a6 allroad": {
                 "colors": ["white", "black", "blue", "grey", "anthracite", "green", "brown"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [230.2115, 180.1975, 210.353, 175.7845, 132.39, 228.005, 250.07, 171.3715, 169.90050000000002, 119.8865, 200.056, 235.36, 160.339, 253.012, 257.425, 150.042]
             }
@@ -405,7 +405,7 @@
         "a7": {
             "a7": {
                 "colors": ["black", "other", "grey", "white", "red", "anthracite", "silver", "brown", "blue"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [210.353, 235.36, 150.042, 180.1975, 220.65, 200.056, 230.2115, 160.339, 250.07, 194.9075, 264.78000000000003, 244.9215, 239.773, 169.90050000000002, 216.237]
             }
@@ -413,7 +413,7 @@
         "a8": {
             "a8": {
                 "colors": ["silver", "grey", "black", "blue", "brown", "beige", "white", "red"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [171.3715, 257.425, 239.773, 210.353, 193.4365, 367.75, 250.07, 183.875, 319.9425, 330.975, 189.759, 280.2255, 228.005, 246.3925, 273.606, 191.23, 283.1675, 213.295, 169.16500000000002, 202.2625, 339.80100000000004, 330.2395]
             }
@@ -421,7 +421,7 @@
         "cabriolet": {
             "cabriolet": {
                 "colors": ["anthracite", "black", "red", "white"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [110.325, 72.07900000000001, 139.745, 180.1975]
             }
@@ -473,13 +473,13 @@
         "q3": {
             "q3": {
                 "colors": ["black", "white", "blue", "silver", "grey", "anthracite", "orange", "brown", "other", "green", "red", "yellow", "beige"],
-                "fuelType": ["petrol/electric", "petrol", "diesel", "hybrid"],
+                "fuelType": ["petrol-electric", "petrol", "diesel", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 139.745, 135.332, 155.1905, 125.035, 147.10000000000002, 169.16500000000002, 180.1975, 130.1835, 132.39, 102.97, 108.854, 102.2345, 161.81, 109.5895, 150.7775]
             },
             "s line": {
                 "colors": ["black", "white", "blue", "silver", "grey", "anthracite", "orange", "brown", "other", "green", "red", "yellow", "beige"],
-                "fuelType": ["petrol/electric", "petrol", "diesel", "hybrid"],
+                "fuelType": ["petrol-electric", "petrol", "diesel", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 139.745, 135.332, 155.1905, 125.035, 147.10000000000002, 169.16500000000002, 180.1975, 130.1835, 132.39, 102.97, 108.854, 102.2345, 161.81, 109.5895, 150.7775]
             }
@@ -495,13 +495,13 @@
         "q5": {
             "q5": {
                 "colors": ["black", "white", "grey", "blue", "brown", "other", "silver", "green", "anthracite", "red", "gold", "beige"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [175.7845, 180.1975, 139.745, 125.035, 130.1835, 105.1765, 185.346, 150.042, 165.4875, 155.1905, 219.9145, 210.353, 269.92850000000004, 189.759, 194.9075, 173.578, 200.056, 110.325, 119.8865, 169.16500000000002, 199.3205, 169.90050000000002, 132.39, 209.6175]
             },
             "s line": {
                 "colors": ["black", "white", "grey", "blue", "brown", "other", "silver", "green", "anthracite", "red", "gold", "beige"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [175.7845, 180.1975, 139.745, 125.035, 130.1835, 105.1765, 185.346, 150.042, 165.4875, 155.1905, 219.9145, 210.353, 269.92850000000004, 189.759, 194.9075, 173.578, 200.056, 110.325, 119.8865, 169.16500000000002, 199.3205, 169.90050000000002, 132.39, 209.6175]
             }
@@ -509,13 +509,13 @@
         "q7": {
             "q7": {
                 "colors": ["brown", "white", "blue", "grey", "black", "beige", "silver", "anthracite"],
-                "fuelType": ["diesel", "petrol", "diesel/electric", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [200.056, 210.353, 250.07, 180.1975, 244.9215, 171.3715, 275.077, 175.7845, 280.2255, 257.425, 160.339, 169.90050000000002, 444.9775, 239.773, 274.3415, 173.578]
             },
             "s line": {
                 "colors": ["brown", "white", "blue", "grey", "black", "beige", "silver", "anthracite"],
-                "fuelType": ["diesel", "petrol", "diesel/electric", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [200.056, 210.353, 250.07, 180.1975, 244.9215, 171.3715, 275.077, 175.7845, 280.2255, 257.425, 160.339, 169.90050000000002, 444.9775, 239.773, 274.3415, 173.578]
             }
@@ -523,13 +523,13 @@
         "q8": {
             "q8": {
                 "colors": ["other", "blue", "black", "grey", "red", "white", "anthracite", "green"],
-                "fuelType": ["diesel", "diesel/electric", "electric", "petrol/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "electric", "petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [169.90050000000002, 210.353, 250.07, 441.3, 300.084, 339.80100000000004, 239.773, 359.65950000000004, 289.78700000000003, 280.2255, 544.27]
             },
             "rs q8": {
                 "colors": ["black", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [441.3, 544.27]
             }
@@ -537,7 +537,7 @@
         "quattro": {
             "quattro": {
                 "colors": ["black", "blue", "grey", "white", "silver", "anthracite"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [154.455, 130.1835, 381.7245, 161.81, 308.91, 169.90050000000002, 125.035, 440.5645, 210.353, 330.975, 147.10000000000002, 139.745, 294.20000000000005, 119.151, 117.68, 225.063, 228.005, 194.9075, 180.1975]
             }
@@ -599,7 +599,7 @@
         "rs6": {
             "rs6": {
                 "colors": ["grey", "white", "black", "blue", "other", "yellow", "anthracite", "red", "brown", "purple", "silver"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [411.88, 441.3, 463.365, 330.975, 519.263, 444.9775, 442.0355, 518.5275, 489.843, 514.85, 426.59, 462.6295, 547.9475, 353.04, 440.5645, 588.4000000000001, 558.98, 503.81750000000005]
             }
@@ -607,7 +607,7 @@
         "rs7": {
             "rs7": {
                 "colors": ["black", "grey", "white", "red", "blue", "green"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [441.3, 411.88, 489.843, 463.365, 444.9775]
             }
@@ -615,7 +615,7 @@
         "rsq8": {
             "rsq8": {
                 "colors": ["black", "grey", "blue", "red", "other", "orange", "green"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [441.3, 514.85, 544.27]
             }
@@ -631,7 +631,7 @@
         "s3": {
             "s3": {
                 "colors": ["black", "white", "grey", "silver", "blue", "other", "red", "anthracite", "yellow", "brown", "green"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [228.005, 221.3855, 224.3275, 228.74050000000005, 264.78000000000003, 194.9075, 244.9215, 165.4875, 220.65, 154.455, 272.135, 179.46200000000002]
             }
@@ -639,7 +639,7 @@
         "s4": {
             "s4": {
                 "colors": ["grey", "black", "silver", "red", "yellow", "blue", "white", "other", "anthracite", "green"],
-                "fuelType": ["petrol", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [244.9215, 194.9075, 260.367, 253.012, 255.2185, 259.6315, 293.46450000000004, 251.54100000000005, 225.7985, 250.8055, 241.9795]
             }
@@ -647,7 +647,7 @@
         "s5": {
             "s5": {
                 "colors": ["blue", "grey", "white", "black", "silver", "anthracite", "other", "red", "brown"],
-                "fuelType": ["petrol", "diesel/electric", "diesel"],
+                "fuelType": ["petrol", "diesel-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [244.9215, 260.367, 259.6315, 289.05150000000003, 264.0445, 289.78700000000003, 250.8055, 255.2185, 330.975, 251.54100000000005]
             }
@@ -655,7 +655,7 @@
         "s6": {
             "s6": {
                 "colors": ["white", "blue", "black", "grey", "anthracite"],
-                "fuelType": ["diesel/electric", "diesel", "petrol"],
+                "fuelType": ["diesel-electric", "diesel", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [257.425, 253.012, 330.975, 250.07, 308.91, 169.16500000000002, 256.6895, 319.9425]
             }
@@ -663,7 +663,7 @@
         "s7": {
             "s7": {
                 "colors": ["grey", "blue", "white", "black"],
-                "fuelType": ["petrol", "diesel/electric", "diesel"],
+                "fuelType": ["petrol", "diesel-electric", "diesel"],
                 "gears": ["automatic"],
                 "output": [308.91, 257.425, 253.012]
             }
@@ -671,7 +671,7 @@
         "s8": {
             "s8": {
                 "colors": ["black", "blue", "grey", "silver", "white", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [444.9775, 382.46, 419.9705, 264.78000000000003, 330.975]
             }
@@ -703,7 +703,7 @@
         "sq8": {
             "sq8": {
                 "colors": ["black", "anthracite", "grey", "white", "silver", "blue"],
-                "fuelType": ["petrol/electric", "diesel/electric", "petrol", "diesel", "electric"],
+                "fuelType": ["petrol-electric", "diesel-electric", "petrol", "diesel", "electric"],
                 "gears": ["automatic"],
                 "output": [373.634, 319.9425, 372.8985, 364.808, 369.9565, 471.4555]
             }
@@ -743,7 +743,7 @@
         "bentayga": {
             "bentayga": {
                 "colors": ["beige", "black", "blue", "grey", "green", "anthracite", "purple", "other"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [447.184, 319.9425, 403.7895, 404.525, 330.2395]
             }
@@ -921,7 +921,7 @@
             },
             "225 active tourer": {
                 "colors": ["white", "black", "grey", "silver", "blue", "anthracite", "brown", "gold", "beige", "red"],
-                "fuelType": ["petrol/electric", "petrol", "hybrid"],
+                "fuelType": ["petrol-electric", "petrol", "hybrid"],
                 "gears": ["automatic"],
                 "output": [164.752, 161.81, 169.90050000000002, 180.1975, 100.028, 91.9375]
             },
@@ -991,25 +991,25 @@
         "3er series": {
             "316": {
                 "colors": ["grey", "black", "white", "silver", "red", "blue", "green", "anthracite", "brown"],
-                "fuelType": ["diesel", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [105.1765, 100.028, 86.789, 110.325, 114.738, 94.8795, 84.58250000000001, 83.1115, 102.97, 558.98]
             },
             "318": {
                 "colors": ["grey", "black", "white", "silver", "red", "blue", "green", "anthracite", "brown"],
-                "fuelType": ["diesel", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [105.1765, 100.028, 86.789, 110.325, 114.738, 94.8795, 84.58250000000001, 83.1115, 102.97, 558.98]
             },
             "320": {
                 "colors": ["grey", "black", "white", "beige", "blue", "silver", "anthracite", "brown", "bordeaux", "other", "gold", "red", "green"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 125.035, 110.325, 135.332, 150.042, 119.8865, 130.1835, 214.766, 147.8355, 100.028, 94.8795, 123.564]
             },
             "320 gran turismo": {
                 "colors": ["grey", "black", "white", "beige", "blue", "silver", "anthracite", "brown", "bordeaux", "other", "gold", "red", "green"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 125.035, 110.325, 135.332, 150.042, 119.8865, 130.1835, 214.766, 147.8355, 100.028, 94.8795, 123.564]
             },
@@ -1045,13 +1045,13 @@
             },
             "330": {
                 "colors": ["white", "blue", "black", "grey", "silver", "brown", "green", "yellow", "anthracite", "beige"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [200.056, 214.766, 189.759, 169.90050000000002, 150.042, 180.1975, 194.9075, 134.59650000000002, 185.346, 184.6105, 135.332, 217.70800000000003, 209.6175, 210.353]
             },
             "330 gran turismo": {
                 "colors": ["white", "blue", "black", "grey", "silver", "brown", "green", "yellow", "anthracite", "beige"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [200.056, 214.766, 189.759, 169.90050000000002, 150.042, 180.1975, 194.9075, 134.59650000000002, 185.346, 184.6105, 135.332, 217.70800000000003, 209.6175, 210.353]
             },
@@ -1081,13 +1081,13 @@
             },
             "activehybrid 3": {
                 "colors": ["white", "blue", "black", "grey", "silver", "brown", "green", "yellow", "anthracite", "beige"],
-                "fuelType": ["petrol/electric", "diesel/electric"],
+                "fuelType": ["petrol-electric", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [200.056, 214.766, 189.759, 169.90050000000002, 150.042, 180.1975, 194.9075, 134.59650000000002, 185.346, 184.6105, 135.332, 217.70800000000003, 209.6175, 210.353]
             },
             "m340": {
                 "colors": ["black", "grey", "blue", "white", "red"],
-                "fuelType": ["petrol/electric", "diesel/electric", "petrol"],
+                "fuelType": ["petrol-electric", "diesel-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [275.077, 250.07, 258.1605, 283.1675]
             }
@@ -1095,7 +1095,7 @@
         "4er series": {
             "420": {
                 "colors": ["white", "black", "blue", "grey", "silver", "green", "anthracite", "brown"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [135.332, 139.745, 147.8355]
             },
@@ -1113,7 +1113,7 @@
             },
             "430": {
                 "colors": ["blue", "black", "white", "anthracite", "grey", "red", "silver", "green"],
-                "fuelType": ["petrol", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [189.759, 185.346, 210.353, 182.404, 180.1975]
             },
@@ -1131,7 +1131,7 @@
             },
             "m440": {
                 "colors": ["blue", "black", "grey", "white", "red", "gold", "other"],
-                "fuelType": ["petrol/electric", "diesel/electric", "diesel", "petrol"],
+                "fuelType": ["petrol-electric", "diesel-electric", "diesel", "petrol"],
                 "gears": ["automatic"],
                 "output": [275.077, 250.8055, 283.1675]
             }
@@ -1139,13 +1139,13 @@
         "5er series": {
             "520": {
                 "colors": ["white", "beige", "blue", "brown", "black", "grey", "anthracite", "silver"],
-                "fuelType": ["diesel", "petrol", "diesel/electric", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 135.332, 144.89350000000002, 130.1835, 147.8355, 125.035, 91.9375, 152.984, 123.564]
             },
             "523": {
                 "colors": ["white", "beige", "blue", "brown", "black", "grey", "anthracite", "silver"],
-                "fuelType": ["diesel", "petrol", "diesel/electric", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 135.332, 144.89350000000002, 130.1835, 147.8355, 125.035, 91.9375, 152.984, 123.564]
             },
@@ -1163,7 +1163,7 @@
             },
             "530": {
                 "colors": ["grey", "black", "blue", "anthracite", "white", "silver", "green", "beige", "gold", "brown"],
-                "fuelType": ["diesel", "diesel/electric", "petrol/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [147.8355, 217.70800000000003, 160.339, 184.6105, 180.1975, 189.759, 194.9075, 135.332, 185.346, 214.766, 210.353, 169.90050000000002, 172.8425, 200.056, 167.69400000000002, 141.9515, 134.59650000000002, 187.5525]
             },
@@ -1187,19 +1187,19 @@
             },
             "540": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "brown"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [235.36, 253.012, 250.07, 244.9215, 246.3925]
             },
             "545": {
                 "colors": ["grey", "silver", "black"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [289.78700000000003, 244.9215, 209.6175]
             },
             "550": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "brown"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [235.36, 253.012, 250.07, 244.9215, 246.3925]
             },
@@ -1211,7 +1211,7 @@
             },
             "activehybrid 5": {
                 "colors": ["blue"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [250.07]
             },
@@ -1275,25 +1275,25 @@
             },
             "730": {
                 "colors": ["anthracite", "grey", "white", "blue", "black", "brown", "green"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [194.9075, 169.90050000000002, 180.1975, 189.759, 210.353, 217.70800000000003, 160.339, 139.745]
             },
             "740": {
                 "colors": ["black", "grey", "green", "silver", "white", "blue"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "hybrid", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "hybrid", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [225.063, 235.36, 239.773, 210.353, 189.759, 230.2115, 250.07]
             },
             "745": {
                 "colors": ["silver", "grey", "black", "white", "green"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [244.9215, 289.78700000000003, 185.346, 210.353]
             },
             "750": {
                 "colors": ["grey", "black", "blue", "white", "green", "bordeaux", "anthracite"],
-                "fuelType": ["petrol", "diesel", "hybrid", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "hybrid", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [269.92850000000004, 330.975, 294.20000000000005, 300.084, 389.815, 230.2115, 239.773, 280.2255]
             },
@@ -1305,7 +1305,7 @@
             },
             "m760": {
                 "colors": ["grey", "black", "brown"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [430.2675, 448.655, 419.9705]
             }
@@ -1313,7 +1313,7 @@
         "8er series": {
             "840": {
                 "colors": ["black", "blue", "grey", "red", "white", "green"],
-                "fuelType": ["petrol", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [250.07, 235.36, 244.9215, 210.353]
             },
@@ -1341,7 +1341,7 @@
         "i3": {
             "i3": {
                 "colors": ["black", "grey", "silver", "white", "beige", "blue", "anthracite", "brown", "yellow", "bordeaux", "other"],
-                "fuelType": ["petrol/electric", "electric", "petrol"],
+                "fuelType": ["petrol-electric", "electric", "petrol"],
                 "gears": ["automatic", "direct, no transmission"],
                 "output": [125.035, 135.332, 27.949, 123.564]
             }
@@ -1373,7 +1373,7 @@
         "i8": {
             "i8": {
                 "colors": ["anthracite", "black", "white", "grey", "blue"],
-                "fuelType": ["petrol/electric", "hybrid"],
+                "fuelType": ["petrol-electric", "hybrid"],
                 "gears": ["automatic"],
                 "output": [265.51550000000003, 266.25100000000003, 275.077, 169.90050000000002]
             }
@@ -1469,7 +1469,7 @@
             },
             "xm": {
                 "colors": ["black", "white", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [480.2815000000001, 550.154, 359.65950000000004]
             }
@@ -1477,43 +1477,43 @@
         "x-series": {
             "x1": {
                 "colors": ["black", "orange", "grey", "white", "anthracite", "brown", "blue", "silver", "green", "beige"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [150.042, 161.81, 139.745, 135.332, 169.90050000000002, 130.1835, 102.97, 155.1905, 141.216, 105.1765, 160.339, 189.759, 145.62900000000002, 239.773, 180.1975, 130.919, 110.325, 109.5895, 90.4665, 100.028, 91.9375, 119.8865, 114.738, 127.977, 220.65]
             },
             "x2": {
                 "colors": ["white", "black", "blue", "grey", "turquoise", "gold", "anthracite", "green", "red", "brown", "orange", "other"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [225.063, 91.9375, 139.745, 161.81, 460.423, 102.97, 110.325, 141.216, 130.919, 169.90050000000002, 119.8865, 100.028, 220.65]
             },
             "x3": {
                 "colors": ["white", "black", "silver", "blue", "grey", "anthracite", "red", "bordeaux", "brown", "green", "beige", "gold", "yellow", "purple"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric", "hybrid"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [189.759, 135.332, 249.3345, 230.2115, 139.745, 264.78000000000003, 130.1835, 194.9075, 180.1975, 214.766, 110.325, 185.346, 209.6175, 225.063, 239.773, 155.1905, 260.367, 265.51550000000003, 353.04, 375.105, 210.353, 160.339, 169.90050000000002, 258.1605, 150.042, 141.216, 250.07, 147.8355, 200.056, 259.6315, 272.8705, 188.288, 369.9565, 158.13250000000002]
             },
             "x4": {
                 "colors": ["brown", "grey", "white", "blue", "black", "anthracite", "beige", "silver", "red", "gold"],
-                "fuelType": ["petrol", "diesel", "diesel/electric", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [185.346, 189.759, 139.745, 169.90050000000002, 264.78000000000003, 180.1975, 250.07, 210.353, 239.773, 194.9075, 230.2115, 135.332, 225.063, 258.1605, 147.8355, 353.04]
             },
             "x5": {
                 "colors": ["black", "red", "white", "blue", "grey", "brown", "yellow", "anthracite", "silver", "beige", "green", "bordeaux", "gold"],
-                "fuelType": ["petrol", "diesel", "diesel/electric", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [250.07, 230.2115, 209.6175, 294.20000000000005, 408.2025, 210.353, 177.2555, 194.9075, 172.8425, 280.2255, 169.90050000000002, 189.759, 225.063, 160.339, 258.1605, 226.534, 180.1975, 289.78700000000003, 359.65950000000004, 330.975, 389.815, 261.1025, 459.6875, 219.179, 200.056, 460.423, 330.2395, 244.9215, 135.332, 222.121, 217.70800000000003, 300.084, 235.36]
             },
             "x6": {
                 "colors": ["grey", "black", "white", "blue", "green", "anthracite", "red", "gold"],
-                "fuelType": ["petrol", "diesel", "diesel/electric", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [389.815, 280.2255, 225.063, 250.07, 209.6175, 408.2025, 244.9215, 230.2115, 460.423, 330.975, 180.1975, 194.9075, 294.20000000000005, 300.084, 210.353, 189.759, 463.365, 172.8425]
             },
             "x7": {
                 "colors": ["yellow", "black", "white", "grey", "blue", "anthracite"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [294.20000000000005, 194.9075, 250.07, 389.815, 258.1605, 279.49]
             }
@@ -1619,7 +1619,7 @@
         "xb7": {
             "xb7": {
                 "colors": ["grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [456.7455000000001]
             }
@@ -1709,7 +1709,7 @@
         "escalade": {
             "escalade": {
                 "colors": ["white", "black", "blue", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [312.58750000000003, 314.79400000000004, 256.6895, 308.91, 313.32300000000004, 300.8195, 247.8635]
             }
@@ -2033,7 +2033,7 @@
         "volt": {
             "volt": {
                 "colors": ["bordeaux", "blue", "grey", "white"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [110.325, 111.0605]
             }
@@ -2075,7 +2075,7 @@
         "jeep": {
             "jeep": {
                 "colors": ["black", "beige"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [280.2255, 82.376]
             }
@@ -2181,7 +2181,7 @@
         "c-zero": {
             "c-zero": {
                 "colors": ["white", "black", "red"],
-                "fuelType": ["electric", "petrol/electric"],
+                "fuelType": ["electric", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [49.2785]
             }
@@ -2205,7 +2205,7 @@
         "c3": {
             "c3": {
                 "colors": ["grey", "red", "black", "beige", "orange", "white", "silver", "anthracite", "blue", "green", "bordeaux", "purple", "turquoise", "other"],
-                "fuelType": ["petrol", "diesel", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [44.13, 53.691500000000005, 88.26, 60.31100000000001, 80.905, 67.666, 75.021, 69.8725, 64.724, 61.0465, 96.3505, 50.014, 50.749500000000005, 80.1695, 66.19500000000001, 73.55000000000001]
             }
@@ -2293,7 +2293,7 @@
         "c5": {
             "c5": {
                 "colors": ["white", "grey", "blue", "black", "anthracite", "silver", "other"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "hybrid"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [177.2555, 119.8865, 155.1905, 164.752, 96.3505, 132.39, 102.97, 150.042, 125.035, 100.028, 133.12550000000002, 114.738, 152.2485, 82.376, 165.4875, 130.1835, 88.26, 97.8215, 101.499, 152.984]
             }
@@ -2301,7 +2301,7 @@
         "c5 aircross": {
             "c5 aircross": {
                 "colors": ["grey", "other", "black", "blue", "white", "green"],
-                "fuelType": ["petrol/electric", "diesel", "petrol", "hybrid"],
+                "fuelType": ["petrol-electric", "diesel", "petrol", "hybrid"],
                 "gears": ["automatic"],
                 "output": [164.752, 96.3505, 100.028, 165.4875, 133.12550000000002]
             }
@@ -2349,7 +2349,7 @@
         "ds5": {
             "ds5": {
                 "colors": ["grey", "white"],
-                "fuelType": ["petrol", "diesel/electric"],
+                "fuelType": ["petrol", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [147.10000000000002, 119.8865]
             }
@@ -2483,7 +2483,7 @@
         "formentor": {
             "formentor": {
                 "colors": ["black", "blue", "white", "grey", "anthracite", "beige", "other", "red", "green"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic"],
                 "output": [139.745, 228.005, 180.1975, 150.042, 286.845, 110.325, 111.0605, 140.4805, 330.975]
             }
@@ -2491,7 +2491,7 @@
         "leon": {
             "leon": {
                 "colors": ["grey", "black", "white", "blue", "red"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [220.65, 221.3855, 110.325, 228.005, 272.135, 244.9215, 180.1975, 150.042, 268.45750000000004, 139.745]
             }
@@ -2509,7 +2509,7 @@
         "duster": {
             "duster": {
                 "colors": ["blue", "brown", "grey", "black", "white", "beige", "anthracite", "green", "silver", "bordeaux", "red", "yellow", "orange", "gold"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [77.2275, 91.9375, 95.615, 96.3505, 102.97, 110.325, 83.84700000000001, 84.58250000000001, 80.905, 103.7055, 80.1695, 66.93050000000001, 85.31800000000001, 108.854]
             }
@@ -2517,7 +2517,7 @@
         "jogger": {
             "jogger": {
                 "colors": ["orange", "other", "green", "black", "brown", "white", "grey", "red", "anthracite", "silver"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [105.1765, 80.905, 103.7055, 68.4015]
             }
@@ -2533,7 +2533,7 @@
         "logan": {
             "logan": {
                 "colors": ["grey", "white", "blue", "black", "brown", "silver", "beige", "red"],
-                "fuelType": ["petrol", "diesel", "bioethanol", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "bioethanol", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [66.19500000000001, 61.782, 54.42700000000001, 77.2275, 63.253, 63.9885, 55.1625, 50.014]
             }
@@ -2747,7 +2747,7 @@
         "ds4": {
             "ds4": {
                 "colors": ["white", "grey", "black", "brown", "orange", "beige", "blue", "red", "gold", "other", "silver"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "hybrid"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [121.3575, 88.26, 147.10000000000002, 164.752, 132.39, 96.3505, 165.4875, 95.615, 119.8865, 83.84700000000001, 114.738, 133.12550000000002]
             }
@@ -2755,7 +2755,7 @@
         "ds5": {
             "ds5": {
                 "colors": ["purple", "white", "black", "grey", "silver"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [133.12550000000002, 119.8865, 147.10000000000002, 114.738, 132.39, 82.376]
             }
@@ -2763,7 +2763,7 @@
         "ds7": {
             "ds7": {
                 "colors": ["grey", "red", "black", "anthracite", "white", "blue", "gold", "brown", "other"],
-                "fuelType": ["petrol/electric", "diesel", "petrol", "hybrid", "electric"],
+                "fuelType": ["petrol-electric", "diesel", "petrol", "hybrid", "electric"],
                 "gears": ["automatic"],
                 "output": [219.9145, 95.615, 165.4875, 220.65, 264.78000000000003, 132.39, 164.752, 147.10000000000002, 130.1835]
             }
@@ -2771,7 +2771,7 @@
         "ds9": {
             "ds9": {
                 "colors": ["silver", "other", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [264.78000000000003, 164.752]
             }
@@ -2781,7 +2781,7 @@
         "296": {
             "296": {
                 "colors": ["red", "black", "grey", "blue", "yellow"],
-                "fuelType": ["petrol/electric", "hybrid"],
+                "fuelType": ["petrol-electric", "hybrid"],
                 "gears": ["automatic"],
                 "output": [610.465, 487.6365]
             }
@@ -3029,7 +3029,7 @@
             },
             "500": {
                 "colors": ["red", "white", "turquoise", "blue", "black", "grey", "gold", "yellow", "anthracite", "bordeaux", "green", "orange", "purple", "beige", "brown", "other", "silver"],
-                "fuelType": ["petrol", "petrol/electric", "electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "electric", "diesel"],
                 "gears": ["manual", "automatic", "direct, no transmission"],
                 "output": [77.2275, 73.55000000000001, 51.485, 58.84, 87.5245, 99.2925, 132.39, 86.789, 52.2205, 50.749500000000005, 117.68, 62.517500000000005, 102.97, 81.6405, 55.1625, 13.239, 121.3575, 75.7565, 61.782, 136.0675, 72.81450000000001, 50.014, 97.8215, 70.608, 63.253, 100.028, 83.1115, 107.383, 106.6475]
             },
@@ -3051,7 +3051,7 @@
         "500l": {
             "500l": {
                 "colors": ["black", "red", "purple", "white", "beige", "yellow", "grey", "green"],
-                "fuelType": ["diesel", "petrol", "natural gas/petrol"],
+                "fuelType": ["diesel", "petrol", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [61.782, 50.749500000000005, 69.8725, 58.84, 77.2275, 88.26, 69.137, 13.239, 62.517500000000005]
             }
@@ -3059,7 +3059,7 @@
         "500x": {
             "500x": {
                 "colors": ["red", "grey", "white", "beige", "black", "blue", "green", "anthracite", "silver", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 88.26, 102.97, 95.615, 125.035, 96.3505, 80.905]
             }
@@ -3183,7 +3183,7 @@
         "doblo": {
             "doblo": {
                 "colors": ["blue", "white", "black", "grey", "brown", "red", "bordeaux", "orange", "silver"],
-                "fuelType": ["diesel", "petrol", "natural gas/petrol", "gas"],
+                "fuelType": ["diesel", "petrol", "natural-gas-petrol", "gas"],
                 "gears": ["manual"],
                 "output": [73.55000000000001, 77.2275, 99.2925, 88.26, 69.8725, 56.633500000000005, 57.369, 75.7565, 80.905, 66.19500000000001, 47.807500000000005, 55.1625]
             },
@@ -3197,7 +3197,7 @@
         "ducato": {
             "ducato": {
                 "colors": ["white", "yellow", "grey", "black", "anthracite", "brown", "beige", "other", "blue", "green", "red", "silver", "orange", "bordeaux"],
-                "fuelType": ["diesel", "natural gas/petrol", "electric", "petrol"],
+                "fuelType": ["diesel", "natural-gas-petrol", "electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [60.31100000000001, 80.905, 85.31800000000001, 117.68, 116.209, 89.73100000000001, 73.55000000000001, 95.615, 94.144, 80.1695, 100.028, 108.854, 96.3505, 102.97, 92.673, 130.1835, 58.84, 66.19500000000001, 86.789, 88.26, 84.58250000000001, 115.4735, 91.9375, 97.086, 93.4085, 69.137, 132.39, 110.325, 78.69850000000001, 107.383, 83.84700000000001, 61.782, 61.0465, 94.8795, 103.7055, 88.9955, 114.738, 105.1765, 63.9885]
             },
@@ -3211,7 +3211,7 @@
         "fiorino": {
             "fiorino": {
                 "colors": ["white", "yellow", "beige", "blue", "grey", "red"],
-                "fuelType": ["natural gas/petrol", "petrol", "diesel"],
+                "fuelType": ["natural-gas-petrol", "petrol", "diesel"],
                 "gears": ["manual"],
                 "output": [56.633500000000005, 48.543000000000006, 53.691500000000005, 55.1625, 54.42700000000001]
             }
@@ -3251,7 +3251,7 @@
         "panda": {
             "panda": {
                 "colors": ["orange", "red", "green", "beige", "black", "white", "blue", "grey", "anthracite", "bordeaux", "yellow", "silver"],
-                "fuelType": ["petrol", "petrol/electric", "natural gas/petrol", "diesel", "gas"],
+                "fuelType": ["petrol", "petrol-electric", "natural-gas-petrol", "diesel", "gas"],
                 "gears": ["manual", "automatic"],
                 "output": [62.517500000000005, 51.485, 44.13, 52.2205, 66.19500000000001, 63.253, 39.717, 61.782, 58.84, 55.1625, 73.55000000000001, 57.369, 36.775000000000006, 50.749500000000005]
             }
@@ -3259,7 +3259,7 @@
         "punto": {
             "punto": {
                 "colors": ["black", "grey", "anthracite", "beige", "white", "blue", "silver", "red", "other"],
-                "fuelType": ["petrol", "diesel", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [57.369, 58.84, 73.55000000000001, 51.485, 55.898, 96.3505, 62.517500000000005, 47.807500000000005, 77.2275, 44.13, 69.8725, 50.749500000000005, 88.26, 132.39, 99.2925, 54.42700000000001, 63.253, 121.3575, 65.4595, 56.633500000000005, 66.19500000000001, 114.0025, 50.014]
             }
@@ -3267,7 +3267,7 @@
         "qubo": {
             "qubo": {
                 "colors": ["white", "blue", "grey", "green", "black", "silver"],
-                "fuelType": ["petrol", "natural gas/petrol", "diesel"],
+                "fuelType": ["petrol", "natural-gas-petrol", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [53.691500000000005, 57.369, 69.8725, 55.1625]
             }
@@ -3349,7 +3349,7 @@
         "tipo": {
             "tipo": {
                 "colors": ["grey", "beige", "white", "orange", "red", "blue", "black", "green", "silver", "anthracite", "brown"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [73.55000000000001, 88.26, 69.8725, 95.615, 74.2855, 96.3505]
             }
@@ -3463,7 +3463,7 @@
         "explorer": {
             "explorer": {
                 "colors": ["blue", "black", "grey", "anthracite", "white", "red", "other"],
-                "fuelType": ["petrol/electric", "petrol", "hybrid"],
+                "fuelType": ["petrol-electric", "petrol", "hybrid"],
                 "gears": ["automatic"],
                 "output": [336.12350000000004, 266.98650000000004, 152.2485, 338.33000000000004, 216.237, 213.295]
             }
@@ -3497,7 +3497,7 @@
         "fiesta": {
             "fiesta": {
                 "colors": ["blue", "white", "black", "grey", "beige", "red", "silver", "anthracite", "orange", "other", "green", "purple", "yellow", "brown", "bordeaux", "gold"],
-                "fuelType": ["liquefied petroleum gas/petrol", "petrol", "petrol/electric", "diesel"],
+                "fuelType": ["liquefied petroleum gas/petrol", "petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [60.31100000000001, 91.9375, 73.55000000000001, 58.84, 133.86100000000002, 44.13, 88.26, 110.325, 70.608, 102.97, 69.8725, 147.10000000000002, 74.2855, 98.557, 50.749500000000005, 77.2275, 47.807500000000005, 51.485, 114.0025, 55.1625, 66.19500000000001, 62.517500000000005, 58.1045, 50.014, 157.39700000000002, 158.13250000000002]
             }
@@ -3505,7 +3505,7 @@
         "focus": {
             "focus": {
                 "colors": ["black", "grey", "white", "blue", "green", "silver", "red", "anthracite", "orange", "beige", "brown", "other", "bordeaux", "yellow", "turquoise"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "electric", "bioethanol"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "electric", "bioethanol"],
                 "gears": ["manual", "automatic"],
                 "output": [91.9375, 114.0025, 133.86100000000002, 88.26, 110.325, 224.3275, 106.6475, 257.425, 183.875, 85.31800000000001, 84.58250000000001, 100.028, 205.94, 73.55000000000001, 55.1625, 80.1695, 102.97, 119.8865, 166.223, 136.0675, 80.905, 74.2855, 77.2275, 72.81450000000001, 107.383, 66.19500000000001, 127.2415, 258.1605, 83.84700000000001, 96.3505, 105.1765, 165.4875, 90.4665, 78.69850000000001]
             }
@@ -3545,7 +3545,7 @@
         "kuga": {
             "kuga": {
                 "colors": ["blue", "white", "black", "red", "grey", "silver", "anthracite", "brown", "bordeaux", "orange", "green", "other", "beige", "yellow"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "diesel/electric", "hybrid"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "diesel-electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 100.028, 164.752, 102.97, 111.796, 139.745, 177.2555, 119.8865, 132.39, 147.10000000000002, 165.4875, 133.86100000000002, 177.991, 131.6545, 88.26, 169.90050000000002, 169.16500000000002, 87.5245, 140.4805, 176.52, 166.95850000000002]
             }
@@ -3561,7 +3561,7 @@
         "mondeo": {
             "mondeo": {
                 "colors": ["grey", "blue", "white", "black", "anthracite", "green", "silver", "red"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [95.615, 149.3065, 106.6475, 166.223, 102.97, 140.4805, 110.325, 161.81, 139.745, 117.68, 176.52, 119.8865, 121.3575, 132.39, 125.035, 84.58250000000001, 138.274, 101.499]
             }
@@ -3585,7 +3585,7 @@
         "puma": {
             "puma": {
                 "colors": ["anthracite", "black", "green", "grey", "white", "red", "blue", "other", "silver", "turquoise", "bordeaux"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [114.0025, 147.10000000000002, 91.9375, 117.68, 116.9445]
             }
@@ -3601,7 +3601,7 @@
         "s-max": {
             "s-max": {
                 "colors": ["white", "grey", "black", "anthracite", "silver", "blue", "beige", "red"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 161.81, 132.39, 117.68, 139.745, 102.97, 121.3575, 106.6475, 119.8865, 149.3065, 176.52, 128.7125, 118.4155, 95.615, 140.4805, 127.2415, 154.455]
             }
@@ -3657,7 +3657,7 @@
         "tourneo custom": {
             "tourneo custom": {
                 "colors": ["white", "black", "orange", "red", "silver", "grey", "blue", "other", "anthracite"],
-                "fuelType": ["diesel/electric", "diesel", "petrol/electric"],
+                "fuelType": ["diesel-electric", "diesel", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [96.3505, 136.0675, 95.615, 125.035, 77.2275, 114.0025, 110.325, 93.4085, 133.86100000000002]
             }
@@ -3665,7 +3665,7 @@
         "transit": {
             "transit": {
                 "colors": ["blue", "white", "grey", "other", "red", "black", "beige", "orange", "yellow", "silver", "anthracite", "green"],
-                "fuelType": ["diesel", "petrol", "electric", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [136.0675, 73.55000000000001, 125.035, 91.9375, 95.615, 100.028, 102.97, 114.0025, 80.905, 106.6475, 84.58250000000001, 135.332, 94.8795, 197.8495, 62.517500000000005, 121.3575, 96.3505, 55.898, 110.325, 90.4665, 77.2275, 61.782, 71.3435, 101.499, 83.84700000000001, 74.2855, 69.8725, 85.31800000000001, 63.253, 98.557, 80.1695]
             }
@@ -3689,7 +3689,7 @@
         "transit custom": {
             "transit custom": {
                 "colors": ["white", "black", "red", "grey", "anthracite", "blue", "silver", "other", "yellow"],
-                "fuelType": ["diesel", "petrol/electric", "electric"],
+                "fuelType": ["diesel", "petrol-electric", "electric"],
                 "gears": ["manual", "automatic"],
                 "output": [73.55000000000001, 95.615, 125.035, 77.2275, 80.905, 100.028, 91.9375, 62.517500000000005, 110.325, 136.0675, 123.564, 114.0025, 160.339, 92.673]
             }
@@ -3775,7 +3775,7 @@
         "civic": {
             "civic": {
                 "colors": ["white", "red", "black", "blue", "anthracite", "grey", "green", "silver", "bordeaux", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [102.97, 235.36, 228.005, 94.8795, 133.86100000000002, 134.59650000000002, 105.1765, 73.55000000000001, 241.9795, 66.19500000000001, 147.8355, 110.325, 103.7055, 147.10000000000002, 69.8725, 80.905, 242.715, 135.332, 88.26, 161.81, 239.0375, 91.9375, 234.6245, 108.854]
             }
@@ -3783,7 +3783,7 @@
         "cr-v": {
             "cr-v": {
                 "colors": ["grey", "red", "brown", "white", "black", "silver", "blue", "bordeaux", "anthracite", "gold", "green", "beige"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "hybrid"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "hybrid"],
                 "gears": ["manual", "automatic"],
                 "output": [102.97, 127.2415, 110.325, 108.1185, 135.332, 114.0025, 117.68, 134.59650000000002, 141.9515, 108.854, 88.26, 94.144, 109.5895]
             }
@@ -3799,7 +3799,7 @@
         "cr-z": {
             "cr-z": {
                 "colors": ["white", "black", "red", "grey", "blue"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["manual"],
                 "output": [83.84700000000001, 88.9955, 91.202]
             }
@@ -3823,7 +3823,7 @@
         "hr-v": {
             "hr-v": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "red", "green", "silver"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [95.615, 96.3505, 88.26, 77.2275, 91.9375, 133.86100000000002, 103.7055, 90.4665]
             }
@@ -3831,7 +3831,7 @@
         "insight": {
             "insight": {
                 "colors": ["grey", "brown", "black", "white", "blue", "anthracite", "silver"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [64.724]
             }
@@ -3847,7 +3847,7 @@
         "jazz": {
             "jazz": {
                 "colors": ["red", "anthracite", "grey", "blue", "silver", "bordeaux", "white", "purple", "black", "yellow", "green", "orange", "brown"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [64.724, 61.0465, 73.55000000000001, 72.07900000000001, 80.1695, 89.73100000000001, 75.021, 57.369, 66.19500000000001, 95.615, 78.69850000000001, 96.3505]
             }
@@ -3871,7 +3871,7 @@
         "nsx": {
             "nsx": {
                 "colors": ["yellow", "white", "red"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [201.527, 426.59]
             }
@@ -3927,7 +3927,7 @@
         "zr-v": {
             "zr-v": {
                 "colors": ["black", "anthracite", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [135.332, 134.59650000000002]
             }
@@ -3953,7 +3953,7 @@
         "bayon": {
             "bayon": {
                 "colors": ["red", "grey", "white", "blue", "brown", "green"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [73.55000000000001, 88.26]
             }
@@ -4025,7 +4025,7 @@
         "i20": {
             "i20": {
                 "colors": ["white", "blue", "red", "black", "grey", "anthracite", "brown", "other", "orange", "green", "yellow", "silver", "bordeaux"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [63.253, 73.55000000000001, 150.042, 61.782, 92.673, 88.26, 57.369, 74.2855, 99.2925, 66.19500000000001, 62.517500000000005, 55.1625, 94.144, 65.4595]
             }
@@ -4033,7 +4033,7 @@
         "i30": {
             "i30": {
                 "colors": ["grey", "black", "blue", "anthracite", "white", "silver", "brown", "red", "beige", "bordeaux"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [99.2925, 202.2625, 94.144, 117.68, 88.26, 85.31800000000001, 102.97, 80.905, 92.673, 105.1765, 73.55000000000001, 205.94, 72.81450000000001, 100.028, 136.803, 116.9445, 65.4595, 75.7565, 275.8125, 89.73100000000001, 84.58250000000001]
             }
@@ -4049,7 +4049,7 @@
         "ioniq": {
             "ioniq": {
                 "colors": ["white", "grey", "black", "beige", "blue", "brown", "silver", "red", "anthracite"],
-                "fuelType": ["petrol/electric", "electric"],
+                "fuelType": ["petrol-electric", "electric"],
                 "gears": ["automatic", "direct, no transmission"],
                 "output": [103.7055, 88.26, 100.028, 225.063, 239.0375, 167.69400000000002, 168.42950000000002]
             }
@@ -4089,7 +4089,7 @@
         "kona": {
             "kona": {
                 "colors": ["blue", "grey", "white", "orange", "black", "green", "silver", "red", "yellow", "brown", "bordeaux", "beige", "anthracite", "other"],
-                "fuelType": ["petrol/electric", "petrol", "electric", "diesel"],
+                "fuelType": ["petrol-electric", "petrol", "electric", "diesel"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [103.7055, 77.2275, 145.62900000000002, 130.1835, 150.042, 88.26, 100.028, 159.6035, 146.36450000000002, 205.94, 160.339, 206.6755]
             }
@@ -4121,7 +4121,7 @@
         "santa fe": {
             "santa fe": {
                 "colors": ["brown", "blue", "grey", "white", "black", "green", "anthracite", "beige"],
-                "fuelType": ["diesel", "petrol/electric", "petrol"],
+                "fuelType": ["diesel", "petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [141.216, 147.10000000000002, 144.89350000000002, 114.0025, 106.6475, 169.16500000000002, 139.0095, 141.9515, 194.9075, 132.39, 127.2415, 105.912, 148.571, 127.977, 110.325, 147.8355]
             }
@@ -4169,7 +4169,7 @@
         "tucson": {
             "tucson": {
                 "colors": ["blue", "grey", "silver", "black", "white", "red", "brown", "beige", "bordeaux", "anthracite", "green", "gold"],
-                "fuelType": ["diesel/electric", "petrol", "petrol/electric", "diesel", "hybrid"],
+                "fuelType": ["diesel-electric", "petrol", "petrol-electric", "diesel", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [136.0675, 104.441, 132.39, 100.028, 103.7055, 130.1835, 158.13250000000002, 169.16500000000002, 102.97, 85.31800000000001, 128.7125, 110.325, 98.557, 194.9075, 84.58250000000001, 95.615, 131.6545, 117.68]
             }
@@ -4293,7 +4293,7 @@
         "50": {
             "50": {
                 "colors": ["yellow", "white", "orange", "blue"],
-                "fuelType": ["diesel", "gas", "natural gas/petrol"],
+                "fuelType": ["diesel", "gas", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [129.448, 100.028, 150.7775, 132.39]
             }
@@ -4343,7 +4343,7 @@
         "e-pace": {
             "e-pace": {
                 "colors": ["red", "grey", "black", "white", "blue", "anthracite", "silver"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 220.65, 147.10000000000002, 183.875, 183.1395, 132.39, 227.2695, 147.8355, 221.3855, 119.8865, 117.68]
             }
@@ -4359,7 +4359,7 @@
         "f-pace": {
             "f-pace": {
                 "colors": ["silver", "grey", "black", "white", "blue", "red", "brown", "anthracite", "green", "gold"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [404.525, 250.07, 132.39, 183.875, 220.65, 221.3855, 279.49, 177.2555, 297.142]
             }
@@ -4407,7 +4407,7 @@
         "xf": {
             "xf": {
                 "colors": ["anthracite", "grey", "beige", "black", "white", "green", "red", "blue", "bordeaux", "brown", "purple"],
-                "fuelType": ["petrol", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [250.07, 132.39, 202.2625, 279.49, 183.875, 147.10000000000002, 155.1905, 220.65, 375.105, 177.2555, 405.2605, 119.8865, 175.049, 176.52, 294.9355, 150.042, 152.2485]
             }
@@ -4465,7 +4465,7 @@
         "avenger": {
             "avenger": {
                 "colors": ["white", "grey", "black", "yellow", "blue", "red", "turquoise"],
-                "fuelType": ["electric", "petrol", "petrol/electric"],
+                "fuelType": ["electric", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [114.738, 74.2855, 73.55000000000001]
             }
@@ -4497,7 +4497,7 @@
         "compass": {
             "compass": {
                 "colors": ["black", "blue", "grey", "white", "green", "anthracite", "silver", "red", "beige"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [125.035, 177.2555, 102.97, 176.52, 95.615, 88.26, 119.8865, 132.39, 110.325, 139.745, 139.0095, 123.564, 140.4805]
             }
@@ -4513,7 +4513,7 @@
         "grand cherokee": {
             "grand cherokee": {
                 "colors": ["grey", "black", "white", "silver", "blue", "beige", "red", "anthracite", "bordeaux", "brown", "green", "other", "purple"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [183.875, 160.339, 220.65, 344.214, 522.205, 210.353, 213.295, 163.281, 521.4695, 219.9145, 280.2255, 166.95850000000002, 313.32300000000004, 239.773, 177.2555, 312.58750000000003, 216.237, 236.831, 139.745, 216.97250000000005, 169.90050000000002, 155.92600000000002, 185.346, 215.5015, 130.1835, 189.759, 258.896, 222.8565, 264.0445, 119.8865, 221.3855, 267.72200000000004]
             }
@@ -4529,7 +4529,7 @@
         "renegade": {
             "renegade": {
                 "colors": ["white", "black", "grey", "blue", "red", "yellow", "green", "anthracite", "silver", "beige"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "hybrid"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [102.97, 125.035, 139.745, 176.52, 177.2555, 132.39, 110.325, 88.26, 95.615, 131.6545, 138.274, 130.1835, 96.3505, 101.499]
             }
@@ -4537,7 +4537,7 @@
         "wrangler": {
             "wrangler": {
                 "colors": ["white", "grey", "anthracite", "red", "silver", "yellow", "black", "blue", "brown", "gold", "green", "other", "orange"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "liquefied petroleum gas/petrol"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "liquefied petroleum gas/petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [200.056, 208.882, 130.1835, 147.10000000000002, 123.564, 280.2255, 279.49, 345.685, 205.94, 135.332, 350.098, 146.36450000000002, 353.7755, 224.3275, 228.005, 133.12550000000002, 105.1765, 75.7565]
             }
@@ -4563,7 +4563,7 @@
         "cee'd": {
             "cee'd": {
                 "colors": ["white", "anthracite", "black", "grey", "red", "brown", "silver", "other", "beige", "orange", "blue", "gold"],
-                "fuelType": ["petrol/electric", "petrol", "diesel"],
+                "fuelType": ["petrol-electric", "petrol", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [103.7055, 117.68, 99.2925, 91.9375, 94.144, 150.042, 85.31800000000001, 66.19500000000001, 80.1695, 100.028, 102.97, 88.26, 77.2275, 105.1765, 72.07900000000001, 92.673]
             }
@@ -4623,7 +4623,7 @@
             },
             "niro": {
                 "colors": ["white", "anthracite", "grey", "blue", "silver", "black", "brown", "red", "green"],
-                "fuelType": ["electric", "petrol/electric", "petrol"],
+                "fuelType": ["electric", "petrol-electric", "petrol"],
                 "gears": ["automatic", "direct, no transmission", "manual"],
                 "output": [150.042, 103.7055, 133.86100000000002, 77.2275, 134.59650000000002]
             }
@@ -4639,7 +4639,7 @@
         "optima": {
             "optima": {
                 "colors": ["black", "white", "anthracite", "silver", "grey"],
-                "fuelType": ["petrol/electric", "diesel", "petrol"],
+                "fuelType": ["petrol-electric", "diesel", "petrol"],
                 "gears": ["automatic"],
                 "output": [110.325, 150.7775, 103.7055, 100.028, 180.1975]
             }
@@ -4655,7 +4655,7 @@
         "pro_cee'd": {
             "pro_cee'd": {
                 "colors": ["red", "white", "black", "orange", "grey", "blue"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [150.042, 91.9375, 117.68, 102.97, 105.1765]
             }
@@ -4663,7 +4663,7 @@
         "rio": {
             "rio": {
                 "colors": ["white", "grey", "red", "silver", "black", "anthracite", "blue", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [61.782, 71.3435, 80.1695, 88.26, 73.55000000000001, 66.19500000000001, 80.905, 74.2855]
             }
@@ -4671,7 +4671,7 @@
         "sorento": {
             "sorento": {
                 "colors": ["grey", "black", "white", "brown", "blue", "anthracite", "silver", "green"],
-                "fuelType": ["diesel", "petrol/electric", "petrol"],
+                "fuelType": ["diesel", "petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [144.89350000000002, 141.9515, 147.8355, 194.9075, 147.10000000000002, 182.404, 102.97, 143.4225, 125.035, 169.16500000000002, 101.499, 123.564]
             }
@@ -4693,7 +4693,7 @@
         "sportage": {
             "sportage": {
                 "colors": ["black", "blue", "white", "green", "brown", "anthracite", "grey", "other", "silver", "beige", "red"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [82.376, 100.028, 99.2925, 132.39, 131.6545, 135.332, 169.16500000000002, 136.0675, 122.093, 110.325, 130.1835, 194.9075, 103.7055, 117.68, 97.086, 128.7125, 119.8865, 158.13250000000002, 102.97]
             }
@@ -4709,7 +4709,7 @@
         "stonic": {
             "stonic": {
                 "colors": ["white", "brown", "red", "black", "silver", "blue", "grey", "yellow", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [74.2855, 88.26, 73.55000000000001, 131.6545]
             }
@@ -4725,7 +4725,7 @@
         "xceed": {
             "xceed": {
                 "colors": ["red", "grey", "black", "white", "silver", "yellow", "blue", "green", "gold", "other"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [117.68, 103.7055, 150.042, 102.97, 88.26]
             }
@@ -4735,7 +4735,7 @@
         "aventador": {
             "aventador": {
                 "colors": ["black", "grey", "white", "red", "orange", "brown", "blue", "green", "gold"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [545.0055, 514.85, 566.335, 573.69, 544.27]
             }
@@ -4865,7 +4865,7 @@
         "ypsilon": {
             "ypsilon": {
                 "colors": ["beige", "black", "grey", "white", "brown", "gold", "blue"],
-                "fuelType": ["petrol", "diesel", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [69.8725, 57.369, 62.517500000000005, 51.485, 50.749500000000005]
             }
@@ -4899,7 +4899,7 @@
         "defender": {
             "defender": {
                 "colors": ["green", "blue", "brown", "silver", "grey", "black", "white", "anthracite", "beige", "bordeaux", "yellow", "red", "other"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [89.73100000000001, 183.1395, 294.20000000000005, 219.9145, 386.1375000000001, 88.9955, 132.39, 183.875, 297.142, 297.8775, 177.2555, 83.1115, 220.65, 221.3855, 296.4065, 217.70800000000003, 128.7125, 117.68, 83.84700000000001, 147.10000000000002]
             }
@@ -4907,7 +4907,7 @@
         "discovery": {
             "discovery": {
                 "colors": ["black", "brown", "grey", "red", "anthracite", "blue", "white", "orange", "gold", "green"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [219.9145, 188.288, 225.063, 250.07, 139.745, 180.1975, 189.759, 176.52, 130.1835, 155.1905, 132.39, 220.65, 101.499, 221.3855, 138.274]
             }
@@ -4915,7 +4915,7 @@
         "discovery sport": {
             "discovery sport": {
                 "colors": ["grey", "black", "red", "blue", "anthracite", "white", "green", "beige", "brown"],
-                "fuelType": ["diesel", "diesel/electric", "petrol/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [132.39, 183.875, 177.2555, 147.10000000000002, 110.325, 176.52, 226.534, 150.042, 149.3065, 180.1975, 138.274, 139.745, 183.1395]
             }
@@ -4931,7 +4931,7 @@
         "range rover": {
             "range rover": {
                 "colors": ["white", "green", "black", "blue", "beige", "grey", "silver", "anthracite", "brown", "red", "other"],
-                "fuelType": ["diesel", "diesel/electric", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "diesel-electric", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [189.759, 258.1605, 389.815, 375.105, 297.142, 123.564, 220.65, 416.293, 229.476, 250.07, 130.1835, 200.056, 279.49, 210.353, 202.2625, 386.1375000000001, 160.339, 291.25800000000004, 467.0425, 281.6965, 405.2605, 221.3855, 225.063, 294.20000000000005, 323.62, 133.86100000000002]
             }
@@ -4939,7 +4939,7 @@
         "range rover evoque": {
             "range rover evoque": {
                 "colors": ["brown", "white", "black", "grey", "silver", "bordeaux", "blue", "red", "green", "orange", "anthracite", "gold", "beige", "other"],
-                "fuelType": ["petrol", "diesel", "diesel/electric", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [183.875, 132.39, 110.325, 120.622, 150.042, 177.2555, 147.10000000000002, 183.1395, 139.745, 176.52, 118.4155, 226.534, 221.3855, 102.97, 227.2695, 130.1835, 155.92600000000002]
             }
@@ -4947,7 +4947,7 @@
         "range rover sport": {
             "range rover sport": {
                 "colors": ["blue", "white", "black", "grey", "anthracite", "beige", "red", "silver", "green", "brown", "bordeaux"],
-                "fuelType": ["diesel", "petrol", "diesel/electric", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [200.056, 225.063, 180.1975, 250.07, 404.525, 214.766, 258.1605, 422.9125, 221.3855, 375.105, 188.288, 249.3345, 389.815, 297.142, 139.745, 183.1395, 189.759, 257.425, 294.20000000000005, 211.824, 386.1375000000001, 197.114, 338.33000000000004, 220.65, 155.1905, 282.432, 308.91, 286.845, 185.346]
             }
@@ -4955,7 +4955,7 @@
         "range rover velar": {
             "range rover velar": {
                 "colors": ["grey", "black", "white", "anthracite", "blue", "red", "brown", "beige", "silver"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "diesel/electric"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [279.49, 183.875, 221.3855, 294.20000000000005, 404.525, 220.65, 150.042, 132.39, 176.52, 131.6545, 297.142]
             }
@@ -4965,7 +4965,7 @@
         "ct": {
             "ct": {
                 "colors": ["silver", "red", "white", "grey", "blue", "black"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [100.028, 72.07900000000001]
             }
@@ -4973,7 +4973,7 @@
         "es": {
             "es": {
                 "colors": ["anthracite", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [160.339, 130.919]
             }
@@ -4981,7 +4981,7 @@
         "gs": {
             "gs": {
                 "colors": ["grey", "silver", "white", "green", "beige"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [164.0165, 183.875, 217.70800000000003, 155.92600000000002]
             }
@@ -4989,7 +4989,7 @@
         "is": {
             "is": {
                 "colors": ["black", "grey", "white", "blue"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [152.984, 164.0165, 157.39700000000002, 130.1835, 311.11650000000003]
             }
@@ -4997,7 +4997,7 @@
         "lbx": {
             "lbx": {
                 "colors": ["white", "red", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [100.028]
             }
@@ -5013,7 +5013,7 @@
         "ls": {
             "ls": {
                 "colors": ["black", "beige", "blue"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [279.49, 326.562]
             }
@@ -5021,7 +5021,7 @@
         "nx": {
             "nx": {
                 "colors": ["black", "brown", "green", "silver", "white", "grey", "blue", "red", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [175.049, 144.89350000000002, 178.72650000000002, 114.0025, 141.216, 227.2695, 179.46200000000002]
             }
@@ -5029,7 +5029,7 @@
         "rc": {
             "rc": {
                 "colors": ["grey"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [133.12550000000002, 350.8335, 180.1975]
             }
@@ -5037,7 +5037,7 @@
         "rx": {
             "rx": {
                 "colors": ["silver", "white", "anthracite", "grey", "black", "gold", "blue", "beige", "red"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [155.1905, 219.9145, 230.2115, 183.875, 147.8355, 272.8705, 170.63600000000002, 192.701, 175.049, 152.984, 150.042, 227.2695]
             }
@@ -5061,7 +5061,7 @@
         "ux": {
             "ux": {
                 "colors": ["grey", "white", "green", "anthracite", "black", "blue", "silver", "gold"],
-                "fuelType": ["petrol/electric", "electric", "petrol"],
+                "fuelType": ["petrol-electric", "electric", "petrol"],
                 "gears": ["automatic", "direct, no transmission"],
                 "output": [135.332, 111.796, 147.8355, 134.59650000000002, 150.042]
             }
@@ -5153,7 +5153,7 @@
         "ghibli": {
             "ghibli": {
                 "colors": ["grey", "blue", "black", "white", "anthracite", "brown", "red"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic"],
                 "output": [302.2905, 242.715, 301.555, 202.2625, 213.295, 316.26500000000004, 257.425, 326.562]
             }
@@ -5177,7 +5177,7 @@
         "grecale": {
             "grecale": {
                 "colors": ["white", "blue", "black", "anthracite", "grey", "red", "silver"],
-                "fuelType": ["petrol/electric", "petrol", "electric"],
+                "fuelType": ["petrol-electric", "petrol", "electric"],
                 "gears": ["automatic"],
                 "output": [242.715, 390.5505, 221.3855, 409.6735000000001, 389.815, 220.65]
             }
@@ -5185,7 +5185,7 @@
         "levante": {
             "levante": {
                 "colors": ["blue", "black", "white", "grey", "gold", "red", "anthracite", "brown"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [257.425, 427.3255, 202.2625, 316.26500000000004, 243.4505, 426.59, 256.6895]
             }
@@ -5227,7 +5227,7 @@
         "2": {
             "2": {
                 "colors": ["grey", "red", "white", "silver", "blue", "black", "other", "green", "brown", "anthracite", "orange", "bordeaux", "turquoise"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [66.19500000000001, 63.253, 75.021, 58.84, 85.31800000000001, 84.58250000000001, 75.7565, 61.782, 67.666, 55.1625, 77.2275, 73.55000000000001]
             }
@@ -5235,7 +5235,7 @@
         "3": {
             "3": {
                 "colors": ["brown", "grey", "red", "blue", "white", "black", "anthracite", "other", "bordeaux", "silver"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [110.325, 121.3575, 77.2275, 88.26, 132.39, 89.73100000000001, 136.803, 111.0605, 137.5385, 191.23, 73.55000000000001, 183.875, 131.6545, 74.2855, 75.7565, 84.58250000000001, 133.12550000000002, 136.0675, 105.1765, 108.854]
             }
@@ -5307,7 +5307,7 @@
         "cx-5": {
             "cx-5": {
                 "colors": ["white", "black", "blue", "red", "grey", "anthracite", "brown", "silver", "other", "beige"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [117.68, 128.7125, 110.325, 108.854, 135.332, 142.687, 121.3575, 141.216, 129.448, 143.4225]
             }
@@ -5331,7 +5331,7 @@
         "cx-30": {
             "cx-30": {
                 "colors": ["white", "grey", "blue", "red", "black", "beige", "anthracite", "silver", "other"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [89.73100000000001, 132.39, 136.803, 131.6545, 110.325]
             }
@@ -5339,7 +5339,7 @@
         "cx-60": {
             "cx-60": {
                 "colors": ["blue", "red", "white", "silver", "black", "grey"],
-                "fuelType": ["petrol/electric", "diesel/electric"],
+                "fuelType": ["petrol-electric", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [240.50850000000003, 186.817, 241.24400000000003, 141.216, 140.4805, 147.10000000000002]
             }
@@ -5379,7 +5379,7 @@
         "mx-30": {
             "mx-30": {
                 "colors": ["white", "grey", "black", "red", "anthracite", "other"],
-                "fuelType": ["petrol/electric", "electric"],
+                "fuelType": ["petrol-electric", "electric"],
                 "gears": ["automatic", "direct, no transmission"],
                 "output": [54.42700000000001, 107.383, 106.6475, 125.035, 124.2995]
             }
@@ -5591,7 +5591,7 @@
         "a-klasse": {
             "a 35 amg": {
                 "colors": ["blue", "red", "black", "silver", "beige", "white", "grey", "yellow", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [225.063, 235.36, 257.425]
             },
@@ -5627,7 +5627,7 @@
             },
             "a 180": {
                 "colors": ["black", "grey", "white", "blue", "silver", "brown", "red", "bordeaux", "yellow", "anthracite", "beige"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [80.1695, 89.73100000000001, 85.31800000000001, 100.028, 84.58250000000001, 83.84700000000001, 164.752, 110.325, 78.69850000000001]
             },
@@ -5639,7 +5639,7 @@
             },
             "a 200": {
                 "colors": ["white", "red", "grey", "black", "yellow", "silver", "brown", "gold", "purple", "beige", "anthracite", "green", "blue"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [119.8865, 114.738, 100.028, 102.97, 514.85, 141.9515, 110.325, 124.2995, 130.1835, 118.4155, 139.745]
             },
@@ -5651,13 +5651,13 @@
             },
             "a 220": {
                 "colors": ["black", "grey", "white", "red", "silver", "blue", "anthracite"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [139.745, 130.1835, 135.332, 125.035]
             },
             "a 250": {
                 "colors": ["grey", "white", "anthracite", "black", "silver", "red", "blue", "green"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [164.752, 152.984, 160.339, 155.1905, 117.68, 182.404, 159.6035, 116.209]
             }
@@ -5679,7 +5679,7 @@
             },
             "amg-gt": {
                 "colors": ["grey", "black", "blue", "silver", "green", "white", "anthracite", "yellow", "orange", "red"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [350.098, 430.2675, 319.9425, 620.0265, 339.80100000000004, 375.105, 410.4090000000001, 469.9845, 269.92850000000004, 374.3695, 429.532, 536.9150000000001, 383.931, 336.12350000000004, 529.5600000000001, 389.815, 622.9685000000001]
             }
@@ -5719,19 +5719,19 @@
             },
             "b 200": {
                 "colors": ["silver", "white", "black", "grey", "blue", "other", "anthracite", "brown", "yellow"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "natural gas/petrol"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [100.028, 102.97, 119.8865, 110.325, 141.9515, 114.738, 101.499, 98.557, 108.854, 130.1835]
             },
             "b 220": {
                 "colors": ["anthracite", "blue", "black", "grey", "white", "silver", "brown"],
-                "fuelType": ["petrol/electric", "petrol", "diesel"],
+                "fuelType": ["petrol-electric", "petrol", "diesel"],
                 "gears": ["automatic"],
                 "output": [139.745, 135.332, 130.1835, 150.042, 125.035]
             },
             "b 250": {
                 "colors": ["grey", "blue", "black", "white", "silver"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [164.752, 155.1905, 160.339, 117.68, 159.6035, 174.3135]
             }
@@ -5739,61 +5739,61 @@
         "c-klasse": {
             "amg gt": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "red", "silver", "other"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [520.678, 601.555]
             },
             "c 32 amg": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "red", "silver", "other"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [286.845, 269.92850000000004, 300.084, 320.678, 301.555]
             },
             "c 36 amg": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "red", "silver", "other"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [286.845, 269.92850000000004, 300.084, 320.678, 301.555]
             },
             "c 43 amg": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "red", "silver", "other"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [286.845, 269.92850000000004, 300.084, 320.678, 301.555]
             },
             "c 55 amg": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "red", "silver", "other"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [286.845, 269.92850000000004, 300.084, 320.678, 301.555]
             },
             "c 63 amg": {
                 "colors": ["white", "grey", "black", "silver", "blue", "red", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [372.8985, 375.105, 350.098, 336.12350000000004, 478.0750000000001, 410.4090000000001, 380.2535, 450.126, 358.18850000000003, 500.14, 426.59]
             },
             "c 180": {
                 "colors": ["grey", "beige", "white", "black", "silver", "blue", "anthracite", "red"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [114.738, 105.1765, 125.035, 94.8795, 89.73100000000001, 88.26]
             },
             "c 200": {
                 "colors": ["black", "grey", "green", "red", "white", "silver", "blue", "beige", "anthracite", "brown"],
-                "fuelType": ["petrol/electric", "petrol", "diesel", "diesel/electric"],
+                "fuelType": ["petrol-electric", "petrol", "diesel", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [135.332, 150.042, 100.028, 119.8865, 144.89350000000002, 164.752, 117.68]
             },
             "c 220": {
                 "colors": ["grey", "black", "anthracite", "white", "blue", "beige", "silver", "red", "other", "brown"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [125.035, 142.687, 147.10000000000002, 105.1765, 144.89350000000002, 110.325, 123.564]
             },
             "c 230": {
                 "colors": ["grey", "black", "anthracite", "white", "blue", "beige", "silver", "red", "other", "brown"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [125.035, 142.687, 147.10000000000002, 105.1765, 144.89350000000002, 110.325, 123.564]
             },
@@ -5823,31 +5823,31 @@
             },
             "c 300": {
                 "colors": ["black", "grey", "blue", "red", "white", "silver", "anthracite", "gold"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [180.1975, 189.759, 235.36, 230.2115, 194.9075, 170.63600000000002, 144.89350000000002, 169.90050000000002, 195.643, 200.056, 225.063, 244.9215, 155.1905, 233.1535, 239.773]
             },
             "c 320": {
                 "colors": ["black", "grey", "blue", "red", "white", "silver", "anthracite", "gold"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [180.1975, 189.759, 235.36, 230.2115, 194.9075, 170.63600000000002, 144.89350000000002, 169.90050000000002, 195.643, 200.056, 225.063, 244.9215, 155.1905, 233.1535, 239.773]
             },
             "c 350": {
                 "colors": ["black", "grey", "blue", "red", "white", "silver", "anthracite", "gold"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [180.1975, 189.759, 235.36, 230.2115, 194.9075, 170.63600000000002, 144.89350000000002, 169.90050000000002, 195.643, 200.056, 225.063, 244.9215, 155.1905, 233.1535, 239.773]
             },
             "c 400": {
                 "colors": ["black", "grey", "blue", "red", "white", "silver", "anthracite", "gold"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [180.1975, 189.759, 235.36, 230.2115, 194.9075, 170.63600000000002, 144.89350000000002, 169.90050000000002, 195.643, 200.056, 225.063, 244.9215, 155.1905, 233.1535, 239.773]
             },
             "c 450": {
                 "colors": ["black", "grey", "blue", "red", "white", "silver", "anthracite", "gold"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [180.1975, 189.759, 235.36, 230.2115, 194.9075, 170.63600000000002, 144.89350000000002, 169.90050000000002, 195.643, 200.056, 225.063, 244.9215, 155.1905, 233.1535, 239.773, 250.074, 269.92850000000004, 275.077, 280.2255]
             }
@@ -5909,13 +5909,13 @@
             },
             "cla 180": {
                 "colors": ["white", "blue", "black", "silver", "grey"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [89.73100000000001, 85.31800000000001, 100.028, 80.1695]
             },
             "cla 200": {
                 "colors": ["white", "grey", "black", "red", "other", "silver", "blue", "brown", "purple", "gold"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [114.738, 119.8865, 100.028, 110.325, 130.1835]
             },
@@ -5927,7 +5927,7 @@
             },
             "cla 250": {
                 "colors": ["white", "blue", "black", "grey", "anthracite", "red", "silver", "yellow"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [155.1905, 164.752, 160.339, 159.6035]
             }
@@ -5961,19 +5961,19 @@
         "cle-klasse": {
             "cle 53": {
                 "colors": ["grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [330.2395]
             },
             "cle 300": {
                 "colors": ["white", "anthracite", "grey", "black"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [189.759]
             },
             "cle 450": {
                 "colors": ["blue", "grey"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [165.4875, 279.49, 297.142]
             }
@@ -6049,7 +6049,7 @@
         "cls-klasse": {
             "cls 53 amg": {
                 "colors": ["black", "grey"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [319.9425]
             },
@@ -6073,7 +6073,7 @@
             },
             "cls 350": {
                 "colors": ["black", "grey", "blue", "silver", "white"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [194.9075, 200.056, 185.346, 225.063, 210.353, 214.766, 219.9145, 189.759]
             },
@@ -6085,7 +6085,7 @@
             },
             "cls 450": {
                 "colors": ["black", "blue", "grey", "white"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [269.92850000000004, 286.1095]
             },
@@ -6123,13 +6123,13 @@
             },
             "e 200": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002]
             },
             "e 220": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002]
             },
@@ -6141,13 +6141,13 @@
             },
             "e 240": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002]
             },
             "e 250": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002]
             },
@@ -6159,7 +6159,7 @@
             },
             "e 300": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002]
             },
@@ -6171,37 +6171,37 @@
             },
             "e 350": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002, 301.555]
             },
             "e 400": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002, 345.028]
             },
             "e 420": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002, 345.028]
             },
             "e 430": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002, 345.028]
             },
             "e 450": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002, 395.056]
             },
             "e 500": {
                 "colors": ["white", "black", "grey", "blue", "anthracite", "silver", "green", "bordeaux"],
-                "fuelType": ["diesel", "diesel/electric", "petrol"],
+                "fuelType": ["diesel", "diesel-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [142.687, 110.325, 147.10000000000002, 125.035, 135.332, 144.89350000000002, 400.112]
             }
@@ -6375,7 +6375,7 @@
         "gla-klasse": {
             "gla 35 amg": {
                 "colors": ["silver", "black", "white", "anthracite", "grey", "blue", "red"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [225.063]
             },
@@ -6393,19 +6393,19 @@
             },
             "gla 200": {
                 "colors": ["white", "grey", "black", "silver", "blue", "red", "other", "purple", "anthracite", "brown"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [100.028, 114.738, 110.325, 119.8865, 130.1835, 115.4735]
             },
             "gla 220": {
                 "colors": ["grey", "black", "white", "blue", "silver", "red", "anthracite"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [125.035, 135.332, 139.745, 123.564, 130.1835, 244.9215]
             },
             "gla 250": {
                 "colors": ["black", "white", "silver", "brown", "grey", "blue", "anthracite", "red", "bordeaux"],
-                "fuelType": ["petrol", "petrol/electric", "hybrid"],
+                "fuelType": ["petrol", "petrol-electric", "hybrid"],
                 "gears": ["automatic"],
                 "output": [155.1905, 164.752, 159.6035, 119.8865, 117.68, 160.339]
             }
@@ -6413,7 +6413,7 @@
         "glb-klasse": {
             "glb 35 amg": {
                 "colors": ["white", "grey", "red", "other", "blue"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [225.063]
             },
@@ -6437,7 +6437,7 @@
             },
             "glb 250": {
                 "colors": ["blue", "silver", "black", "white", "grey", "red"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [164.752]
             }
@@ -6445,25 +6445,25 @@
         "glc-klasse": {
             "glc 43 amg": {
                 "colors": ["black", "grey", "anthracite", "white", "blue", "silver", "brown"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [286.845, 269.92850000000004, 309.6455, 316.26500000000004]
             },
             "glc 63 amg": {
                 "colors": ["black", "white", "grey", "anthracite", "red", "blue", "silver"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [375.105, 350.098, 478.0750000000001, 500.14]
             },
             "glc 200": {
                 "colors": ["blue", "white", "black", "grey", "silver", "anthracite"],
-                "fuelType": ["petrol/electric", "diesel", "petrol"],
+                "fuelType": ["petrol-electric", "diesel", "petrol"],
                 "gears": ["automatic"],
                 "output": [144.89350000000002, 166.95850000000002, 119.8865, 150.042]
             },
             "glc 220": {
                 "colors": ["grey", "black", "other", "anthracite", "white", "silver", "blue", "brown", "beige"],
-                "fuelType": ["diesel", "diesel/electric"],
+                "fuelType": ["diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [125.035, 142.687, 161.81, 144.89350000000002]
             },
@@ -6475,25 +6475,25 @@
             },
             "glc 300": {
                 "colors": ["black", "grey", "blue", "white", "anthracite", "silver", "red", "beige"],
-                "fuelType": ["petrol/electric", "diesel", "petrol", "diesel/electric", "electric"],
+                "fuelType": ["petrol-electric", "diesel", "petrol", "diesel-electric", "electric"],
                 "gears": ["automatic"],
                 "output": [235.36, 180.1975, 189.759, 225.063, 200.056, 244.9215, 155.1905, 197.8495, 143.4225, 206.6755, 234.6245, 225.7985, 230.2115, 246.3925, 250.07]
             },
             "glc 350": {
                 "colors": ["black", "white", "grey", "blue", "other", "silver"],
-                "fuelType": ["petrol/electric", "diesel", "petrol", "hybrid"],
+                "fuelType": ["petrol-electric", "diesel", "petrol", "hybrid"],
                 "gears": ["automatic"],
                 "output": [235.36, 234.6245, 189.759, 155.1905, 152.984]
             },
             "glc 400": {
                 "colors": ["black", "grey", "white", "silver", "gold", "blue"],
-                "fuelType": ["diesel", "petrol/electric"],
+                "fuelType": ["diesel", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [242.715, 280.2255, 185.346, 284.6385]
             },
             "glc 450": {
                 "colors": ["black"],
-                "fuelType": ["diesel/electric"],
+                "fuelType": ["diesel-electric"],
                 "gears": ["automatic"],
                 "output": [286.845]
             }
@@ -6507,13 +6507,13 @@
             },
             "gle 53 amg": {
                 "colors": ["grey", "silver", "black", "white", "blue", "anthracite", "green"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [319.9425, 336.12350000000004]
             },
             "gle 63 amg": {
                 "colors": ["black", "white", "yellow", "grey", "red", "silver", "brown"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [450.126, 466.307, 430.2675, 419.9705, 409.6735000000001]
             },
@@ -6525,37 +6525,37 @@
             },
             "gle 300": {
                 "colors": ["black", "grey", "silver", "white", "other", "green"],
-                "fuelType": ["diesel", "diesel/electric"],
+                "fuelType": ["diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [180.1975, 200.056, 197.8495, 214.766]
             },
             "gle 350": {
                 "colors": ["grey", "black", "green", "white", "blue", "silver", "anthracite", "red"],
-                "fuelType": ["diesel", "petrol/electric", "diesel/electric", "electric"],
+                "fuelType": ["diesel", "petrol-electric", "diesel-electric", "electric"],
                 "gears": ["automatic"],
                 "output": [200.056, 244.9215, 189.759, 234.6245, 155.1905, 142.687, 242.715, 231.6825, 235.36]
             },
             "gle 400": {
                 "colors": ["black", "grey", "white", "blue", "silver", "anthracite", "other"],
-                "fuelType": ["diesel", "petrol", "hybrid", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "hybrid", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [242.715, 244.9215, 185.346, 239.773]
             },
             "gle 450": {
                 "colors": ["grey", "beige", "blue", "black", "white", "silver", "red", "anthracite"],
-                "fuelType": ["petrol/electric", "petrol", "diesel", "diesel/electric"],
+                "fuelType": ["petrol-electric", "petrol", "diesel", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [269.92850000000004, 286.1095, 244.9215, 266.25100000000003, 272.135, 280.2255, 286.845]
             },
             "gle 500": {
                 "colors": ["black", "grey", "white", "red"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [330.2395, 334.65250000000003, 319.9425, 244.9215]
             },
             "gle 580": {
                 "colors": ["black", "grey", "green"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [360.395, 355.2465]
             }
@@ -6595,7 +6595,7 @@
         "gls-klasse": {
             "gls 63 amg": {
                 "colors": ["black", "white", "green"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [450.126, 430.2675, 429.532]
             },
@@ -6619,7 +6619,7 @@
             },
             "gls 580": {
                 "colors": ["silver", "blue", "white", "grey"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [360.395, 375.8405]
             }
@@ -6777,7 +6777,7 @@
             },
             "s 400": {
                 "colors": ["white", "black", "grey", "blue"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [250.07, 242.715, 183.875, 269.92850000000004, 205.2045, 241.9795]
             },
@@ -6807,7 +6807,7 @@
             },
             "s 580": {
                 "colors": ["grey", "silver", "black", "green"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [369.9565, 269.92850000000004, 386.8730000000001]
             },
@@ -6841,7 +6841,7 @@
             },
             "sl 43 amg": {
                 "colors": ["white", "black"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [280.2255]
             },
@@ -6850,7 +6850,7 @@
                 "fuelType": ["petrol"],
                 "gears": ["automatic"],
                 "output": [386.1375000000001, 430.2675, 429.532, 394.9635]
-            }   ,
+            },
             "sl 63 amg": {
                 "colors": ["black", "white", "grey", "blue", "bordeaux", "silver"],
                 "fuelType": ["petrol"],
@@ -7019,7 +7019,7 @@
         "sprinter": {
             "sprinter": {
                 "colors": ["yellow", "white", "blue", "black", "silver", "red", "bordeaux", "other", "orange", "grey", "green", "beige", "anthracite", "brown"],
-                "fuelType": ["diesel", "electric", "natural gas/petrol", "petrol"],
+                "fuelType": ["diesel", "electric", "natural-gas-petrol", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [105.1765, 119.8865, 118.4155, 80.1695, 94.8795, 95.615, 110.325, 75.021, 89.73100000000001, 135.332, 139.745, 114.738, 83.84700000000001, 125.035, 109.5895, 84.58250000000001, 64.724, 88.9955, 60.31100000000001, 108.854, 69.8725, 66.19500000000001, 113.267, 175.7845, 103.7055, 96.3505, 93.4085]
             }
@@ -7131,7 +7131,7 @@
         "countryman": {
             "countryman": {
                 "colors": ["black", "white", "grey", "other", "brown", "blue", "anthracite", "beige", "green", "red", "silver", "yellow"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "electric"],
                 "gears": ["manual", "automatic", "direct, no transmission"],
                 "output": [135.332, 89.73100000000001, 225.063, 130.919, 105.1765, 141.216, 91.9375, 110.325, 72.07900000000001, 139.745, 160.339, 164.752, 100.028, 82.376, 169.90050000000002, 161.81, 114.738, 220.65, 150.042, 120.622, 66.19500000000001, 159.6035, 133.12550000000002]
             }
@@ -7205,7 +7205,7 @@
         "asx": {
             "asx": {
                 "colors": ["white", "other", "red", "blue", "black", "grey", "brown", "silver", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [86.0535, 117.68, 110.325, 105.1765, 116.9445, 116.209, 83.84700000000001]
             }
@@ -7229,7 +7229,7 @@
         "colt": {
             "colt": {
                 "colors": ["red", "black", "orange", "silver", "grey", "white", "green", "blue", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [69.8725, 110.325, 80.1695, 60.31100000000001, 66.19500000000001, 55.1625, 106.6475, 105.1765, 132.39, 83.1115, 102.97, 66.93050000000001, 76.492, 108.854]
             }
@@ -7237,7 +7237,7 @@
         "eclipse": {
             "eclipse": {
                 "colors": ["black", "grey", "anthracite", "silver", "red"],
-                "fuelType": ["petrol/electric", "hybrid"],
+                "fuelType": ["petrol-electric", "hybrid"],
                 "gears": ["automatic"],
                 "output": [138.274, 72.07900000000001, 187.5525]
             }
@@ -7245,7 +7245,7 @@
         "eclipse cross": {
             "eclipse cross": {
                 "colors": ["brown", "grey", "anthracite", "red", "white", "blue", "black", "silver", "other"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [119.8865, 187.5525, 138.274, 108.854, 72.07900000000001]
             }
@@ -7309,7 +7309,7 @@
         "outlander": {
             "outlander": {
                 "colors": ["black", "grey", "bordeaux", "white", "silver", "brown", "red", "blue", "anthracite", "green", "beige"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [110.325, 148.571, 102.97, 125.035, 117.68, 114.738, 164.752, 88.9955, 130.1835, 150.042, 108.854, 99.2925, 100.028, 165.4875]
             }
@@ -7431,7 +7431,7 @@
         "juke": {
             "juke": {
                 "colors": ["white", "grey", "black", "red", "purple", "bordeaux", "brown", "anthracite", "yellow", "silver", "blue"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [86.0535, 84.58250000000001, 83.84700000000001, 139.745, 80.905, 157.39700000000002, 156.66150000000002, 105.1765, 160.339, 147.10000000000002, 69.137, 83.1115]
             }
@@ -7591,7 +7591,7 @@
         "qashqai": {
             "qashqai": {
                 "colors": ["black", "brown", "white", "red", "grey", "silver", "beige", "blue", "bordeaux", "purple", "anthracite", "gold"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "liquefied petroleum gas/petrol"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "liquefied petroleum gas/petrol"],
                 "gears": ["manual", "automatic", "direct, no transmission"],
                 "output": [86.0535, 103.7055, 119.8865, 110.325, 116.209, 102.97, 139.745, 96.3505, 84.58250000000001, 116.9445, 77.96300000000001, 85.31800000000001, 83.84700000000001, 80.905, 95.615, 108.854, 139.0095]
             }
@@ -7639,7 +7639,7 @@
         "x-trail": {
             "x-trail": {
                 "colors": ["black", "orange", "white", "grey", "green", "beige", "red", "bordeaux", "silver", "gold", "blue", "brown", "anthracite"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [130.1835, 116.9445, 102.97, 95.615, 156.66150000000002, 116.209, 110.325, 119.8865, 157.39700000000002, 83.84700000000001, 121.3575, 124.2995, 100.028]
             }
@@ -7673,7 +7673,7 @@
         "ampera": {
             "ampera": {
                 "colors": ["white", "red", "grey", "blue", "black", "bordeaux"],
-                "fuelType": ["petrol", "electric", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "electric", "petrol-electric", "diesel"],
                 "gears": ["automatic", "direct, no transmission", "manual"],
                 "output": [63.253, 150.042, 111.0605, 66.19500000000001]
             }
@@ -7689,7 +7689,7 @@
         "astra": {
             "astra": {
                 "colors": ["white", "orange", "grey", "blue", "red", "silver", "black", "yellow", "beige", "other", "bordeaux", "brown", "anthracite", "green", "gold"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "electric"],
                 "gears": ["manual", "automatic"],
                 "output": [91.9375, 110.325, 80.905, 147.10000000000002, 102.97, 88.26, 73.55000000000001, 108.1185, 84.58250000000001, 100.028, 74.2855, 77.2275, 121.3575, 205.94, 95.615, 114.0025, 133.12550000000002, 55.1625, 132.39, 96.3505, 90.4665, 117.68, 125.035, 89.73100000000001, 106.6475, 60.31100000000001, 164.752, 142.687, 85.31800000000001, 69.8725, 66.19500000000001, 94.8795, 101.499, 177.2555, 54.42700000000001, 141.216]
             }
@@ -7721,7 +7721,7 @@
         "combo": {
             "combo": {
                 "colors": ["white", "blue", "grey", "red", "black", "yellow", "anthracite", "silver", "other"],
-                "fuelType": ["electric", "petrol", "natural gas/petrol", "diesel"],
+                "fuelType": ["electric", "petrol", "natural-gas-petrol", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [100.028, 88.26, 80.905, 69.8725, 69.137, 95.615, 71.3435, 74.2855, 77.2275, 66.19500000000001, 75.021, 73.55000000000001, 96.3505, 51.485, 99.2925, 97.8215, 65.4595]
             }
@@ -7753,7 +7753,7 @@
         "grandland x": {
             "grandland x": {
                 "colors": ["red", "black", "grey", "blue", "white", "anthracite", "purple", "silver"],
-                "fuelType": ["petrol/electric", "petrol", "diesel", "hybrid"],
+                "fuelType": ["petrol-electric", "petrol", "diesel", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [220.65, 95.615, 164.752, 147.10000000000002, 133.86100000000002, 96.3505, 130.1835, 88.26, 132.39, 133.12550000000002]
             }
@@ -7881,7 +7881,7 @@
         "zafira": {
             "zafira": {
                 "colors": ["black", "grey", "white", "blue", "brown", "red", "yellow", "green", "anthracite", "silver"],
-                "fuelType": ["petrol", "diesel", "natural gas/petrol", "gas"],
+                "fuelType": ["petrol", "diesel", "natural-gas-petrol", "gas"],
                 "gears": ["manual", "automatic"],
                 "output": [84.58250000000001, 95.615, 121.3575, 91.9375, 142.687, 100.028, 110.325, 102.97, 130.1835, 125.035, 147.10000000000002, 108.1185, 88.26, 105.912, 69.137, 71.3435, 85.31800000000001, 141.216, 80.905, 99.2925, 177.2555, 174.3135]
             }
@@ -7947,7 +7947,7 @@
         "208": {
             "208": {
                 "colors": ["grey", "black", "white", "silver", "blue", "red", "yellow", "gold", "beige", "anthracite", "orange", "brown", "purple", "other"],
-                "fuelType": ["petrol", "electric", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "electric", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [80.905, 61.0465, 95.615, 60.31100000000001, 152.984, 73.55000000000001, 100.028, 88.26, 114.738, 74.2855, 67.666, 147.10000000000002, 84.58250000000001, 72.81450000000001, 55.1625, 75.021, 69.8725, 50.014, 96.3505, 58.84, 121.3575]
             }
@@ -7979,7 +7979,7 @@
         "308": {
             "308": {
                 "colors": ["blue", "black", "grey", "white", "silver", "red", "green", "anthracite", "yellow", "bordeaux", "brown"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "electric", "hybrid"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [100.028, 132.39, 110.325, 95.615, 102.97, 114.738, 96.3505, 200.056, 82.376, 84.58250000000001, 133.12550000000002, 88.26, 165.4875, 131.6545, 109.5895, 147.10000000000002, 150.7775, 80.905, 72.07900000000001, 128.7125, 130.1835, 192.701, 164.752, 113.267, 98.557, 69.8725, 60.31100000000001, 94.8795]
             }
@@ -8019,7 +8019,7 @@
         "408": {
             "408": {
                 "colors": ["white", "blue", "red", "grey", "black"],
-                "fuelType": ["petrol/electric", "electric", "petrol"],
+                "fuelType": ["petrol-electric", "electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [164.752, 131.6545, 109.5895, 95.615, 133.12550000000002]
             }
@@ -8035,7 +8035,7 @@
         "508": {
             "508": {
                 "colors": ["grey", "white", "blue", "black", "red", "brown", "silver"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "diesel/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [121.3575, 118.4155, 114.738, 133.12550000000002, 147.10000000000002, 110.325, 264.78000000000003, 95.615, 159.6035, 165.4875, 150.042, 132.39, 119.8865, 102.97, 164.752, 96.3505]
             }
@@ -8075,7 +8075,7 @@
         "3008": {
             "3008": {
                 "colors": ["grey", "white", "brown", "black", "anthracite", "silver", "blue", "red", "beige"],
-                "fuelType": ["diesel", "petrol", "diesel/electric", "petrol/electric", "electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric", "petrol-electric", "electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [82.376, 130.1835, 114.738, 147.10000000000002, 88.26, 133.12550000000002, 95.615, 220.65, 156.66150000000002, 96.3505, 100.028, 164.752, 219.9145, 154.455, 121.3575, 110.325, 119.8865, 80.905, 84.58250000000001, 144.89350000000002, 118.4155, 132.39, 113.267, 165.4875, 94.8795, 155.92600000000002]
             }
@@ -8099,7 +8099,7 @@
         "5008": {
             "5008": {
                 "colors": ["white", "grey", "blue", "black", "green", "red", "silver", "anthracite", "orange"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [110.325, 100.028, 95.615, 133.12550000000002, 119.8865, 114.738, 121.3575, 96.3505, 88.26, 82.376, 130.1835]
             }
@@ -8131,7 +8131,7 @@
         "partner": {
             "partner": {
                 "colors": ["white", "silver", "anthracite", "grey", "green", "yellow", "blue", "red", "black"],
-                "fuelType": ["diesel", "petrol", "electric", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "electric", "petrol-electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [96.3505, 73.55000000000001, 75.021, 72.07900000000001, 49.2785, 95.615, 74.2855, 82.376, 80.905, 88.26, 71.3435, 66.19500000000001, 100.028, 55.1625, 52.2205, 64.724, 65.4595, 67.666, 72.81450000000001, 80.1695]
             }
@@ -8199,7 +8199,7 @@
         "911": {
             "911": {
                 "colors": ["blue", "white", "silver", "black"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [176.52, 236.831, 132.39, 326.562, 139.745]
             },
@@ -8355,7 +8355,7 @@
         "cayenne": {
             "cayenne": {
                 "colors": ["black", "white", "grey", "silver", "blue", "brown", "anthracite", "beige", "other", "orange"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "hybrid"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [180.1975, 192.701, 339.80100000000004, 308.91, 338.33000000000004, 543.5345, 176.52, 381.7245, 345.685, 323.62, 250.07, 382.46, 500.14, 348.627, 305.968, 367.75, 213.295, 183.875, 220.65, 404.525, 470.72, 283.1675, 499.4045, 259.6315, 297.8775, 330.975, 294.20000000000005, 403.7895]
             },
@@ -8373,7 +8373,7 @@
             },
             "s hybrid/e-hybrid": {
                 "colors": ["silver", "grey", "black", "beige", "white", "green", "blue"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [305.968, 244.9215]
             },
@@ -8439,13 +8439,13 @@
         "panamera": {
             "4": {
                 "colors": ["green", "white", "grey"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [220.65, 514.85, 228.005, 419.9705]
             },
             "4s": {
                 "colors": ["brown", "black", "beige", "silver", "grey", "blue", "other", "white"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [294.20000000000005, 339.80100000000004, 411.88, 308.91]
             },
@@ -8457,19 +8457,19 @@
             },
             "panamera": {
                 "colors": ["black", "other", "white", "grey", "silver", "anthracite", "purple", "green", "blue", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic"],
                 "output": [404.525, 353.04, 500.14, 294.20000000000005, 323.62, 339.80100000000004, 338.33000000000004, 310.38100000000003, 397.17, 470.72, 367.75, 324.3555, 316.26500000000004, 382.46, 308.91, 309.6455, 499.4045, 242.715, 220.65, 183.875, 228.005, 405.2605]
             },
             "s hybrid/e-hybrid": {
                 "colors": ["grey", "black"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [305.968]
             },
             "turbo": {
                 "colors": ["black", "grey", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic"],
                 "output": [367.75, 514.85, 419.235, 397.17, 404.525, 382.46]
             }
@@ -8495,7 +8495,7 @@
         "arkana": {
             "arkana": {
                 "colors": ["black", "orange", "white", "grey", "red", "blue", "bordeaux"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [102.97, 116.209, 69.137, 105.1765]
             }
@@ -8503,7 +8503,7 @@
         "austral": {
             "austral": {
                 "colors": ["blue", "grey", "anthracite", "white", "black", "red"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [147.10000000000002, 95.615, 116.209, 117.68]
             }
@@ -8519,7 +8519,7 @@
         "captur": {
             "captur": {
                 "colors": ["white", "grey", "black", "blue", "silver", "orange", "anthracite", "purple", "red", "other", "brown", "beige"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "hybrid"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [96.3505, 113.267, 74.2855, 88.26, 102.97, 116.209, 69.137, 105.1765, 117.68, 66.93050000000001, 66.19500000000001, 103.7055, 110.325, 86.789, 80.905, 116.9445, 68.4015, 95.615]
             }
@@ -8527,7 +8527,7 @@
         "clio": {
             "clio": {
                 "colors": ["silver", "white", "black", "red", "grey", "blue", "beige", "other", "orange", "yellow", "bordeaux", "green", "anthracite", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "bioethanol"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "bioethanol"],
                 "gears": ["automatic", "manual"],
                 "output": [88.26, 105.1765, 82.376, 101.499, 102.97, 66.93050000000001, 72.07900000000001, 74.2855, 147.10000000000002, 102.2345, 52.956, 66.19500000000001, 75.7565, 96.3505, 64.724, 144.89350000000002, 80.905, 55.1625, 53.691500000000005, 161.81, 79.434, 63.253, 65.4595, 94.144, 166.223, 125.035, 86.789, 43.3945, 69.137, 187.5525, 95.615, 60.31100000000001, 55.898, 75.021, 58.84, 106.6475]
             }
@@ -8535,7 +8535,7 @@
         "espace": {
             "espace": {
                 "colors": ["white", "grey", "black", "blue", "bordeaux", "brown", "beige", "silver", "purple", "anthracite", "other"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [147.10000000000002, 139.0095, 165.4875, 125.035, 110.325, 88.26, 177.2555, 117.68, 164.752, 127.2415, 130.1835, 100.028, 95.615, 139.745, 108.854, 123.564]
             }
@@ -8559,7 +8559,7 @@
         "grand scénic": {
             "grand scénic": {
                 "colors": ["grey", "red", "black", "bordeaux", "brown", "blue", "beige", "white", "anthracite", "purple", "silver"],
-                "fuelType": ["diesel", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 116.209, 95.615, 80.905, 96.3505, 99.2925, 88.26, 117.68, 119.8865, 102.97, 84.58250000000001, 97.086, 116.9445]
             }
@@ -8623,7 +8623,7 @@
         "mégane": {
             "mégane": {
                 "colors": ["black", "blue", "grey", "white", "red", "orange", "brown", "bordeaux", "yellow", "anthracite", "silver", "beige", "green", "purple"],
-                "fuelType": ["petrol", "electric", "diesel", "petrol/electric", "bioethanol"],
+                "fuelType": ["petrol", "electric", "diesel", "petrol-electric", "bioethanol"],
                 "gears": ["manual", "automatic", "direct, no transmission"],
                 "output": [96.3505, 116.209, 160.339, 80.905, 205.94, 102.97, 99.2925, 83.1115, 150.7775, 84.58250000000001, 132.39, 83.84700000000001, 97.086, 220.65, 194.9075, 69.8725, 183.875, 117.68, 75.021, 161.81, 95.615, 221.3855, 79.434, 121.3575, 116.9445, 205.2045, 119.8865, 85.31800000000001, 77.96300000000001, 66.93050000000001, 72.07900000000001, 101.499, 77.2275, 69.137]
             }
@@ -8671,7 +8671,7 @@
         "rafale": {
             "rafale": {
                 "colors": ["black", "grey", "white", "blue"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [147.10000000000002, 95.615]
             }
@@ -8893,7 +8893,7 @@
         "arona": {
             "arona": {
                 "colors": ["white", "blue", "beige", "red", "grey", "other", "black", "silver", "orange", "anthracite"],
-                "fuelType": ["petrol", "diesel", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [84.58250000000001, 69.8725, 110.325, 80.905, 66.19500000000001, 85.31800000000001]
             }
@@ -8941,7 +8941,7 @@
         "ibiza": {
             "ibiza": {
                 "colors": ["red", "black", "grey", "white", "yellow", "bordeaux", "blue", "silver", "beige", "anthracite", "green", "other", "orange", "gold", "brown"],
-                "fuelType": ["petrol", "natural gas/petrol", "diesel", "gas"],
+                "fuelType": ["petrol", "natural-gas-petrol", "diesel", "gas"],
                 "gears": ["manual", "automatic"],
                 "output": [62.517500000000005, 66.19500000000001, 110.325, 77.2275, 84.58250000000001, 80.905, 69.8725, 85.31800000000001, 132.39, 102.97, 51.485, 74.2855, 95.615, 63.253, 105.1765, 47.072, 154.455, 55.1625, 44.13, 75.7565, 83.84700000000001, 61.782, 73.55000000000001, 114.738, 172.8425, 58.84, 69.137]
             }
@@ -8949,7 +8949,7 @@
         "leon": {
             "leon": {
                 "colors": ["black", "yellow", "white", "grey", "blue", "silver", "anthracite", "red", "brown", "other", "bordeaux", "green"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "natural gas/petrol", "gas"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "natural-gas-petrol", "gas"],
                 "gears": ["manual", "automatic"],
                 "output": [102.97, 220.65, 91.9375, 110.325, 194.9075, 132.39, 77.2275, 154.455, 84.58250000000001, 176.52, 95.615, 213.295, 155.1905, 136.0675, 147.10000000000002, 117.68, 205.94, 75.021, 165.4875, 96.3505, 80.905, 279.49, 135.332, 272.135, 139.745, 89.73100000000001, 150.7775, 246.3925, 133.12550000000002, 150.042, 250.07, 180.1975, 125.035, 62.517500000000005, 209.6175, 63.253, 130.1835, 257.425, 80.1695, 330.975, 242.715, 228.005, 225.063, 245.657]
             }
@@ -8957,7 +8957,7 @@
         "mii": {
             "mii": {
                 "colors": ["black", "yellow", "purple", "white", "grey", "blue", "silver", "red", "beige"],
-                "fuelType": ["petrol", "natural gas/petrol", "electric"],
+                "fuelType": ["petrol", "natural-gas-petrol", "electric"],
                 "gears": ["manual", "automatic"],
                 "output": [55.1625, 50.014, 44.13, 61.0465]
             }
@@ -8965,7 +8965,7 @@
         "tarraco": {
             "tarraco": {
                 "colors": ["white", "grey", "black", "green", "anthracite", "other", "blue", "silver", "red"],
-                "fuelType": ["diesel", "petrol", "petrol/electric", "electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric", "electric"],
                 "gears": ["automatic", "manual"],
                 "output": [147.10000000000002, 139.745, 110.325, 180.1975, 102.97]
             }
@@ -8983,7 +8983,7 @@
         "citigo": {
             "citigo": {
                 "colors": ["silver", "black", "other", "green", "white", "grey", "red", "blue"],
-                "fuelType": ["petrol", "electric", "natural gas/petrol"],
+                "fuelType": ["petrol", "electric", "natural-gas-petrol"],
                 "gears": ["manual", "automatic", "direct, no transmission"],
                 "output": [44.13, 61.0465, 55.1625, 50.014]
             }
@@ -9023,7 +9023,7 @@
         "kodiaq": {
             "kodiaq": {
                 "colors": ["black", "grey", "white", "anthracite", "silver", "red", "blue", "other", "beige", "brown", "gold"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 176.52, 132.39, 141.9515, 110.325, 180.1975, 147.10000000000002, 175.7845, 140.4805]
             }
@@ -9031,7 +9031,7 @@
         "octavia": {
             "octavia": {
                 "colors": ["black", "anthracite", "grey", "blue", "white", "silver", "beige", "brown", "red", "other", "green", "bordeaux", "yellow", "purple"],
-                "fuelType": ["diesel", "natural gas/petrol", "petrol", "petrol/electric", "gas"],
+                "fuelType": ["diesel", "natural-gas-petrol", "petrol", "petrol-electric", "gas"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 95.615, 77.2275, 84.58250000000001, 147.10000000000002, 135.332, 117.68, 102.97, 132.39, 75.021, 180.1975, 74.2855, 80.905, 150.042, 89.73100000000001, 125.035, 161.81, 91.9375, 139.745, 194.17200000000005, 213.295, 169.16500000000002, 153.7195, 116.209, 66.19500000000001, 154.455, 173.578, 152.2485, 205.94, 108.854]
             },
@@ -9077,7 +9077,7 @@
         "superb": {
             "superb": {
                 "colors": ["black", "white", "anthracite", "grey", "other", "silver", "brown", "beige", "blue", "red", "yellow", "purple", "bordeaux"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [191.23, 102.97, 139.745, 125.035, 147.10000000000002, 205.94, 117.68, 110.325, 101.499, 160.339, 198.585, 200.056, 132.39, 199.3205, 243.4505, 141.9515, 140.4805, 114.738, 161.81, 195.643, 246.3925]
             }
@@ -9119,7 +9119,7 @@
         "fortwo": {
             "fortwo": {
                 "colors": ["silver", "black", "grey", "white", "red", "blue", "green", "orange", "yellow", "brown", "gold", "other", "purple", "anthracite", "bordeaux"],
-                "fuelType": ["petrol", "electric", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "electric", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual", "direct, no transmission"],
                 "output": [66.19500000000001, 80.1695, 52.2205, 40.4525, 80.905, 72.07900000000001, 61.782, 44.8655, 60.31100000000001, 75.021, 55.1625, 88.26, 33.097500000000004, 38.246, 30.155500000000004, 39.717, 36.775000000000006, 95.615, 51.485]
             }
@@ -9227,7 +9227,7 @@
         "crosstrek": {
             "crosstrek": {
                 "colors": ["grey", "orange", "other", "blue", "anthracite"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [100.028]
             }
@@ -9235,7 +9235,7 @@
         "forester": {
             "forester": {
                 "colors": ["green", "blue", "grey", "anthracite", "silver", "red", "white", "beige", "black", "gold", "brown", "other", "bordeaux"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [91.9375, 108.1185, 169.16500000000002, 110.325, 89.73100000000001, 130.1835, 177.2555, 116.209, 176.52, 122.093, 155.1905, 125.035, 125.7705, 123.564]
             }
@@ -9251,7 +9251,7 @@
         "impreza": {
             "impreza": {
                 "colors": ["green", "white", "blue", "grey", "anthracite", "red", "silver", "black", "yellow", "bordeaux", "turquoise", "other", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [83.84700000000001, 110.325, 117.68, 69.8725, 78.69850000000001, 91.9375, 77.2275, 114.738, 194.9075, 169.16500000000002, 100.028, 160.339, 127.2415, 221.3855, 84.58250000000001, 77.96300000000001, 155.1905, 165.4875, 205.94]
             }
@@ -9323,7 +9323,7 @@
         "xv": {
             "xv": {
                 "colors": ["white", "black", "red", "blue", "grey", "orange", "brown", "other", "anthracite", "silver", "green", "bordeaux", "beige"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [83.84700000000001, 110.325, 114.738, 108.1185, 122.093]
             }
@@ -9333,7 +9333,7 @@
         "across": {
             "across": {
                 "colors": ["blue", "white", "grey", "black", "anthracite", "silver"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [225.063, 136.0675]
             }
@@ -9349,7 +9349,7 @@
         "baleno": {
             "baleno": {
                 "colors": ["white", "silver", "blue", "grey"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [66.19500000000001, 81.6405, 82.376]
             }
@@ -9381,7 +9381,7 @@
         "ignis": {
             "ignis": {
                 "colors": ["white", "grey", "green", "blue", "orange", "red", "other", "black", "beige", "anthracite", "gold", "yellow", "brown", "silver", "turquoise"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [61.0465, 66.19500000000001, 73.55000000000001, 65.4595, 72.81450000000001]
             }
@@ -9437,7 +9437,7 @@
         "swace": {
             "swace": {
                 "colors": ["silver", "white", "black", "blue"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [89.73100000000001, 72.07900000000001, 102.97]
             }
@@ -9445,7 +9445,7 @@
         "swift": {
             "swift": {
                 "colors": ["white", "blue", "black", "red", "orange", "silver", "grey", "brown", "anthracite", "yellow", "green", "other", "bordeaux", "beige"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [94.8795, 61.0465, 60.31100000000001, 100.028, 69.137, 67.666, 66.19500000000001, 102.97, 91.9375, 81.6405, 75.021, 50.014, 68.4015]
             }
@@ -9453,7 +9453,7 @@
         "sx4": {
             "sx4": {
                 "colors": ["white", "red", "grey", "black", "silver", "orange", "blue", "brown", "anthracite"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["manual", "automatic"],
                 "output": [88.26, 78.69850000000001, 82.376, 99.2925, 94.8795]
             }
@@ -9461,13 +9461,13 @@
         "sx4 s-cross": {
             "s-cross": {
                 "colors": ["white"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [84.58250000000001]
             },
             "sx4 s-cross": {
                 "colors": ["anthracite", "grey", "black", "blue", "white", "green", "brown", "red", "silver", "other"],
-                "fuelType": ["petrol/electric", "petrol", "diesel", "electric"],
+                "fuelType": ["petrol-electric", "petrol", "diesel", "electric"],
                 "gears": ["manual", "automatic"],
                 "output": [94.8795, 85.31800000000001, 75.021, 88.26, 102.97, 84.58250000000001]
             }
@@ -9475,7 +9475,7 @@
         "vitara": {
             "vitara": {
                 "colors": ["white", "grey", "blue", "orange", "silver", "black", "anthracite", "beige", "turquoise", "red", "gold", "other"],
-                "fuelType": ["petrol/electric", "petrol", "diesel"],
+                "fuelType": ["petrol-electric", "petrol", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [94.8795, 102.97, 84.58250000000001, 88.26, 81.6405, 85.31800000000001, 58.84, 75.021]
             }
@@ -9535,7 +9535,7 @@
         "auris": {
             "auris": {
                 "colors": ["silver", "white", "grey", "blue", "black", "red", "brown", "purple"],
-                "fuelType": ["diesel", "petrol/electric", "petrol"],
+                "fuelType": ["diesel", "petrol-electric", "petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [92.673, 100.028, 130.1835, 91.202, 97.086, 85.31800000000001, 72.81450000000001, 66.19500000000001, 179.46200000000002, 108.1185]
             }
@@ -9543,7 +9543,7 @@
         "auris touring sports": {
             "auris touring sports": {
                 "colors": ["black", "white", "grey", "blue", "red", "silver"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [100.028, 97.086, 85.31800000000001, 72.07900000000001, 72.81450000000001]
             }
@@ -9583,7 +9583,7 @@
         "c-hr": {
             "c-hr": {
                 "colors": ["grey", "anthracite", "white", "red", "silver", "black", "other", "blue", "brown", "orange", "purple", "beige", "bordeaux", "green", "yellow"],
-                "fuelType": ["petrol", "petrol/electric", "hybrid"],
+                "fuelType": ["petrol", "petrol-electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [85.31800000000001, 89.73100000000001, 131.6545, 135.332, 72.81450000000001, 102.97, 110.325, 71.3435, 111.796, 146.36450000000002, 145.62900000000002, 164.0165]
             }
@@ -9591,7 +9591,7 @@
         "camry": {
             "camry": {
                 "colors": ["white", "green", "grey", "anthracite", "blue", "red", "black", "brown", "silver"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [138.274, 96.3505, 160.339, 88.9955, 136.0675, 111.796]
             }
@@ -9615,7 +9615,7 @@
         "corolla": {
             "corolla": {
                 "colors": ["blue", "black", "red", "silver", "grey", "white", "anthracite", "bordeaux", "green", "other", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [141.216, 80.905, 146.36450000000002, 131.6545, 79.434, 89.73100000000001, 77.2275, 110.325, 144.89350000000002, 71.3435, 135.332, 72.07900000000001, 111.796, 78.69850000000001, 165.4875, 55.1625, 85.31800000000001, 66.19500000000001, 102.97, 144.15800000000002, 80.1695, 83.84700000000001, 132.39]
             }
@@ -9695,7 +9695,7 @@
         "highlander": {
             "highlander": {
                 "colors": ["other", "grey", "red", "black", "green", "anthracite", "white"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [181.6685, 182.404]
             }
@@ -9767,7 +9767,7 @@
         "prius": {
             "prius": {
                 "colors": ["white", "red", "grey", "black", "blue", "silver", "green", "other", "anthracite"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [100.028, 89.73100000000001, 164.0165, 57.369, 72.81450000000001, 72.07900000000001]
             }
@@ -9775,7 +9775,7 @@
         "prius+": {
             "prius+": {
                 "colors": ["silver", "white", "red", "black", "anthracite", "brown", "grey"],
-                "fuelType": ["petrol/electric", "petrol"],
+                "fuelType": ["petrol-electric", "petrol"],
                 "gears": ["automatic"],
                 "output": [100.028]
             }
@@ -9807,13 +9807,13 @@
         "rav-4": {
             "rav-4": {
                 "colors": ["red", "blue", "white", "grey", "black", "silver", "anthracite", "green", "yellow", "beige", "brown", "bordeaux"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [111.0605, 144.89350000000002, 110.325, 163.281, 111.796, 114.0025, 225.063, 94.8795, 128.7125, 130.919, 94.144, 100.028, 116.209, 160.339, 130.1835, 92.673, 142.687, 85.31800000000001, 136.0675, 108.854, 123.564, 129.448]
             },
             "rav4": {
                 "colors": ["black"],
-                "fuelType": ["petrol/electric"],
+                "fuelType": ["petrol-electric"],
                 "gears": ["automatic"],
                 "output": [142.687]
             }
@@ -9885,7 +9885,7 @@
         "yaris": {
             "yaris": {
                 "colors": ["grey", "green", "bordeaux", "blue", "white", "silver", "anthracite", "beige", "red", "other", "black", "brown", "gold", "turquoise", "orange", "yellow"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["manual", "automatic"],
                 "output": [63.9885, 74.2855, 63.253, 77.96300000000001, 191.9655, 67.666, 96.3505, 85.31800000000001, 91.9375, 72.81450000000001, 50.014, 82.376, 52.956, 66.19500000000001, 81.6405, 235.36, 53.691500000000005, 66.93050000000001, 135.332, 55.1625, 97.8215, 68.4015, 95.615, 50.749500000000005, 73.55000000000001, 47.807500000000005, 155.92600000000002, 61.782]
             }
@@ -10035,7 +10035,7 @@
         "s60": {
             "s60": {
                 "colors": ["grey", "red", "black", "white", "blue", "beige", "silver", "yellow"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [233.1535, 147.10000000000002, 158.13250000000002, 150.7775, 183.875, 139.745, 225.063, 228.005, 144.89350000000002, 154.455, 119.8865, 155.1905, 224.3275, 133.12550000000002, 66.19500000000001, 111.796, 164.752, 297.8775, 223.592, 257.425, 258.1605, 102.97, 125.035, 194.17200000000005]
             }
@@ -10059,7 +10059,7 @@
         "s90": {
             "s90": {
                 "colors": ["black", "white", "silver", "grey"],
-                "fuelType": ["petrol/electric", "diesel", "hybrid", "petrol"],
+                "fuelType": ["petrol-electric", "diesel", "hybrid", "petrol"],
                 "gears": ["automatic"],
                 "output": [230.2115, 172.8425, 139.745, 222.8565, 186.817, 245.657, 228.005, 300.084]
             }
@@ -10089,13 +10089,13 @@
         "v60": {
             "v60": {
                 "colors": ["black", "grey", "blue", "red", "white", "silver", "beige", "anthracite", "brown"],
-                "fuelType": ["petrol", "petrol/electric", "diesel", "diesel/electric", "hybrid"],
+                "fuelType": ["petrol", "petrol-electric", "diesel", "diesel-electric", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [223.592, 250.8055, 139.745, 228.005, 236.831, 183.1395, 182.404, 164.752, 155.1905, 297.8775, 292.72900000000004, 194.17200000000005, 225.063, 88.26, 186.0815, 287.58050000000003, 132.39, 211.824, 257.425, 150.7775, 158.13250000000002, 144.89350000000002, 183.875, 119.8865, 258.1605, 110.325, 140.4805, 334.65250000000003, 149.3065, 84.58250000000001, 249.3345, 161.81, 133.12550000000002, 241.9795, 250.07, 176.52, 233.1535, 169.16500000000002, 269.92850000000004, 100.028, 256.6895, 335.38800000000003, 220.65, 222.8565, 288.31600000000003]
             },
             "v60 cc": {
                 "colors": ["white", "anthracite", "black", "grey"],
-                "fuelType": ["diesel", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [110.325, 139.745, 186.817, 144.89350000000002]
             }
@@ -10111,13 +10111,13 @@
         "v90": {
             "v90": {
                 "colors": ["white", "grey", "beige", "black", "blue", "anthracite"],
-                "fuelType": ["diesel", "petrol/electric", "petrol", "diesel/electric"],
+                "fuelType": ["diesel", "petrol-electric", "petrol", "diesel-electric"],
                 "gears": ["automatic"],
                 "output": [139.745, 172.8425, 155.1905, 250.8055, 228.005, 110.325, 144.89350000000002, 235.36, 186.817, 234.6245]
             },
             "v90 cc": {
                 "colors": ["grey", "black", "white", "blue", "anthracite", "brown"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 172.8425, 234.6245, 220.65, 183.875]
             }
@@ -10125,7 +10125,7 @@
         "xc40": {
             "xc40": {
                 "colors": ["black", "grey", "white", "blue", "silver", "green", "red", "other", "beige", "anthracite", "gold", "bordeaux"],
-                "fuelType": ["petrol/electric", "electric", "petrol", "diesel", "hybrid"],
+                "fuelType": ["petrol-electric", "electric", "petrol", "diesel", "hybrid"],
                 "gears": ["automatic", "direct, no transmission", "manual"],
                 "output": [155.1905, 130.1835, 300.084, 144.89350000000002, 191.9655, 119.8865, 182.404, 139.745, 132.39, 169.90050000000002, 181.6685, 94.8795, 180.1975, 183.875, 110.325, 158.868, 140.4805, 141.216, 192.701, 142.687, 131.6545, 325.091, 95.615, 114.738]
             }
@@ -10133,7 +10133,7 @@
         "xc60": {
             "xc60": {
                 "colors": ["white", "black", "grey", "other", "blue", "silver", "red", "anthracite", "brown", "beige", "green"],
-                "fuelType": ["diesel/electric", "petrol", "hybrid", "diesel", "petrol/electric"],
+                "fuelType": ["diesel-electric", "petrol", "hybrid", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [144.89350000000002, 225.063, 234.6245, 172.8425, 334.65250000000003, 155.1905, 257.425, 161.81, 228.005, 158.13250000000002, 183.875, 139.745, 288.31600000000003, 250.8055, 256.6895, 183.1395, 194.17200000000005, 171.3715, 119.8865, 180.1975, 335.38800000000003, 150.7775, 223.592, 186.0815, 136.0675, 297.8775, 224.3275, 133.12550000000002, 128.7125, 168.42950000000002, 292.72900000000004, 230.2115, 236.831, 222.8565, 100.028, 299.3485, 286.845, 250.07, 147.10000000000002, 186.817, 287.58050000000003, 149.3065, 209.6175, 176.52, 140.4805, 300.084, 169.90050000000002, 110.325, 220.65, 235.36, 233.1535, 187.5525, 239.773]
             }
@@ -10149,7 +10149,7 @@
         "xc90": {
             "xc90": {
                 "colors": ["black", "anthracite", "blue", "grey", "white", "brown", "green", "other", "silver", "yellow", "beige"],
-                "fuelType": ["diesel", "diesel/electric", "petrol/electric", "petrol", "hybrid"],
+                "fuelType": ["diesel", "diesel-electric", "petrol-electric", "petrol", "hybrid"],
                 "gears": ["automatic", "manual"],
                 "output": [136.0675, 147.10000000000002, 172.8425, 139.745, 183.1395, 194.17200000000005, 287.58050000000003, 334.65250000000003, 164.752, 299.3485, 228.005, 288.31600000000003, 222.8565, 298.613, 119.8865, 200.056, 154.455, 235.36, 231.6825, 183.875, 286.845, 175.049, 300.084, 225.063, 234.6245, 223.592, 168.42950000000002, 239.773]
             }
@@ -10199,7 +10199,7 @@
         "caddy": {
             "caddy": {
                 "colors": ["red", "white", "grey", "black", "yellow", "silver", "other", "blue", "brown", "orange", "beige", "anthracite", "green"],
-                "fuelType": ["diesel", "petrol", "natural gas/petrol", "gas"],
+                "fuelType": ["diesel", "petrol", "natural-gas-petrol", "gas"],
                 "gears": ["automatic", "manual"],
                 "output": [75.021, 95.615, 110.325, 77.2275, 102.97, 55.1625, 54.42700000000001, 80.905, 89.73100000000001, 63.253, 83.84700000000001, 80.1695, 50.749500000000005, 91.9375, 88.9955, 61.782, 90.4665, 75.7565, 61.0465, 58.84, 52.956]
             }
@@ -10301,7 +10301,7 @@
             },
             "golf": {
                 "colors": ["white", "black", "grey", "blue", "silver", "green", "red", "anthracite", "bordeaux", "gold", "brown", "yellow", "beige", "other"],
-                "fuelType": ["petrol/electric", "diesel", "petrol", "natural gas/petrol", "electric"],
+                "fuelType": ["petrol-electric", "diesel", "petrol", "natural-gas-petrol", "electric"],
                 "gears": ["automatic", "manual"],
                 "output": [150.042, 95.615, 77.2275, 89.73100000000001, 125.035, 102.97, 84.58250000000001, 228.005, 221.3855, 91.9375, 180.1975, 110.325, 55.1625, 155.1905, 235.36, 80.905, 117.68, 51.485, 66.19500000000001, 275.8125, 147.10000000000002, 140.4805, 139.745, 244.9215, 83.84700000000001, 73.55000000000001, 72.07900000000001, 169.16500000000002, 135.332, 62.517500000000005, 213.295, 220.65, 264.78000000000003, 75.021, 198.585, 161.81, 128.7125, 101.499, 82.376, 132.39, 102.2345, 194.9075, 199.3205, 100.028, 109.5895, 294.20000000000005, 75.7565, 108.854, 40.4525, 80.1695, 116.209, 172.8425, 177.2555, 69.8725, 154.455, 85.31800000000001, 500.14, 61.782, 183.875, 189.759, 260.367, 152.984, 42.659000000000006, 268.45750000000004, 50.749500000000005, 94.8795, 74.2855, 196.3785, 191.23, 241.9795, 88.9955]
             },
@@ -10319,7 +10319,7 @@
             },
             "golf r": {
                 "colors": ["black", "grey", "blue", "silver", "red", "white", "anthracite"],
-                "fuelType": ["petrol", "petrol/electric"],
+                "fuelType": ["petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [228.005, 198.585, 221.3855, 110.325, 261.1025, 220.65, 199.3205, 235.36, 264.78000000000003, 272.135, 244.9215, 253.7475, 225.063, 257.425, 265.51550000000003, 268.45750000000004]
             },
@@ -10403,7 +10403,7 @@
         "jetta": {
             "jetta": {
                 "colors": ["grey", "white", "black", "red"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [117.68, 110.325, 77.2275, 91.9375, 89.73100000000001]
             }
@@ -10441,7 +10441,7 @@
         "passat": {
             "passat": {
                 "colors": ["silver", "black", "grey", "other", "white", "blue", "beige", "brown", "anthracite", "red", "green"],
-                "fuelType": ["petrol", "diesel", "petrol/electric", "gas", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "petrol-electric", "gas", "natural-gas-petrol"],
                 "gears": ["automatic", "manual"],
                 "output": [117.68, 105.1765, 176.52, 161.81, 147.10000000000002, 77.2275, 130.1835, 110.325, 102.97, 139.745, 154.455, 200.056, 125.035, 155.1905, 159.6035, 84.58250000000001, 95.615, 132.39, 220.65, 205.94, 91.9375, 90.4665, 89.73100000000001, 88.26, 66.19500000000001, 160.339, 75.7565, 141.9515, 183.875, 108.854, 111.0605, 101.499, 80.905, 175.7845]
             },
@@ -10469,7 +10469,7 @@
         "polo": {
             "polo": {
                 "colors": ["grey", "black", "blue", "anthracite", "red", "silver", "white", "beige", "other", "green", "yellow", "orange", "brown", "bordeaux", "purple", "gold"],
-                "fuelType": ["petrol", "diesel", "natural gas/petrol"],
+                "fuelType": ["petrol", "diesel", "natural-gas-petrol"],
                 "gears": ["manual", "automatic"],
                 "output": [77.2275, 66.19500000000001, 63.253, 44.13, 102.97, 51.485, 69.8725, 80.905, 55.1625, 130.1835, 110.325, 73.55000000000001, 58.84, 74.2855, 147.10000000000002, 84.58250000000001, 62.517500000000005, 161.81, 152.2485, 47.807500000000005, 40.4525, 132.39, 83.1115, 54.42700000000001, 108.854, 50.749500000000005, 72.81450000000001, 75.7565]
             },
@@ -10589,7 +10589,7 @@
             },
             "t5 euro-5": {
                 "colors": ["white"],
-                "fuelType": ["natural gas/petrol"],
+                "fuelType": ["natural-gas-petrol"],
                 "gears": ["manual"],
                 "output": [85.31800000000001]
             },
@@ -10643,7 +10643,7 @@
         "t7": {
             "t7": {
                 "colors": ["red", "blue", "white", "grey", "silver", "black"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic"],
                 "output": [110.325, 159.6035, 160.339, 150.042]
             }
@@ -10657,7 +10657,7 @@
             },
             "t7 new multivan": {
                 "colors": ["black", "white", "blue", "grey", "other", "silver"],
-                "fuelType": ["petrol", "petrol/electric", "diesel"],
+                "fuelType": ["petrol", "petrol-electric", "diesel"],
                 "gears": ["automatic", "manual"],
                 "output": [100.028, 160.339, 159.6035, 150.042, 110.325, 127.977]
             }
@@ -10681,7 +10681,7 @@
         "tiguan": {
             "tiguan": {
                 "colors": ["white", "grey", "blue", "red", "black", "silver", "beige", "orange", "brown", "anthracite", "green", "other", "yellow", "bordeaux"],
-                "fuelType": ["petrol", "diesel", "petrol/electric"],
+                "fuelType": ["petrol", "diesel", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [139.745, 132.39, 191.23, 147.10000000000002, 110.325, 102.97, 235.36, 125.035, 141.216, 180.1975, 169.16500000000002, 234.6245, 130.1835, 179.46200000000002, 141.9515, 135.332, 175.7845, 155.1905, 117.68, 176.52, 165.4875, 161.81, 95.615, 144.89350000000002, 89.73100000000001, 140.4805, 283.1675, 84.58250000000001, 91.9375, 108.854, 220.65, 111.0605, 154.455]
             }
@@ -10689,7 +10689,7 @@
         "touareg": {
             "touareg": {
                 "colors": ["white", "black", "grey", "brown", "blue", "silver", "other", "anthracite", "green", "beige"],
-                "fuelType": ["diesel", "petrol", "petrol/electric"],
+                "fuelType": ["diesel", "petrol", "petrol-electric"],
                 "gears": ["automatic", "manual"],
                 "output": [192.701, 180.1975, 250.07, 230.2115, 176.52, 228.005, 244.9215, 210.353, 165.4875, 309.6455, 169.90050000000002, 205.94, 127.977, 150.042, 161.81, 257.425, 339.80100000000004, 141.216, 162.5455, 258.1605]
             }
@@ -10697,7 +10697,7 @@
         "touran": {
             "touran": {
                 "colors": ["white", "silver", "black", "grey", "blue", "beige", "anthracite", "brown", "red", "bordeaux", "yellow"],
-                "fuelType": ["diesel", "petrol", "natural gas/petrol", "gas"],
+                "fuelType": ["diesel", "petrol", "natural-gas-petrol", "gas"],
                 "gears": ["automatic", "manual"],
                 "output": [110.325, 139.745, 77.2275, 102.97, 84.58250000000001, 80.905, 130.1835, 125.035, 80.1695, 132.39, 101.499, 66.19500000000001, 75.7565]
             }

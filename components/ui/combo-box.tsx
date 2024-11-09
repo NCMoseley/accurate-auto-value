@@ -84,10 +84,9 @@ export function Combobox({
   return (
     <div className="w-full">
       <Popover open={open} onOpenChange={setOpen}>
-        {value === "other" ? (
+        {value === t("other") ? (
           <Input
             id={id}
-            // id="combo-box-other"
             className="h-12 sm:pr-12"
             placeholder={`${t("placeholder")} ${label}`}
             autoComplete="off"
