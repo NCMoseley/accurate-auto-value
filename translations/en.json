@@ -151,9 +151,20 @@
 			"button": "Send passcode"
 		},
 		"passcode": {
-			"title": "Please enter the passcode we sent you.",
+			"title": "Please enter the 4-digit passcode sent to your mobile device.",
 			"description": "The passcode was sent to the following phone number.",
-			"request": "Request passcode"
+			"backButton": "Go back to update car details",
+			"request": "Request passcode",
+			"enterPasscodePlaceholder": "1234",
+			"button": "Verify",
+			"success": {
+				"title": "Passcode verified",
+				"description": "Your passcode was verified successfully."
+			},
+			"error": {
+				"title": "Passcode verification failed",
+				"description": "Your passcode was incorrect. Please try again."
+			}
 		}
 	},
 	"ComboBox": {

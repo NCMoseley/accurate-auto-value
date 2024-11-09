@@ -39,7 +39,7 @@ export async function createInfobipApp() {
 		method: "POST",
 		headers: headers,
 		body: raw,
-		redirect: "follow" as RequestRedirect
+		// redirect: "follow" as RequestRedirect
 	};
 
 	let result: Application;
@@ -75,7 +75,7 @@ export async function setupTemplate() {
 		method: "POST",
 		headers: headers,
 		body: raw,
-		redirect: "follow" as RequestRedirect
+		// redirect: "follow" as RequestRedirect
 	};
 
 	let result;
@@ -106,14 +106,14 @@ export async function sendPasscode(to: string) {
 		method: "POST",
 		headers: headers,
 		body: raw,
-		redirect: "follow" as RequestRedirect
+		// redirect: "follow" as RequestRedirect
 	};
 
 	let result;
 	try {
 		const response = await fetch(`https://api.infobip.com/2fa/2/pin`, requestOptions);
 		const responseData = await response.text();
-		console.log("Passcode sent", responseData);
+		console.log("Passcode sent to phone", responseData);
 		result = JSON.parse(responseData);
 	} catch (error) {
 		console.error("Error sending passcode", error);
@@ -132,7 +132,7 @@ export async function verifyPasscode(pinId: string, pin: string) {
 		method: "POST",
 		headers: headers,
 		body: raw,
-		redirect: "follow" as RequestRedirect
+		// redirect: "follow" as RequestRedirect
 	};
 
 	let result;

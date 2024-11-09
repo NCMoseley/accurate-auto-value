@@ -53,6 +53,9 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   const router = useSearchParams();
   const session_id = router.get("session_id");
 
+  const [stage, setStage] = useState<number>(initialStage ?? 1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [registrationDate, setRegistrationDate] = useState<string>("");
   const [isSwiss, setIsSwiss] = useState<string>("");
   const [make, setMake] = useState<string>("");
@@ -70,16 +73,16 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     {},
   );
   const [additionalInfo, setAdditionalInfo] = useState<string>("");
-  const [autoErrors, setAutoErrors] = useState<{ [key: string]: string }>({});
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(true);
-  const [stage, setStage] = useState<number>(initialStage ?? 1);
   const [useOther, setUseOther] = useState<boolean>(false);
-  const [phone, setPhone] = useState<string>("");
+
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
+  const [phone, setPhone] = useState<string>("");
+  const [passcode, setPasscode] = useState<string>("");
+  const [pinId, setPinId] = useState<string>("");
+
+  const [isPaymentLoading, setIsPaymentLoading] = useState<boolean>(true);
   const [paymentConfirmed, setPaymentConfirmed] = useState<boolean>(false);
 
   const bodyStyles = [
@@ -303,6 +306,49 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     });
   }
 
+  async function sendPhoneVerificationCode() {
+    const res = await sendPasscode(phone);
+    console.log("sendPhoneVerificationCode", res);
+    if (!res.pinId) {
+      toast.error(t("error.title"), {
+        description: t("error.description"),
+      });
+      return false;
+    }
+
+    setPinId(res.pinId);
+    setStage(3);
+
+    return false;
+  }
+
+  async function verifyPhoneVerificationCode() {
+    const res = await verifyPasscode(pinId, passcode);
+    console.log("verifyPhoneVerificationCode", res);
+    if (res.pinError) {
+      toast.error(t("passcode.error.title"), {
+        description: t("passcode.error.description"),
+      });
+      return false;
+    }
+
+    if (!res.verified) {
+      toast.error(t("error.title"), {
+        description: t("error.description"),
+      });
+      return false;
+    }
+
+    toast.success(t("passcode.success.title"), {
+      description: t("passcode.success.description"),
+    });
+
+    setPinId(res.pinId);
+    setStage(4);
+
+    return false;
+  }
+
   function startOver() {
     setIsLoading(true);
     setStage(1);
@@ -354,6 +400,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   return (
     <section>
       <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
+        {/* Car Info Panel */}
         <Card className="bg-blue-500 sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
             <div className="grid gap-2">
@@ -396,6 +443,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
             </div>
           </CardContent>
         </Card>
+
+        {/* Begin Stages */}
         <Card
           id="scroll-to-anchor"
           className="sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[650px]"
@@ -435,11 +484,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setIsSwiss(value);
                         }}
                       />
-                      {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.registrationDate}
-                        </p>
-                      )}
                     </InputItem>
                     <InputItem id="registrationDate">
                       <Label
@@ -461,11 +505,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setRegistrationDate(e.target.value);
                         }}
                       />
-                      {autoErrors?.registrationDate && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.registrationDate}
-                        </p>
-                      )}
                     </InputItem>
                     <InputItem id="make">
                       <Label className={`${make ? "" : "opacity-50"}`}>
@@ -561,11 +600,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setMileage(e.target.value);
                         }}
                       />
-                      {autoErrors?.mileage && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.mileage}
-                        </p>
-                      )}
                     </InputItem>
                     <InputItem id="body">
                       <Label className={`${body ? "" : "opacity-50"}`}>
@@ -581,11 +615,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setBody(value);
                         }}
                       />
-                      {autoErrors?.body && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.body}
-                        </p>
-                      )}
                     </InputItem>
                     <InputItem id="displacement">
                       <Label className={`${displacement ? "" : "opacity-50"}`}>
@@ -603,11 +632,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setDisplacement(e.target.value);
                         }}
                       />
-                      {autoErrors?.mileage && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.mileage}
-                        </p>
-                      )}
                     </InputItem>
                     <InputItem id="doors">
                       <Label className={`${doors ? "" : "opacity-50"}`}>
@@ -625,11 +649,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setDoors(e.target.value);
                         }}
                       />
-                      {autoErrors?.doors && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.doors}
-                        </p>
-                      )}
                     </InputItem>
                     {options &&
                       Object.keys(options).map((key, i) => (
@@ -675,11 +694,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           setAdditionalInfo(e.target.value);
                         }}
                       />
-                      {autoErrors?.doors && (
-                        <p className="px-1 text-xs text-red-500">
-                          {autoErrors.doors}
-                        </p>
-                      )}
                     </InputItem>
                   </div>
                   {allFilled() && (
@@ -709,7 +723,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               </CardHeader>
 
               <CardContent>
-                <form className="mb-[400px] flex flex-col gap-2">
+                <div className="mb-[400px] flex flex-col gap-2">
                   <NumberInput
                     required
                     className="h-16 text-3xl md:text-3xl lg:text-3xl xl:text-3xl"
@@ -718,7 +732,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     type="text"
                     name="phone"
                     autoComplete="tel"
-                    autoCorrect="off"
+                    autoFocus
                     value={`+${phone}`}
                     onChange={(e) => {
                       setPhone(
@@ -728,27 +742,71 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                       );
                     }}
                   />
-                </form>
+                  {phone.length > 13 ? (
+                    <Button
+                      className="my-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
+                      onClick={sendPhoneVerificationCode}
+                    >
+                      {t("phone-entry.button")}
+                    </Button>
+                  ) : null}
+                </div>
                 <Button variant="link" onClick={() => setStage(1)}>
                   <Icons.chevronLeft className="size-4" />
                   {t("phone-entry.backButton")}
                 </Button>
-                {phone.length > 10 ? (
-                  <Button
-                    className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
-                    onClick={() => setStage(2)}
-                  >
-                    {t("phone-entry.button")}
-                  </Button>
-                ) : null}
               </CardContent>
             </>
           ) : null}
           {stage === 3 ? (
             <>
+              <CardHeader className="flex flex-col items-start">
+                <div className="grid gap-2">
+                  <TitleWithLoader title="passcode.title" />
+                  <CardDescription className="text-balance">
+                    {t("passcode.description")}
+                    {" +"}
+                    {phone}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+
+              <CardContent>
+                <div className="mb-[400px] flex flex-col gap-2">
+                  <NumberInput
+                    required
+                    className="tracking-passcode h-16 text-center text-3xl md:text-3xl lg:text-3xl xl:text-3xl"
+                    id="passcode"
+                    placeholder={t("passcode.enterPasscodePlaceholder")}
+                    type="text"
+                    name="passcode"
+                    autoFocus
+                    value={passcode}
+                    onChange={(e) => {
+                      setPasscode(e.target.value.slice(0, 4));
+                    }}
+                  />
+                  {passcode.length > 3 ? (
+                    <Button
+                      className="my-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
+                      onClick={verifyPhoneVerificationCode}
+                    >
+                      {t("passcode.button")}
+                    </Button>
+                  ) : null}
+                </div>
+                <Button variant="link" onClick={() => setStage(1)}>
+                  <Icons.chevronLeft className="size-4" />
+                  {t("passcode.backButton")}
+                </Button>
+              </CardContent>
+            </>
+          ) : null}
+          {stage === 4 ? (
+            <>
               <CardHeader className="flex flex-row flex-wrap">
                 <div className="grid gap-2">
-                  <TitleWithLoader title="pas.title" />
+                  <TitleWithLoader title="checkout.title" />
                   <CardDescription className="text-balance">
                     {t("checkout.description")}
                   </CardDescription>
@@ -764,7 +822,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               </CardContent>
             </>
           ) : null}
-          {stage === 4 ? (
+          {stage === 5 ? (
             <>
               {paymentConfirmed ? (
                 <CardHeader className="flex flex-row flex-wrap">
