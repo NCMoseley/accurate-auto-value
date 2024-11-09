@@ -16,7 +16,13 @@ import { DropdownValue } from "@/types";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-import { capitalize, cn, createPhoneMask, scrollToElement } from "@/lib/utils";
+import {
+  capitalize,
+  cn,
+  createDateMask,
+  createPhoneMask,
+  scrollToElement,
+} from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -127,7 +133,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
   }, []);
 
   useEffect(() => {
-    if (session_id) {
+    const data = JSON.parse(localStorage.getItem("user-auto-data") || "{}");
+    if (session_id && data.ttl) {
       setIsPaymentLoading(true);
       setStage(5);
       confirmPayment(session_id)
@@ -136,9 +143,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
           setEmail(email);
           setName(name);
           setPhone(phone);
-          const data = JSON.parse(
-            localStorage.getItem("user-auto-data") || "{}",
-          );
           onSubmit(data, name, email, phone);
         })
         .finally(() => {
@@ -219,26 +223,32 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       // 1 hour
       ttl: Date.now() + 1000 * 60 * 60 * 1,
     };
-    if (
-      !registrationDate ||
-      !isSwiss ||
-      !make ||
-      !model ||
-      !series ||
-      !mileage ||
-      !body
-    ) {
-      return toast.error(t("error.fillInAllFields"));
-    }
-    Object.keys(chosenOptions).map((key) => {
-      if (key === "transmission" && !chosenOptions[key]) {
-        return toast.error(t("error.fillInAllFields"));
+    const missingFields = [
+      { value: registrationDate, label: t("registrationDate.label") },
+      { value: isSwiss, label: t("isSwiss.label") },
+      { value: make, label: t("make.label") },
+      { value: model, label: t("model.label") },
+      { value: series, label: t("series.label") },
+      { value: mileage, label: t("mileage.label") },
+      { value: body, label: t("body.label") },
+      {
+        value: chosenOptions["transmission"],
+        label: t("options.transmission"),
+      },
+    ];
+
+    missingFields.forEach((field) => {
+      if (!field.value) {
+        return toast.error(`${t("error.fillInAllFields")} ${field.label}`);
       }
     });
+
+    if (!allFilled()) {
+      return false;
+    }
+
     console.log("car data:", data);
     localStorage.setItem("user-auto-data", JSON.stringify(data));
-    setStage(2);
-    scrollToElement("scroll-to-anchor", 300);
   }
 
   function allFilled() {
@@ -250,7 +260,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       series &&
       mileage &&
       body &&
-      Object.keys(chosenOptions).length === Object.keys(options).length
+      chosenOptions["transmission"]
     );
   }
 
@@ -498,13 +508,14 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         className="h-12 sm:pr-12"
                         id="registrationDate"
                         placeholder={t("registrationDate.placeholder")}
-                        mask={"99/9999"}
-                        type="number"
+                        type="text"
                         autoComplete="off"
                         autoCorrect="off"
                         value={registrationDate}
                         onChange={(e) => {
-                          setRegistrationDate(e.target.value);
+                          setRegistrationDate(
+                            createDateMask(e.target.value.slice(0, 7)),
+                          );
                         }}
                       />
                     </InputItem>
@@ -573,10 +584,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         initialValue={series}
                         isLoading={!series && isLoading}
                         onChange={(value) => {
-                          const isOther = handleOtherInputChange(
-                            serieses,
-                            value,
-                          );
+                          handleOtherInputChange(serieses, value);
                           setDisplacement("");
                           setBody("");
                           setChosenOptions({});
@@ -631,7 +639,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         autoCorrect="off"
                         value={displacement}
                         onChange={(e) => {
-                          setDisplacement(e.target.value);
+                          setDisplacement(e.target.value.slice(0, 4));
                         }}
                       />
                     </InputItem>
@@ -648,7 +656,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         autoCorrect="off"
                         value={doors}
                         onChange={(e) => {
-                          setDoors(e.target.value);
+                          setDoors(e.target.value.slice(0, 1));
                         }}
                       />
                     </InputItem>
@@ -702,6 +710,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     <Button
                       onClick={() => {
                         saveAutoData();
+                        setStage(2);
+                        scrollToElement("scroll-to-anchor", 300);
                       }}
                       className="mb-4 mt-24 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
                       disabled={isLoading}

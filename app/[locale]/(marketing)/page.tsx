@@ -18,7 +18,7 @@ export default function IndexPage() {
   return (
     <>
       <HeroLanding />
-      <AutoValueForm initialStage={2} />
+      <AutoValueForm initialStage={1} />
       <PreviewLanding />
       {/* <Powered /> */}
       {/* <BentoGrid /> */}
