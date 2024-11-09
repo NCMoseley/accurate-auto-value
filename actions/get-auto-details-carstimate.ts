@@ -1,5 +1,6 @@
 "use server"
 
+import { getTranslations } from "next-intl/server";
 import { deriveDropdownValues } from "../lib/utils";
 
 const baseURL = "https://carstimate.ch/api/estimation"
@@ -10,6 +11,7 @@ type DropdownValues = {
 };
 
 export async function getAllMakes(): Promise<DropdownValues[]> {
+  const t = await getTranslations("ServerData");
   const url = baseURL + `/brands`;
   try {
     const res = await fetch(url);
@@ -35,7 +37,7 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
 
     const data = await res.json();
     if (!data) return [];
-    const dropdownValues = deriveDropdownValues(data);
+    const dropdownValues = deriveDropdownValues(data, t, false);
 
     return dropdownValues;
   } catch (error) {
@@ -45,6 +47,7 @@ export async function getAllMakes(): Promise<DropdownValues[]> {
 }
 
 export async function getAllModels(make: string): Promise<DropdownValues[]> {
+  const t = await getTranslations("ServerData");
   const url = baseURL + `/series?brand=${encodeURIComponent(make)}`;
   try {
     const res = await fetch(url);
@@ -64,7 +67,7 @@ export async function getAllModels(make: string): Promise<DropdownValues[]> {
 
     const data = await res.json();
     if (!data) return [];
-    const dropdownValues = deriveDropdownValues(data);
+    const dropdownValues = deriveDropdownValues(data, t, false);
 
     return dropdownValues;
   } catch (error) {
@@ -74,6 +77,7 @@ export async function getAllModels(make: string): Promise<DropdownValues[]> {
 }
 
 export async function getAllSeries(make: string, model: string): Promise<DropdownValues[]> {
+  const t = await getTranslations("ServerData");
   const url = baseURL + `/modeltypes?brand=${encodeURIComponent(make)}&series=${encodeURIComponent(model)}`;
   try {
     const res = await fetch(url);
@@ -93,7 +97,7 @@ export async function getAllSeries(make: string, model: string): Promise<Dropdow
 
     const data = await res.json();
     if (!data) return [];
-    const dropdownValues = deriveDropdownValues(data);
+    const dropdownValues = deriveDropdownValues(data, t, false);
 
     return dropdownValues;
   } catch (error) {
@@ -127,6 +131,7 @@ async function getData(url: string) {
 }
 
 export async function getAllOptions(make: string, model: string, trim: string): Promise<{ options: DropdownValues[], option: DropdownValues }> {
+  const t = await getTranslations("ServerData");
   const optionsUrls: string[] = [baseURL];
 
   let res = {}
@@ -172,7 +177,7 @@ export async function getAllOptions(make: string, model: string, trim: string): 
   let options = {} as any;
   let option = {} as DropdownValues;
   Object.keys(res).forEach((key) => {
-    options[key] = deriveDropdownValues(res[key]);
+    options[key] = deriveDropdownValues(res[key], t, true);
   });
 
   Object.keys(options).forEach((key) => {

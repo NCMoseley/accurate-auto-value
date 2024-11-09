@@ -73,10 +73,10 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
           <input
             type="hidden"
             name="paymentAmount"
-            className="mb-[400px]"
+            className="mb-[200px]"
             value={input.paymentAmount}
           />
-          <Button
+          {/* <Button
             type="submit"
             className="mb-4 w-full rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-700"
             disabled={loading}
@@ -91,7 +91,7 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
               " " +
               formatAmountForDisplay(input.paymentAmount, config.CURRENCY)
             )}
-          </Button>
+          </Button> */}
         </form>
       )}
     </>
