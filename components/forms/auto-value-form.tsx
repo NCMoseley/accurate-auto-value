@@ -432,7 +432,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
 
   return (
     <section>
-      <div className="container flex w-full max-w-6xl flex-row flex-wrap justify-center gap-10 pb-32 sm:gap-y-16">
+      <div className="container flex w-full max-w-6xl flex-row flex-wrap-reverse justify-center gap-10 pb-32 sm:flex-wrap sm:gap-y-16">
         {/* Car Info Panel */}
         <Card className="bg-blue-500 sm:w-full md:w-3/5 md:min-w-[650px] lg:min-w-[unset] lg:max-w-[300px]">
           <CardHeader className="flex flex-row flex-wrap">
