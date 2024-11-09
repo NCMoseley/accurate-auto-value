@@ -100,6 +100,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     { value: t("bodyStyles.convertible"), label: t("bodyStyles.convertible") },
     { value: t("bodyStyles.van"), label: t("bodyStyles.van") },
     { value: t("bodyStyles.pickup"), label: t("bodyStyles.pickup") },
+    { label: t("other"), value: t("other") },
+  ];
+
+  const isSwissOptions = [
+    { value: t("yes"), label: t("yes") },
+    { value: t("no"), label: t("no") },
   ];
 
   useEffect(() => {
@@ -509,10 +515,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         id="isSwiss"
                         label={t("isSwiss.label")}
                         disabled={isLoading}
-                        values={[
-                          { value: t("yes"), label: t("yes") },
-                          { value: t("no"), label: t("no") },
-                        ]}
+                        values={isSwissOptions}
                         initialValue={isSwiss}
                         onChange={(value) => {
                           setIsSwiss(value);

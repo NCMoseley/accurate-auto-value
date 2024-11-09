@@ -6,7 +6,7 @@ import { deriveDropdownValues } from "../lib/utils";
 
 const emptyOptions = {
   allPossibleColors: ["white", "grey", "black", "silver", "anthracite", "blue", "red", "yellow", "orange", "green", "beige", "brown", "purple", "bordeaux", "other"],
-  allPossibleFuelTypes: ["petrol", "diesel", "electric", "natural gas/petrol", "petrol/electric", "diesel/electric", "bioethanol"],
+  allPossibleFuelTypes: ["petrol", "diesel", "electric", "natural-gas-petrol", "petrol-electric", "diesel-electric", "bioethanol"],
   allPossibleTransmissions: ["manual", "automatic"],
   allPossibleOutputs: [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800],
 };
