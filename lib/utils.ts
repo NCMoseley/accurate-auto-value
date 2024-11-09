@@ -337,3 +337,52 @@ export const yearsArr = [
   { label: "1951", value: "1951" },
   { label: "1950", value: "1950" }
 ];
+
+export function createPhoneMask(value) {
+  const cleanedValue = value.replace(/[^+\d]/g, "");
+
+  const match = cleanedValue.match(
+    /^(\+?)(\d{0,2})(\d{0,2})(\d{0,3})(\d{0,2})$/,
+  );
+
+  if (!match) return value;
+
+  const formattedValue = [
+    match[1],
+    match[2] ? `${match[2]}` : "",
+    match[3] ? ` ${match[3]}` : "",
+    match[4] ? ` ${match[4]}` : "",
+    match[5] ? ` ${match[5]}` : "",
+  ]
+    .join("")
+    .trim();
+
+  return formattedValue;
+}
+
+export function createDateMask(value: string) {
+  const cleanedValue = value.replace(/\D/g, '');
+
+  const match = cleanedValue.match(/^(\d{0,2})(\d{0,4})$/);
+
+  if (!match) return value;
+
+  const month = match[1];
+  const year = match[2];
+
+  let formattedValue = month;
+
+  if (year) {
+    formattedValue += `/${year}`;
+  }
+
+  return formattedValue;
+  // let v = value.replace(/\D/g, '').slice(0, 10);
+  // if (v.length >= 5) {
+  //   return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
+  // }
+  // else if (v.length >= 3) {
+  //   return `${v.slice(0, 2)}/${v.slice(2)}`;
+  // }
+  // return v
+}

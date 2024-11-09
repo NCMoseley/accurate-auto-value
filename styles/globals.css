@@ -84,6 +84,19 @@
   }
 }
 
+/* Disable number input spinners */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .text-gradient_indigo-purple {
   background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
   -webkit-background-clip: text;
@@ -117,3 +130,6 @@
   background-color: rgb(0 0 255 / 0.8);
 }
 
+.tracking-passcode {
+  letter-spacing: 0.8em;
+}
