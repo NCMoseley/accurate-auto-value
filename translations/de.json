@@ -1,31 +1,31 @@
 {
 	"HeroLanding": {
-		"title": "Blitzschnelle Fahrzeugbewertung",
+		"title": "Blitzschnelle Auto-Bewertung",
 		"title-b": "für die Schweiz.",
-		"subtitle": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Schweizer Autos und Autos aus anderen Ländern werden unterstützt.",
-		"link": "Gehe zur Über-Seite"
+		"subtitle": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Schweizer und importierte Fahrzeuge werden unterstützt.",
+		"link": "Zur Über-Seite"
 	},
 	"Testimonials": {
-		"a": "Testimonials",
+		"a": "Referenzen",
 		"b": "Was unsere Kunden teilen.",
-		"c": "Entdecken Sie das strahlende Feedback unserer zufriedenen Kunden weltweit."
+		"c": "Entdecken Sie das begeisterte Feedback unserer zufriedenen Kunden weltweit."
 	},
 	"PricingPage": {
-		"a": "Preise - Fahrzeugbewertung",
+		"a": "Preise - Auto-Bewertung",
 		"b": "Entdecken Sie unsere Abonnementpläne.",
 		"c": "Erfahren Sie mehr über unsere Preise."
 	},
 	"AutoValueForm": {
 		"title": "Bitte füllen Sie die folgenden Angaben aus, um den Wert Ihres Autos zu erhalten.",
-		"description": "Nur ein paar Details, um den Wert Ihres Autos zu erhalten",
+		"description": "Nur ein paar Details, um Ihre schnelle, genaue Bewertung zu erhalten.",
 		"bodyStyles": {
 			"wagon": "Kombi",
 			"sedan": "Limousine",
-			"hatchback": "Hatchback",
+			"hatchback": "Schrägheck",
 			"suv": "SUV",
 			"coupe": "Coupé",
 			"convertible": "Cabriolet",
-			"van": "Transporter",
+			"van": "Van",
 			"pickup": "Pickup"
 		},
 		"make": {
@@ -37,8 +37,8 @@
 			"placeholder": "Modell"
 		},
 		"series": {
-			"label": "Serie",
-			"placeholder": "Serie"
+			"label": "Baureihe",
+			"placeholder": "Baureihe"
 		},
 		"registrationDate": {
 			"label": "Zulassungsdatum",
@@ -73,14 +73,14 @@
 			"placeholder": "cc"
 		},
 		"body": {
-			"label": "Karosseriestil",
-			"placeholder": "z.B. Hatchback"
+			"label": "Karosserieform",
+			"placeholder": "z.B. Schrägheck"
 		},
 		"doors": {
 			"label": "Anzahl der Türen",
 			"placeholder": "z.B. 4"
 		},
-		"other": {
+		"additionalInfo": {
 			"label": "Zusätzliche Informationen",
 			"placeholder": "z.B. Unfallhistorie"
 		},
@@ -107,7 +107,7 @@
 			"title": "Etwas ist schiefgelaufen.",
 			"description": "Ihre Anfrage zur Einreichung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
 			"fillInAllFields": "Bitte füllen Sie alle Felder aus",
-			"enterEmail": "Bitte geben Sie Ihre E-Mail-Adresse ein"
+			"enterEmail": "Bitte geben Sie Ihre E-Mail ein"
 		},
 		"checkout": {
 			"title": "Kasse",
@@ -116,7 +116,7 @@
 		},
 		"paymentConfirmed": {
 			"title": "Zahlung bestätigt",
-			"description": "Wir werden uns sehr schnell unter der folgenden E-Mail-Adresse bei Ihnen melden.",
+			"description": "Wir werden uns schnellstmöglich mit den folgenden Kontaktdaten bei Ihnen melden.",
 			"button": "Eine weitere Bewertung starten"
 		},
 		"paymentNotConfirmed": {
@@ -131,7 +131,7 @@
 			"registrationDate": "*Zulassungsdatum:",
 			"make": "*Marke:",
 			"model": "*Modell:",
-			"series": "*Serie:",
+			"series": "*Baureihe:",
 			"mileage": "*Kilometerstand:",
 			"displacement": "Hubraum:",
 			"body": "*Karosserie:",
@@ -140,12 +140,41 @@
 			"colors": "*Farbe:",
 			"transmission": "*Getriebe:",
 			"fuelType": "*Kraftstoffart:",
-			"other": "Zusätzliche Informationen:"
+			"additionalInfo": "Zusätzliche Informationen:"
+		},
+		"phone-entry": {
+			"title": "Bitte geben Sie Ihre Telefonnummer ein, um Ihre Identität zu verifizieren.",
+			"description": "Ein Passcode wird an die folgende Telefonnummer gesendet.",
+			"backButton": "Zurück",
+			"enterPhoneNumber": "Telefonnummer eingeben",
+			"enterPhoneNumberPlaceholder": "z.B. +41 78 123 45 67",
+			"button": "Passcode senden"
+		},
+		"passcode": {
+			"title": "Bitte geben Sie den 4-stelligen Passcode ein, der an Ihr mobiles Gerät gesendet wurde.",
+			"description": "Der Passcode wurde an die folgende Telefonnummer gesendet.",
+			"backButton": "Zurück, um die Fahrzeugdetails zu aktualisieren",
+			"request": "Passcode anfordern",
+			"enterPasscodePlaceholder": "1234",
+			"button": "Verifizieren",
+			"success": {
+				"title": "Passcode verifiziert",
+				"description": "Ihr Passcode wurde erfolgreich verifiziert."
+			},
+			"error": {
+				"title": "Passcode-Verifizierung fehlgeschlagen",
+				"description": "Ihr Passcode war falsch. Bitte versuchen Sie es erneut."
+			}
 		}
+	},
+	"ComboBox": {
+		"placeholder": "Bitte geben Sie Ihr",
+		"select": "Auswählen",
+		"other": "Andere"
 	},
 	"CheckoutForm": {
 		"submit": {
-			"loading": "Verarbeitung...",
+			"loading": "Verarbeite...",
 			"label": "Bezahlen"
 		}
 	},

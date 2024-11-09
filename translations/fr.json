@@ -1,23 +1,23 @@
 {
 	"HeroLanding": {
-		"title": "Évaluation de voiture ultra-rapide",
+		"title": "Évaluation automobile ultra-rapide",
 		"title-b": "pour la Suisse.",
-		"subtitle": "Obtenez une valeur juste et précise pour votre voiture en quelques minutes. Les voitures suisses et les voitures d'autres pays sont prises en charge.",
-		"link": "Allez à la page À propos"
+		"subtitle": "Obtenez une valeur juste et précise pour votre voiture en quelques minutes. Les véhicules suisses et importés sont pris en charge.",
+		"link": "Aller à la page à propos"
 	},
 	"Testimonials": {
 		"a": "Témoignages",
 		"b": "Ce que nos clients partagent.",
-		"c": "Découvrez les retours élogieux de nos clients satisfaits à travers le monde."
+		"c": "Découvrez les retours élogieux de nos clients satisfaits dans le monde entier."
 	},
 	"PricingPage": {
-		"a": "Tarification - Évaluation Automobile",
+		"a": "Tarification - Évaluation de voiture",
 		"b": "Explorez nos plans d'abonnement.",
-		"c": "En savoir plus sur nos prix."
+		"c": "En savoir plus sur nos tarifs."
 	},
 	"AutoValueForm": {
-		"title": "Veuillez remplir les détails suivants pour obtenir la valeur de votre voiture.",
-		"description": "Juste quelques détails pour obtenir la valeur de votre voiture",
+		"title": "Veuillez remplir les informations suivantes pour obtenir la valeur de votre voiture.",
+		"description": "Juste quelques détails pour obtenir votre évaluation rapide et précise.",
 		"bodyStyles": {
 			"wagon": "Break",
 			"sedan": "Berline",
@@ -25,7 +25,7 @@
 			"suv": "SUV",
 			"coupe": "Coupé",
 			"convertible": "Cabriolet",
-			"van": "Fourgon",
+			"van": "Van",
 			"pickup": "Pickup"
 		},
 		"make": {
@@ -41,11 +41,11 @@
 			"placeholder": "Série"
 		},
 		"registrationDate": {
-			"label": "Date d'Enregistrement",
-			"placeholder": "mm/aaaa"
+			"label": "Date d'immatriculation",
+			"placeholder": "mm/yyyy"
 		},
 		"isSwiss": {
-			"label": "Vendu neuf en Suisse à l'origine ?",
+			"label": "Vendu neuf à l'origine en Suisse ?",
 			"placeholder": "Oui"
 		},
 		"mileage": {
@@ -57,7 +57,7 @@
 			"placeholder": "ex. Automatique"
 		},
 		"fuelType": {
-			"label": "Type de Carburant",
+			"label": "Type de carburant",
 			"placeholder": "ex. Essence"
 		},
 		"colors": {
@@ -73,15 +73,15 @@
 			"placeholder": "cc"
 		},
 		"body": {
-			"label": "Style de Carrosserie",
+			"label": "Type de carrosserie",
 			"placeholder": "ex. Hatchback"
 		},
 		"doors": {
-			"label": "Nombre de Portes",
+			"label": "Nombre de portes",
 			"placeholder": "ex. 4"
 		},
-		"other": {
-			"label": "Informations Supplémentaires",
+		"additionalInfo": {
+			"label": "Informations supplémentaires",
 			"placeholder": "ex. Historique d'accidents"
 		},
 		"next": {
@@ -92,31 +92,31 @@
 			"placeholder": "Votre adresse e-mail"
 		},
 		"phone": {
-			"label": "Numéro de Téléphone",
+			"label": "Numéro de téléphone",
 			"placeholder": "Votre numéro de téléphone"
 		},
 		"submit": {
 			"loading": "Calcul en cours...",
-			"label": "Obtenez une évaluation"
+			"label": "Obtenir une évaluation"
 		},
 		"success": {
 			"title": "Évaluation soumise",
 			"description": "Nous vous contacterons bientôt."
 		},
 		"error": {
-			"title": "Quelque chose a mal tourné.",
+			"title": "Une erreur s'est produite.",
 			"description": "Votre demande de soumission a échoué. Veuillez réessayer.",
 			"fillInAllFields": "Veuillez remplir tous les champs",
 			"enterEmail": "Veuillez entrer votre e-mail"
 		},
 		"checkout": {
 			"title": "Caisse",
-			"description": "Veuillez confirmer vos détails de paiement avec Stripe",
+			"description": "Veuillez confirmer vos informations de paiement avec Stripe",
 			"backButton": "Retour"
 		},
 		"paymentConfirmed": {
 			"title": "Paiement confirmé",
-			"description": "Nous vous contacterons très rapidement à l'adresse e-mail suivante.",
+			"description": "Nous vous contacterons rapidement avec les coordonnées suivantes.",
 			"button": "Commencer une autre évaluation"
 		},
 		"paymentNotConfirmed": {
@@ -125,10 +125,10 @@
 			"button": "Réessayer"
 		},
 		"autoInfo": {
-			"title": "Informations sur le Véhicule",
+			"title": "Informations sur le véhicule",
 			"description": "Les informations suivantes seront utilisées pour calculer la valeur de votre véhicule.",
 			"isSwiss": "*Est Suisse :",
-			"registrationDate": "*Date d'Enregistrement :",
+			"registrationDate": "*Date d'immatriculation :",
 			"make": "*Marque :",
 			"model": "*Modèle :",
 			"series": "*Série :",
@@ -139,9 +139,38 @@
 			"output": "Puissance (kW) :",
 			"colors": "*Couleur :",
 			"transmission": "*Transmission :",
-			"fuelType": "*Type de Carburant :",
-			"other": "Informations Supplémentaires :"
+			"fuelType": "*Type de carburant :",
+			"additionalInfo": "Informations supplémentaires :"
+		},
+		"phone-entry": {
+			"title": "Veuillez entrer votre numéro de téléphone pour vérifier votre identité.",
+			"description": "Un code d'accès sera envoyé au numéro de téléphone suivant.",
+			"backButton": "Retour",
+			"enterPhoneNumber": "Entrer le numéro de téléphone",
+			"enterPhoneNumberPlaceholder": "ex. +41 78 123 45 67",
+			"button": "Envoyer le code d'accès"
+		},
+		"passcode": {
+			"title": "Veuillez entrer le code d'accès à 4 chiffres envoyé à votre appareil mobile.",
+			"description": "Le code d'accès a été envoyé au numéro de téléphone suivant.",
+			"backButton": "Retour pour mettre à jour les détails de la voiture",
+			"request": "Demander le code d'accès",
+			"enterPasscodePlaceholder": "1234",
+			"button": "Vérifier",
+			"success": {
+				"title": "Code d'accès vérifié",
+				"description": "Votre code d'accès a été vérifié avec succès."
+			},
+			"error": {
+				"title": "Échec de la vérification du code d'accès",
+				"description": "Votre code d'accès était incorrect. Veuillez réessayer."
+			}
 		}
+	},
+	"ComboBox": {
+		"placeholder": "Veuillez entrer votre",
+		"select": "Sélectionner",
+		"other": "Autre"
 	},
 	"CheckoutForm": {
 		"submit": {
