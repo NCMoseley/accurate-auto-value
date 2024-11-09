@@ -73,6 +73,7 @@ export default function CheckoutForm(props: CheckoutFormProps): JSX.Element {
           <input
             type="hidden"
             name="paymentAmount"
+            className="mb-[400px]"
             value={input.paymentAmount}
           />
           <Button
