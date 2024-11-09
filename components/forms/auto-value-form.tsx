@@ -640,6 +640,30 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
+                    {options &&
+                      Object.keys(options).map((key, i) => (
+                        <InputItem key={key} className="gap-6">
+                          <Label
+                            className={`${chosenOptions[key] ? "" : "opacity-50"}`}
+                          >
+                            {t(`${key}.label`)}
+                          </Label>
+                          <Combobox
+                            id={key}
+                            label={t(`${key}.label`)}
+                            disabled={isLoading}
+                            values={options[key]}
+                            initialValue={chosenOptions[key]}
+                            onChange={(value) => {
+                              handleOtherInputChange(options[key], value);
+                              setChosenOptions((prev) => ({
+                                ...prev,
+                                [key]: value,
+                              }));
+                            }}
+                          />
+                        </InputItem>
+                      ))}
                     <InputItem>
                       <Label className={`${body ? "" : "opacity-50"}`}>
                         {t("body.label")}
@@ -690,34 +714,6 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    {options &&
-                      Object.keys(options).map((key, i) => (
-                        <InputItem
-                          // id={i === 0 ? "chosenOptions" : ""}
-                          key={key}
-                          className="gap-6"
-                        >
-                          <Label
-                            className={`${chosenOptions[key] ? "" : "opacity-50"}`}
-                          >
-                            {t(`${key}.label`)}
-                          </Label>
-                          <Combobox
-                            id={key}
-                            label={t(`${key}.label`)}
-                            disabled={isLoading}
-                            values={options[key]}
-                            initialValue={chosenOptions[key]}
-                            onChange={(value) => {
-                              handleOtherInputChange(options[key], value);
-                              setChosenOptions((prev) => ({
-                                ...prev,
-                                [key]: value,
-                              }));
-                            }}
-                          />
-                        </InputItem>
-                      ))}
                     <InputItem>
                       <Label
                         className={`${additionalInfo ? "" : "opacity-50"}`}

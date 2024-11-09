@@ -59,15 +59,15 @@ export async function getAllOptions(
   const t = await getTranslations("ServerData");
   const defaultReturn = {
     options: {
+      transmission: deriveDropdownValues(emptyOptions.allPossibleTransmissions, t, true),
       colors: deriveDropdownValues(emptyOptions.allPossibleColors, t, true),
       fuelType: deriveDropdownValues(emptyOptions.allPossibleFuelTypes, t, true),
-      transmission: deriveDropdownValues(emptyOptions.allPossibleTransmissions, t, true),
       output: deriveDropdownValues(emptyOptions.allPossibleOutputs, t, false),
     },
     option: { label: "", value: "" },
   };
 
-  if (make === "other" || model === "other" || trim === "other" || useOther) {
+  if (make === t("other") || model === t("other") || trim === t("other") || useOther) {
     return defaultReturn;
   }
 
@@ -94,8 +94,15 @@ export async function getAllOptions(
     }
   });
 
+  const arrangedObj = {
+    transmission: options.transmission,
+    colors: options.colors,
+    fuelType: options.fuelType,
+    output: options.output,
+  };
+
   return {
-    options: options,
+    options: arrangedObj,
     option,
   };
 }
