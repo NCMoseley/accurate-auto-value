@@ -233,7 +233,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
       { value: body, label: t("body.label") },
       {
         value: chosenOptions["transmission"],
-        label: t("options.transmission"),
+        label: t("transmission.label"),
       },
     ];
 
@@ -370,6 +370,27 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
     setIsLoading(false);
   }
 
+  function shiftFocus(label?: string) {
+    if (!label) {
+      return;
+    }
+
+    switch (label) {
+      case "make":
+        document.getElementById("model")?.focus();
+        break;
+      case "model":
+        document.getElementById("series")?.focus();
+        break;
+      case "series":
+        document.getElementById("options")?.focus();
+        break;
+      default:
+        // Optionally handle any other cases or do nothing
+        break;
+    }
+  }
+
   const TitleWithLoader = ({ title }: { title: string }) => (
     <CardTitle className="flex flex-row font-bold text-red-500">
       {t(title)}
@@ -480,11 +501,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                       className,
                     )}
                   >
-                    <InputItem id="isSwiss">
+                    <InputItem>
                       <Label className={`${isSwiss ? "" : "opacity-50"}`}>
                         {t("isSwiss.label")}
                       </Label>
                       <Combobox
+                        id="isSwiss"
                         label={t("isSwiss.label")}
                         disabled={isLoading}
                         values={[
@@ -497,16 +519,16 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="registrationDate">
+                    <InputItem>
                       <Label
                         className={`${registrationDate ? "" : "opacity-50"}`}
                       >
                         {t("registrationDate.label")}
                       </Label>
                       <NumberInput
+                        id="registrationDate"
                         required
                         className="h-12 sm:pr-12"
-                        id="registrationDate"
                         placeholder={t("registrationDate.placeholder")}
                         type="text"
                         autoComplete="off"
@@ -519,16 +541,18 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="make">
+                    <InputItem>
                       <Label className={`${make ? "" : "opacity-50"}`}>
                         {t("make.label")}
                       </Label>
                       <Combobox
+                        id="make"
                         disabled={isLoading || !makes.length}
                         label={t("make.label")}
                         values={makes}
                         initialValue={make}
                         isLoading={!make && isLoading}
+                        shiftFocus={shiftFocus}
                         onChange={(value) => {
                           const isOther = handleOtherInputChange(makes, value);
                           if (!isOther) {
@@ -547,11 +571,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="model">
+                    <InputItem>
                       <Label className={`${model ? "" : "opacity-50"}`}>
                         {t("model.label")}
                       </Label>
                       <Combobox
+                        id="model"
                         label={t("model.label")}
                         disabled={isLoading || !models.length}
                         values={models}
@@ -573,11 +598,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="series">
+                    <InputItem>
                       <Label className={`${series ? "" : "opacity-50"}`}>
                         {t("series.label")}
                       </Label>
                       <Combobox
+                        id="series"
                         label={t("series.label")}
                         disabled={isLoading || !serieses.length}
                         values={serieses}
@@ -594,7 +620,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="mileage">
+                    <InputItem>
                       <Label className={`${mileage ? "" : "opacity-50"}`}>
                         {t("mileage.label")}
                       </Label>
@@ -611,11 +637,12 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="body">
+                    <InputItem>
                       <Label className={`${body ? "" : "opacity-50"}`}>
                         {t("body.label")}
                       </Label>
                       <Combobox
+                        id="body"
                         label={t("body.label")}
                         disabled={isLoading || !bodyStyles.length}
                         values={bodyStyles}
@@ -626,7 +653,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="displacement">
+                    <InputItem>
                       <Label className={`${displacement ? "" : "opacity-50"}`}>
                         {t("displacement.label")}
                       </Label>
@@ -643,7 +670,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         }}
                       />
                     </InputItem>
-                    <InputItem id="doors">
+                    <InputItem>
                       <Label className={`${doors ? "" : "opacity-50"}`}>
                         {t("doors.label")}
                       </Label>
@@ -663,7 +690,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                     {options &&
                       Object.keys(options).map((key, i) => (
                         <InputItem
-                          id={i === 0 ? "chosenOptions" : ""}
+                          // id={i === 0 ? "chosenOptions" : ""}
                           key={key}
                           className="gap-6"
                         >
@@ -673,6 +700,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                             {t(`${key}.label`)}
                           </Label>
                           <Combobox
+                            id={key}
                             label={t(`${key}.label`)}
                             disabled={isLoading}
                             values={options[key]}
@@ -687,7 +715,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           />
                         </InputItem>
                       ))}
-                    <InputItem id="additionalInfo">
+                    <InputItem>
                       <Label
                         className={`${additionalInfo ? "" : "opacity-50"}`}
                       >

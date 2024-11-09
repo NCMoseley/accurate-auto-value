@@ -25,6 +25,7 @@ import { Icons } from "../shared/icons";
 import { Input } from "./input";
 
 interface ComboBoxProps {
+  id?: string;
   values: {
     value: string;
     label: string;
@@ -37,9 +38,11 @@ interface ComboBoxProps {
   isLoading?: boolean;
   useOther?: boolean;
   ref?: React.RefObject<HTMLButtonElement>;
+  shiftFocus?: (label?: string) => void;
 }
 
 export function Combobox({
+  id,
   values,
   label,
   disabled = false,
@@ -48,6 +51,7 @@ export function Combobox({
   initialValue,
   isLoading = false,
   ref,
+  shiftFocus,
 }: ComboBoxProps) {
   const t = useTranslations("ComboBox");
   const [open, setOpen] = React.useState(false);
@@ -82,8 +86,9 @@ export function Combobox({
       <Popover open={open} onOpenChange={setOpen}>
         {value === "other" ? (
           <Input
+            id={id}
+            // id="combo-box-other"
             className="h-12 sm:pr-12"
-            id="combo-box-other"
             placeholder={`${t("placeholder")} ${label}`}
             autoComplete="off"
             autoCorrect="off"
@@ -115,11 +120,13 @@ export function Combobox({
               <CommandGroup>
                 {values.map((item) => (
                   <CommandItem
+                    id={id}
                     key={item.value}
                     value={item.value}
                     onSelect={(currentValue) => {
                       onChange(currentValue);
                       setOpen(false);
+                      shiftFocus && shiftFocus(label);
                     }}
                   >
                     <Check
