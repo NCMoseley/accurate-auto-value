@@ -510,8 +510,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                         label={t("isSwiss.label")}
                         disabled={isLoading}
                         values={[
-                          { value: "Yes", label: "Yes" },
-                          { value: "No", label: "No" },
+                          { value: t("yes"), label: t("yes") },
+                          { value: t("no"), label: t("no") },
                         ]}
                         initialValue={isSwiss}
                         onChange={(value) => {
@@ -559,8 +559,8 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                             setModel("");
                             setSeries("");
                           } else {
-                            setModel("other");
-                            setSeries("other");
+                            setModel(t("other"));
+                            setSeries(t("other"));
                           }
                           setDisplacement("");
                           setBody("");
@@ -587,7 +587,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                           if (!isOther) {
                             setSeries("");
                           } else {
-                            setSeries("other");
+                            setSeries(t("other"));
                           }
                           setDisplacement("");
                           setBody("");
@@ -763,7 +763,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               </CardHeader>
 
               <CardContent>
-                <div className="mb-[400px] flex flex-col gap-2">
+                <div className="mb-[200px] flex flex-col gap-2">
                   <NumberInput
                     required
                     className="h-16 text-3xl md:text-3xl lg:text-3xl xl:text-3xl"
@@ -813,7 +813,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
               </CardHeader>
 
               <CardContent>
-                <div className="mb-[400px] flex flex-col gap-2">
+                <div className="mb-[200px] flex flex-col gap-2">
                   <NumberInput
                     required
                     className="tracking-passcode h-16 text-center text-3xl md:text-3xl lg:text-3xl xl:text-3xl"
@@ -870,7 +870,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
             <>
               {paymentConfirmed ? (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="mb-[400px] grid gap-2">
+                  <div className="mb-[200px] grid gap-2">
                     <TitleWithLoader title="paymentConfirmed.title" />
                     <CardDescription className="text-balance">
                       {t("paymentConfirmed.description")}
@@ -888,7 +888,7 @@ export function AutoValueForm({ className, initialStage }: AutoValueFormProps) {
                 </CardHeader>
               ) : (
                 <CardHeader className="flex flex-row flex-wrap">
-                  <div className="mb-[400px] grid gap-2">
+                  <div className="mb-[200px] grid gap-2">
                     {isPaymentLoading ? (
                       <>
                         <Icons.spinner className="mr-2 size-4 animate-spin" />

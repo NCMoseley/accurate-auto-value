@@ -1,190 +1,219 @@
 {
-	"HeroLanding": {
-		"title": "Blitzschnelle Auto-Bewertung",
-		"title-b": "für die Schweiz.",
-		"subtitle": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Schweizer und importierte Fahrzeuge werden unterstützt.",
-		"link": "Zur Über-Seite"
-	},
-	"Testimonials": {
-		"a": "Referenzen",
-		"b": "Was unsere Kunden teilen.",
-		"c": "Entdecken Sie das begeisterte Feedback unserer zufriedenen Kunden weltweit."
-	},
-	"PricingPage": {
-		"a": "Preise - Auto-Bewertung",
-		"b": "Entdecken Sie unsere Abonnementpläne.",
-		"c": "Erfahren Sie mehr über unsere Preise."
-	},
-	"AutoValueForm": {
-		"title": "Bitte füllen Sie die folgenden Angaben aus, um den Wert Ihres Autos zu erhalten.",
-		"description": "Nur ein paar Details, um Ihre schnelle, genaue Bewertung zu erhalten.",
-		"bodyStyles": {
-			"wagon": "Kombi",
-			"sedan": "Limousine",
-			"hatchback": "Schrägheck",
-			"suv": "SUV",
-			"coupe": "Coupé",
-			"convertible": "Cabriolet",
-			"van": "Van",
-			"pickup": "Pickup"
-		},
-		"make": {
-			"label": "Marke",
-			"placeholder": "Marke"
-		},
-		"model": {
-			"label": "Modell",
-			"placeholder": "Modell"
-		},
-		"series": {
-			"label": "Baureihe",
-			"placeholder": "Baureihe"
-		},
-		"registrationDate": {
-			"label": "Zulassungsdatum",
-			"placeholder": "mm/jjjj"
-		},
-		"isSwiss": {
-			"label": "Ursprünglich neu in der Schweiz verkauft?",
-			"placeholder": "Ja"
-		},
-		"mileage": {
-			"label": "Kilometerstand",
-			"placeholder": "Kilometerstand"
-		},
-		"transmission": {
-			"label": "Getriebe",
-			"placeholder": "z.B. Automatik"
-		},
-		"fuelType": {
-			"label": "Kraftstoffart",
-			"placeholder": "z.B. Benzin"
-		},
-		"colors": {
-			"label": "Farben",
-			"placeholder": "z.B. Rot"
-		},
-		"output": {
-			"label": "Leistung (kW)",
-			"placeholder": "z.B. 100 kW"
-		},
-		"displacement": {
-			"label": "Hubraum",
-			"placeholder": "cc"
-		},
-		"body": {
-			"label": "Karosserieform",
-			"placeholder": "z.B. Schrägheck"
-		},
-		"doors": {
-			"label": "Anzahl der Türen",
-			"placeholder": "z.B. 4"
-		},
-		"additionalInfo": {
-			"label": "Zusätzliche Informationen",
-			"placeholder": "z.B. Unfallhistorie"
-		},
-		"next": {
-			"label": "Weiter"
-		},
-		"email": {
-			"label": "Wir werden Ihre E-Mail nicht mit jemandem teilen",
-			"placeholder": "Ihre E-Mail-Adresse"
-		},
-		"phone": {
-			"label": "Telefonnummer",
-			"placeholder": "Ihre Telefonnummer"
-		},
-		"submit": {
-			"loading": "Berechne...",
-			"label": "Bewertung erhalten"
-		},
-		"success": {
-			"title": "Bewertung eingereicht",
-			"description": "Wir werden uns bald bei Ihnen melden."
-		},
-		"error": {
-			"title": "Etwas ist schiefgelaufen.",
-			"description": "Ihre Anfrage zur Einreichung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
-			"fillInAllFields": "Bitte füllen Sie alle Felder aus",
-			"enterEmail": "Bitte geben Sie Ihre E-Mail ein"
-		},
-		"checkout": {
-			"title": "Kasse",
-			"description": "Bitte bestätigen Sie Ihre Zahlungsdetails mit Stripe",
-			"backButton": "Zurück"
-		},
-		"paymentConfirmed": {
-			"title": "Zahlung bestätigt",
-			"description": "Wir werden uns schnellstmöglich mit den folgenden Kontaktdaten bei Ihnen melden.",
-			"button": "Eine weitere Bewertung starten"
-		},
-		"paymentNotConfirmed": {
-			"title": "Zahlung nicht bestätigt",
-			"description": "Ihre Zahlung war nicht erfolgreich. Bitte klicken Sie unten, um es erneut zu versuchen. Bitte kontaktieren Sie den Support, wenn das Problem weiterhin besteht.",
-			"button": "Erneut versuchen"
-		},
-		"autoInfo": {
-			"title": "Fahrzeuginformationen",
-			"description": "Die folgenden Informationen werden verwendet, um den Wert Ihres Fahrzeugs zu berechnen.",
-			"isSwiss": "*Ist Schweizer:",
-			"registrationDate": "*Zulassungsdatum:",
-			"make": "*Marke:",
-			"model": "*Modell:",
-			"series": "*Baureihe:",
-			"mileage": "*Kilometerstand:",
-			"displacement": "Hubraum:",
-			"body": "*Karosserie:",
-			"doors": "Türen:",
-			"output": "Leistung (kW):",
-			"colors": "*Farbe:",
-			"transmission": "*Getriebe:",
-			"fuelType": "*Kraftstoffart:",
-			"additionalInfo": "Zusätzliche Informationen:"
-		},
-		"phone-entry": {
-			"title": "Bitte geben Sie Ihre Telefonnummer ein, um Ihre Identität zu verifizieren.",
-			"description": "Ein Passcode wird an die folgende Telefonnummer gesendet.",
-			"backButton": "Zurück",
-			"enterPhoneNumber": "Telefonnummer eingeben",
-			"enterPhoneNumberPlaceholder": "z.B. +41 78 123 45 67",
-			"button": "Passcode senden"
-		},
-		"passcode": {
-			"title": "Bitte geben Sie den 4-stelligen Passcode ein, der an Ihr mobiles Gerät gesendet wurde.",
-			"description": "Der Passcode wurde an die folgende Telefonnummer gesendet.",
-			"backButton": "Zurück, um die Fahrzeugdetails zu aktualisieren",
-			"request": "Passcode anfordern",
-			"enterPasscodePlaceholder": "1234",
-			"button": "Verifizieren",
-			"success": {
-				"title": "Passcode verifiziert",
-				"description": "Ihr Passcode wurde erfolgreich verifiziert."
-			},
-			"error": {
-				"title": "Passcode-Verifizierung fehlgeschlagen",
-				"description": "Ihr Passcode war falsch. Bitte versuchen Sie es erneut."
-			}
-		}
-	},
-	"ComboBox": {
-		"placeholder": "Bitte geben Sie Ihr",
-		"select": "Auswählen",
-		"other": "Andere"
-	},
-	"CheckoutForm": {
-		"submit": {
-			"loading": "Verarbeite...",
-			"label": "Bezahlen"
-		}
-	},
-	"PricingCards": {
-		"a": "Rechner",
-		"b": "Reaktionsschnell und genau",
-		"c": "Jährlich",
-		"d": "Monatlich",
-		"e": "E-Mail",
-		"f": "um unser Support-Team zu kontaktieren.",
-		"g": "Sie können die Abonnements testen und werden nicht belastet."
-	}
+    "AutoValueForm": {
+        "additionalInfo": {
+            "label": "Zusätzliche Informationen",
+            "placeholder": "z.B. Unfallhistorie"
+        },
+        "autoInfo": {
+            "additionalInfo": "Zusätzliche Informationen:",
+            "body": "*Karosserie:",
+            "colors": "*Farbe:",
+            "description": "Die folgenden Informationen werden verwendet, um den Wert Ihres Fahrzeugs zu berechnen.",
+            "displacement": "Hubraum:",
+            "doors": "Türen:",
+            "fuelType": "*Kraftstoffart:",
+            "isSwiss": "*Ist Schweizer:",
+            "make": "*Marke:",
+            "mileage": "*Kilometerstand:",
+            "model": "*Modell:",
+            "output": "Leistung (kW):",
+            "registrationDate": "*Zulassungsdatum:",
+            "series": "*Baureihe:",
+            "title": "Fahrzeuginformationen",
+            "transmission": "*Getriebe:"
+        },
+        "body": {
+            "label": "Karosserieform",
+            "placeholder": "z.B. Schrägheck"
+        },
+        "bodyStyles": {
+            "convertible": "Cabriolet",
+            "coupe": "Coupé",
+            "hatchback": "Schrägheck",
+            "pickup": "Pickup",
+            "sedan": "Limousine",
+            "suv": "SUV",
+            "van": "Van",
+            "wagon": "Kombi"
+        },
+        "checkout": {
+            "backButton": "Zurück",
+            "description": "Bitte bestätigen Sie Ihre Zahlungsdetails mit Stripe",
+            "title": "Kasse"
+        },
+        "colors": {
+            "label": "Farben",
+            "placeholder": "z.B. Rot"
+        },
+        "description": "Nur ein paar Details, um Ihre schnelle, genaue Bewertung zu erhalten.",
+        "displacement": {
+            "label": "Hubraum",
+            "placeholder": "cc"
+        },
+        "doors": {
+            "label": "Anzahl der Türen",
+            "placeholder": "z.B. 4"
+        },
+        "email": {
+            "label": "Wir werden Ihre E-Mail nicht mit jemandem teilen",
+            "placeholder": "Ihre E-Mail-Adresse"
+        },
+        "error": {
+            "description": "Ihre Anfrage zur Einreichung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+            "enterEmail": "Bitte geben Sie Ihre E-Mail ein",
+            "fillInAllFields": "Bitte füllen Sie alle Felder aus",
+            "title": "Etwas ist schiefgelaufen."
+        },
+        "fuelType": {
+            "label": "Kraftstoffart",
+            "placeholder": "z.B. Benzin"
+        },
+        "isSwiss": {
+            "label": "Ursprünglich neu in der Schweiz verkauft?",
+            "placeholder": "Ja"
+        },
+        "make": {
+            "label": "Marke",
+            "placeholder": "Marke"
+        },
+        "mileage": {
+            "label": "Kilometerstand",
+            "placeholder": "Kilometerstand"
+        },
+        "model": {
+            "label": "Modell",
+            "placeholder": "Modell"
+        },
+        "next": {
+            "label": "Weiter"
+        },
+        "no": "Nein",
+        "output": {
+            "label": "Leistung (kW)",
+            "placeholder": "z.B. 100 kW"
+        },
+        "passcode": {
+            "backButton": "Zurück, um die Fahrzeugdetails zu aktualisieren",
+            "button": "Verifizieren",
+            "description": "Der Passcode wurde an die folgende Telefonnummer gesendet.",
+            "enterPasscodePlaceholder": "1234",
+            "error": {
+                "description": "Ihr Passcode war falsch. Bitte versuchen Sie es erneut.",
+                "title": "Passcode-Verifizierung fehlgeschlagen"
+            },
+            "request": "Passcode anfordern",
+            "success": {
+                "description": "Ihr Passcode wurde erfolgreich verifiziert.",
+                "title": "Passcode verifiziert"
+            },
+            "title": "Bitte geben Sie den 4-stelligen Passcode ein, der an Ihr mobiles Gerät gesendet wurde."
+        },
+        "paymentConfirmed": {
+            "button": "Eine weitere Bewertung starten",
+            "description": "Wir werden uns schnellstmöglich mit den folgenden Kontaktdaten bei Ihnen melden.",
+            "title": "Zahlung bestätigt"
+        },
+        "paymentNotConfirmed": {
+            "button": "Erneut versuchen",
+            "description": "Ihre Zahlung war nicht erfolgreich. Bitte klicken Sie unten, um es erneut zu versuchen. Bitte kontaktieren Sie den Support, wenn das Problem weiterhin besteht.",
+            "title": "Zahlung nicht bestätigt"
+        },
+        "phone": {
+            "label": "Telefonnummer",
+            "placeholder": "Ihre Telefonnummer"
+        },
+        "phone-entry": {
+            "backButton": "Zurück",
+            "button": "Passcode senden",
+            "description": "Ein Passcode wird an die folgende Telefonnummer gesendet.",
+            "enterPhoneNumber": "Telefonnummer eingeben",
+            "enterPhoneNumberPlaceholder": "z.B. +41 78 123 45 67",
+            "title": "Bitte geben Sie Ihre Telefonnummer ein, um Ihre Identität zu verifizieren."
+        },
+        "registrationDate": {
+            "label": "Zulassungsdatum",
+            "placeholder": "mm/jjjj"
+        },
+        "series": {
+            "label": "Baureihe",
+            "placeholder": "Baureihe"
+        },
+        "submit": {
+            "label": "Bewertung erhalten",
+            "loading": "Berechne..."
+        },
+        "success": {
+            "description": "Wir werden uns bald bei Ihnen melden.",
+            "title": "Bewertung eingereicht"
+        },
+        "title": "Bitte füllen Sie die folgenden Angaben aus, um den Wert Ihres Autos zu erhalten.",
+        "transmission": {
+            "label": "Getriebe",
+            "placeholder": "z.B. Automatik"
+        },
+        "yes": "Ja",
+        "other": "Andere"
+    },
+    "CheckoutForm": {
+        "submit": {
+            "label": "Bezahlen",
+            "loading": "Verarbeite..."
+        }
+    },
+    "ComboBox": {
+        "other": "Andere",
+        "placeholder": "Bitte geben Sie Ihr",
+        "select": "Auswählen"
+    },
+    "HeroLanding": {
+        "link": "Zur Über-Seite",
+        "subtitle": "Erhalten Sie in wenigen Minuten einen fairen und genauen Wert für Ihr Auto. Schweizer und importierte Fahrzeuge werden unterstützt.",
+        "title": "Blitzschnelle Auto-Bewertung",
+        "title-b": "für die Schweiz."
+    },
+    "PricingCards": {
+        "a": "Rechner",
+        "b": "Reaktionsschnell und genau",
+        "c": "Jährlich",
+        "d": "Monatlich",
+        "e": "E-Mail",
+        "f": "um unser Support-Team zu kontaktieren.",
+        "g": "Sie können die Abonnements testen und werden nicht belastet."
+    },
+    "PricingPage": {
+        "a": "Preise - Auto-Bewertung",
+        "b": "Entdecken Sie unsere Abonnementpläne.",
+        "c": "Erfahren Sie mehr über unsere Preise."
+    },
+    "ServerData": {
+        "anthracite": "Anthrazit",
+        "automatic": "Automatik",
+        "beige": "Beige",
+        "bioethanol": "Bioethanol",
+        "black": "Schwarz",
+        "blue": "Blau",
+        "bordeaux": "Bordeaux",
+        "brown": "Braun",
+        "diesel": "Diesel",
+        "diesel-electric": "Diesel/Electric",
+        "electric": "Elektrisch",
+        "green": "Grün",
+        "grey": "Grau",
+        "manual": "Manuell",
+        "natural-gas-petrol": "Erdgas/Benzin",
+        "orange": "Orange",
+        "petrol": "Benzin",
+        "petrol-electric": "Benzin/Elektrisch",
+        "purple": "Lila",
+        "red": "Rot",
+        "silver": "Silber",
+        "white": "Weiß",
+        "yellow": "Gelb",
+        "other": "Andere"
+    },
+    "Testimonials": {
+        "a": "Referenzen",
+        "b": "Was unsere Kunden teilen.",
+        "c": "Entdecken Sie das begeisterte Feedback unserer zufriedenen Kunden weltweit."
+    }
 }

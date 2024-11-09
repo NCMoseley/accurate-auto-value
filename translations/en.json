@@ -1,190 +1,219 @@
 {
-	"HeroLanding": {
-		"title": "Lightning fast auto valuation",
-		"title-b": "for Switzerland.",
-		"subtitle": "Get a fair and accurate value for your auto in minutes. Swiss and imported vehicles are supported.",
-		"link": "Go to the about page"
-	},
-	"Testimonials": {
-		"a": "Testimonials",
-		"b": "What our clients are sharing.",
-		"c": "Discover the glowing feedback from our delighted customers worldwide."
-	},
-	"PricingPage": {
-		"a": "Pricing - Car-Valuation",
-		"b": "Explore our subscription plans.",
-		"c": "Learn more about our pricing."
-	},
-	"AutoValueForm": {
-		"title": "Please fill in the following details to get your car value.",
-		"description": "Just a few details to get your rapid, accurate valuation",
-		"bodyStyles": {
-			"wagon": "Wagon",
-			"sedan": "Sedan",
-			"hatchback": "Hatchback",
-			"suv": "SUV",
-			"coupe": "Coupe",
-			"convertible": "Convertible",
-			"van": "Van",
-			"pickup": "Pickup"
-		},
-		"make": {
-			"label": "Make",
-			"placeholder": "Make"
-		},
-		"model": {
-			"label": "Model",
-			"placeholder": "Model"
-		},
-		"series": {
-			"label": "Series",
-			"placeholder": "Series"
-		},
-		"registrationDate": {
-			"label": "Date of Registration",
-			"placeholder": "mm/yyyy"
-		},
-		"isSwiss": {
-			"label": "Originally sold new in Switzerland?",
-			"placeholder": "Yes"
-		},
-		"mileage": {
-			"label": "Mileage",
-			"placeholder": "Mileage"
-		},
-		"transmission": {
-			"label": "Transmission",
-			"placeholder": "e.g. Automatic"
-		},
-		"fuelType": {
-			"label": "Fuel Type",
-			"placeholder": "e.g. Petrol"
-		},
-		"colors": {
-			"label": "Colors",
-			"placeholder": "e.g. Red"
-		},
-		"output": {
-			"label": "Output (kW)",
-			"placeholder": "e.g. 100 kW"
-		},
-		"displacement": {
-			"label": "Engine Displacement",
-			"placeholder": "cc"
-		},
-		"body": {
-			"label": "Body Style",
-			"placeholder": "e.g. Hatchback"
-		},
-		"doors": {
-			"label": "Number of Doors",
-			"placeholder": "e.g. 4"
-		},
-		"additionalInfo": {
-			"label": "Additional Information",
-			"placeholder": "e.g. Accident history"
-		},
-		"next": {
-			"label": "Next"
-		},
-		"email": {
-			"label": "We won't share your email with anyone",
-			"placeholder": "Your email address"
-		},
-		"phone": {
-			"label": "Phone Number",
-			"placeholder": "Your phone number"
-		},
-		"submit": {
-			"loading": "Calculating...",
-			"label": "Get a valuation"
-		},
-		"success": {
-			"title": "Valuation submitted",
-			"description": "We'll get back to you soon."
-		},
-		"error": {
-			"title": "Something went wrong.",
-			"description": "Your submission request failed. Please try again.",
-			"fillInAllFields": "Please fill in all fields",
-			"enterEmail": "Please enter your email"
-		},
-		"checkout": {
-			"title": "Checkout",
-			"description": "Please confirm your payment details with Stripe",
-			"backButton": "Go back"
-		},
-		"paymentConfirmed": {
-			"title": "Payment confirmed",
-			"description": "We'll get back to you swiftly at the following contact details.",
-			"button": "Start another valuation"
-		},
-		"paymentNotConfirmed": {
-			"title": "Payment not confirmed",
-			"description": "Your payment was not successful. Please click below to try again. Please contact support if the issue persists.",
-			"button": "Try again"
-		},
-		"autoInfo": {
-			"title": "Vehicle Information",
-			"description": "The following information will be used to calculate the value of your vehicle.",
-			"isSwiss": "*Is Swiss:",
-			"registrationDate": "*Registration Date:",
-			"make": "*Make:",
-			"model": "*Model:",
-			"series": "*Series:",
-			"mileage": "*Mileage:",
-			"displacement": "Displacement:",
-			"body": "*Body:",
-			"doors": "Doors:",
-			"output": "Output (kW):",
-			"colors": "*Color:",
-			"transmission": "*Transmission:",
-			"fuelType": "*Fuel Type:",
-			"additionalInfo": "Additional Information:"
-		},
-		"phone-entry": {
-			"title": "Please enter your phone number to verify your identity.",
-			"description": "A passcode will be sent to the following phone number.",
-			"backButton": "Go back",
-			"enterPhoneNumber": "Enter phone number",
-			"enterPhoneNumberPlaceholder": "e.g. +41 78 123 45 67",
-			"button": "Send passcode"
-		},
-		"passcode": {
-			"title": "Please enter the 4-digit passcode sent to your mobile device.",
-			"description": "The passcode was sent to the following phone number.",
-			"backButton": "Go back to update car details",
-			"request": "Request passcode",
-			"enterPasscodePlaceholder": "1234",
-			"button": "Verify",
-			"success": {
-				"title": "Passcode verified",
-				"description": "Your passcode was verified successfully."
-			},
-			"error": {
-				"title": "Passcode verification failed",
-				"description": "Your passcode was incorrect. Please try again."
-			}
-		}
-	},
-	"ComboBox": {
-		"placeholder": "Please enter your",
-		"select": "Select",
-		"other": "Other"
-	},
-	"CheckoutForm": {
-		"submit": {
-			"loading": "Processing...",
-			"label": "Pay"
-		}
-	},
-	"PricingCards": {
-		"a": "Calculator",
-		"b": "Responsive and accurate",
-		"c": "Yearly",
-		"d": "Monthly",
-		"e": "Email",
-		"f": "for to contact our support team.",
-		"g": "You can test the subscriptions and won&apos;t be charged."
-	}
+    "AutoValueForm": {
+        "additionalInfo": {
+            "label": "Additional Information",
+            "placeholder": "e.g. Accident history"
+        },
+        "autoInfo": {
+            "additionalInfo": "Additional Information:",
+            "body": "*Body:",
+            "colors": "*Color:",
+            "description": "The following information will be used to calculate the value of your vehicle.",
+            "displacement": "Displacement:",
+            "doors": "Doors:",
+            "fuelType": "*Fuel Type:",
+            "isSwiss": "*Is Swiss:",
+            "make": "*Make:",
+            "mileage": "*Mileage:",
+            "model": "*Model:",
+            "output": "Output (kW):",
+            "registrationDate": "*Registration Date:",
+            "series": "*Series:",
+            "title": "Vehicle Information",
+            "transmission": "*Transmission:"
+        },
+        "body": {
+            "label": "Body Style",
+            "placeholder": "e.g. Hatchback"
+        },
+        "bodyStyles": {
+            "convertible": "Convertible",
+            "coupe": "Coupe",
+            "hatchback": "Hatchback",
+            "pickup": "Pickup",
+            "sedan": "Sedan",
+            "suv": "SUV",
+            "van": "Van",
+            "wagon": "Wagon"
+        },
+        "checkout": {
+            "backButton": "Go back",
+            "description": "Please confirm your payment details with Stripe",
+            "title": "Checkout"
+        },
+        "colors": {
+            "label": "Colors",
+            "placeholder": "e.g. Red"
+        },
+        "description": "Just a few details to get your rapid, accurate valuation",
+        "displacement": {
+            "label": "Engine Displacement",
+            "placeholder": "cc"
+        },
+        "doors": {
+            "label": "Number of Doors",
+            "placeholder": "e.g. 4"
+        },
+        "email": {
+            "label": "We won't share your email with anyone",
+            "placeholder": "Your email address"
+        },
+        "error": {
+            "description": "Your submission request failed. Please try again.",
+            "enterEmail": "Please enter your email",
+            "fillInAllFields": "Please fill in all fields",
+            "title": "Something went wrong."
+        },
+        "fuelType": {
+            "label": "Fuel Type",
+            "placeholder": "e.g. Petrol"
+        },
+        "isSwiss": {
+            "label": "Originally sold new in Switzerland?",
+            "placeholder": "Yes"
+        },
+        "make": {
+            "label": "Make",
+            "placeholder": "Make"
+        },
+        "mileage": {
+            "label": "Mileage",
+            "placeholder": "Mileage"
+        },
+        "model": {
+            "label": "Model",
+            "placeholder": "Model"
+        },
+        "next": {
+            "label": "Next"
+        },
+        "no": "No",
+        "output": {
+            "label": "Output (kW)",
+            "placeholder": "e.g. 100 kW"
+        },
+        "passcode": {
+            "backButton": "Go back to update car details",
+            "button": "Verify",
+            "description": "The passcode was sent to the following phone number.",
+            "enterPasscodePlaceholder": "1234",
+            "error": {
+                "description": "Your passcode was incorrect. Please try again.",
+                "title": "Passcode verification failed"
+            },
+            "request": "Request passcode",
+            "success": {
+                "description": "Your passcode was verified successfully.",
+                "title": "Passcode verified"
+            },
+            "title": "Please enter the 4-digit passcode sent to your mobile device."
+        },
+        "paymentConfirmed": {
+            "button": "Start another valuation",
+            "description": "We'll get back to you swiftly at the following contact details.",
+            "title": "Payment confirmed"
+        },
+        "paymentNotConfirmed": {
+            "button": "Try again",
+            "description": "Your payment was not successful. Please click below to try again. Please contact support if the issue persists.",
+            "title": "Payment not confirmed"
+        },
+        "phone": {
+            "label": "Phone Number",
+            "placeholder": "Your phone number"
+        },
+        "phone-entry": {
+            "backButton": "Go back",
+            "button": "Send passcode",
+            "description": "A passcode will be sent to the following phone number.",
+            "enterPhoneNumber": "Enter phone number",
+            "enterPhoneNumberPlaceholder": "e.g. +41 78 123 45 67",
+            "title": "Please enter your phone number to verify your identity."
+        },
+        "registrationDate": {
+            "label": "Date of Registration",
+            "placeholder": "mm/yyyy"
+        },
+        "series": {
+            "label": "Series",
+            "placeholder": "Series"
+        },
+        "submit": {
+            "label": "Get a valuation",
+            "loading": "Calculating..."
+        },
+        "success": {
+            "description": "We'll get back to you soon.",
+            "title": "Valuation submitted"
+        },
+        "title": "Please fill in the following details to get your car value.",
+        "transmission": {
+            "label": "Transmission",
+            "placeholder": "e.g. Automatic"
+        },
+        "yes": "Yes",
+        "other": "Other"
+    },
+    "CheckoutForm": {
+        "submit": {
+            "label": "Pay",
+            "loading": "Processing..."
+        }
+    },
+    "ComboBox": {
+        "other": "Other",
+        "placeholder": "Please enter your",
+        "select": "Select"
+    },
+    "HeroLanding": {
+        "link": "Go to the about page",
+        "subtitle": "Get a fair and accurate value for your auto in minutes. Swiss and imported vehicles are supported.",
+        "title": "Lightning fast auto valuation",
+        "title-b": "for Switzerland."
+    },
+    "PricingCards": {
+        "a": "Calculator",
+        "b": "Responsive and accurate",
+        "c": "Yearly",
+        "d": "Monthly",
+        "e": "Email",
+        "f": "for to contact our support team.",
+        "g": "You can test the subscriptions and won&apos;t be charged."
+    },
+    "PricingPage": {
+        "a": "Pricing - Car-Valuation",
+        "b": "Explore our subscription plans.",
+        "c": "Learn more about our pricing."
+    },
+    "ServerData": {
+        "anthracite": "Anthracite",
+        "automatic": "Automatic",
+        "beige": "Beige",
+        "bioethanol": "Bioethanol",
+        "black": "Black",
+        "blue": "Blue",
+        "bordeaux": "Bordeaux",
+        "brown": "Brown",
+        "diesel": "Diesel",
+        "diesel-electric": "Diesel/Electric",
+        "electric": "Electric",
+        "green": "Green",
+        "grey": "Grey",
+        "manual": "Manual",
+        "natural-gas-petrol": "Natural Gas/Petrol",
+        "orange": "Orange",
+        "petrol": "Petrol",
+        "petrol-electric": "Petrol/Electric",
+        "purple": "Purple",
+        "red": "Red",
+        "silver": "Silver",
+        "white": "White",
+        "yellow": "Yellow",
+        "other": "Other"
+    },
+    "Testimonials": {
+        "a": "Testimonials",
+        "b": "What our clients are sharing.",
+        "c": "Discover the glowing feedback from our delighted customers worldwide."
+    }
 }
